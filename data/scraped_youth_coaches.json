@@ -1,0 +1,238 @@
+{
+  "18u-prep-aaa": {
+    "teamId": 10311,
+    "headCoach": "Frankie Gerbasi",
+    "coaches": [
+      "Frankie Gerbasi"
+    ]
+  },
+  "18u-premier-aaa": {
+    "teamId": 10309,
+    "headCoach": "Bump Lisk",
+    "coaches": [
+      "Bump Lisk",
+      "Joe Wagner"
+    ]
+  },
+  "16u-prep-aaa": {
+    "teamId": 10310,
+    "headCoach": "Robert Criscuolo",
+    "coaches": [
+      "Robert Criscuolo"
+    ]
+  },
+  "16u-premier-aaa": {
+    "teamId": 10308,
+    "headCoach": "JT Tarantino",
+    "coaches": [
+      "JT Tarantino",
+      "Zach Turcotte"
+    ]
+  },
+  "15u-pure-aaa": {
+    "teamId": 10306,
+    "headCoach": "Brett Aimone",
+    "coaches": [
+      "Brett Aimone",
+      "Bump Lisk"
+    ]
+  },
+  "14u-aaa": {
+    "teamId": 10305,
+    "headCoach": "Rob Colton",
+    "coaches": [
+      "Rob Colton",
+      "Bump Lisk",
+      "Joe Wagner"
+    ]
+  },
+  "13u-aaa": {
+    "teamId": 11519,
+    "headCoach": "Chris Barcless",
+    "coaches": [
+      "C Barcless",
+      "Scott Bertoli"
+    ]
+  },
+  "12u-aaa": {
+    "teamId": 10303,
+    "headCoach": "Chris Barcless",
+    "coaches": [
+      "C Barcless",
+      "Mike Kuzma"
+    ]
+  },
+  "11u-aaa": {
+    "teamId": 10302,
+    "headCoach": "Oktay Armagan",
+    "coaches": [
+      "Oktay Armagan",
+      "Ryan Conlon",
+      "Brian Tetley"
+    ]
+  },
+  "10u-aaa": {
+    "teamId": 10301,
+    "headCoach": "Brian Batjer",
+    "coaches": [
+      "Brian Batjer",
+      "Ryan Burger",
+      "JD Schaub"
+    ]
+  },
+  "9u-aaa": {
+    "teamId": 10307,
+    "headCoach": "Oktay Armagan",
+    "coaches": [
+      "Oktay Armagan",
+      "Michael Szabo"
+    ]
+  },
+  "18u-aa": {
+    "teamId": 15401,
+    "headCoach": "Vincent Caruso",
+    "coaches": [
+      "Vincent Caruso",
+      "Shane Smith"
+    ]
+  },
+  "18u-gretzky": {
+    "teamId": 9878,
+    "headCoach": "Michael Cook",
+    "coaches": [
+      "Michael Cook",
+      "Michael Cook (Kingston Hockey)",
+      "Patrick O'Leary"
+    ]
+  },
+  "16u-lemieux": {
+    "teamId": 9881,
+    "headCoach": "Joseph Maslott",
+    "coaches": [
+      "Joseph Maslott",
+      "Patrick O'Leary"
+    ]
+  },
+  "14u-aa": {
+    "teamId": 9875,
+    "headCoach": "Jason Bracco",
+    "coaches": [
+      "Jason Bracco",
+      "Bill Merritt",
+      "Bill Merritt"
+    ]
+  },
+  "14u-mcdavid": {
+    "teamId": 15078,
+    "headCoach": "Don Migliorisi",
+    "coaches": [
+      "Don Migliorisi"
+    ]
+  },
+  "13u-aa": {
+    "teamId": 15033,
+    "headCoach": "Don Migliorisi",
+    "coaches": [
+      "Don Migliorisi",
+      "Ahmed Mohamed",
+      "Tatiana Shatalova"
+    ]
+  },
+  "12u-aa": {
+    "teamId": 14977,
+    "headCoach": "Don Migliorisi",
+    "coaches": [
+      "Don Migliorisi"
+    ]
+  },
+  "12u-lemieux": {
+    "teamId": 15027,
+    "headCoach": "Fritz Brown",
+    "coaches": [
+      "Fritz Brown",
+      "Dan Psinakis"
+    ]
+  },
+  "12u-mcdavid": {
+    "teamId": 9874,
+    "headCoach": "Chris Corrigan",
+    "coaches": [
+      "Chris Corrigan",
+      "Shaun Ellis",
+      "Greg Jorgensen",
+      "Viatcheslav Kouroedov",
+      "Andrew Park"
+    ]
+  },
+  "11u-aa": {
+    "teamId": 9872,
+    "headCoach": "Xan Doetsch",
+    "coaches": [
+      "Xan Doetsch",
+      "Dave Peisel"
+    ]
+  },
+  "10u-aa": {
+    "teamId": 9870,
+    "headCoach": "Xan Doetsch",
+    "coaches": [
+      "Xan Doetsch"
+    ]
+  },
+  "10u-lemieux": {
+    "teamId": 14939,
+    "headCoach": "Samuel Libetti",
+    "coaches": [
+      "Samuel Libetti",
+      "Barry Manion"
+    ]
+  },
+  "10u-mcdavid": {
+    "teamId": 14950,
+    "headCoach": "Ivan Chavez",
+    "coaches": [
+      "Ivan Chavez",
+      "Chris Devlin",
+      "Viatcheslav Kouroedov",
+      "Jason Odman",
+      "Andrew Viox"
+    ]
+  },
+  "9u-aa": {
+    "teamId": 9879,
+    "headCoach": "Nick Dimino",
+    "coaches": [
+      "Nick Dimino",
+      "Jeffrey Schultz"
+    ]
+  },
+  "8u-advanced": {
+    "teamId": 10584,
+    "headCoach": "Xan Doetsch",
+    "coaches": [
+      "Xan Doetsch",
+      "Dave Peisel"
+    ]
+  },
+  "8u-int-black": {
+    "teamId": 10579,
+    "headCoach": "John Norcia",
+    "coaches": [
+      "John Norcia"
+    ]
+  },
+  "8u-int-red": {
+    "teamId": 10583,
+    "headCoach": "Scott Buzney",
+    "coaches": [
+      "Scott Buzney"
+    ]
+  },
+  "8u-beginner": {
+    "teamId": 10581,
+    "headCoach": "Mark Fennimore",
+    "coaches": [
+      "Mark Fennimore"
+    ]
+  }
+}

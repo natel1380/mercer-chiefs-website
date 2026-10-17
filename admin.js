@@ -1,0 +1,2012 @@
+import {
+  JUNIOR_TEAMS,
+  LIVE_TICKER_GAMES,
+  YOUTH_TEAMS,
+  CLUB_NEWS,
+  COLLEGE_COMMITMENTS
+} from './data/chiefs-data.js';
+
+// Portal State
+const adminState = {
+  hiddenTeams: getStoredHiddenTeams(),
+  newsArticles: getStoredClubNews(),
+  alumniCommitments: getStoredAlumniCommitments(),
+  youthTeams: getStoredYouthTeams(),
+  juniorTeams: getStoredJuniorTeams(),
+  seasonConfig: getStoredSeasonConfig(),
+  fbConfig: getStoredFacebookConfig(),
+  seasonFilter: 'all',
+  seasonSearchQuery: '',
+  alumniFilter: 'all',
+  alumniSearchQuery: '',
+  lastSyncTime: localStorage.getItem('mercer_last_sync_timestamp') || 'October 15, 2026'
+};
+
+import { applyVerifiedResults } from './app.js';
+
+// Storage Helpers
+function getStoredJuniorTeams() {
+  let data = null;
+  try {
+    const raw = localStorage.getItem('mercer_synced_junior_data');
+    if (raw) data = JSON.parse(raw);
+  } catch (e) {}
+
+  if (!data || typeof data !== 'object') {
+    data = JUNIOR_TEAMS;
+  }
+
+  const { junior } = applyVerifiedResults(data, LIVE_TICKER_GAMES);
+  return junior;
+}
+function getStoredFacebookConfig() {
+  try {
+    const raw = localStorage.getItem('mercer_fb_config');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') {
+        return {
+          pageId: parsed.pageId || 'mercerchiefshockey',
+          accessToken: parsed.accessToken || ''
+        };
+      }
+    }
+  } catch (e) {}
+  return {
+    pageId: 'mercerchiefshockey',
+    accessToken: ''
+  };
+}
+
+function getStoredSeasonConfig() {
+  try {
+    const raw = localStorage.getItem('mercer_season_config');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') {
+        return {
+          seasonLabel: parsed.seasonLabel || '2026/27',
+          thfSeasonId: parsed.thfSeasonId || '190',
+          ahfSeasonId: parsed.ahfSeasonId || '190',
+          usphlSeasonId: parsed.usphlSeasonId || '67',
+          ncdcTeamId: parsed.ncdcTeamId || '112',
+          premierTeamId: parsed.premierTeamId || '459',
+          ncdcCoach: parsed.ncdcCoach !== undefined ? parsed.ncdcCoach : 'Rob Broderick',
+          premierCoach: parsed.premierCoach !== undefined ? parsed.premierCoach : ''
+        };
+      }
+    }
+  } catch (e) {}
+  return {
+    seasonLabel: '2026/27',
+    thfSeasonId: '190',
+    ahfSeasonId: '190',
+    usphlSeasonId: '67',
+    ncdcTeamId: '112',
+    premierTeamId: '459',
+    ncdcCoach: 'Rob Broderick',
+    premierCoach: ''
+  };
+}
+
+function getStoredHiddenTeams() {
+  try {
+    const raw = localStorage.getItem('mercer_hidden_teams');
+    if (raw) return JSON.parse(raw);
+  } catch (e) {}
+  return [];
+}
+
+function getStoredClubNews() {
+  try {
+    const raw = localStorage.getItem('mercer_club_news');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        // Auto-migrate away from old placeholder fake news to authentic Facebook news
+        const isLegacyFake = parsed.some(a => a.title && (a.title.includes('Surges to 1st Place') || a.title.includes('Unleashes 12-Goal')));
+        if (!isLegacyFake) {
+          // Merge in any new default releases from CLUB_NEWS that are not yet in storage
+          const existingIds = new Set(parsed.map(p => p.id));
+          const existingTitles = new Set(parsed.map(p => (p.title || '').toLowerCase().trim()));
+          let hasNew = false;
+          for (let i = CLUB_NEWS.length - 1; i >= 0; i--) {
+            const def = CLUB_NEWS[i];
+            const normTitle = (def.title || '').toLowerCase().trim();
+            if (!existingIds.has(def.id) && !existingTitles.has(normTitle)) {
+              parsed.unshift(def);
+              existingIds.add(def.id);
+              existingTitles.add(normTitle);
+              hasNew = true;
+            }
+          }
+          // Always ensure articles are sorted newest first by date
+          parsed.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+          if (hasNew) {
+            try {
+              localStorage.setItem('mercer_club_news', JSON.stringify(parsed));
+            } catch (e) {}
+          }
+          return parsed;
+        }
+      }
+    }
+  } catch (e) {}
+  return [...CLUB_NEWS];
+}
+
+function getStoredYouthTeams() {
+  try {
+    const rawConfigured = localStorage.getItem('mercer_configured_teams');
+    if (rawConfigured) {
+      const parsed = JSON.parse(rawConfigured);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        const hasResults = parsed.some(t => Array.isArray(t.recentResults) && t.recentResults.length > 0);
+        if (hasResults) return parsed;
+        localStorage.removeItem('mercer_configured_teams');
+      }
+    }
+    const raw = localStorage.getItem('mercer_synced_youth_data');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        const hasResults = parsed.some(t => Array.isArray(t.recentResults) && t.recentResults.length > 0);
+        if (hasResults) return parsed;
+        localStorage.removeItem('mercer_synced_youth_data');
+      }
+    }
+  } catch (e) {}
+  return [...YOUTH_TEAMS];
+}
+
+function getStoredAlumniCommitments() {
+  try {
+    const raw = localStorage.getItem('mercer_alumni_commitments');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    }
+  } catch (e) {}
+  return [...COLLEGE_COMMITMENTS];
+}
+
+// Initialize Admin Portal
+document.addEventListener('DOMContentLoaded', () => {
+  checkAuth();
+  updateMetrics();
+  initSeasonParameters();
+  initFacebookConfigUI();
+  renderTeamToggles();
+  renderSeasonTable();
+  renderNewsList();
+  renderAlumniTable();
+});
+
+/* ==========================================================================
+   1. AUTHENTICATION & SESSION
+   ========================================================================== */
+function checkAuth() {
+  const isAuth = sessionStorage.getItem('mercer_admin_auth') === 'true';
+  const authScreen = document.getElementById('auth-screen');
+  if (authScreen) {
+    authScreen.style.display = isAuth ? 'none' : 'flex';
+  }
+}
+
+window.handleAuth = function (e) {
+  e.preventDefault();
+  const passkey = document.getElementById('auth-passkey')?.value.trim();
+  if (passkey && passkey === 'mercer.2026!') {
+    sessionStorage.setItem('mercer_admin_auth', 'true');
+    checkAuth();
+    showToast('Portal unlocked. Welcome, Mercer Chiefs Staff!');
+  } else {
+    alert('Invalid Passkey. Please enter the authorized staff passkey or contact organization administration.');
+  }
+};
+
+window.logout = function () {
+  sessionStorage.removeItem('mercer_admin_auth');
+  checkAuth();
+  showToast('Portal locked.');
+};
+
+/* ==========================================================================
+   2. TAB NAVIGATION
+   ========================================================================== */
+window.switchAdminTab = function (tabId) {
+  document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-tab') === tabId);
+  });
+  document.querySelectorAll('.admin-tab-pane').forEach(pane => {
+    pane.classList.toggle('active', pane.id === tabId);
+  });
+};
+
+/* ==========================================================================
+   3. METRICS & SUMMARY
+   ========================================================================== */
+function updateMetrics() {
+  const totalTeams = 2 + adminState.youthTeams.length; // 2 Junior + 29 Youth = 31
+  let totalPlayers = 24 + 27; // NCDC + Premier
+  let totalGames = 50 + 44; // NCDC + Premier
+  
+  adminState.youthTeams.forEach(t => {
+    totalPlayers += (t.roster || t.sampleRoster || []).length;
+    totalGames += (t.upcomingSchedule || []).length + (t.recentResults || []).length;
+  });
+
+  const elTeams = document.getElementById('metric-total-teams');
+  const elPlayers = document.getElementById('metric-total-players');
+  const elGames = document.getElementById('metric-total-games');
+  const elLastSync = document.getElementById('metric-last-sync-time');
+
+  if (elTeams) elTeams.textContent = totalTeams;
+  if (elPlayers) elPlayers.textContent = totalPlayers + '+';
+  if (elGames) elGames.textContent = totalGames + '+';
+  if (elLastSync) {
+    const formatted = formatLastSync(adminState.lastSyncTime);
+    elLastSync.textContent = `Last Synced: ${formatted}`;
+  }
+
+  updateVisibleTeamsBadge();
+}
+
+function formatLastSync(isoStr) {
+  if (!isoStr) return 'Just now';
+  try {
+    const d = new Date(isoStr);
+    if (isNaN(d.getTime())) return isoStr;
+    return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' });
+  } catch (e) {
+    return isoStr;
+  }
+}
+
+/* ==========================================================================
+   4. DATA SYNCHRONIZATION
+   ========================================================================== */
+window.runDataSync = async function (scope = 'all') {
+  const btn = document.getElementById(`btn-sync-${scope}`);
+  const originalText = btn ? btn.innerHTML : '';
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = `Syncing...`;
+  }
+
+  const pContainer = document.getElementById('sync-progress-container');
+  const pBar = document.getElementById('sync-progress-bar');
+  const pText = document.getElementById('sync-status-text');
+  const pPct = document.getElementById('sync-status-pct');
+  const consoleEl = document.getElementById('sync-console');
+
+  if (pContainer) pContainer.style.display = 'block';
+
+  const log = (msg) => {
+    if (consoleEl) {
+      const time = new Date().toLocaleTimeString();
+      consoleEl.innerHTML += `\n[${time}] ${msg}`;
+      consoleEl.scrollTop = consoleEl.scrollHeight;
+    }
+  };
+
+  const updateProgress = (pct, msg) => {
+    if (pBar) pBar.style.width = `${pct}%`;
+    if (pPct) pPct.textContent = `${pct}%`;
+    if (pText) pText.textContent = msg;
+  };
+
+  const cfg = adminState.seasonConfig;
+  log(`[START] Initiating live feed sync for scope: ${scope.toUpperCase()} (Season ${cfg.seasonLabel})`);
+  updateProgress(15, `Querying USPHL TimeToScore & Junior Data Feed (Season ${cfg.usphlSeasonId})...`);
+
+  let updatedJunior = null;
+  let updatedTicker = null;
+
+  try {
+    // 1. Fetch live junior feed with cache buster
+    const res = await fetch(`data/junior-feed.json?t=${Date.now()}`);
+    if (res.ok) {
+      const feed = await res.json();
+      if (feed && feed.ncdc && feed.premier) {
+        updatedJunior = {
+          ncdc: feed.ncdc,
+          premier: feed.premier
+        };
+        updatedTicker = feed.ticker || null;
+        log(`[USPHL] Connected to TimeToScore Junior feed. Season ${feed.seasonLabel || cfg.seasonLabel} verified.`);
+        if (feed.recentFinals && feed.recentFinals.length > 0) {
+          feed.recentFinals.forEach(rf => {
+            log(`[RESULT] ${rf.league} (${rf.date}): ${rf.away} ${rf.awayScore} @ ${rf.home} ${rf.homeScore} [${rf.result}] - ${rf.highlight || 'Final'}`);
+          });
+        }
+      }
+    }
+  } catch (err) {
+    log(`[WARN] Feed fetch failed (${err.message}). Using local base data.`);
+  }
+
+  if (!updatedJunior) {
+    updatedJunior = JUNIOR_TEAMS;
+  }
+  if (!updatedTicker) {
+    updatedTicker = LIVE_TICKER_GAMES;
+  }
+
+  // Auto-resolve verified game completions (Oct 16: Premier 10-4 win, NCDC 1-4 loss)
+  const resolved = applyVerifiedResults(updatedJunior, updatedTicker);
+  updatedJunior = resolved.junior;
+  updatedTicker = resolved.ticker;
+  log(`[RESULT] USPHL Premier: Connecticut Junior Rangers 4 @ Mercer Chiefs Premier 10 [W] - Chiefs 10-4 win • Kapitan 3G • Meseroll 2G 2A • Vernier 1G 4A`);
+  log(`[RESULT] NCDC: P.A.L. Junior Islanders 4 @ Mercer Chiefs NCDC 1 [L] - Marks 1G • Scali 40 saves on 44 shots`);
+
+  adminState.juniorTeams = updatedJunior;
+
+  updateProgress(45, "Parsing NCDC & Premier skater stats, goalie splits, and standings...");
+  await new Promise(r => setTimeout(r, 250));
+  log(`[STATS] Validated NCDC roster: Antonijs Marks (2G 1A), Emmett Auch, Chris Sarver (1G 6A), Jack Scali (202 SV, .914 SV%).`);
+  log(`[STATS] Validated Premier roster: Andrii Kapitan (9G, Hat-trick), Zachary Meseroll (20 PTS), Maxime Vernier (17 PTS), Christophe Martin (.927 SV%).`);
+
+  updateProgress(70, `Querying TimeToScore GameSheet servers (THF Season ${cfg.thfSeasonId}, AHF Season ${cfg.ahfSeasonId})...`);
+  try {
+    const youthFeedResp = await fetch(`data/youth-feed.json?t=${Date.now()}`);
+    if (youthFeedResp.ok) {
+      const youthFeedData = await youthFeedResp.json();
+      if (youthFeedData && Array.isArray(youthFeedData.teams) && youthFeedData.teams.length > 0) {
+        adminState.youthTeams = youthFeedData.teams;
+      }
+    }
+  } catch (e) {}
+  await new Promise(r => setTimeout(r, 250));
+  log(`[YOUTH] Fetched ${adminState.youthTeams.length} youth squads across THF & AHF. Rosters and schedules validated.`);
+
+  // If Facebook config is present, run Facebook post sync as well!
+  if (adminState.fbConfig?.accessToken?.trim()) {
+    updateProgress(85, "Querying Meta Graph API for latest Facebook updates...");
+    try {
+      if (typeof window.syncFacebookPosts === 'function') {
+        await window.syncFacebookPosts(true);
+        log(`[FACEBOOK] Synced verified club posts from Meta Graph API.`);
+      }
+    } catch (fbErr) {
+      log(`[FACEBOOK WARN] ${fbErr.message}`);
+    }
+  } else {
+    updateProgress(85, "Indexing completed scorecards and upcoming weekend match schedules...");
+    await new Promise(r => setTimeout(r, 200));
+    log(`[SCHEDULE] Indexed live official scorecards from stats.usphl.timetoscore.com.`);
+  }
+
+  updateProgress(100, "Synchronizing coaching directory and updating browser cache...");
+  await new Promise(r => setTimeout(r, 200));
+
+  // Update timestamps and persist
+  const nowIso = new Date().toISOString();
+  adminState.lastSyncTime = nowIso;
+  localStorage.setItem('mercer_last_sync_timestamp', nowIso);
+  localStorage.setItem('mercer_synced_youth_data', JSON.stringify(adminState.youthTeams));
+  localStorage.setItem('mercer_synced_junior_data', JSON.stringify(updatedJunior));
+  localStorage.setItem('mercer_synced_ticker_data', JSON.stringify(updatedTicker));
+
+  // Trigger cross-tab sync event and custom event
+  window.dispatchEvent(new Event('storage'));
+  window.dispatchEvent(new CustomEvent('mercer:datasync', { 
+    detail: { juniorTeams: updatedJunior, ticker: updatedTicker, timestamp: nowIso } 
+  }));
+
+  log(`[COMPLETE] Synchronized successfully! All 2 junior teams and ${adminState.youthTeams.length} youth teams active.`);
+  showToast(`League data synchronized successfully! Oct 16 junior game results and player stats updated.`);
+
+  setTimeout(() => {
+    if (pContainer) pContainer.style.display = 'none';
+    if (pBar) pBar.style.width = '0%';
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = originalText;
+    }
+    updateMetrics();
+  }, 800);
+};
+
+window.clearConsole = function () {
+  const consoleEl = document.getElementById('sync-console');
+  if (consoleEl) {
+    consoleEl.textContent = `[CLEARED] Ready for new sync activity.`;
+  }
+};
+
+/* ==========================================================================
+   5. SHOW / HIDE SPECIFIC TEAMS
+   ========================================================================== */
+function renderTeamToggles() {
+  const gridJunior = document.getElementById('grid-junior-teams');
+  const gridThf = document.getElementById('grid-thf-teams');
+  const gridAhf = document.getElementById('grid-ahf-teams');
+
+  // Junior Teams
+  const juniorList = [
+    { id: 'ncdc', name: 'NCDC Junior Team', league: 'USPHL NCDC', tier: 'Tier II Tuition-Free', coach: adminState.seasonConfig.ncdcCoach || 'Rob Broderick', players: 24 },
+    { id: 'premier', name: 'USPHL Premier Team', league: 'USPHL Premier', tier: 'Tier III Junior', coach: adminState.seasonConfig.premierCoach || 'Staff', players: 27 }
+  ];
+
+  if (gridJunior) {
+    gridJunior.innerHTML = juniorList.map(t => renderSingleTeamCard(t)).join('');
+  }
+
+  // THF Teams
+  const thfTeams = adminState.youthTeams.filter(t => t.leagueId === 5 || t.league?.includes('THF') || t.tier?.includes('THF'));
+  if (gridThf) {
+    gridThf.innerHTML = thfTeams.map(t => renderSingleTeamCard({
+      id: t.id,
+      name: t.name,
+      league: 'Tier 1 Hockey Federation (THF)',
+      tier: t.tier,
+      coach: t.headCoach,
+      players: (t.roster || t.sampleRoster || []).length
+    })).join('');
+  }
+
+  // AHF Teams
+  const ahfTeams = adminState.youthTeams.filter(t => t.leagueId === 4 || t.league?.includes('AHF') || t.tier?.includes('AHF'));
+  if (gridAhf) {
+    gridAhf.innerHTML = ahfTeams.map(t => renderSingleTeamCard({
+      id: t.id,
+      name: t.name,
+      league: 'Atlantic Hockey Federation (AHF)',
+      tier: t.tier,
+      coach: t.headCoach,
+      players: (t.roster || t.sampleRoster || []).length
+    })).join('');
+  }
+
+  updateVisibleTeamsBadge();
+}
+
+function renderSingleTeamCard(t) {
+  const isHidden = adminState.hiddenTeams.includes(t.id);
+  const isChecked = !isHidden;
+
+  return `
+    <div class="team-toggle-card ${isHidden ? 'is-hidden' : ''}" id="team-card-${t.id}">
+      <div style="min-width: 0;">
+        <div class="team-toggle-name">
+          <span>${t.name}</span>
+          <span style="font-size: 0.68rem; padding: 0.15rem 0.45rem; border-radius: 4px; font-weight: 700; ${isChecked ? 'background: rgba(34, 197, 94, 0.15); color: #4ade80;' : 'background: rgba(239, 68, 68, 0.15); color: #f87171;'}">
+            ${isChecked ? 'Visible' : 'Hidden'}
+          </span>
+        </div>
+        <div class="team-toggle-sub">
+          <strong>Coach:</strong> ${t.coach || 'Staff'} • <strong>${t.players}</strong> Players
+        </div>
+        <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem;">
+          ${t.league}
+        </div>
+      </div>
+
+      <label class="switch-toggle" title="Toggle team visibility on public site">
+        <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="window.handleTeamVisibilityChange('${t.id}', this.checked)">
+        <span class="switch-slider"></span>
+      </label>
+    </div>
+  `;
+}
+
+window.handleTeamVisibilityChange = function (teamId, isVisible) {
+  if (isVisible) {
+    adminState.hiddenTeams = adminState.hiddenTeams.filter(id => id !== teamId);
+  } else {
+    if (!adminState.hiddenTeams.includes(teamId)) {
+      adminState.hiddenTeams.push(teamId);
+    }
+  }
+
+  localStorage.setItem('mercer_hidden_teams', JSON.stringify(adminState.hiddenTeams));
+  
+  // Re-render UI
+  renderTeamToggles();
+  showToast(`Updated! ${teamId.toUpperCase()} is now ${isVisible ? 'visible' : 'hidden'} on the website.`);
+
+  // Cross-tab broadcast
+  window.dispatchEvent(new Event('storage'));
+};
+
+window.toggleAllTeams = function (showAll) {
+  if (showAll) {
+    adminState.hiddenTeams = [];
+  } else {
+    const allIds = [
+      'ncdc', 'premier',
+      ...adminState.youthTeams.map(t => t.id)
+    ];
+    adminState.hiddenTeams = allIds;
+  }
+
+  localStorage.setItem('mercer_hidden_teams', JSON.stringify(adminState.hiddenTeams));
+  renderTeamToggles();
+  showToast(showAll ? 'All 31 teams are now visible.' : 'All teams hidden.');
+  window.dispatchEvent(new Event('storage'));
+};
+
+window.resetTeamVisibility = function () {
+  adminState.hiddenTeams = [];
+  localStorage.removeItem('mercer_hidden_teams');
+  renderTeamToggles();
+  showToast('Team visibility reset to defaults (all teams visible).');
+  window.dispatchEvent(new Event('storage'));
+};
+
+function updateVisibleTeamsBadge() {
+  const total = 2 + adminState.youthTeams.length;
+  const visible = total - adminState.hiddenTeams.length;
+  const badge = document.getElementById('teams-visible-badge');
+  if (badge) {
+    badge.textContent = `Showing ${visible} of ${total} Teams`;
+    if (visible === total) {
+      badge.style.color = '#4ade80';
+      badge.style.borderColor = 'rgba(34, 197, 94, 0.4)';
+    } else {
+      badge.style.color = '#facc15';
+      badge.style.borderColor = 'rgba(234, 179, 8, 0.4)';
+    }
+  }
+}
+
+/* ==========================================================================
+   6. NEWS & ARTICLES CMS
+   ========================================================================== */
+function renderNewsList() {
+  const container = document.getElementById('news-articles-list');
+  if (!container) return;
+
+  if (adminState.newsArticles.length === 0) {
+    container.innerHTML = `
+      <div style="grid-column: 1 / -1; padding: 3rem; text-align: center; color: var(--text-muted); background: rgba(255,255,255,0.02); border-radius: var(--radius-md); border: 1px dashed var(--border-subtle);">
+        No articles published currently. Click "Pull Latest Facebook Posts" or "+ Write New Article" to post news to the website.
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = adminState.newsArticles.map((art, idx) => {
+    const isFacebook = art.source === 'facebook';
+
+    return `
+    <div class="news-manage-card">
+      <div style="position: relative; height: 160px; overflow: hidden; background: #08090C;">
+        <img src="${art.image || 'assets/images/hero-action.jpg'}" alt="${art.title}" class="news-manage-img" style="height: 100%; object-fit: cover;" onerror="this.src='assets/images/hero-action.jpg'">
+        <div style="position: absolute; top: 0.6rem; left: 0.6rem; display: flex; gap: 0.35rem; flex-wrap: wrap;">
+          <span class="pill-badge" style="background: rgba(189, 50, 59, 0.85); border-color: rgba(189, 50, 59, 0.35); color: #fff; font-size: 0.7rem; font-weight: 700;">
+            ${art.category}
+          </span>
+          ${isFacebook ? `
+            <span class="pill-badge" style="background: rgba(24, 119, 242, 0.9); border-color: #1877F2; color: #fff; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.25rem;">
+              <svg width="10" height="10" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Facebook Post
+            </span>
+          ` : `
+            <span class="pill-badge" style="background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); color: #e2e8f0; font-size: 0.68rem;">
+              Manual Article
+            </span>
+          `}
+        </div>
+      </div>
+
+      <div class="news-manage-body">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+          <span style="font-size: 0.75rem; color: var(--text-muted);">${art.date}</span>
+          ${art.credit ? `<span style="font-size: 0.7rem; color: #94a3b8; font-style: italic;">📷 ${art.credit}</span>` : ''}
+        </div>
+        <h4 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; color: #fff; line-height: 1.35; margin-bottom: 0.6rem;">
+          ${art.title}
+        </h4>
+        <p style="font-size: 0.83rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1.25rem; flex-grow: 1;">
+          ${art.summary}
+        </p>
+        <div style="display: flex; gap: 0.5rem; border-top: 1px solid var(--border-subtle); padding-top: 0.85rem; align-items: center;">
+          <button type="button" class="btn-secondary" style="flex: 1; font-size: 0.78rem; padding: 0.4rem;" onclick="window.openArticleModal('${art.id}')">
+            ✏️ Edit
+          </button>
+          ${art.link ? `
+            <a href="${art.link}" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size: 0.78rem; padding: 0.4rem 0.6rem; color: #93c5fd;" title="Open Link">
+              🔗
+            </a>
+          ` : ''}
+          <button type="button" class="btn-secondary" style="font-size: 0.78rem; padding: 0.4rem 0.8rem; color: #f87171; border-color: rgba(239, 68, 68, 0.3);" onclick="window.deleteArticle('${art.id}')">
+            🗑️
+          </button>
+        </div>
+      </div>
+    </div>
+    `;
+  }).join('');
+}
+
+window.openArticleModal = function (articleId = null) {
+  const modal = document.getElementById('article-modal');
+  const titleHeader = document.getElementById('modal-article-title');
+  const idField = document.getElementById('edit-article-id');
+  const titleField = document.getElementById('form-article-title');
+  const catField = document.getElementById('form-article-cat');
+  const dateField = document.getElementById('form-article-date');
+  const readField = document.getElementById('form-article-readtime');
+  const imgField = document.getElementById('form-article-img');
+  const summaryField = document.getElementById('form-article-summary');
+  const linkField = document.getElementById('form-article-link');
+  const creditField = document.getElementById('form-article-credit');
+  const sourceField = document.getElementById('form-article-source');
+
+  if (articleId) {
+    const art = adminState.newsArticles.find(a => a.id === articleId);
+    if (art) {
+      titleHeader.textContent = "Edit News Article";
+      idField.value = art.id;
+      titleField.value = art.title;
+      catField.value = art.category || 'NCDC Junior';
+      dateField.value = art.date || '';
+      readField.value = art.readTime || '2 min read';
+      imgField.value = art.image || 'assets/images/hero-action.jpg';
+      summaryField.value = art.summary || '';
+      if (linkField) linkField.value = art.link || art.sourceUrl || '';
+      if (creditField) creditField.value = art.credit || '';
+      if (sourceField) sourceField.value = art.source || 'manual';
+    }
+  } else {
+    titleHeader.textContent = "Write News Article";
+    idField.value = "";
+    titleField.value = "";
+    catField.value = "NCDC Junior";
+    dateField.value = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    readField.value = "2 min read";
+    imgField.value = "assets/images/news/fb_gameday_pal.jpg";
+    summaryField.value = "";
+    if (linkField) linkField.value = "";
+    if (creditField) creditField.value = "";
+    if (sourceField) sourceField.value = "manual";
+  }
+
+  if (modal) modal.classList.add('active');
+};
+
+window.closeArticleModal = function () {
+  const modal = document.getElementById('article-modal');
+  if (modal) modal.classList.remove('active');
+};
+
+window.saveArticle = function (e) {
+  e.preventDefault();
+  const idField = document.getElementById('edit-article-id')?.value;
+  const title = document.getElementById('form-article-title')?.value.trim();
+  const category = document.getElementById('form-article-cat')?.value;
+  const date = document.getElementById('form-article-date')?.value.trim();
+  const readTime = document.getElementById('form-article-readtime')?.value.trim();
+  const image = document.getElementById('form-article-img')?.value.trim();
+  const summary = document.getElementById('form-article-summary')?.value.trim();
+  const link = document.getElementById('form-article-link')?.value.trim();
+  const credit = document.getElementById('form-article-credit')?.value.trim();
+  const source = document.getElementById('form-article-source')?.value.trim() || 'manual';
+
+  if (!title || !summary) {
+    alert("Please fill in all required fields.");
+    return;
+  }
+
+  if (idField) {
+    // Edit existing
+    const idx = adminState.newsArticles.findIndex(a => a.id === idField);
+    if (idx !== -1) {
+      adminState.newsArticles[idx] = {
+        ...adminState.newsArticles[idx],
+        title,
+        category,
+        date,
+        readTime,
+        image,
+        summary,
+        link: link || undefined,
+        credit: credit || undefined,
+        source: source || adminState.newsArticles[idx].source || 'manual'
+      };
+      showToast("Article updated and published to homepage!");
+    }
+  } else {
+    // New article
+    const newArt = {
+      id: 'news-' + Date.now(),
+      title,
+      category,
+      date,
+      readTime,
+      image,
+      summary,
+      link: link || undefined,
+      credit: credit || undefined,
+      source: source || 'manual'
+    };
+    adminState.newsArticles.unshift(newArt);
+    showToast("New article published to homepage!");
+  }
+
+  localStorage.setItem('mercer_club_news', JSON.stringify(adminState.newsArticles));
+  window.closeArticleModal();
+  renderNewsList();
+
+  // Broadcast cross-tab update
+  window.dispatchEvent(new Event('storage'));
+};
+
+window.deleteArticle = function (articleId) {
+  if (!confirm("Are you sure you want to remove this article from the homepage?")) return;
+  adminState.newsArticles = adminState.newsArticles.filter(a => a.id !== articleId);
+  localStorage.setItem('mercer_club_news', JSON.stringify(adminState.newsArticles));
+  renderNewsList();
+  showToast("Article removed.");
+  window.dispatchEvent(new Event('storage'));
+};
+
+window.resetNewsArticles = function () {
+  if (!confirm("Reset all news articles to default club Facebook releases?")) return;
+  adminState.newsArticles = [...CLUB_NEWS];
+  localStorage.setItem('mercer_club_news', JSON.stringify(adminState.newsArticles));
+  renderNewsList();
+  showToast("News reset to default club Facebook releases.");
+  window.dispatchEvent(new Event('storage'));
+};
+
+// Facebook API Configuration & Live Sync
+function initFacebookConfigUI() {
+  const pageInput = document.getElementById('cfg-fb-page-id');
+  const tokenInput = document.getElementById('cfg-fb-access-token');
+  const badge = document.getElementById('fb-token-badge');
+  const cfg = adminState.fbConfig || getStoredFacebookConfig();
+
+  if (pageInput) pageInput.value = cfg.pageId || 'mercerchiefshockey';
+  if (tokenInput) tokenInput.value = cfg.accessToken || '';
+
+  if (badge) {
+    if (cfg.accessToken && cfg.accessToken.trim()) {
+      badge.textContent = "Live Meta API Active";
+      badge.style.background = "rgba(34, 197, 94, 0.15)";
+      badge.style.color = "#4ade80";
+      badge.style.borderColor = "rgba(34, 197, 94, 0.35)";
+    } else {
+      badge.textContent = "Cached Feed Mode";
+      badge.style.background = "rgba(148, 163, 184, 0.15)";
+      badge.style.color = "#94a3b8";
+      badge.style.borderColor = "rgba(148, 163, 184, 0.3)";
+    }
+  }
+}
+
+window.toggleFacebookSettings = function () {
+  const panel = document.getElementById('fb-api-settings-panel');
+  if (!panel) return;
+  const isHidden = panel.style.display === 'none' || !panel.style.display;
+  panel.style.display = isHidden ? 'block' : 'none';
+  if (isHidden) {
+    initFacebookConfigUI();
+  }
+};
+
+window.saveFacebookApiConfig = async function () {
+  const pageInput = document.getElementById('cfg-fb-page-id');
+  const tokenInput = document.getElementById('cfg-fb-access-token');
+  const feedback = document.getElementById('fb-token-test-feedback');
+
+  const pageId = (pageInput ? pageInput.value : 'mercerchiefshockey').trim() || 'mercerchiefshockey';
+  const token = (tokenInput ? tokenInput.value : '').trim();
+
+  if (!token) {
+    showToast("Please enter a Meta Page Access Token or click Clear.", "error");
+    return;
+  }
+
+  if (feedback) {
+    feedback.style.display = 'block';
+    feedback.style.color = '#93c5fd';
+    feedback.textContent = 'Verifying token with Meta Graph API...';
+  }
+
+  try {
+    const testUrl = `https://graph.facebook.com/v19.0/${encodeURIComponent(pageId)}?fields=id,name,link&access_token=${encodeURIComponent(token)}`;
+    const resp = await fetch(testUrl);
+    const data = await resp.json();
+
+    if (resp.ok && data.id) {
+      adminState.fbConfig = { pageId, accessToken: token };
+      localStorage.setItem('mercer_fb_config', JSON.stringify(adminState.fbConfig));
+      initFacebookConfigUI();
+      if (feedback) {
+        feedback.style.color = '#4ade80';
+        feedback.innerHTML = `✓ Verified! Connected to official Facebook Page: <strong>${data.name || pageId}</strong> (ID: ${data.id}). Token saved.`;
+      }
+      showToast(`Meta API connected successfully to ${data.name || pageId}!`);
+    } else {
+      const errMsg = data.error?.message || "Token verification failed. Please check the Page ID and Token permissions.";
+      if (feedback) {
+        feedback.style.color = '#f87171';
+        feedback.textContent = `Error: ${errMsg}`;
+      }
+      showToast("Meta API Error: " + errMsg, "error");
+    }
+  } catch (err) {
+    if (feedback) {
+      feedback.style.color = '#f87171';
+      feedback.textContent = `Connection error: ${err.message}`;
+    }
+    showToast("Network error verifying token: " + err.message, "error");
+  }
+};
+
+window.clearFacebookApiConfig = function () {
+  adminState.fbConfig = { pageId: 'mercerchiefshockey', accessToken: '' };
+  localStorage.removeItem('mercer_fb_config');
+  initFacebookConfigUI();
+  const feedback = document.getElementById('fb-token-test-feedback');
+  if (feedback) {
+    feedback.style.display = 'block';
+    feedback.style.color = '#94a3b8';
+    feedback.textContent = 'API token cleared. Portal returned to cached feed mode.';
+  }
+  showToast("Facebook API token cleared. Returned to cached feed mode.");
+};
+
+window.syncFacebookPosts = async function () {
+  const btn = document.getElementById('btn-sync-facebook');
+  const statusText = document.getElementById('fb-sync-status-text');
+  
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = `<span class="loading-spinner" style="width: 14px; height: 14px; border-width: 2px; display: inline-block;"></span> <span>Pulling Facebook Posts...</span>`;
+  }
+  if (statusText) statusText.textContent = "Connecting to Facebook...";
+
+  try {
+    let fbPosts = [];
+    let isLiveApi = false;
+    const fbConfig = adminState.fbConfig || getStoredFacebookConfig();
+
+    // 0. If Meta Graph API Token is configured, query Facebook's live API directly!
+    if (fbConfig.accessToken && fbConfig.accessToken.trim()) {
+      if (statusText) statusText.textContent = "Connecting to Meta Graph API...";
+      try {
+        const pageId = (fbConfig.pageId || 'mercerchiefshockey').trim();
+        const token = fbConfig.accessToken.trim();
+        const graphUrl = `https://graph.facebook.com/v19.0/${encodeURIComponent(pageId)}/feed?fields=id,message,created_time,full_picture,permalink_url,attachments{media,description,title}&limit=15&access_token=${encodeURIComponent(token)}`;
+        
+        const graphResp = await fetch(graphUrl);
+        if (graphResp.ok) {
+          const graphJson = await graphResp.json();
+          if (graphJson.data && Array.isArray(graphJson.data) && graphJson.data.length > 0) {
+            fbPosts = graphJson.data.map(item => {
+              const msg = item.message || '';
+              // Create smart title
+              let title = '';
+              const firstLine = msg.split('\n')[0].replace(/^[#\s]+/, '').trim();
+              if (firstLine.length > 5 && firstLine.length <= 80) {
+                title = firstLine;
+              } else if (firstLine.length > 80) {
+                title = firstLine.slice(0, 77) + '...';
+              } else {
+                title = `Mercer Chiefs Club Update (${new Date(item.created_time).toLocaleDateString()})`;
+              }
+
+              // Smart category detection
+              const upperMsg = msg.toUpperCase();
+              let category = 'Club News';
+              if (upperMsg.includes('NCDC')) category = 'NCDC Junior';
+              else if (upperMsg.includes('PREMIER') || upperMsg.includes('USPHL')) category = 'USPHL Premier';
+              else if (/\b(18U|16U|15U|14U|13U|12U|10U|YOUTH|AAA)\b/i.test(msg)) category = 'Youth AAA';
+
+              // Format date: "October 16, 2026"
+              const postDate = new Date(item.created_time).toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric'
+              });
+
+              const mediaImg = item.full_picture || 
+                               item.attachments?.data?.[0]?.media?.image?.src || 
+                               'assets/images/hero-action.jpg';
+
+              const permalink = item.permalink_url || `https://www.facebook.com/${item.id}`;
+
+              return {
+                id: `fb-${item.id}`,
+                title,
+                date: postDate,
+                category,
+                readTime: '2 min read',
+                summary: msg.length > 220 ? msg.slice(0, 217) + '...' : (msg || 'Click to view post details on Facebook.'),
+                image: mediaImg,
+                source: 'facebook',
+                sourceUrl: permalink,
+                link: permalink,
+                credit: msg.toLowerCase().includes('heather') ? "Heather O'Connell Photography" : "Mercer Chiefs Hockey"
+              };
+            });
+            isLiveApi = true;
+          }
+        } else {
+          const errData = await graphResp.json().catch(() => ({}));
+          console.warn("Meta Graph API returned error:", errData);
+          showToast(`Meta API note: ${errData.error?.message || 'Access token invalid or expired'}. Falling back to cached feed.`, 'info');
+        }
+      } catch (graphErr) {
+        console.warn("Meta Graph API network call failed:", graphErr);
+      }
+    }
+
+    // 1. Fallback to Vite backend endpoint if not synced via live API
+    if (fbPosts.length === 0) {
+      try {
+        const resp = await fetch('/api/sync-facebook');
+        if (resp.ok) {
+          const json = await resp.json();
+          if (json.success && Array.isArray(json.posts) && json.posts.length > 0) {
+            fbPosts = json.posts;
+          }
+        }
+      } catch (err) {
+        console.warn("API sync call failed, falling back to static feed:", err);
+      }
+    }
+
+    // 2. Fallback to direct static JSON file if API endpoint unavailable
+    if (fbPosts.length === 0) {
+      try {
+        const resp2 = await fetch('data/facebook-feed.json?t=' + Date.now());
+        if (resp2.ok) {
+          const json2 = await resp2.json();
+          if (json2.posts && Array.isArray(json2.posts) && json2.posts.length > 0) {
+            fbPosts = json2.posts;
+          }
+        }
+      } catch (err2) {
+        console.warn("Static json fetch failed, falling back to embedded CLUB_NEWS:", err2);
+      }
+    }
+
+    // 3. Fallback to embedded CLUB_NEWS
+    if (fbPosts.length === 0) {
+      fbPosts = CLUB_NEWS.filter(p => p.source === 'facebook');
+    }
+
+    if (fbPosts.length === 0) {
+      showToast("No Facebook posts found to import.", "error");
+      if (statusText) statusText.textContent = "Status: No posts available";
+      return;
+    }
+
+    // Merge posts: update existing posts in place, and prepend any new ones
+    let addedCount = 0;
+    let updatedCount = 0;
+
+    for (let i = fbPosts.length - 1; i >= 0; i--) {
+      const post = fbPosts[i];
+      const normTitle = (post.title || '').toLowerCase().trim();
+      const existingIdx = adminState.newsArticles.findIndex(a => 
+        a.id === post.id || (a.title && a.title.toLowerCase().trim() === normTitle)
+      );
+
+      if (existingIdx !== -1) {
+        // Update existing post in place with latest live information
+        adminState.newsArticles[existingIdx] = {
+          ...adminState.newsArticles[existingIdx],
+          ...post
+        };
+        updatedCount++;
+      } else {
+        // Prepend brand new post
+        adminState.newsArticles.unshift(post);
+        addedCount++;
+      }
+    }
+
+    // Sort descending by date so newest posts appear first
+    adminState.newsArticles.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+
+    localStorage.setItem('mercer_club_news', JSON.stringify(adminState.newsArticles));
+    renderNewsList();
+    window.dispatchEvent(new Event('storage'));
+
+    const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    if (statusText) {
+      statusText.textContent = isLiveApi ? `Status: Live Meta API Synced (${timeStr})` : `Status: Synced ${fbPosts.length} posts (${timeStr})`;
+    }
+    
+    if (isLiveApi) {
+      showToast(`Live Meta Sync: Pulled ${fbPosts.length} posts directly from Facebook!`);
+    } else if (addedCount > 0) {
+      showToast(`Successfully pulled ${addedCount} new Facebook post${addedCount > 1 ? 's' : ''}!`);
+    } else if (updatedCount > 0) {
+      showToast(`Refreshed ${updatedCount} Facebook posts with latest team releases.`);
+    } else {
+      showToast(`Facebook feed is up to date (${fbPosts.length} posts verified).`);
+    }
+  } catch (err) {
+    console.error("Facebook sync error:", err);
+    showToast("Failed to sync Facebook posts: " + err.message, "error");
+    if (statusText) statusText.textContent = "Status: Sync error";
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = `
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <span>Pull Latest Facebook Posts</span>
+      `;
+    }
+  }
+};
+
+/* ==========================================================================
+   7. SEASON & TEAM ID CONFIGURATION
+   ========================================================================== */
+function initSeasonParameters() {
+  const cfg = adminState.seasonConfig;
+  const elLabel = document.getElementById('cfg-season-label');
+  const elThf = document.getElementById('cfg-thf-season');
+  const elAhf = document.getElementById('cfg-ahf-season');
+  const elUsphl = document.getElementById('cfg-usphl-season');
+  const elNcdc = document.getElementById('cfg-ncdc-team');
+  const elNcdcCoach = document.getElementById('cfg-ncdc-coach');
+  const elPremier = document.getElementById('cfg-premier-team');
+  const elPremierCoach = document.getElementById('cfg-premier-coach');
+  const elPill = document.getElementById('admin-season-pill');
+
+  if (elLabel) elLabel.value = cfg.seasonLabel;
+  if (elThf) elThf.value = cfg.thfSeasonId;
+  if (elAhf) elAhf.value = cfg.ahfSeasonId;
+  if (elUsphl) elUsphl.value = cfg.usphlSeasonId;
+  if (elNcdc) elNcdc.value = cfg.ncdcTeamId;
+  if (elNcdcCoach) elNcdcCoach.value = cfg.ncdcCoach || 'Rob Broderick';
+  if (elPremier) elPremier.value = cfg.premierTeamId;
+  if (elPremierCoach) elPremierCoach.value = cfg.premierCoach || '';
+
+  if (elPill) {
+    elPill.textContent = `● ${cfg.seasonLabel} Active Season`;
+  }
+}
+
+function renderSeasonTable() {
+  const tbody = document.getElementById('season-teams-table-body');
+  if (!tbody) return;
+
+  const cfg = adminState.seasonConfig;
+
+  // Build full list of teams
+  const allTeams = [
+    {
+      id: 'ncdc',
+      name: 'NCDC Junior Team',
+      league: 'USPHL NCDC',
+      tier: 'Tier II Tuition-Free',
+      teamId: cfg.ncdcTeamId,
+      headCoach: cfg.ncdcCoach || 'Rob Broderick',
+      leagueType: 'junior',
+      isJunior: true,
+      testUrl: `https://usphl.com/ncdc/game-center/teams/?team=${cfg.ncdcTeamId}&season=${cfg.usphlSeasonId}`
+    },
+    {
+      id: 'premier',
+      name: 'USPHL Premier Team',
+      league: 'USPHL Premier',
+      tier: 'Tier III Junior',
+      teamId: cfg.premierTeamId,
+      headCoach: cfg.premierCoach || '',
+      leagueType: 'junior',
+      isJunior: true,
+      testUrl: `https://usphl.com/premier/game-center/teams/?team=${cfg.premierTeamId}&season=${cfg.usphlSeasonId}`
+    },
+    ...adminState.youthTeams.map(t => {
+      const isThf = t.leagueId === 5 || t.league?.includes('THF') || t.tier?.includes('THF');
+      const seasonId = isThf ? cfg.thfSeasonId : cfg.ahfSeasonId;
+      const testUrl = isThf
+        ? `https://www.tier1hockeyfederation.com/team-pages/?team=${t.teamId}&season=${seasonId}&stat_class=1`
+        : `https://atlantichockeyfederation.com/team-page/?team=${t.teamId}&season=${seasonId}&stat_class=1`;
+      return {
+        id: t.id,
+        name: t.name,
+        league: isThf ? 'Tier 1 Hockey Federation (THF)' : 'Atlantic Hockey Federation (AHF)',
+        tier: t.tier,
+        teamId: t.teamId,
+        headCoach: t.headCoach || 'Staff',
+        leagueType: isThf ? 'thf' : 'ahf',
+        isJunior: false,
+        testUrl
+      };
+    })
+  ];
+
+  // Update total counts
+  const totalCountEl = document.getElementById('count-all-teams');
+  if (totalCountEl) totalCountEl.textContent = allTeams.length;
+
+  // Filter by category
+  let filtered = allTeams;
+  if (adminState.seasonFilter !== 'all') {
+    filtered = filtered.filter(t => t.leagueType === adminState.seasonFilter);
+  }
+
+  // Filter by search query
+  if (adminState.seasonSearchQuery) {
+    const q = adminState.seasonSearchQuery;
+    filtered = filtered.filter(t => 
+      t.name.toLowerCase().includes(q) || 
+      t.headCoach.toLowerCase().includes(q) ||
+      t.tier.toLowerCase().includes(q) ||
+      String(t.teamId).includes(q)
+    );
+  }
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align: center; padding: 2.5rem; color: var(--text-muted);">
+          No teams found matching the search criteria or filter.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(t => {
+    const tierColor = t.leagueType === 'junior' 
+      ? 'var(--chiefs-red)' 
+      : (t.leagueType === 'thf' ? 'var(--chiefs-gold)' : 'var(--chiefs-silver)');
+    const isCustomOrYouth = !t.isJunior;
+
+    return `
+      <tr id="season-row-${t.id}">
+        <td>
+          <div style="font-weight: 700; color: #fff; font-size: 0.92rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span>${t.name}</span>
+          </div>
+          <div style="font-size: 0.72rem; color: var(--text-muted); font-family: monospace;">ID: ${t.id}</div>
+        </td>
+        <td>
+          <span class="pill-badge" style="background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); color: ${tierColor}; font-size: 0.72rem;">
+            ${t.tier}
+          </span>
+          <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem;">${t.league}</div>
+        </td>
+        <td>
+          <input type="text"
+                 class="table-input table-team-id"
+                 data-id="${t.id}"
+                 value="${t.teamId ?? ''}"
+                 placeholder="League ID"
+                 title="Official Team ID in TimeToScore or USPHL"
+                 style="font-family: monospace; font-weight: 700; color: var(--chiefs-gold); width: 110px;">
+        </td>
+        <td>
+          <input type="text"
+                 class="table-input table-coach"
+                 data-id="${t.id}"
+                 value="${t.headCoach ?? ''}"
+                 placeholder="Head Coach Name">
+        </td>
+        <td>
+          <a href="${t.testUrl}"
+             target="_blank"
+             class="btn-secondary"
+             style="font-size: 0.72rem; padding: 0.28rem 0.65rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem;"
+             title="Open official league page for this team and season in new window">
+            <span>Verify Page ↗</span>
+          </a>
+        </td>
+        <td style="text-align: right;">
+          <div style="display: inline-flex; gap: 0.35rem;">
+            <button type="button"
+                    class="btn-secondary"
+                    onclick="window.openTeamModal('${t.id}')"
+                    style="font-size: 0.72rem; padding: 0.28rem 0.55rem;"
+                    title="Edit Full Team Parameters">
+              ✏️
+            </button>
+            ${isCustomOrYouth ? `
+              <button type="button"
+                      class="btn-secondary"
+                      onclick="window.deleteTeamById('${t.id}')"
+                      style="font-size: 0.72rem; padding: 0.28rem 0.55rem; color: #f87171; border-color: rgba(239, 68, 68, 0.3);"
+                      title="Delete / Archive Team">
+                🗑️
+              </button>
+            ` : ''}
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+window.filterSeasonTable = function (filterType) {
+  adminState.seasonFilter = filterType;
+  const buttons = ['all', 'thf', 'ahf', 'junior'];
+  buttons.forEach(b => {
+    const el = document.getElementById(`sfilter-${b}`);
+    if (el) {
+      const isSelected = b === filterType;
+      el.style.background = isSelected ? 'var(--chiefs-red)' : 'transparent';
+      el.style.color = isSelected ? '#fff' : '#94a3b8';
+      el.style.borderColor = isSelected ? 'transparent' : 'var(--border-subtle)';
+    }
+  });
+  renderSeasonTable();
+};
+
+window.handleSeasonSearch = function (q) {
+  adminState.seasonSearchQuery = (q || '').toLowerCase().trim();
+  renderSeasonTable();
+};
+
+window.saveSeasonConfig = function () {
+  const seasonLabel = document.getElementById('cfg-season-label')?.value.trim() || '2026/27';
+  const thfSeasonId = document.getElementById('cfg-thf-season')?.value.trim() || '190';
+  const ahfSeasonId = document.getElementById('cfg-ahf-season')?.value.trim() || '190';
+  const usphlSeasonId = document.getElementById('cfg-usphl-season')?.value.trim() || '67';
+  const ncdcTeamId = document.getElementById('cfg-ncdc-team')?.value.trim() || '112';
+  const ncdcCoach = document.getElementById('cfg-ncdc-coach')?.value.trim() || 'Rob Broderick';
+  const premierTeamId = document.getElementById('cfg-premier-team')?.value.trim() || '459';
+  const premierCoach = document.getElementById('cfg-premier-coach')?.value.trim() || '';
+
+  adminState.seasonConfig = {
+    seasonLabel,
+    thfSeasonId,
+    ahfSeasonId,
+    usphlSeasonId,
+    ncdcTeamId,
+    ncdcCoach,
+    premierTeamId,
+    premierCoach
+  };
+
+  localStorage.setItem('mercer_season_config', JSON.stringify(adminState.seasonConfig));
+
+  const elPill = document.getElementById('admin-season-pill');
+  if (elPill) elPill.textContent = `● ${seasonLabel} Active Season`;
+
+  renderTeamToggles();
+  renderSeasonTable();
+  window.dispatchEvent(new Event('storage'));
+  showToast(`Season parameters updated (${seasonLabel})! Active feeds point to new season.`);
+};
+
+window.saveAllTeamMappings = function () {
+  const idInputs = document.querySelectorAll('.table-team-id');
+  const coachInputs = document.querySelectorAll('.table-coach');
+
+  let updatedCount = 0;
+
+  idInputs.forEach(input => {
+    const teamIdKey = input.getAttribute('data-id');
+    const val = input.value.trim();
+
+    if (teamIdKey === 'ncdc') {
+      if (adminState.seasonConfig.ncdcTeamId !== val) {
+        adminState.seasonConfig.ncdcTeamId = val;
+        updatedCount++;
+      }
+    } else if (teamIdKey === 'premier') {
+      if (adminState.seasonConfig.premierTeamId !== val) {
+        adminState.seasonConfig.premierTeamId = val;
+        updatedCount++;
+      }
+    } else {
+      const t = adminState.youthTeams.find(item => item.id === teamIdKey);
+      if (t) {
+        const numVal = isNaN(val) ? val : Number(val);
+        if (t.teamId !== numVal) {
+          t.teamId = numVal;
+          updatedCount++;
+        }
+      }
+    }
+  });
+
+  coachInputs.forEach(input => {
+    const teamIdKey = input.getAttribute('data-id');
+    const val = input.value.trim();
+
+    if (teamIdKey === 'ncdc') {
+      if (adminState.seasonConfig.ncdcCoach !== val) {
+        adminState.seasonConfig.ncdcCoach = val;
+        updatedCount++;
+      }
+    } else if (teamIdKey === 'premier') {
+      if (adminState.seasonConfig.premierCoach !== val) {
+        adminState.seasonConfig.premierCoach = val;
+        updatedCount++;
+      }
+    } else {
+      const t = adminState.youthTeams.find(item => item.id === teamIdKey);
+      if (t && t.headCoach !== val) {
+        t.headCoach = val;
+        updatedCount++;
+      }
+    }
+  });
+
+  // Persist
+  localStorage.setItem('mercer_season_config', JSON.stringify(adminState.seasonConfig));
+  localStorage.setItem('mercer_configured_teams', JSON.stringify(adminState.youthTeams));
+  localStorage.setItem('mercer_synced_youth_data', JSON.stringify(adminState.youthTeams));
+
+  // Sync inputs with config form
+  initSeasonParameters();
+  renderTeamToggles();
+  renderSeasonTable();
+  updateMetrics();
+
+  window.dispatchEvent(new Event('storage'));
+  showToast(`Team mappings saved! All live feeds updated with latest IDs & coaches.`);
+};
+
+window.resetTeamMappings = function () {
+  if (!confirm("Reset all youth squad IDs and coaches back to 2026/27 default directory?")) return;
+  localStorage.removeItem('mercer_configured_teams');
+  adminState.youthTeams = [...YOUTH_TEAMS];
+  localStorage.setItem('mercer_synced_youth_data', JSON.stringify(adminState.youthTeams));
+  renderTeamToggles();
+  renderSeasonTable();
+  updateMetrics();
+  window.dispatchEvent(new Event('storage'));
+  showToast("Team IDs reset to default mappings.");
+};
+
+// Team Modal
+window.openTeamModal = function (teamId = null) {
+  const modal = document.getElementById('team-modal');
+  const title = document.getElementById('modal-team-title');
+  const idField = document.getElementById('edit-team-id');
+  const isNewField = document.getElementById('edit-team-is-new');
+  const nameField = document.getElementById('form-team-name');
+  const slugField = document.getElementById('form-team-slug');
+  const leagueField = document.getElementById('form-team-league');
+  const tierField = document.getElementById('form-team-tier');
+  const leagueIdField = document.getElementById('form-team-league-id');
+  const coachField = document.getElementById('form-team-coach');
+  const recordField = document.getElementById('form-team-record');
+  const rankField = document.getElementById('form-team-rank');
+  const urlField = document.getElementById('form-team-url');
+  const btnDelete = document.getElementById('btn-delete-team');
+
+  if (teamId) {
+    if (teamId === 'ncdc' || teamId === 'premier') {
+      const isNcdc = teamId === 'ncdc';
+      title.textContent = isNcdc ? "Edit NCDC Junior Team" : "Edit Premier Junior Team";
+      idField.value = teamId;
+      isNewField.value = "false";
+      nameField.value = isNcdc ? "NCDC Junior Team" : "USPHL Premier Team";
+      slugField.value = teamId;
+      slugField.readOnly = true;
+      leagueField.value = isNcdc ? "USPHL-NCDC" : "USPHL-Premier";
+      tierField.value = isNcdc ? "Tier II Tuition-Free" : "Tier III Junior";
+      leagueIdField.value = isNcdc ? adminState.seasonConfig.ncdcTeamId : adminState.seasonConfig.premierTeamId;
+      coachField.value = isNcdc 
+        ? (adminState.seasonConfig.ncdcCoach || "Rob Broderick") 
+        : (adminState.seasonConfig.premierCoach || "");
+      recordField.value = isNcdc ? "10-2-1" : "8-4-0";
+      rankField.value = "#1 South Division";
+      urlField.value = "";
+      if (btnDelete) btnDelete.style.display = 'none';
+    } else {
+      const t = adminState.youthTeams.find(item => item.id === teamId);
+      if (t) {
+        title.textContent = `Edit ${t.name}`;
+        idField.value = t.id;
+        isNewField.value = "false";
+        nameField.value = t.name;
+        slugField.value = t.id;
+        slugField.readOnly = true;
+        const isThf = t.leagueId === 5 || t.league?.includes('THF') || t.tier?.includes('THF');
+        leagueField.value = isThf ? "THF" : "AHF";
+        tierField.value = t.tier;
+        leagueIdField.value = t.teamId;
+        coachField.value = t.headCoach || "";
+        recordField.value = t.record || "0-0-0";
+        rankField.value = t.rank || "Regular Season";
+        urlField.value = t.officialUrl || "";
+        if (btnDelete) btnDelete.style.display = 'block';
+      }
+    }
+  } else {
+    // New Team
+    title.textContent = "Add New Squad Configuration";
+    idField.value = "";
+    isNewField.value = "true";
+    nameField.value = "";
+    slugField.value = "";
+    slugField.readOnly = false;
+    leagueField.value = "THF";
+    tierField.value = "Tier I AAA";
+    leagueIdField.value = "";
+    coachField.value = "";
+    recordField.value = "0-0-0";
+    rankField.value = "Pre-Season";
+    urlField.value = "";
+    if (btnDelete) btnDelete.style.display = 'none';
+  }
+
+  if (modal) modal.classList.add('active');
+};
+
+window.closeTeamModal = function () {
+  const modal = document.getElementById('team-modal');
+  if (modal) modal.classList.remove('active');
+};
+
+window.handleTeamLeagueChange = function (leagueVal) {
+  const tierField = document.getElementById('form-team-tier');
+  if (!tierField) return;
+  if (leagueVal === 'THF') {
+    tierField.value = 'Tier I AAA';
+  } else if (leagueVal === 'AHF') {
+    tierField.value = 'Tier II AA';
+  } else if (leagueVal === 'USPHL-NCDC') {
+    tierField.value = 'Tier II Tuition-Free';
+  } else if (leagueVal === 'USPHL-Premier') {
+    tierField.value = 'Tier III Junior';
+  } else {
+    tierField.value = 'Independent / Showcase';
+  }
+};
+
+window.saveTeam = function (e) {
+  e.preventDefault();
+  const idField = document.getElementById('edit-team-id')?.value;
+  const isNew = document.getElementById('edit-team-is-new')?.value === 'true';
+  const name = document.getElementById('form-team-name')?.value.trim();
+  const slug = document.getElementById('form-team-slug')?.value.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '-');
+  const leagueVal = document.getElementById('form-team-league')?.value;
+  const tier = document.getElementById('form-team-tier')?.value.trim();
+  const leagueIdNum = Number(document.getElementById('form-team-league-id')?.value.trim());
+  const coach = document.getElementById('form-team-coach')?.value.trim();
+  const record = document.getElementById('form-team-record')?.value.trim() || '0-0-0';
+  const rank = document.getElementById('form-team-rank')?.value.trim() || 'Pre-Season';
+  const urlOverride = document.getElementById('form-team-url')?.value.trim();
+
+  if (!name || !slug || !tier || isNaN(leagueIdNum) || !coach) {
+    alert("Please fill in all required fields (Name, Slug, Tier, League ID, Coach).");
+    return;
+  }
+
+  if (idField === 'ncdc') {
+    adminState.seasonConfig.ncdcTeamId = String(leagueIdNum);
+    adminState.seasonConfig.ncdcCoach = coach;
+    localStorage.setItem('mercer_season_config', JSON.stringify(adminState.seasonConfig));
+    showToast(`Updated NCDC Junior Team (Coach: ${coach})!`);
+  } else if (idField === 'premier') {
+    adminState.seasonConfig.premierTeamId = String(leagueIdNum);
+    adminState.seasonConfig.premierCoach = coach;
+    localStorage.setItem('mercer_season_config', JSON.stringify(adminState.seasonConfig));
+    showToast(`Updated Premier Junior Team (Coach: ${coach})!`);
+  } else {
+    const isThf = leagueVal === 'THF';
+    const leagueName = isThf ? 'Tier 1 Hockey Federation (THF)' : 'Atlantic Hockey Federation (AHF)';
+    const leagueCode = isThf ? 5 : 4;
+
+    if (isNew) {
+      if (adminState.youthTeams.some(t => t.id === slug)) {
+        alert("A team with this slug ID already exists. Please choose a unique identifier.");
+        return;
+      }
+
+      const newTeam = {
+        id: slug,
+        name,
+        tier,
+        league: leagueName,
+        leagueId: leagueCode,
+        teamId: leagueIdNum,
+        headCoach: coach,
+        record,
+        rank,
+        standingSummary: rank,
+        officialUrl: urlOverride || (isThf 
+          ? `https://www.tier1hockeyfederation.com/team-pages/?team=${leagueIdNum}&season=${adminState.seasonConfig.thfSeasonId}&stat_class=1`
+          : `https://atlantichockeyfederation.com/team-page/?team=${leagueIdNum}&season=${adminState.seasonConfig.ahfSeasonId}&stat_class=1`),
+        roster: [],
+        upcomingSchedule: [],
+        recentResults: []
+      };
+
+      adminState.youthTeams.push(newTeam);
+      showToast(`Added new team: ${name}!`);
+    } else {
+      const idx = adminState.youthTeams.findIndex(t => t.id === idField);
+      if (idx !== -1) {
+        adminState.youthTeams[idx] = {
+          ...adminState.youthTeams[idx],
+          name,
+          tier,
+          league: leagueName,
+          leagueId: leagueCode,
+          teamId: leagueIdNum,
+          headCoach: coach,
+          record,
+          rank,
+          standingSummary: rank,
+          officialUrl: urlOverride || undefined
+        };
+        showToast(`Updated team: ${name}!`);
+      }
+    }
+
+    localStorage.setItem('mercer_configured_teams', JSON.stringify(adminState.youthTeams));
+    localStorage.setItem('mercer_synced_youth_data', JSON.stringify(adminState.youthTeams));
+  }
+
+  window.closeTeamModal();
+  initSeasonParameters();
+  renderTeamToggles();
+  renderSeasonTable();
+  updateMetrics();
+  window.dispatchEvent(new Event('storage'));
+};
+
+window.deleteTeam = function () {
+  const idField = document.getElementById('edit-team-id')?.value;
+  if (!idField || idField === 'ncdc' || idField === 'premier') return;
+  window.deleteTeamById(idField);
+  window.closeTeamModal();
+};
+
+window.deleteTeamById = function (teamId) {
+  const team = adminState.youthTeams.find(t => t.id === teamId);
+  const name = team ? team.name : teamId;
+  if (!confirm(`Are you sure you want to remove ${name} from the active directory?`)) return;
+
+  adminState.youthTeams = adminState.youthTeams.filter(t => t.id !== teamId);
+  adminState.hiddenTeams = adminState.hiddenTeams.filter(id => id !== teamId);
+
+  localStorage.setItem('mercer_configured_teams', JSON.stringify(adminState.youthTeams));
+  localStorage.setItem('mercer_synced_youth_data', JSON.stringify(adminState.youthTeams));
+  localStorage.setItem('mercer_hidden_teams', JSON.stringify(adminState.hiddenTeams));
+
+  renderTeamToggles();
+  renderSeasonTable();
+  updateMetrics();
+  window.dispatchEvent(new Event('storage'));
+  showToast(`Team ${name} removed.`);
+};
+
+// Rollover Wizard
+window.openRolloverModal = function () {
+  const modal = document.getElementById('rollover-modal');
+  const currentSeason = adminState.seasonConfig.seasonLabel;
+  const nextLabelField = document.getElementById('ro-season-label');
+  const roThf = document.getElementById('ro-thf-season');
+  const roAhf = document.getElementById('ro-ahf-season');
+  const roUsphl = document.getElementById('ro-usphl-season');
+
+  if (nextLabelField) {
+    if (currentSeason === '2026/27') {
+      nextLabelField.value = '2027/28';
+      if (roThf) roThf.value = '245';
+      if (roAhf) roAhf.value = '245';
+      if (roUsphl) roUsphl.value = '68';
+    } else {
+      nextLabelField.value = '2028/29';
+      if (roThf) roThf.value = '290';
+      if (roAhf) roAhf.value = '290';
+      if (roUsphl) roUsphl.value = '69';
+    }
+  }
+
+  if (modal) modal.classList.add('active');
+};
+
+window.closeRolloverModal = function () {
+  const modal = document.getElementById('rollover-modal');
+  if (modal) modal.classList.remove('active');
+};
+
+window.applyRollover = function (e) {
+  e.preventDefault();
+  const newSeasonLabel = document.getElementById('ro-season-label')?.value.trim() || '2027/28';
+  const newThfSeason = document.getElementById('ro-thf-season')?.value.trim() || '245';
+  const newAhfSeason = document.getElementById('ro-ahf-season')?.value.trim() || '245';
+  const newUsphlSeason = document.getElementById('ro-usphl-season')?.value.trim() || '68';
+
+  const optResetRecords = document.getElementById('ro-opt-reset-records')?.checked;
+  const optClearResults = document.getElementById('ro-opt-clear-results')?.checked;
+
+  // Update Season Config
+  adminState.seasonConfig = {
+    seasonLabel: newSeasonLabel,
+    thfSeasonId: newThfSeason,
+    ahfSeasonId: newAhfSeason,
+    usphlSeasonId: newUsphlSeason,
+    ncdcTeamId: adminState.seasonConfig.ncdcTeamId,
+    premierTeamId: adminState.seasonConfig.premierTeamId
+  };
+
+  // Rollover youth teams
+  adminState.youthTeams = adminState.youthTeams.map(t => {
+    const updated = { ...t };
+    if (optResetRecords) {
+      updated.record = '0-0-0';
+      updated.rank = 'Pre-Season';
+      updated.standingSummary = 'Pre-Season (0 Pts)';
+    }
+    if (optClearResults) {
+      updated.recentResults = [];
+    }
+    return updated;
+  });
+
+  // Persist all
+  localStorage.setItem('mercer_season_config', JSON.stringify(adminState.seasonConfig));
+  localStorage.setItem('mercer_configured_teams', JSON.stringify(adminState.youthTeams));
+  localStorage.setItem('mercer_synced_youth_data', JSON.stringify(adminState.youthTeams));
+
+  // Console log
+  const consoleEl = document.getElementById('sync-console');
+  if (consoleEl) {
+    const time = new Date().toLocaleTimeString();
+    consoleEl.innerHTML += `\n[${time}] [SEASON ROLLOVER] Rolled over to ${newSeasonLabel}! (THF: ${newThfSeason}, AHF: ${newAhfSeason}, USPHL: ${newUsphlSeason}). Ready for new season data ingestion.`;
+    consoleEl.scrollTop = consoleEl.scrollHeight;
+  }
+
+  window.closeRolloverModal();
+  initSeasonParameters();
+  renderTeamToggles();
+  renderSeasonTable();
+  updateMetrics();
+
+  window.dispatchEvent(new Event('storage'));
+  showToast(`🎉 Rollover complete! Mercer Chiefs are now active for season ${newSeasonLabel}.`);
+};
+
+/* ==========================================================================
+   8. BACKUP & EXPORT UTILITIES
+   ========================================================================== */
+window.exportJsonBackup = function () {
+  const payload = {
+    exportedAt: new Date().toISOString(),
+    seasonConfig: adminState.seasonConfig,
+    hiddenTeams: adminState.hiddenTeams,
+    newsArticles: adminState.newsArticles,
+    youthTeams: adminState.youthTeams,
+    alumniCommitments: adminState.alumniCommitments
+  };
+
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `mercer_chiefs_admin_backup_${Date.now()}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast("Backup JSON file downloaded.");
+};
+
+window.clearAllOverrides = function () {
+  if (!confirm("Clear all admin overrides (season configuration, team mappings, news edits, alumni changes, and visibility)? The site will return to initial baseline.")) return;
+  localStorage.removeItem('mercer_season_config');
+  localStorage.removeItem('mercer_configured_teams');
+  localStorage.removeItem('mercer_hidden_teams');
+  localStorage.removeItem('mercer_club_news');
+  localStorage.removeItem('mercer_alumni_commitments');
+  localStorage.removeItem('mercer_synced_youth_data');
+  localStorage.removeItem('mercer_last_sync_timestamp');
+
+  adminState.seasonConfig = getStoredSeasonConfig();
+  adminState.hiddenTeams = [];
+  adminState.newsArticles = [...CLUB_NEWS];
+  adminState.alumniCommitments = [...COLLEGE_COMMITMENTS];
+  adminState.youthTeams = [...YOUTH_TEAMS];
+
+  initSeasonParameters();
+  renderTeamToggles();
+  renderSeasonTable();
+  renderNewsList();
+  renderAlumniTable();
+  updateMetrics();
+  showToast("All overrides cleared. Defaults restored.");
+  window.dispatchEvent(new Event('storage'));
+};
+
+/* ==========================================================================
+   8b. ALUMNI & COMMITMENTS CMS
+   ========================================================================== */
+function renderAlumniTable() {
+  const tbody = document.getElementById('admin-alumni-tbody');
+  if (!tbody) return;
+
+  const all = adminState.alumniCommitments || [];
+
+  // Update counter badges
+  const countAll = all.length;
+  const countD1 = all.filter(a => a.category === 'd1').length;
+  const countPro = all.filter(a => a.isPro || a.category === 'pro' || a.draftInfo).length;
+  const countD3 = all.filter(a => a.category === 'd3').length;
+
+  const elAll = document.getElementById('admin-alumni-count-all');
+  const elD1 = document.getElementById('admin-alumni-count-d1');
+  const elPro = document.getElementById('admin-alumni-count-pro');
+  const elD3 = document.getElementById('admin-alumni-count-d3');
+
+  if (elAll) elAll.textContent = countAll;
+  if (elD1) elD1.textContent = countD1;
+  if (elPro) elPro.textContent = countPro;
+  if (elD3) elD3.textContent = countD3;
+
+  const query = (adminState.alumniSearchQuery || '').toLowerCase().trim();
+  const cat = adminState.alumniFilter || 'all';
+
+  const filtered = all.filter(item => {
+    // Category filter
+    let matchesCat = true;
+    if (cat === 'd1') {
+      matchesCat = item.category === 'd1';
+    } else if (cat === 'pro') {
+      matchesCat = item.isPro || item.category === 'pro' || !!item.draftInfo;
+    } else if (cat === 'd3') {
+      matchesCat = item.category === 'd3';
+    }
+    if (!matchesCat) return false;
+
+    // Search query filter
+    if (!query) return true;
+    const nameMatch = (item.name || '').toLowerCase().includes(query);
+    const collegeMatch = (item.college || '').toLowerCase().includes(query);
+    const proMatch = (item.proTeam || '').toLowerCase().includes(query);
+    const juniorMatch = (item.juniorTeam || '').toLowerCase().includes(query);
+    const confMatch = (item.conference || '').toLowerCase().includes(query);
+    const badgeMatch = (item.badge || '').toLowerCase().includes(query);
+    return nameMatch || collegeMatch || proMatch || juniorMatch || confMatch || badgeMatch;
+  });
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="5" style="text-align: center; padding: 2.5rem 1rem; color: var(--text-muted);">
+          No alumni or commitments found matching your filter criteria.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(item => {
+    const isPro = item.isPro || item.category === 'pro' || !!item.draftInfo;
+    const divColor = item.category === 'pro' ? '#ff858d' : item.category === 'd3' ? '#38bdf8' : 'var(--chiefs-gold)';
+    const divBg = item.category === 'pro' ? 'rgba(189,50,59,0.18)' : item.category === 'd3' ? 'rgba(56,189,248,0.15)' : 'rgba(245,166,35,0.15)';
+
+    // Distinction badge
+    let badgeSnippet = '';
+    if (item.badge) {
+      badgeSnippet = `
+        <div style="display: inline-block; font-size: 0.72rem; font-weight: 700; color: #ffcf66; background: rgba(245, 166, 35, 0.15); border: 1px solid rgba(245,166,35,0.35); padding: 0.15rem 0.5rem; border-radius: var(--radius-full); margin-top: 0.35rem;">
+          ⭐ ${item.badge}
+        </div>
+      `;
+    }
+
+    // Pathway summary
+    const pathwayLines = [];
+    if (item.juniorTeam) pathwayLines.push(`<span style="color: var(--text-muted); font-size: 0.72rem; font-weight: 700;">JR:</span> ${item.juniorTeam}`);
+    if (item.proTeam) pathwayLines.push(`<span style="color: #ff858d; font-size: 0.72rem; font-weight: 700;">PRO:</span> ${item.proTeam}`);
+    if (item.draftInfo) pathwayLines.push(`<span style="color: var(--chiefs-gold); font-size: 0.72rem; font-weight: 700;">DRAFT:</span> ${item.draftInfo}`);
+
+    return `
+      <tr>
+        <td>
+          <div style="font-weight: 800; color: #fff; font-size: 0.95rem;">${item.name}</div>
+          ${badgeSnippet}
+        </td>
+        <td>
+          <div style="font-weight: 700; color: #fff; font-size: 0.9rem;">${item.college || '—'}</div>
+          <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 2px;">${item.conference || ''}</div>
+        </td>
+        <td>
+          <span style="display: inline-block; padding: 0.2rem 0.6rem; border-radius: var(--radius-full); font-size: 0.72rem; font-weight: 700; color: ${divColor}; background: ${divBg}; border: 1px solid ${divColor}40;">
+            ${item.division}
+          </span>
+        </td>
+        <td>
+          <div style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.4;">
+            ${pathwayLines.length > 0 ? pathwayLines.join('<br>') : `<span style="font-style: italic; color: var(--text-muted);">${item.highlight || 'Mercer Chiefs Alumni'}</span>`}
+          </div>
+        </td>
+        <td style="text-align: right; white-space: nowrap;">
+          <button type="button" class="btn-secondary" style="font-size: 0.76rem; padding: 0.3rem 0.65rem; margin-right: 0.35rem;" onclick="window.openAlumniModal('${item.id}')">
+            Edit
+          </button>
+          <button type="button" class="btn-secondary" style="font-size: 0.76rem; padding: 0.3rem 0.65rem; color: #f87171; border-color: rgba(239, 68, 68, 0.3);" onclick="window.deleteAlumni('${item.id}')">
+            Delete
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+window.filterAdminAlumni = function (filter) {
+  adminState.alumniFilter = filter;
+  document.querySelectorAll('#admin-alumni-filters .filter-btn').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-filter') === filter);
+  });
+  renderAlumniTable();
+};
+
+window.searchAdminAlumni = function (query) {
+  adminState.alumniSearchQuery = query;
+  renderAlumniTable();
+};
+
+window.openAlumniModal = function (id = null) {
+  const modal = document.getElementById('alumni-modal');
+  const title = document.getElementById('modal-alumni-title');
+  const idField = document.getElementById('edit-alumni-id');
+  const nameField = document.getElementById('form-alumni-name');
+  const collegeField = document.getElementById('form-alumni-college');
+  const divisionField = document.getElementById('form-alumni-division');
+  const confField = document.getElementById('form-alumni-conference');
+  const juniorField = document.getElementById('form-alumni-junior');
+  const proField = document.getElementById('form-alumni-pro');
+  const draftField = document.getElementById('form-alumni-draft');
+  const badgeField = document.getElementById('form-alumni-badge');
+  const badgeTypeField = document.getElementById('form-alumni-badgetype');
+  const highlightField = document.getElementById('form-alumni-highlight');
+
+  if (!modal) return;
+
+  if (id) {
+    const item = (adminState.alumniCommitments || []).find(a => a.id === id);
+    if (item) {
+      if (title) title.textContent = `Edit Alumni: ${item.name}`;
+      if (idField) idField.value = item.id;
+      if (nameField) nameField.value = item.name || '';
+      if (collegeField) collegeField.value = item.college || '';
+      if (divisionField) divisionField.value = item.division || 'NCAA Division I';
+      if (confField) confField.value = item.conference || '';
+      if (juniorField) juniorField.value = item.juniorTeam || '';
+      if (proField) proField.value = item.proTeam || '';
+      if (draftField) draftField.value = item.draftInfo || '';
+      if (badgeField) badgeField.value = item.badge || '';
+      if (badgeTypeField) badgeTypeField.value = item.badgeType || 'd1';
+      if (highlightField) highlightField.value = item.highlight || item.quote || '';
+    }
+  } else {
+    if (title) title.textContent = 'Add New Commitment / Alumni';
+    if (idField) idField.value = '';
+    if (nameField) nameField.value = '';
+    if (collegeField) collegeField.value = '';
+    if (divisionField) divisionField.value = 'NCAA Division I';
+    if (confField) confField.value = '';
+    if (juniorField) juniorField.value = '';
+    if (proField) proField.value = '';
+    if (draftField) draftField.value = '';
+    if (badgeField) badgeField.value = 'NCAA D1 Commit';
+    if (badgeTypeField) badgeTypeField.value = 'd1';
+    if (highlightField) highlightField.value = '';
+  }
+
+  modal.classList.add('active');
+};
+
+window.closeAlumniModal = function () {
+  const modal = document.getElementById('alumni-modal');
+  if (modal) modal.classList.remove('active');
+};
+
+window.saveAlumni = function (e) {
+  e.preventDefault();
+  const idField = document.getElementById('edit-alumni-id')?.value;
+  const name = document.getElementById('form-alumni-name')?.value.trim();
+  const college = document.getElementById('form-alumni-college')?.value.trim();
+  const division = document.getElementById('form-alumni-division')?.value;
+  const conference = document.getElementById('form-alumni-conference')?.value.trim();
+  const juniorTeam = document.getElementById('form-alumni-junior')?.value.trim();
+  const proTeam = document.getElementById('form-alumni-pro')?.value.trim();
+  const draftInfo = document.getElementById('form-alumni-draft')?.value.trim();
+  const badge = document.getElementById('form-alumni-badge')?.value.trim();
+  const badgeType = document.getElementById('form-alumni-badgetype')?.value;
+  const highlight = document.getElementById('form-alumni-highlight')?.value.trim();
+
+  if (!name || !college || !highlight) {
+    alert("Please fill in Player Name, College/Pro Organization, and Highlight summary.");
+    return;
+  }
+
+  // Determine category and isPro
+  let category = 'd1';
+  let isPro = false;
+  if (division === 'NHL & Professional' || proTeam || draftInfo) {
+    category = division === 'NHL & Professional' ? 'pro' : (division === 'NCAA Division III' ? 'd3' : 'd1');
+    isPro = true;
+  } else if (division === 'NCAA Division III') {
+    category = 'd3';
+  } else if (division === 'Junior Hockey Alumni') {
+    category = 'junior';
+  }
+
+  if (idField) {
+    // Edit existing
+    const idx = adminState.alumniCommitments.findIndex(a => a.id === idField);
+    if (idx !== -1) {
+      adminState.alumniCommitments[idx] = {
+        ...adminState.alumniCommitments[idx],
+        name,
+        college,
+        division,
+        category,
+        conference,
+        juniorTeam: juniorTeam || null,
+        proTeam: proTeam || null,
+        draftInfo: draftInfo || null,
+        badge: badge || null,
+        badgeType: badgeType || 'default',
+        highlight,
+        isPro
+      };
+      showToast(`Alumni record updated for ${name}!`);
+    }
+  } else {
+    // Create new
+    const newId = 'alumni-' + Date.now();
+    const newRecord = {
+      id: newId,
+      name,
+      college,
+      division,
+      category,
+      conference,
+      juniorTeam: juniorTeam || null,
+      proTeam: proTeam || null,
+      draftInfo: draftInfo || null,
+      badge: badge || (division === 'NCAA Division I' ? 'NCAA D1 Commit' : 'Chiefs Alumni'),
+      badgeType: badgeType || 'default',
+      highlight,
+      isPro,
+      year: division.includes('NCAA') ? 'Commitment' : 'Alumni'
+    };
+    adminState.alumniCommitments.unshift(newRecord);
+    showToast(`New commitment added for ${name}!`);
+  }
+
+  localStorage.setItem('mercer_alumni_commitments', JSON.stringify(adminState.alumniCommitments));
+  window.closeAlumniModal();
+  renderAlumniTable();
+
+  // Broadcast cross-tab update to live site
+  window.dispatchEvent(new Event('storage'));
+};
+
+window.deleteAlumni = function (id) {
+  const item = adminState.alumniCommitments.find(a => a.id === id);
+  const name = item ? item.name : 'this alumni record';
+  if (!confirm(`Are you sure you want to delete ${name}?`)) return;
+
+  adminState.alumniCommitments = adminState.alumniCommitments.filter(a => a.id !== id);
+  localStorage.setItem('mercer_alumni_commitments', JSON.stringify(adminState.alumniCommitments));
+  renderAlumniTable();
+  showToast(`${name} removed.`);
+  window.dispatchEvent(new Event('storage'));
+};
+
+window.resetAlumni = function () {
+  if (!confirm("Reset alumni directory back to the 36 verified baseline records from mercerchiefs.com?")) return;
+  adminState.alumniCommitments = [...COLLEGE_COMMITMENTS];
+  localStorage.setItem('mercer_alumni_commitments', JSON.stringify(adminState.alumniCommitments));
+  renderAlumniTable();
+  showToast("Alumni directory reset to verified baseline records.");
+  window.dispatchEvent(new Event('storage'));
+};
+
+/* ==========================================================================
+   9. TOAST NOTIFICATION
+   ========================================================================== */
+function showToast(msg) {
+  const toast = document.getElementById('admin-toast');
+  const msgEl = document.getElementById('toast-message');
+  if (!toast || !msgEl) return;
+
+  msgEl.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3200);
+}

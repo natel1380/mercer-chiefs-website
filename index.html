@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercer Chiefs Hockey Club | Official NCDC Junior & Youth AAA Website</title>
+  <meta name="description"
+    content="Official home of the Mercer Chiefs Hockey Club. Featuring our Tier II Tuition-Free NCDC Junior team, USPHL Premier, and Elite Tier 1 AAA youth teams at Ice Land Arena, Hamilton NJ.">
+  <link rel="icon" type="image/png" href="assets/images/mercer-chiefs-crest.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Mercer Chiefs Hockey Club | Modern Redesign">
+  <meta property="og:description"
+    content="Championship Junior & Youth Hockey. NCDC Roster, Live Schedule, Standings, College Commitments, and GameSheet Hub.">
+  <meta property="og:image" content="assets/images/hero-action.jpg">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       TOP LIVE GAME & SCOREBOARD RIBBON
+       ========================================================================== -->
+  <div class="live-ticker" id="live-scoreboard-ribbon">
+    <div class="container ticker-inner">
+      <div class="ticker-label">
+        <span class="ticker-pulsing-dot"></span>
+        <span class="ticker-label-text">
+          <span class="lbl-desktop">Scores & Schedule</span>
+          <span class="lbl-tablet">Scores & Schedule</span>
+          <span class="lbl-mobile">Scores</span>
+        </span>
+      </div>
+
+      <div class="ticker-track-container" id="ticker-track-container">
+        <button class="ticker-arrow-btn prev" id="ticker-prev-btn" aria-label="Scroll left scores" title="Scroll left">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <div class="ticker-track" id="ticker-track" title="Drag horizontally to see more scores and upcoming games">
+          <!-- Populated dynamically by app.js -->
+        </div>
+        <button class="ticker-arrow-btn next" id="ticker-next-btn" aria-label="Scroll right scores"
+          title="Scroll right">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <div class="ticker-right-panel" id="ticker-right-panel">
+        <div class="ticker-countdown" id="ticker-countdown">
+          <span class="ticker-countdown-label">
+            <span class="lbl-desktop">Next NCDC Game in:</span>
+            <span class="lbl-tablet">Next Game:</span>
+            <span class="lbl-mobile">NCDC:</span>
+          </span>
+          <span id="next-game-timer" class="ticker-countdown-timer">Loading...</span>
+        </div>
+        <a href="https://blackbearsports.tv/" target="_blank" class="ticker-stream-btn" id="top-stream-link"
+          title="Watch Mercer Chiefs Live on Black Bear TV">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3" />
+          </svg>
+          <span class="stream-btn-text">Black Bear TV</span>
+          <span class="stream-btn-text-mobile">Watch</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       PRIMARY NAVIGATION HEADER
+       ========================================================================== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-container">
+      <a href="#top" class="brand-wrapper" id="brand-home-link">
+        <img src="assets/images/mercer-chiefs-logo.png" alt="Mercer Chiefs Logo" class="brand-logo-img">
+        <div class="brand-text">
+          <span class="brand-title">MERCER CHIEFS</span>
+          <span class="brand-sub">JUNIOR & ELITE YOUTH HOCKEY</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="site-nav-menu">
+          <li><a href="#ncdc-hub" class="nav-link" id="nav-link-ncdc">Junior Hub</a></li>
+          <li><a href="#youth-hub" class="nav-link" id="nav-link-youth">Youth Hub</a></li>
+          <li><a href="#tryouts-section" class="nav-link" id="nav-link-tryouts">Tryouts & Camps</a></li>
+          <li><a href="#arena-section" class="nav-link" id="nav-link-arena">Ice Land Arena</a></li>
+          <li><a href="#news-section" class="nav-link" id="nav-link-news">News</a></li>
+          <li class="mobile-nav-cta">
+            <button class="btn-primary mobile-menu-btn" id="mobile-tryout-btn"
+              onclick="openTryoutModal(); closeMobileNav();">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                </polygon>
+              </svg>
+              2026-27 Tryouts
+            </button>
+            <button class="btn-secondary mobile-menu-btn" id="mobile-billet-btn"
+              onclick="openBilletModal(); closeMobileNav();">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+              Billet Families
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn-secondary nav-action-btn" id="nav-billet-btn" onclick="openBilletModal()">
+          Billet Families
+        </button>
+        <button class="btn-primary nav-action-btn" id="nav-tryout-btn" onclick="openTryoutModal()">
+          2026-27 Tryouts
+        </button>
+        <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle Navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO SHOWCASE SECTION
+       ========================================================================== -->
+  <section class="hero-section" id="hero-section">
+    <div class="hero-backdrop">
+      <img src="assets/images/hero-action.jpg" alt="Mercer Chiefs Action" class="hero-backdrop-img">
+      <div class="hero-gradient-overlay"></div>
+    </div>
+
+    <div class="container hero-content">
+      <div class="hero-league-badges">
+        <div class="league-badge">
+          <img src="assets/images/ncdc-logo.png" alt="NCDC">
+          <span>NCDC Tuition-Free Tier II</span>
+        </div>
+        <div class="league-badge">
+          <img src="assets/images/usphl-premier-logo.png" alt="USPHL Premier">
+          <span>USPHL Premier Junior</span>
+        </div>
+        <div class="league-badge">
+          <img src="assets/images/ahf-logo.png" alt="AHF">
+          <span>Atlantic Hockey Federation (AHF) Tier II</span>
+        </div>
+        <div class="league-badge">
+          <img src="assets/images/thf-logo.png" alt="THF">
+          <span>Tier 1 Hockey Federation (THF) Tier I)</span>
+        </div>
+      </div>
+
+      <h1 class="hero-headline">
+        CHAMPIONSHIP HOCKEY.
+        <span class="text-gradient">PROVEN ADVANCEMENT.</span>
+      </h1>
+
+      <p class="hero-description">
+        Home of the Mercer Chiefs — New Jersey's premier Tier II Junior (NCDC) and Tier I AAA youth hockey organization.
+        We develop elite student-athletes with direct pathways to NCAA Division I & III college hockey.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="#ncdc-hub" class="btn-primary" id="hero-explore-ncdc-btn">
+          Explore Junior Teams
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </a>
+        <a href="#youth-hub" class="btn-secondary" id="hero-gamesheet-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2.5">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+          </svg>
+          Youth Hub
+        </a>
+        <button class="btn-secondary" id="hero-scout-inquiry-btn" onclick="openScoutModalWithPlayer('')">
+          Scout & Recruitment
+        </button>
+      </div>
+
+      <!-- Stats Counter Bar -->
+      <div class="hero-stats-grid">
+        <a href="#ncdc-hub" onclick="if(window.switchJuniorTab) window.switchJuniorTab('commitments')" class="stat-item"
+          style="cursor: pointer; text-decoration: none;">
+          <span class="stat-num accent-gold">30+</span>
+          <span class="stat-lbl">NCAA D1 Commitments</span>
+        </a>
+        <a href="#ncdc-hub"
+          onclick="if(window.switchJuniorTab) { window.switchJuniorTab('commitments'); document.getElementById('commit-filter-pro')?.click(); }"
+          class="stat-item" style="cursor: pointer; text-decoration: none;">
+          <span class="stat-num accent-red">19</span>
+          <span class="stat-lbl">NHL Draft & Pro Alumni</span>
+        </a>
+        <a href="#ncdc-hub" onclick="if(window.switchJuniorTab) window.switchJuniorTab('commitments')" class="stat-item"
+          style="cursor: pointer; text-decoration: none;">
+          <span class="stat-num accent-gold">1</span>
+          <span class="stat-lbl">Stanley Cup Champion</span>
+        </a>
+        <a href="#ncdc-hub" onclick="if(window.switchJuniorTab) window.switchJuniorTab('standings')" class="stat-item"
+          style="cursor: pointer; text-decoration: none;">
+          <span class="stat-num accent-red">DINEEN</span>
+          <span class="stat-lbl">Cup Championship Finalist</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 1: JUNIOR TEAM HUB (NCDC & USPHL PREMIER)
+       ========================================================================== -->
+  <section class="section-padding ncdc-hub-section" id="ncdc-hub">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag" id="junior-hub-tag">
+          <img src="assets/images/ncdc-logo.png" id="junior-hub-tag-img" style="height: 18px; width: auto;"
+            alt="League">
+          <span id="junior-hub-tag-text">Tier II Tuition-Free Junior Hockey</span>
+        </div>
+        <h2 class="section-title">Junior <span id="junior-hub-title-span">Hockey Hub</span></h2>
+        <p class="section-subtitle" id="junior-hub-subtitle">
+          Complete official 2026-27 rosters, schedule & results, standings, and scoring
+          leaders.
+        </p>
+      </div>
+
+      <!-- Junior Team Switcher -->
+      <div class="junior-team-selector" id="junior-team-selector" role="radiogroup" aria-label="Select Junior Team">
+        <button class="team-switch-btn active" data-team="ncdc" id="btn-team-ncdc" role="radio" aria-checked="true">
+          <img src="assets/images/ncdc-logo.png" alt="NCDC Logo" class="team-switch-logo">
+          <div class="team-switch-info">
+            <span class="team-switch-name">NCDC Junior Team</span>
+            <span class="team-switch-badge">Tier II Tuition-Free • Atlantic Div</span>
+          </div>
+        </button>
+        <button class="team-switch-btn" data-team="premier" id="btn-team-premier" role="radio" aria-checked="false">
+          <img src="assets/images/usphl-premier-logo.png" alt="USPHL Premier Logo" class="team-switch-logo">
+          <div class="team-switch-info">
+            <span class="team-switch-name">USPHL Premier Team</span>
+            <span class="team-switch-badge">Tier III • Atlantic Division</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Tab Buttons -->
+      <div class="tabs-nav-wrapper" id="junior-tabs-wrapper">
+        <div class="ncdc-tabs-bar" id="ncdc-tabs-bar" role="tablist">
+          <button class="tab-btn active" data-tab="roster" id="tab-roster" role="tab" aria-selected="true">
+            <span class="desktop-text">Roster</span>
+            <span class="mobile-text">Roster</span>
+          </button>
+          <button class="tab-btn" data-tab="schedule" id="tab-schedule" role="tab" aria-selected="false">
+            <span class="desktop-text">Schedule & Results</span>
+            <span class="mobile-text">Schedule</span>
+          </button>
+          <button class="tab-btn" data-tab="standings" id="tab-standings" role="tab" aria-selected="false">
+            <span class="desktop-text">Standings</span>
+            <span class="mobile-text">Standings</span>
+          </button>
+          <button class="tab-btn" data-tab="leaders" id="tab-leaders" role="tab" aria-selected="false">
+            <span class="desktop-text">Team Leaders</span>
+            <span class="mobile-text">Leaders</span>
+          </button>
+          <button class="tab-btn" data-tab="commitments" id="tab-commitments" role="tab" aria-selected="false">
+            <span class="desktop-text">Commitments & Alumni</span>
+            <span class="mobile-text">Alumni</span>
+          </button>
+          <button class="tab-btn" data-tab="staff" id="tab-staff" role="tab" aria-selected="false">
+            <span class="desktop-text">Coaching Staff</span>
+            <span class="mobile-text">Staff</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PANEL 1: ROSTER -->
+      <div class="tab-content-panel active" id="panel-roster" role="tabpanel">
+        <div class="roster-controls">
+          <div class="filter-pills">
+            <button class="filter-btn active" data-pos="all" id="roster-filter-all">All Players</button>
+            <button class="filter-btn" data-pos="F" id="roster-filter-f">Forwards</button>
+            <button class="filter-btn" data-pos="D" id="roster-filter-d">Defensemen</button>
+            <button class="filter-btn" data-pos="G" id="roster-filter-g">Goaltenders</button>
+          </div>
+
+          <input type="text" id="roster-search" class="roster-search-input" placeholder="Search by name, hometown, #..."
+            aria-label="Search Roster">
+        </div>
+
+        <div class="roster-cards-grid" id="roster-cards-container">
+          <!-- Populated by app.js -->
+        </div>
+      </div>
+
+      <!-- PANEL 2: SCHEDULE & RESULTS -->
+      <div class="tab-content-panel" id="panel-schedule" role="tabpanel">
+        <div class="schedule-controls">
+          <div class="filter-pills">
+            <button class="filter-btn schedule-filter-btn active" data-filter="all" id="sch-filter-all">All
+              Games</button>
+            <button class="filter-btn schedule-filter-btn" data-filter="home" id="sch-filter-home">Home Games</button>
+            <button class="filter-btn schedule-filter-btn" data-filter="away" id="sch-filter-away">Away Games</button>
+            <button class="filter-btn schedule-filter-btn" data-filter="final" id="sch-filter-final">Recent
+              Results</button>
+            <button class="filter-btn schedule-filter-btn" data-filter="upcoming"
+              id="sch-filter-upcoming">Upcoming</button>
+          </div>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">Home games at Ice Land Arena, Hamilton NJ</span>
+        </div>
+
+        <div class="schedule-list" id="schedule-list-container">
+          <!-- Populated by app.js -->
+        </div>
+      </div>
+
+      <!-- PANEL 3: STANDINGS -->
+      <div class="tab-content-panel" id="panel-standings" role="tabpanel">
+        <div class="standings-scroll-hint">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+          <span>Swipe table horizontally to view all columns</span>
+        </div>
+        <div class="standings-table-wrap">
+          <table class="standings-table" id="ncdc-standings-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Team</th>
+                <th>GP</th>
+                <th>W</th>
+                <th>L</th>
+                <th>OTL</th>
+                <th>PTS</th>
+                <th>GF</th>
+                <th>GA</th>
+                <th>DIFF</th>
+                <th>Streak</th>
+                <th>PTS%</th>
+              </tr>
+            </thead>
+            <tbody id="standings-tbody">
+              <!-- Populated by app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PANEL 4: LEADERS -->
+      <div class="tab-content-panel" id="panel-leaders" role="tabpanel">
+        <div class="junior-leaders-grid">
+          <div class="junior-leaders-card">
+            <h3 class="junior-leaders-header">
+              <span>Scoring Leaders</span>
+              <span class="junior-leaders-sub">Points</span>
+            </h3>
+            <div id="leaders-points-container" class="leaders-list">
+              <!-- Populated by app.js -->
+            </div>
+          </div>
+
+          <div class="junior-leaders-card">
+            <h3 class="junior-leaders-header">
+              <span>Goaltending Leaders</span>
+              <span class="junior-leaders-sub">Save % / GAA</span>
+            </h3>
+            <div id="leaders-goalie-container" class="leaders-list">
+              <!-- Populated by app.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 5: COLLEGE COMMITMENTS & ALUMNI -->
+      <div class="tab-content-panel" id="panel-commitments" role="tabpanel">
+        <div class="alumni-hero-banner">
+          <div class="alumni-hero-content">
+            <div>
+              <span class="section-tag" style="margin-bottom: 0.5rem;">Proven Development Pathway</span>
+              <h3
+                style="font-family: var(--font-heading); font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 800; color: #fff; margin-bottom: 0.5rem;">
+                Chiefs Alumni & College Commitments
+              </h3>
+              <p style="color: var(--text-secondary); max-width: 680px; font-size: 0.95rem; margin: 0;">
+                From Mercer Ice Land to NCAA Division I powerhouses, the USHL, and the National Hockey League. Explore
+                our verified alumni who wore the Chiefs crest.
+              </p>
+            </div>
+            <div class="alumni-stat-pills">
+              <div class="alumni-stat-pill">
+                <div class="stat-pill-num gold">30+</div>
+                <div class="stat-pill-lbl">NCAA D1</div>
+              </div>
+              <div class="alumni-stat-pill">
+                <div class="stat-pill-num red">19</div>
+                <div class="stat-pill-lbl">NHL / Pro</div>
+              </div>
+              <div class="alumni-stat-pill">
+                <div class="stat-pill-num white">1</div>
+                <div class="stat-pill-lbl">Stanley Cup</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="roster-controls">
+          <div class="filter-pills" id="commitments-filter-pills">
+            <button class="filter-btn active" data-filter="all" id="commit-filter-all">All Alumni (36)</button>
+            <button class="filter-btn" data-filter="d1" id="commit-filter-d1">NCAA Division I (30)</button>
+            <button class="filter-btn" data-filter="pro" id="commit-filter-pro">NHL & Pro (19)</button>
+            <button class="filter-btn" data-filter="d3" id="commit-filter-d3">NCAA Division III (2)</button>
+          </div>
+
+          <input type="text" id="commitments-search" class="roster-search-input"
+            placeholder="Search by player, college, or pro team..." aria-label="Search Alumni & Commitments">
+        </div>
+
+        <div class="commitments-grid" id="commitments-grid">
+          <!-- Populated by app.js -->
+        </div>
+      </div>
+
+      <!-- PANEL 6: COACHING STAFF -->
+      <div class="tab-content-panel" id="panel-staff" role="tabpanel">
+        <div class="commitments-grid" id="staff-grid">
+          <!-- Populated by app.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 2: INTEGRATED YOUTH HOCKEY & GAMESHEET / TIMETOSCORE HUB
+       ========================================================================== -->
+  <section class="section-padding youth-hub-section" id="youth-hub">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">
+          <img src="assets/images/ahf-logo.png" style="height: 18px; width: auto;" alt="AHF">
+          <img src="assets/images/thf-logo.png" style="height: 18px; width: auto;" alt="THF">
+          <span>Tier II AHF & Tier 1 AAA THF Youth Center</span>
+        </div>
+        <h2 class="section-title">Youth <span>Hockey Hub</span></h2>
+        <p class="section-subtitle">
+          Official digital hub for all Mercer Chiefs travel squads. Follow our competitive Tier II teams in the Atlantic
+          Hockey Federation (AHF) and Tier 1 AAA squads in the Tier 1 Hockey Federation (THF) with live GameSheet
+          scores, verified schedules, and verified rosters.
+        </p>
+      </div>
+
+      <!-- Selector Bar & Mode Switcher -->
+      <div class="youth-selector-bar">
+        <div class="youth-tier-filter-group">
+          <label>Youth Program:</label>
+          <div class="youth-tier-pills" id="youth-tier-pills">
+            <button class="tier-pill active" data-tier="all">All Teams</button>
+            <button class="tier-pill" data-tier="ahf">
+              <img src="assets/images/ahf-logo.png" alt="AHF" style="height: 14px; width: auto;">
+              Tier II (AHF)
+            </button>
+            <button class="tier-pill" data-tier="thf">
+              <img src="assets/images/thf-logo.png" alt="THF" style="height: 14px; width: auto;">
+              Tier 1 AAA (THF)
+            </button>
+          </div>
+        </div>
+
+        <div class="youth-select-group">
+          <label for="youth-team-select">Select Youth Team:</label>
+          <select id="youth-team-select" class="youth-dropdown" aria-label="Select Youth Team">
+            <!-- Populated by app.js -->
+          </select>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">Display Engine:</span>
+          <div class="integration-mode-toggle">
+            <button class="mode-btn active" data-mode="native" id="btn-mode-native">Chiefs Native Hub</button>
+            <button class="mode-btn" data-mode="timetoscore" id="btn-mode-tts">Official GameSheet Widget</button>
+            <button class="mode-btn" data-mode="iframe" id="btn-mode-iframe">League Game Center</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dynamic Display Container -->
+      <div class="gamesheet-display-container" id="gamesheet-display-container">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 3: NCDC & PREMIER JUNIOR PROGRAM SHOWCASE (COMMERCIAL)
+       ========================================================================== -->
+  <section class="section-padding program-video-section" id="program-video-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Inside The Mercer Chiefs Experience</div>
+        <h2 class="section-title">Junior Hockey <span>Defined</span></h2>
+        <p class="section-subtitle">
+          Watch the official Mercer Chiefs commercial highlighting our tuition-free NCDC Tier II program, USPHL Premier
+          development, and daily pathway to NCAA college hockey commitments.
+        </p>
+      </div>
+
+      <div class="video-showcase-container">
+        <!-- Main Video Card -->
+        <div class="video-player-card">
+          <div class="video-player-header">
+            <div class="video-player-status">
+              <span class="pulse-dot"></span>
+              <span>Official Program Commercial</span>
+            </div>
+            <div class="video-player-leagues">
+              <span class="v-tag ncdc">NCDC Tier II</span>
+              <span class="v-tag prem">USPHL Premier</span>
+            </div>
+          </div>
+
+          <div class="video-embed-wrapper">
+            <iframe src="https://www.youtube-nocookie.com/embed/E9HzPzEbpS8?rel=0&modestbranding=1"
+              title="Mercer Chiefs NCDC & Premier Program Commercial"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <div class="video-player-footer">
+            <div class="video-source-info">
+              <img src="assets/images/mercer-chiefs-crest.png" alt="Mercer Chiefs Crest" class="video-source-crest">
+              <div>
+                <strong class="video-source-title">Mercer Chiefs NCDC & Premier Hockey Club</strong>
+                <span class="video-source-sub">Ice Land Skating Center • Hamilton Township, NJ</span>
+              </div>
+            </div>
+            <a href="https://www.youtube.com/watch?v=E9HzPzEbpS8" target="_blank" rel="noopener noreferrer"
+              class="video-yt-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+              Watch on YouTube ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Accompanying Highlights & Action Callouts -->
+        <div class="video-pillars-grid">
+          <div class="video-pillar-card">
+            <div class="pillar-icon-wrap gold">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                </polygon>
+              </svg>
+            </div>
+            <div class="pillar-content">
+              <h4>Tuition-Free NCDC Junior Hockey</h4>
+              <p>Top-tier junior hockey with zero player tuition fees, full equipment packages, dedicated coaching, and
+                elite national showcase exposure.</p>
+            </div>
+          </div>
+
+          <div class="video-pillar-card">
+            <div class="pillar-icon-wrap red">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+              </svg>
+            </div>
+            <div class="pillar-content">
+              <h4>Direct NCAA College Advancement</h4>
+              <p>Extensive NCAA Division I & Division III commitment network with regular scout attendance and personal
+                advocacy from Head Coach Rob Broderick.</p>
+            </div>
+          </div>
+
+          <div class="video-pillar-card">
+            <div class="pillar-icon-wrap gold">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+              </svg>
+            </div>
+            <div class="pillar-content">
+              <h4>Dedicated Home Ice & Club Facilities</h4>
+              <p>Dedicated Junior team locker room suite, strength & dryland training area, video review room, and two
+                regulation ice sheets at Ice Land in Hamilton, NJ.</p>
+            </div>
+          </div>
+
+          <div class="video-pillar-card">
+            <div class="pillar-icon-wrap red">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div class="pillar-content">
+              <h4>Unified Ladder of Development</h4>
+              <p>Seamless player progression from Mite 8U through Tier I AAA Youth to USPHL Premier and NCDC Junior
+                Hockey under one unified culture.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-action-bar">
+          <div class="action-callout-text">
+            Ready to take the ice for the 2026/27 campaign?
+          </div>
+          <div class="action-buttons-group">
+            <button class="btn-primary" onclick="openTryoutModal()">
+              Register for 2026/27 Tryouts
+            </button>
+            <button class="btn-secondary" onclick="openBilletModal()">
+              Billet Family Program
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 4: TRYOUTS & DEVELOPMENT PROGRAMS
+       ========================================================================== -->
+  <section class="section-padding" id="tryouts-section" style="background: var(--bg-surface);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">2026 / 2027 Season Evaluations</div>
+        <h2 class="section-title">Join The <span>Chiefs Tradition</span></h2>
+        <p class="section-subtitle">
+          Evaluations for Tier I AAA and Tier II AA teams are held at Ice Land Arena in Hamilton, NJ. Experience elite
+          coaching, high-tempo practices, and premier league competition.
+        </p>
+      </div>
+
+      <div class="tryouts-grid">
+        <!-- Tier 1 AAA -->
+        <div class="tryout-card">
+          <span class="tryout-badge tier1">Tier I AAA — THF</span>
+          <h3 class="tryout-title">Tier 1 National Bound & Youth</h3>
+          <p class="tryout-desc">
+            Full-season Tier 1 AAA program competing in the Tier 1 Hockey Federation (THF). Includes 3+ ice sessions per
+            week, professional skating coach Oktay Armgan, video analysis, and off-ice conditioning.
+          </p>
+
+          <ul class="tryout-details-list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+              <strong>Birth Years:</strong> 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+              <strong>Arena:</strong> Ice Land Skating Center — Hamilton, NJ
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+              <strong>Showcase Schedule:</strong> 5 Major THF & SuperSeries Showcases
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+              <strong>Equipment Package:</strong> Custom CCM Chiefs gloves, pants, bag, jerseys
+            </li>
+          </ul>
+
+          <button class="btn-primary" style="margin-top: auto;" onclick="openTryoutModal()">
+            Register for Tier I Evaluations
+          </button>
+        </div>
+
+        <!-- Tier 2 AA / A -->
+        <div class="tryout-card">
+          <span class="tryout-badge tier2">Tier II — AHF</span>
+          <h3 class="tryout-title">Tier II Competitive & Development</h3>
+          <p class="tryout-desc">
+            Competitive travel hockey competing in the Atlantic Hockey Federation (AHF). Focused on continuous player
+            skill acquisition, positional awareness, team culture, and positive character building.
+          </p>
+
+          <ul class="tryout-details-list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+              <strong>Birth Years:</strong> 2008 through 2018 (8U Mites through 18U)
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+              <strong>Divisions:</strong> Lemieux, McDavid, Gretzky & AA Conferences
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+              <strong>Goaltender Training:</strong> Terry Jarkowsky Goalie Academy included
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+              <strong>Tournaments:</strong> Regional District Playoffs & AHF Championships
+            </li>
+          </ul>
+
+          <button class="btn-secondary" style="margin-top: auto;" onclick="openTryoutModal()">
+            Register for Tier II Evaluations
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 5: ICE LAND ARENA & BROADCASTING
+       ========================================================================== -->
+  <section class="section-padding" id="arena-section">
+    <div class="container">
+      <div class="arena-grid">
+        <!-- Rink Info -->
+        <div class="arena-card">
+          <div class="section-tag" style="margin-bottom: 0.5rem;">Home Facility</div>
+          <h3>Ice Land Skating Center</h3>
+          <p style="color: var(--text-secondary); line-height: 1.6;">
+            Located in Hamilton Township, NJ, Ice Land is the dedicated home ice of the Mercer Chiefs Junior and Youth
+            hockey clubs. Featuring two NHL-regulation ice rinks, dedicated Chiefs team locker rooms, and
+            comprehensive athlete training facilities.
+          </p>
+
+          <div class="arena-amenities-grid">
+            <div class="amenity-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+              </svg>
+              2 NHL-Size Ice Sheets
+            </div>
+            <div class="amenity-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+              </svg>
+              Full-menu Concessions
+            </div>
+            <div class="amenity-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+              </svg>
+              Off-Ice Dryland Training
+            </div>
+            <div class="amenity-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+              Blackbear TV Broadcast Rinks
+            </div>
+          </div>
+
+          <div
+            style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <div style="font-weight: 700; color: #fff;">6 Tennis Court</div>
+              <div style="font-size: 0.85rem; color: var(--text-secondary);">Hamilton Township, NJ 08619</div>
+            </div>
+            <a href="https://maps.google.com/?q=6+Tennis+Ct,+Hamilton+Township,+NJ+08619" target="_blank"
+              class="btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+              Get Directions ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Live Streaming -->
+        <div class="arena-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="section-tag" style="margin-bottom: 0.5rem;">Live Broadcasts</div>
+            <h3>Watch On Black Bear TV</h3>
+            <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+              Never miss a moment of the action. Every Mercer Chiefs home and away game in the NCDC, USPHL Premier, and
+              THF is broadcast in high-definition with live play-by-play, scoring overlays, and instant game replays.
+            </p>
+
+            <div
+              style="background: rgba(0,0,0,0.4); border-radius: var(--radius-md); padding: 1.25rem; border: 1px solid var(--border-subtle); margin-bottom: 1.5rem;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span style="font-weight: 700; color: #fff; font-size: 0.95rem;">Live Game Stream Engine</span>
+                <span class="badge-status final">HD 1080P</span>
+              </div>
+              <p style="font-size: 0.82rem; color: var(--text-muted);">
+                Subscribers receive full access to Black Bear TV apps across iOS, Android, Roku, Apple TV, and web
+                browsers.
+              </p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://blackbearsports.tv/" target="_blank" class="btn-primary"
+              style="flex: 1; text-align: center; justify-content: center;">
+              Launch Black Bear TV ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 6: CLUB NEWS & ANNOUNCEMENTS
+       ========================================================================== -->
+  <section class="section-padding" id="news-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Latest Updates</div>
+        <h2 class="section-title">Chiefs <span>Headlines & Press</span></h2>
+        <p class="section-subtitle">
+          Live updates, game recaps, and announcements synced directly from the official Mercer Chiefs Facebook page.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
+          <a href="https://www.facebook.com/mercerchiefshockey" target="_blank" rel="noopener noreferrer"
+            class="btn-secondary"
+            style="font-size: 0.82rem; padding: 0.4rem 0.95rem; display: inline-flex; align-items: center; gap: 0.5rem; border-color: rgba(24, 119, 242, 0.4); color: #93c5fd; background: rgba(24, 119, 242, 0.08);">
+            <svg width="15" height="15" fill="#1877F2" viewBox="0 0 24 24">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg>
+            Follow @mercerchiefshockey on Facebook ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- News Carousel Wrapper (Single Line of 4 Rotating Items) -->
+      <div class="news-carousel-wrapper">
+        <button type="button" class="news-carousel-nav prev" id="news-carousel-prev" aria-label="Previous News"
+          onclick="window.rotateNewsCarousel(-1)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="news-carousel-track" id="club-news-grid">
+          <!-- Populated by app.js -->
+        </div>
+
+        <button type="button" class="news-carousel-nav next" id="news-carousel-next" aria-label="Next News"
+          onclick="window.rotateNewsCarousel(1)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Carousel Pagination Controls -->
+      <div class="news-carousel-controls">
+        <div class="news-carousel-dots" id="news-carousel-dots">
+          <!-- Populated by app.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand Info -->
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <img src="assets/images/mercer-chiefs-crest.png" alt="Mercer Chiefs Crest"
+              style="height: 52px; width: auto;">
+            <div>
+              <div style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: #fff;">MERCER
+                CHIEFS</div>
+              <div style="font-size: 0.72rem; color: var(--chiefs-gold); font-weight: 600;">HOCKEY CLUB • EST. 1990
+              </div>
+            </div>
+          </div>
+
+          <p>
+            Dedicated to developing student-athletes through competitive Tier II tuition-free junior hockey and premier
+            Tier 1 AAA youth competition in Hamilton, New Jersey.
+          </p>
+
+          <div class="footer-social-links">
+            <a href="https://www.facebook.com/mercerchiefshockey" target="_blank" class="social-icon-btn"
+              aria-label="Facebook">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/mercerchiefshockey/" target="_blank" class="social-icon-btn"
+              aria-label="Instagram">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+            <a href="https://twitter.com/mercerchiefs" target="_blank" class="social-icon-btn" aria-label="X Twitter">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation Links -->
+        <div class="footer-col">
+          <h4>Junior Teams</h4>
+          <ul class="footer-links">
+            <li><a href="#ncdc-hub">Junior Rosters & Stats</a></li>
+            <li><a href="#ncdc-hub">Season Schedules</a></li>
+            <li><a href="#ncdc-hub">Atlantic Standings</a></li>
+            <li><a href="#ncdc-hub">College Commitments</a></li>
+            <li><a href="#tab-staff" onclick="document.getElementById('tab-staff')?.click()">Coaching Staff</a></li>
+            <li><a href="javascript:void(0)" onclick="openBilletModal()">Host Family / Billeting</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Youth & Programs -->
+        <div class="footer-col">
+          <h4>Youth Hockey</h4>
+          <ul class="footer-links">
+            <li><a href="#youth-hub">GameSheet Live Hub</a></li>
+            <li><a href="#youth-hub">Tier 1 THF (9U-18U)</a></li>
+            <li><a href="#youth-hub">Tier II AHF (8U-18U)</a></li>
+            <li><a href="#tryouts-section">2026-27 Tryouts</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact & Arena -->
+        <div class="footer-col">
+          <h4>Home Ice Arena</h4>
+          <div style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 1rem;">
+            <strong>Ice Land Skating Center</strong><br>
+            6 Tennis Court<br>
+            Hamilton Township, NJ 08619
+          </div>
+          <div style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+            Phone: <a href="tel:6095886672" style="color: #fff; font-weight: 600;">(609) 588-6672</a>
+          </div>
+          <div style="font-size: 0.88rem; color: var(--text-secondary);">
+            Email: <a href="mailto:mercerjuniorhockey@gmail.com"
+              style="color: var(--chiefs-gold);">mercerjuniorhockey@gmail.com</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partner Logos -->
+      <div class="partner-logos-row">
+        <a href="https://facilities.bondsports.co/" target="_blank">
+          <img src="assets/images/bondsports.png" alt="Bond Sports" class="partner-logo-item" title="Bond Sports">
+        </a>
+        <a href="https://blackbearyouthhockeyfoundation.com/" target="_blank">
+          <img src="assets/images/bbyhf.png" alt="Black Bear Youth Hockey Foundation" class="partner-logo-item"
+            title="Black Bear Youth Hockey Foundation">
+        </a>
+        <a href="https://www.blackbearsportsgroup.com/" target="_blank">
+          <img src="assets/images/bbsg.png" alt="Black Bear Sports Group" class="partner-logo-item"
+            title="Black Bear Sports Group">
+        </a>
+        <a href="https://usphl.com" target="_blank">
+          <img src="assets/images/ncdc-logo.png" alt="NCDC League" class="partner-logo-item"
+            title="National Collegiate Development Conference">
+        </a>
+        <a href="https://usphl.com" target="_blank">
+          <img src="assets/images/usphl-premier-logo.png" alt="USPHL Premier" class="partner-logo-item"
+            title="USPHL Premier">
+        </a>
+        <a href="https://www.tier1hockeyfederation.com/" target="_blank">
+          <img src="assets/images/thf-logo.png" alt="Tier 1 Hockey Federation" class="partner-logo-item"
+            title="Tier 1 Hockey Federation">
+        </a>
+        <a href="https://atlantichockeyfederation.com/" target="_blank">
+          <img src="assets/images/ahf-logo.png" alt="Atlantic Hockey Federation" class="partner-logo-item"
+            title="Atlanic Hockey Federation">
+        </a>
+      </div>
+
+      <!-- Copyright Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div>
+          © 2026 Mercer Chiefs Hockey Club. All rights reserved. Member of Black Bear Sports Group.
+        </div>
+        <div style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
+          <a href="admin.html"
+            style="color: var(--chiefs-gold); font-weight: 700; display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.25rem 0.65rem; background: rgba(245, 166, 35, 0.1); border: 1px solid rgba(245, 166, 35, 0.3); border-radius: var(--radius-sm);">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            Staff Portal
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODAL 1: PLAYER BIO & SCOUT MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="player-bio-modal" role="dialog" aria-modal="true">
+    <div class="modal-window">
+      <button class="modal-close-btn" aria-label="Close Modal">&times;</button>
+      <div class="modal-body" id="player-bio-content">
+        <!-- Rendered by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 2: SCOUT & JUNIOR RECRUITMENT INQUIRY
+       ========================================================================== -->
+  <div class="modal-overlay" id="scout-inquiry-modal" role="dialog" aria-modal="true">
+    <div class="modal-window">
+      <button class="modal-close-btn" aria-label="Close Modal">&times;</button>
+      <div class="modal-body">
+        <div
+          style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 1rem;">
+          <img src="assets/images/mercer-chiefs-crest.png" style="width: 44px; height: 44px;" alt="Crest">
+          <div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: #fff;">College
+              Scout & Player Questionnaire</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">Direct submission to GM & Head Coach Rob
+              Broderick & Staff</p>
+          </div>
+        </div>
+
+        <form class="chiefs-form" id="scout-inquiry-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="scout-name">Your Full Name *</label>
+              <input type="text" id="scout-name" required placeholder="Coach / Scout Name">
+            </div>
+            <div class="form-group">
+              <label for="scout-org">College / Team / Organization *</label>
+              <input type="text" id="scout-org" required placeholder="e.g. NCAA Division I / III / OHL / USHL">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="scout-email">Email Address *</label>
+              <input type="email" id="scout-email" required placeholder="scout@university.edu">
+            </div>
+            <div class="form-group">
+              <label for="scout-phone">Phone Number</label>
+              <input type="tel" id="scout-phone" placeholder="(555) 000-0000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="scout-target-player">Player(s) of Interest</label>
+            <input type="text" id="scout-target-player"
+              placeholder="e.g. Cole Werthman, Sam Ciappa, or All 2006 Defencemen">
+          </div>
+
+          <div class="form-group">
+            <label for="scout-notes">Inquiry / Evaluation Request Details</label>
+            <textarea id="scout-notes" rows="4"
+              placeholder="Detail your recruiting schedule, request full video packages, or arrange an interview with coaching staff."></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1rem;">
+            <button type="button" class="btn-secondary"
+              onclick="document.getElementById('scout-inquiry-modal').classList.remove('open')">Cancel</button>
+            <button type="submit" class="btn-primary">Submit Scouting Request</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 3: BILLET FAMILY HOST APPLICATION
+       ========================================================================== -->
+  <div class="modal-overlay" id="billet-modal" role="dialog" aria-modal="true">
+    <div class="modal-window">
+      <button class="modal-close-btn" aria-label="Close Modal">&times;</button>
+      <div class="modal-body">
+        <div style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 1rem;">
+          <span
+            style="font-size: 0.75rem; font-weight: 700; color: var(--chiefs-gold); text-transform: uppercase;">Support
+            Junior Hockey in Hamilton</span>
+          <h3
+            style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: #fff; margin-top: 0.2rem;">
+            Become a Mercer Chiefs Billet Family</h3>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.5;">
+            Junior players travel from across North America and Europe to compete for the Chiefs NCDC and Premier
+            squads. Billet families provide a welcoming home, supportive meals, and become lifelong members of our
+            hockey family.
+          </p>
+        </div>
+
+        <div
+          style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; background: rgba(0,0,0,0.35); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); margin-bottom: 1.5rem; text-align: center;">
+          <div>
+            <div style="font-weight: 700; color: #fff; font-size: 1.1rem;">Monthly Stipend</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">$675/mo food allowance</div>
+          </div>
+          <div>
+            <div style="font-weight: 700; color: var(--chiefs-gold); font-size: 1.1rem;">Season Passes</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">VIP Passes to all Chiefs games</div>
+          </div>
+          <div>
+            <div style="font-weight: 700; color: var(--chiefs-gold); font-size: 1.1rem;">Lifelong Bond</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Mentoring a future NCAA star</div>
+          </div>
+        </div>
+
+        <form class="chiefs-form" id="billet-app-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="billet-host-name">Primary Contact Name *</label>
+              <input type="text" id="billet-host-name" required placeholder="Parent / Host Name">
+            </div>
+            <div class="form-group">
+              <label for="billet-phone">Phone Number *</label>
+              <input type="tel" id="billet-phone" required placeholder="(609) 000-0000">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="billet-email">Email Address *</label>
+              <input type="email" id="billet-email" required placeholder="family@gmail.com">
+            </div>
+            <div class="form-group">
+              <label for="billet-town">Town / Township *</label>
+              <input type="text" id="billet-town" required placeholder="Hamilton, Robbinsville, Princeton, etc.">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="billet-rooms">Private Bedroom Available? *</label>
+            <select id="billet-rooms">
+              <option value="1">Yes, 1 Private Bedroom Available</option>
+              <option value="2">Yes, 2 Private Bedrooms Available (can host 2 players)</option>
+              <option value="inquiring">Just inquiring for more information</option>
+            </select>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1rem;">
+            <button type="button" class="btn-secondary"
+              onclick="document.getElementById('billet-modal').classList.remove('open')">Cancel</button>
+            <button type="submit" class="btn-primary">Submit Billet Application</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 4: TRYOUT REGISTRATION
+       ========================================================================== -->
+  <div class="modal-overlay" id="tryout-modal" role="dialog" aria-modal="true">
+    <div class="modal-window">
+      <button class="modal-close-btn" aria-label="Close Modal">&times;</button>
+      <div class="modal-body">
+        <div style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 1rem;">
+          <span
+            style="font-size: 0.75rem; font-weight: 700; color: var(--chiefs-gold); text-transform: uppercase;">2026/27
+            Mercer Chiefs Evaluations</span>
+          <h3
+            style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: #fff; margin-top: 0.2rem;">
+            Tryout Registration Portal</h3>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.5;">
+            Register your player for upcoming Tier I AAA (THF) and Tier II (AHF) evaluations at Ice Land Arena.
+          </p>
+        </div>
+
+        <form class="chiefs-form" id="tryout-register-form"
+          onsubmit="event.preventDefault(); alert('Tryout registration received! You will receive evaluation session times and check-in instructions at your registered email.'); document.getElementById('tryout-modal').classList.remove('open');">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="player-reg-name">Player Name *</label>
+              <input type="text" id="player-reg-name" required placeholder="First & Last Name">
+            </div>
+            <div class="form-group">
+              <label for="player-reg-by">Birth Year *</label>
+              <select id="player-reg-by" required>
+                <option value="2018">2018 (8U Mite)</option>
+                <option value="2017">2017 (8U Mite)</option>
+                <option value="2016">2016 (10U Squirt)</option>
+                <option value="2015">2015 (10U Squirt)</option>
+                <option value="2014">2014 (12U Peewee)</option>
+                <option value="2013">2013 (12U Peewee)</option>
+                <option value="2012">2012 (14U Bantam)</option>
+                <option value="2011">2011 (14U Bantam)</option>
+                <option value="2010">2010 (16U Midget)</option>
+                <option value="2009">2009 (16U Midget)</option>
+                <option value="2008">2008 (18U Midget)</option>
+                <option value="2007">2007 (Junior Prospect)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="player-pos">Position *</label>
+              <select id="player-pos" required>
+                <option value="Forward">Forward</option>
+                <option value="Defense">Defense</option>
+                <option value="Goaltender">Goaltender</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="player-tier-target">Target Program *</label>
+              <select id="player-tier-target" required>
+                <option value="Tier1">Tier 1 AAA (THF)</option>
+                <option value="Tier2">Tier II AA / A (AHF)</option>
+                <option value="Both">Evaluate for Highest Level</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="parent-name">Parent / Guardian Name *</label>
+              <input type="text" id="parent-name" required placeholder="Parent Name">
+            </div>
+            <div class="form-group">
+              <label for="parent-email">Parent Email *</label>
+              <input type="email" id="parent-email" required placeholder="parent@email.com">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="last-team">2025-26 Previous Club / Team</label>
+            <input type="text" id="last-team" placeholder="e.g. Mercer Chiefs 13U AAA, Princeton Day School, etc.">
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1rem;">
+            <button type="button" class="btn-secondary"
+              onclick="document.getElementById('tryout-modal').classList.remove('open')">Cancel</button>
+            <button type="submit" class="btn-primary">Complete Evaluation Registration</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 5: ARTICLE & FACEBOOK POST READER
+       ========================================================================== -->
+  <div class="modal-overlay" id="article-reader-modal" role="dialog" aria-modal="true">
+    <div class="modal-window"
+      style="max-width: 680px; padding: 0; overflow: hidden; border: 1px solid rgba(245, 166, 35, 0.35); background: var(--bg-surface);">
+      <button class="modal-close-btn" aria-label="Close Modal" onclick="window.closeNewsArticle()"
+        style="top: 1rem; right: 1rem; z-index: 10; background: rgba(0,0,0,0.6);">&times;</button>
+
+      <div style="width: 100%; max-height: 420px; overflow: hidden; background: #08090C; position: relative;">
+        <img id="reader-modal-img" src="assets/images/hero-action.jpg" alt="Article Media"
+          style="width: 100%; height: 100%; object-fit: contain; max-height: 420px; display: block; margin: 0 auto;">
+      </div>
+
+      <div class="modal-body" style="padding: 1.75rem;">
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+          <span id="reader-modal-category"
+            style="background: rgba(189, 50, 59, 0.15); border: 1px solid rgba(189, 50, 59, 0.35); color: #f87171; border-radius: var(--radius-full); padding: 0.25rem 0.75rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">
+            Club News
+          </span>
+          <span id="reader-modal-date" style="font-size: 0.8rem; color: var(--text-muted);">
+            October 15, 2026
+          </span>
+        </div>
+
+        <h3 id="reader-modal-title"
+          style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; color: #fff; line-height: 1.35; margin-bottom: 0.85rem;">
+          Article Headline
+        </h3>
+
+        <div id="reader-modal-credit"
+          style="font-size: 0.78rem; color: #94a3b8; font-style: italic; margin-bottom: 1rem; display: none;">
+          Photography: Heather O'Connell Photography
+        </div>
+
+        <p id="reader-modal-summary"
+          style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.75rem;">
+          Article text...
+        </p>
+
+        <div id="reader-modal-source-row"
+          style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
+          <button type="button" class="btn-secondary" onclick="window.closeNewsArticle()">
+            Close
+          </button>
+          <a id="reader-modal-fb-btn" href="https://www.facebook.com/mercerchiefshockey" target="_blank"
+            rel="noopener noreferrer" class="btn-primary"
+            style="background: linear-gradient(135deg, #1877F2, #0A53BE); border-color: #1877F2; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.88rem;">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg>
+            View on Mercer Chiefs Facebook ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="app.js"></script>
+</body>
+
+</html>

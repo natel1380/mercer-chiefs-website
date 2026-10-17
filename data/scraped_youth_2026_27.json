@@ -1,0 +1,5166 @@
+{
+  "18u-prep-aaa": {
+    "id": "18u-prep-aaa",
+    "name": "18U Prep AAA",
+    "tier": "Tier I AAA",
+    "league": "THF",
+    "leagueId": 5,
+    "teamId": 10311,
+    "baseUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10311&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "1-16-0",
+    "pts": 3,
+    "rank": "#47",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 26,
+        "name": "James Morino",
+        "position": "F/D",
+        "gp": 15,
+        "g": 5,
+        "a": 1,
+        "pts": 6,
+        "pim": 6
+      },
+      {
+        "number": 58,
+        "name": "Chase Dreher",
+        "position": "F/D",
+        "gp": 15,
+        "g": 4,
+        "a": 0,
+        "pts": 4,
+        "pim": 16
+      },
+      {
+        "number": 42,
+        "name": "Patrick Shine",
+        "position": "F/D",
+        "gp": 14,
+        "g": 0,
+        "a": 4,
+        "pts": 4,
+        "pim": 8
+      },
+      {
+        "number": 89,
+        "name": "Grant Barush",
+        "position": "F/D",
+        "gp": 14,
+        "g": 0,
+        "a": 3,
+        "pts": 3,
+        "pim": 8
+      },
+      {
+        "number": 65,
+        "name": "klim belko",
+        "position": "F/D",
+        "gp": 15,
+        "g": 0,
+        "a": 3,
+        "pts": 3,
+        "pim": 10
+      },
+      {
+        "number": 59,
+        "name": "Gregory Moreno",
+        "position": "F/D",
+        "gp": 14,
+        "g": 1,
+        "a": 2,
+        "pts": 3,
+        "pim": 0
+      },
+      {
+        "number": 45,
+        "name": "Allan O’Connor",
+        "position": "F/D",
+        "gp": 13,
+        "g": 0,
+        "a": 2,
+        "pts": 2,
+        "pim": 4
+      },
+      {
+        "number": 27,
+        "name": "Colin Murray",
+        "position": "F/D",
+        "gp": 5,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 53,
+        "name": "Maxwell Wang",
+        "position": "F/D",
+        "gp": 2,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 88,
+        "name": "Jake Yang",
+        "position": "F/D",
+        "gp": 1,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 6,
+        "name": "Dylan Kane",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 4
+      },
+      {
+        "number": 11,
+        "name": "Alexander Saletnik",
+        "position": "F/D",
+        "gp": 5,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 6
+      },
+      {
+        "number": 19,
+        "name": "Olivia Urban",
+        "position": "F/D",
+        "gp": 7,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      }
+    ],
+    "goalies": [
+      {
+        "number": 31,
+        "name": "Salvatore Mirra",
+        "position": "G",
+        "gp": 9,
+        "w": 1,
+        "l": 7,
+        "otl": 0,
+        "gaa": "4.20",
+        "svPct": ".884",
+        "so": 0
+      },
+      {
+        "number": 37,
+        "name": "Nicolas Mammarella",
+        "position": "G",
+        "gp": 6,
+        "w": 0,
+        "l": 5,
+        "otl": 0,
+        "gaa": "2.47",
+        "svPct": ".851",
+        "so": 0
+      },
+      {
+        "number": 46,
+        "name": "Riordan Knox",
+        "position": "G",
+        "gp": 3,
+        "w": 0,
+        "l": 3,
+        "otl": 0,
+        "gaa": "2.58",
+        "svPct": ".791",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 16
+  },
+  "18u-premier-aaa": {
+    "id": "18u-premier-aaa",
+    "name": "18U Premier AAA",
+    "tier": "Tier I AAA",
+    "league": "THF",
+    "leagueId": 5,
+    "teamId": 10309,
+    "baseUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10309&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "3-3-1",
+    "pts": 10,
+    "rank": "#8",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 2,
+        "name": "William Boyd Jr",
+        "position": "F/D",
+        "gp": 5,
+        "g": 3,
+        "a": 2,
+        "pts": 5,
+        "pim": 6
+      },
+      {
+        "number": 18,
+        "name": "Stanley Xenakis",
+        "position": "F/D",
+        "gp": 5,
+        "g": 4,
+        "a": 1,
+        "pts": 5,
+        "pim": 2
+      },
+      {
+        "number": 23,
+        "name": "Danny Cabrales",
+        "position": "F/D",
+        "gp": 5,
+        "g": 0,
+        "a": 3,
+        "pts": 3,
+        "pim": 0
+      },
+      {
+        "number": 71,
+        "name": "Andrew Krott",
+        "position": "F/D",
+        "gp": 5,
+        "g": 0,
+        "a": 3,
+        "pts": 3,
+        "pim": 0
+      },
+      {
+        "number": 88,
+        "name": "gavin burgess",
+        "position": "F/D",
+        "gp": 5,
+        "g": 0,
+        "a": 2,
+        "pts": 2,
+        "pim": 2
+      },
+      {
+        "number": 9,
+        "name": "Clark Crosson",
+        "position": "F/D",
+        "gp": 5,
+        "g": 2,
+        "a": 0,
+        "pts": 2,
+        "pim": 0
+      },
+      {
+        "number": 11,
+        "name": "Christian Lundfelt",
+        "position": "F/D",
+        "gp": 5,
+        "g": 0,
+        "a": 2,
+        "pts": 2,
+        "pim": 0
+      },
+      {
+        "number": 19,
+        "name": "Hunter Mason",
+        "position": "F/D",
+        "gp": 5,
+        "g": 1,
+        "a": 1,
+        "pts": 2,
+        "pim": 0
+      },
+      {
+        "number": 22,
+        "name": "Tyler Scarpino",
+        "position": "F/D",
+        "gp": 5,
+        "g": 0,
+        "a": 2,
+        "pts": 2,
+        "pim": 0
+      },
+      {
+        "number": 77,
+        "name": "Connor Gusditis",
+        "position": "F/D",
+        "gp": 5,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 42,
+        "name": "Brayden Houser",
+        "position": "F/D",
+        "gp": 2,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 13,
+        "name": "James Morwald",
+        "position": "F/D",
+        "gp": 5,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 5,
+        "name": "Josh Zdunkiewicz",
+        "position": "F/D",
+        "gp": 5,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 2
+      },
+      {
+        "number": 16,
+        "name": "Zhokhov Arkhip",
+        "position": "F/D",
+        "gp": 5,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 14,
+        "name": "Calvin Crosson",
+        "position": "F/D",
+        "gp": 5,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 21,
+        "name": "Larry Merrill",
+        "position": "F/D",
+        "gp": 5,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 56,
+        "name": "Andras Nagy-Melykuti",
+        "position": "F/D",
+        "gp": 5,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 20,
+        "name": "Christopher Silvotti",
+        "position": "F/D",
+        "gp": 5,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 6
+      }
+    ],
+    "goalies": [
+      {
+        "number": 31,
+        "name": "Jackson Siefert",
+        "position": "G",
+        "gp": 3,
+        "w": 1,
+        "l": 1,
+        "otl": 1,
+        "gaa": "1.20",
+        "svPct": ".922",
+        "so": 1
+      },
+      {
+        "number": 33,
+        "name": "Reade Adams",
+        "position": "G",
+        "gp": 2,
+        "w": 1,
+        "l": 1,
+        "otl": 0,
+        "gaa": "1.50",
+        "svPct": ".850",
+        "so": 0
+      },
+      {
+        "number": 32,
+        "name": "Richie GEISER",
+        "position": "G",
+        "gp": 0,
+        "w": 0,
+        "l": 0,
+        "otl": 0,
+        "gaa": "—",
+        "svPct": "—",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 21
+  },
+  "16u-prep-aaa": {
+    "id": "16u-prep-aaa",
+    "name": "16U Prep AAA",
+    "tier": "Tier I AAA",
+    "league": "THF",
+    "leagueId": 5,
+    "teamId": 10310,
+    "baseUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10310&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "6-3-1",
+    "pts": 19,
+    "rank": "#2",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 15,
+        "name": "Connor Paulmenn",
+        "position": "F/D",
+        "gp": 10,
+        "g": 6,
+        "a": 8,
+        "pts": 14,
+        "pim": 8
+      },
+      {
+        "number": 34,
+        "name": "Nick Shapiro",
+        "position": "F/D",
+        "gp": 10,
+        "g": 2,
+        "a": 6,
+        "pts": 8,
+        "pim": 0
+      },
+      {
+        "number": 19,
+        "name": "Jimmy Dolan",
+        "position": "F/D",
+        "gp": 10,
+        "g": 2,
+        "a": 5,
+        "pts": 7,
+        "pim": 12
+      },
+      {
+        "number": 11,
+        "name": "Izzy Cabrales",
+        "position": "F/D",
+        "gp": 7,
+        "g": 1,
+        "a": 5,
+        "pts": 6,
+        "pim": 0
+      },
+      {
+        "number": 4,
+        "name": "Will Chess",
+        "position": "F/D",
+        "gp": 10,
+        "g": 1,
+        "a": 4,
+        "pts": 5,
+        "pim": 18
+      },
+      {
+        "number": 41,
+        "name": "Justin Lerman",
+        "position": "F/D",
+        "gp": 10,
+        "g": 3,
+        "a": 2,
+        "pts": 5,
+        "pim": 0
+      },
+      {
+        "number": 96,
+        "name": "Richard Ricketts Jr.",
+        "position": "F/D",
+        "gp": 10,
+        "g": 2,
+        "a": 3,
+        "pts": 5,
+        "pim": 2
+      },
+      {
+        "number": 10,
+        "name": "Bennett Stanton",
+        "position": "F/D",
+        "gp": 9,
+        "g": 3,
+        "a": 2,
+        "pts": 5,
+        "pim": 10
+      },
+      {
+        "number": 12,
+        "name": "Ryan Goodrich",
+        "position": "F/D",
+        "gp": 10,
+        "g": 1,
+        "a": 3,
+        "pts": 4,
+        "pim": 8
+      },
+      {
+        "number": 43,
+        "name": "Charlie Staudt",
+        "position": "F/D",
+        "gp": 10,
+        "g": 1,
+        "a": 3,
+        "pts": 4,
+        "pim": 4
+      },
+      {
+        "number": 29,
+        "name": "Nico Chiaramonte",
+        "position": "F/D",
+        "gp": 10,
+        "g": 1,
+        "a": 2,
+        "pts": 3,
+        "pim": 4
+      },
+      {
+        "number": 3,
+        "name": "Carter Davino",
+        "position": "F/D",
+        "gp": 8,
+        "g": 3,
+        "a": 0,
+        "pts": 3,
+        "pim": 12
+      },
+      {
+        "number": 13,
+        "name": "Brendan Doohan jr",
+        "position": "F/D",
+        "gp": 10,
+        "g": 1,
+        "a": 2,
+        "pts": 3,
+        "pim": 2
+      },
+      {
+        "number": 86,
+        "name": "Nolan Doyle",
+        "position": "F/D",
+        "gp": 10,
+        "g": 1,
+        "a": 1,
+        "pts": 2,
+        "pim": 0
+      },
+      {
+        "number": 88,
+        "name": "Owen Incudine",
+        "position": "F/D",
+        "gp": 10,
+        "g": 1,
+        "a": 1,
+        "pts": 2,
+        "pim": 4
+      },
+      {
+        "number": 38,
+        "name": "Terence Tan",
+        "position": "F/D",
+        "gp": 8,
+        "g": 0,
+        "a": 2,
+        "pts": 2,
+        "pim": 0
+      },
+      {
+        "number": 91,
+        "name": "Zachary Del Rosario",
+        "position": "F/D",
+        "gp": 10,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 7,
+        "name": "Trevor Johns",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 4
+      },
+      {
+        "number": 27,
+        "name": "Joseph Magnin, Jr.",
+        "position": "F/D",
+        "gp": 10,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 32
+      }
+    ],
+    "goalies": [
+      {
+        "number": 35,
+        "name": "CJ Young",
+        "position": "G",
+        "gp": 6,
+        "w": 3,
+        "l": 1,
+        "otl": 0,
+        "gaa": "1.67",
+        "svPct": ".918",
+        "so": 1
+      },
+      {
+        "number": 79,
+        "name": "Max Yoder",
+        "position": "G",
+        "gp": 4,
+        "w": 3,
+        "l": 1,
+        "otl": 0,
+        "gaa": "1.29",
+        "svPct": ".930",
+        "so": 1
+      }
+    ],
+    "totalPlayers": 21
+  },
+  "16u-premier-aaa": {
+    "id": "16u-premier-aaa",
+    "name": "16U Premier AAA",
+    "tier": "Tier I AAA",
+    "league": "THF",
+    "leagueId": 5,
+    "teamId": 10308,
+    "baseUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10308&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "12-8-3",
+    "pts": 39,
+    "rank": "#10",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 88,
+        "name": "John (Jack) Riewe",
+        "position": "F/D",
+        "gp": 20,
+        "g": 11,
+        "a": 14,
+        "pts": 25,
+        "pim": 17
+      },
+      {
+        "number": 62,
+        "name": "Johnny Honovic",
+        "position": "F/D",
+        "gp": 18,
+        "g": 7,
+        "a": 10,
+        "pts": 17,
+        "pim": 31
+      },
+      {
+        "number": 13,
+        "name": "Nick Diaz",
+        "position": "F/D",
+        "gp": 21,
+        "g": 6,
+        "a": 10,
+        "pts": 16,
+        "pim": 8
+      },
+      {
+        "number": 98,
+        "name": "Zaden Latkovich",
+        "position": "F/D",
+        "gp": 21,
+        "g": 7,
+        "a": 9,
+        "pts": 16,
+        "pim": 28
+      },
+      {
+        "number": 6,
+        "name": "Marshall Matyszczak",
+        "position": "F/D",
+        "gp": 20,
+        "g": 11,
+        "a": 3,
+        "pts": 14,
+        "pim": 2
+      },
+      {
+        "number": 8,
+        "name": "Nate Romer",
+        "position": "F/D",
+        "gp": 20,
+        "g": 4,
+        "a": 10,
+        "pts": 14,
+        "pim": 12
+      },
+      {
+        "number": 10,
+        "name": "Chris Esposito",
+        "position": "F/D",
+        "gp": 21,
+        "g": 6,
+        "a": 7,
+        "pts": 13,
+        "pim": 16
+      },
+      {
+        "number": 19,
+        "name": "Hunter Mason",
+        "position": "F/D",
+        "gp": 20,
+        "g": 5,
+        "a": 4,
+        "pts": 9,
+        "pim": 6
+      },
+      {
+        "number": 34,
+        "name": "Danny Burke",
+        "position": "F/D",
+        "gp": 17,
+        "g": 3,
+        "a": 4,
+        "pts": 7,
+        "pim": 4
+      },
+      {
+        "number": 71,
+        "name": "Andrew Krott",
+        "position": "F/D",
+        "gp": 21,
+        "g": 2,
+        "a": 5,
+        "pts": 7,
+        "pim": 4
+      },
+      {
+        "number": 11,
+        "name": "Sal Esposito",
+        "position": "F/D",
+        "gp": 20,
+        "g": 0,
+        "a": 5,
+        "pts": 5,
+        "pim": 4
+      },
+      {
+        "number": 56,
+        "name": "Andras Nagy-Melykuti",
+        "position": "F/D",
+        "gp": 21,
+        "g": 1,
+        "a": 4,
+        "pts": 5,
+        "pim": 6
+      },
+      {
+        "number": 84,
+        "name": "Donovan miller",
+        "position": "F/D",
+        "gp": 17,
+        "g": 2,
+        "a": 2,
+        "pts": 4,
+        "pim": 18
+      },
+      {
+        "number": 18,
+        "name": "James Winkler",
+        "position": "F/D",
+        "gp": 19,
+        "g": 1,
+        "a": 3,
+        "pts": 4,
+        "pim": 8
+      },
+      {
+        "number": 2,
+        "name": "Beck Meneghini",
+        "position": "F/D",
+        "gp": 15,
+        "g": 1,
+        "a": 2,
+        "pts": 3,
+        "pim": 2
+      },
+      {
+        "number": 22,
+        "name": "Tyler Scarpino",
+        "position": "F/D",
+        "gp": 19,
+        "g": 0,
+        "a": 2,
+        "pts": 2,
+        "pim": 2
+      },
+      {
+        "number": 12,
+        "name": "Aiden Voicheck",
+        "position": "F/D",
+        "gp": 20,
+        "g": 1,
+        "a": 1,
+        "pts": 2,
+        "pim": 8
+      },
+      {
+        "number": 9,
+        "name": "TJ Wesch",
+        "position": "F/D",
+        "gp": 19,
+        "g": 1,
+        "a": 1,
+        "pts": 2,
+        "pim": 6
+      }
+    ],
+    "goalies": [
+      {
+        "number": 30,
+        "name": "Tyler LeSchack",
+        "position": "G",
+        "gp": 12,
+        "w": 7,
+        "l": 3,
+        "otl": 0,
+        "gaa": "1.15",
+        "svPct": ".917",
+        "so": 3
+      },
+      {
+        "number": 26,
+        "name": "Chase Kishler",
+        "position": "G",
+        "gp": 1,
+        "w": 1,
+        "l": 0,
+        "otl": 0,
+        "gaa": "0.20",
+        "svPct": ".000",
+        "so": 0
+      },
+      {
+        "number": "0",
+        "name": "Joseph Slobodrian, III",
+        "position": "G",
+        "gp": 1,
+        "w": 1,
+        "l": 0,
+        "otl": 0,
+        "gaa": "0.38",
+        "svPct": ".906",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 21
+  },
+  "15u-pure-aaa": {
+    "id": "15u-pure-aaa",
+    "name": "15U Pure AAA",
+    "tier": "Tier I AAA",
+    "league": "THF",
+    "leagueId": 5,
+    "teamId": 10306,
+    "baseUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10306&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "5-4-1",
+    "pts": 15,
+    "rank": "#5",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 96,
+        "name": "Alexander Mozuraitis",
+        "position": "F/D",
+        "gp": 9,
+        "g": 6,
+        "a": 9,
+        "pts": 15,
+        "pim": 6
+      },
+      {
+        "number": 11,
+        "name": "Owen Mager",
+        "position": "F/D",
+        "gp": 9,
+        "g": 2,
+        "a": 6,
+        "pts": 8,
+        "pim": 6
+      },
+      {
+        "number": 25,
+        "name": "Travis Malcolm",
+        "position": "F/D",
+        "gp": 7,
+        "g": 6,
+        "a": 1,
+        "pts": 7,
+        "pim": 14
+      },
+      {
+        "number": 22,
+        "name": "Parker Schaub",
+        "position": "F/D",
+        "gp": 9,
+        "g": 5,
+        "a": 1,
+        "pts": 6,
+        "pim": 4
+      },
+      {
+        "number": 2,
+        "name": "Owen Martins",
+        "position": "F/D",
+        "gp": 9,
+        "g": 2,
+        "a": 3,
+        "pts": 5,
+        "pim": 0
+      },
+      {
+        "number": 76,
+        "name": "Aidan Duggan",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 2,
+        "pts": 2,
+        "pim": 2
+      },
+      {
+        "number": 23,
+        "name": "Nicholas Salemi II",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 2,
+        "pts": 2,
+        "pim": 0
+      },
+      {
+        "number": 51,
+        "name": "Nicholas Bachorik",
+        "position": "F/D",
+        "gp": 8,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 24
+      },
+      {
+        "number": 91,
+        "name": "Andrew Barbash",
+        "position": "F/D",
+        "gp": 9,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 2
+      },
+      {
+        "number": 17,
+        "name": "Nicolas Firenze",
+        "position": "F/D",
+        "gp": 9,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 4
+      },
+      {
+        "number": 7,
+        "name": "Leo Luca-Chis",
+        "position": "F/D",
+        "gp": 9,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 64,
+        "name": "Teagan Malcolm",
+        "position": "F/D",
+        "gp": 7,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 12,
+        "name": "Nicholas Mirarchi",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 4
+      },
+      {
+        "number": 26,
+        "name": "Tosh Nork",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 6
+      },
+      {
+        "number": 93,
+        "name": "Jayden volpetti",
+        "position": "F/D",
+        "gp": 7,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 27
+      },
+      {
+        "number": 29,
+        "name": "Sabastian Capurro",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 6
+      },
+      {
+        "number": 28,
+        "name": "Joseph Manion",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 2
+      }
+    ],
+    "goalies": [
+      {
+        "number": 32,
+        "name": "Maximus Vollrath",
+        "position": "G",
+        "gp": 5,
+        "w": 3,
+        "l": 1,
+        "otl": 1,
+        "gaa": "1.00",
+        "svPct": ".833",
+        "so": 1
+      },
+      {
+        "number": 37,
+        "name": "Brady Beebe",
+        "position": "G",
+        "gp": 4,
+        "w": 1,
+        "l": 3,
+        "otl": 0,
+        "gaa": "2.00",
+        "svPct": ".802",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 19
+  },
+  "14u-aaa": {
+    "id": "14u-aaa",
+    "name": "14U AAA",
+    "tier": "Tier I AAA",
+    "league": "THF",
+    "leagueId": 5,
+    "teamId": 10305,
+    "baseUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10305&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "6-1-0",
+    "pts": 18,
+    "rank": "#3",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 91,
+        "name": "Mark Morav",
+        "position": "F/D",
+        "gp": 7,
+        "g": 7,
+        "a": 8,
+        "pts": 15,
+        "pim": 2
+      },
+      {
+        "number": 71,
+        "name": "Aidan Kasyan",
+        "position": "F/D",
+        "gp": 7,
+        "g": 5,
+        "a": 5,
+        "pts": 10,
+        "pim": 6
+      },
+      {
+        "number": 34,
+        "name": "Gavin Martin",
+        "position": "F/D",
+        "gp": 5,
+        "g": 5,
+        "a": 2,
+        "pts": 7,
+        "pim": 2
+      },
+      {
+        "number": 5,
+        "name": "Lucas Timparas",
+        "position": "F/D",
+        "gp": 7,
+        "g": 1,
+        "a": 6,
+        "pts": 7,
+        "pim": 0
+      },
+      {
+        "number": 87,
+        "name": "Michael Crivello",
+        "position": "F/D",
+        "gp": 7,
+        "g": 2,
+        "a": 4,
+        "pts": 6,
+        "pim": 16
+      },
+      {
+        "number": 11,
+        "name": "Bradley MESEROLL",
+        "position": "F/D",
+        "gp": 7,
+        "g": 2,
+        "a": 4,
+        "pts": 6,
+        "pim": 2
+      },
+      {
+        "number": 88,
+        "name": "Samuel Thorpe",
+        "position": "F/D",
+        "gp": 7,
+        "g": 2,
+        "a": 3,
+        "pts": 5,
+        "pim": 0
+      },
+      {
+        "number": 94,
+        "name": "Cody Williamson",
+        "position": "F/D",
+        "gp": 7,
+        "g": 2,
+        "a": 3,
+        "pts": 5,
+        "pim": 0
+      },
+      {
+        "number": 24,
+        "name": "John Arsoy",
+        "position": "F/D",
+        "gp": 7,
+        "g": 2,
+        "a": 2,
+        "pts": 4,
+        "pim": 16
+      },
+      {
+        "number": 18,
+        "name": "Ryan Antoniello",
+        "position": "F/D",
+        "gp": 7,
+        "g": 1,
+        "a": 2,
+        "pts": 3,
+        "pim": 4
+      },
+      {
+        "number": 23,
+        "name": "Steven Cortopassi",
+        "position": "F/D",
+        "gp": 6,
+        "g": 0,
+        "a": 2,
+        "pts": 2,
+        "pim": 6
+      },
+      {
+        "number": 86,
+        "name": "JACK BAKER",
+        "position": "F/D",
+        "gp": 7,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 18
+      },
+      {
+        "number": 17,
+        "name": "Gavin Caudill",
+        "position": "F/D",
+        "gp": 7,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 6
+      },
+      {
+        "number": 4,
+        "name": "Dylan White",
+        "position": "F/D",
+        "gp": 7,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 3,
+        "name": "Nikolas Machnowsky",
+        "position": "F/D",
+        "gp": 7,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 2
+      }
+    ],
+    "goalies": [
+      {
+        "number": 39,
+        "name": "James Caton",
+        "position": "G",
+        "gp": 4,
+        "w": 4,
+        "l": 0,
+        "otl": 0,
+        "gaa": "1.14",
+        "svPct": ".940",
+        "so": 0
+      },
+      {
+        "number": 13,
+        "name": "Dustin Zoino",
+        "position": "G",
+        "gp": 3,
+        "w": 2,
+        "l": 1,
+        "otl": 0,
+        "gaa": "2.00",
+        "svPct": ".915",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 17
+  },
+  "13u-aaa": {
+    "id": "13u-aaa",
+    "name": "13U AAA",
+    "tier": "Tier I AAA",
+    "league": "THF",
+    "leagueId": 5,
+    "teamId": 11519,
+    "baseUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=11519&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "4-0-0",
+    "pts": 12,
+    "rank": "#7",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 7,
+        "name": "Quinn Dajnowicz",
+        "position": "F/D",
+        "gp": 4,
+        "g": 3,
+        "a": 9,
+        "pts": 12,
+        "pim": 2
+      },
+      {
+        "number": 56,
+        "name": "Koppany Nagy-Melykuti",
+        "position": "F/D",
+        "gp": 4,
+        "g": 7,
+        "a": 5,
+        "pts": 12,
+        "pim": 0
+      },
+      {
+        "number": 37,
+        "name": "Jagger Fiorello",
+        "position": "F/D",
+        "gp": 4,
+        "g": 2,
+        "a": 6,
+        "pts": 8,
+        "pim": 2
+      },
+      {
+        "number": 14,
+        "name": "Owen Bertoli",
+        "position": "F/D",
+        "gp": 4,
+        "g": 3,
+        "a": 4,
+        "pts": 7,
+        "pim": 16
+      },
+      {
+        "number": 17,
+        "name": "Lawrence Albu",
+        "position": "F/D",
+        "gp": 4,
+        "g": 2,
+        "a": 3,
+        "pts": 5,
+        "pim": 2
+      },
+      {
+        "number": 71,
+        "name": "Michael Longo",
+        "position": "F/D",
+        "gp": 4,
+        "g": 3,
+        "a": 2,
+        "pts": 5,
+        "pim": 2
+      },
+      {
+        "number": 77,
+        "name": "Raymond Cacia III",
+        "position": "F/D",
+        "gp": 4,
+        "g": 1,
+        "a": 2,
+        "pts": 3,
+        "pim": 6
+      },
+      {
+        "number": 93,
+        "name": "Maxim Gavrilov",
+        "position": "F/D",
+        "gp": 4,
+        "g": 2,
+        "a": 0,
+        "pts": 2,
+        "pim": 0
+      },
+      {
+        "number": 8,
+        "name": "Misho Kotoulek",
+        "position": "F/D",
+        "gp": 4,
+        "g": 0,
+        "a": 2,
+        "pts": 2,
+        "pim": 0
+      },
+      {
+        "number": 20,
+        "name": "Dominic Komar",
+        "position": "F/D",
+        "gp": 4,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 2,
+        "name": "Lucas Melniczek",
+        "position": "F/D",
+        "gp": 4,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 2
+      },
+      {
+        "number": 44,
+        "name": "Nash Tobias",
+        "position": "F/D",
+        "gp": 4,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 16,
+        "name": "Sadie Como",
+        "position": "F/D",
+        "gp": 4,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 14
+      },
+      {
+        "number": 11,
+        "name": "Nathaniel Gessner",
+        "position": "F/D",
+        "gp": 4,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 4,
+        "name": "Noah Maree",
+        "position": "F/D",
+        "gp": 1,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 12
+      }
+    ],
+    "goalies": [
+      {
+        "number": 9,
+        "name": "Leo Ahn",
+        "position": "G",
+        "gp": 2,
+        "w": 2,
+        "l": 0,
+        "otl": 0,
+        "gaa": "2.50",
+        "svPct": ".831",
+        "so": 0
+      },
+      {
+        "number": 31,
+        "name": "Greyson Cobucci",
+        "position": "G",
+        "gp": 2,
+        "w": 2,
+        "l": 0,
+        "otl": 0,
+        "gaa": "1.25",
+        "svPct": ".896",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 17
+  },
+  "12u-aaa": {
+    "id": "12u-aaa",
+    "name": "12U AAA",
+    "tier": "Tier I AAA",
+    "league": "THF",
+    "leagueId": 5,
+    "teamId": 10303,
+    "baseUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10303&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "6-3-1",
+    "pts": 19,
+    "rank": "#2",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 17,
+        "name": "Gregg D'Antonio Jr",
+        "position": "F/D",
+        "gp": 10,
+        "g": 13,
+        "a": 3,
+        "pts": 16,
+        "pim": 4
+      },
+      {
+        "number": 13,
+        "name": "Oliver O’Hare",
+        "position": "F/D",
+        "gp": 10,
+        "g": 6,
+        "a": 7,
+        "pts": 13,
+        "pim": 2
+      },
+      {
+        "number": 8,
+        "name": "Jake Ferraro",
+        "position": "F/D",
+        "gp": 10,
+        "g": 4,
+        "a": 3,
+        "pts": 7,
+        "pim": 6
+      },
+      {
+        "number": 10,
+        "name": "Timothy Schaub",
+        "position": "F/D",
+        "gp": 10,
+        "g": 2,
+        "a": 4,
+        "pts": 6,
+        "pim": 0
+      },
+      {
+        "number": 42,
+        "name": "Wyatt Steph",
+        "position": "F/D",
+        "gp": 10,
+        "g": 4,
+        "a": 2,
+        "pts": 6,
+        "pim": 6
+      },
+      {
+        "number": 16,
+        "name": "Oliver Bregman",
+        "position": "F/D",
+        "gp": 10,
+        "g": 2,
+        "a": 3,
+        "pts": 5,
+        "pim": 4
+      },
+      {
+        "number": 23,
+        "name": "Lucas Batjer",
+        "position": "F/D",
+        "gp": 10,
+        "g": 4,
+        "a": 0,
+        "pts": 4,
+        "pim": 0
+      },
+      {
+        "number": 43,
+        "name": "James Hughes",
+        "position": "F/D",
+        "gp": 10,
+        "g": 0,
+        "a": 3,
+        "pts": 3,
+        "pim": 6
+      },
+      {
+        "number": 89,
+        "name": "Hunter Smith",
+        "position": "F/D",
+        "gp": 10,
+        "g": 0,
+        "a": 3,
+        "pts": 3,
+        "pim": 2
+      },
+      {
+        "number": 21,
+        "name": "Wade Wallin",
+        "position": "F/D",
+        "gp": 10,
+        "g": 0,
+        "a": 3,
+        "pts": 3,
+        "pim": 12
+      },
+      {
+        "number": 15,
+        "name": "Daniil Charkashyn",
+        "position": "F/D",
+        "gp": 10,
+        "g": 0,
+        "a": 2,
+        "pts": 2,
+        "pim": 0
+      },
+      {
+        "number": 97,
+        "name": "Marat Khvaliou",
+        "position": "F/D",
+        "gp": 10,
+        "g": 2,
+        "a": 0,
+        "pts": 2,
+        "pim": 4
+      },
+      {
+        "number": 88,
+        "name": "Lawrence Tan",
+        "position": "F/D",
+        "gp": 10,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 81,
+        "name": "Patrick Takacs",
+        "position": "F/D",
+        "gp": 7,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 4
+      }
+    ],
+    "goalies": [
+      {
+        "number": 29,
+        "name": "AJ Davino",
+        "position": "G",
+        "gp": 10,
+        "w": 6,
+        "l": 3,
+        "otl": 0,
+        "gaa": "1.90",
+        "svPct": ".934",
+        "so": 1
+      }
+    ],
+    "totalPlayers": 15
+  },
+  "11u-aaa": {
+    "id": "11u-aaa",
+    "name": "11U AAA",
+    "tier": "Tier I AAA",
+    "league": "THF",
+    "leagueId": 5,
+    "teamId": 10302,
+    "baseUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10302&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "5-3-1",
+    "pts": 16,
+    "rank": "#2",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 19,
+        "name": "Owen Tetley",
+        "position": "F/D",
+        "gp": 9,
+        "g": 5,
+        "a": 4,
+        "pts": 9,
+        "pim": 8
+      },
+      {
+        "number": 7,
+        "name": "Liam Hulsmann",
+        "position": "F/D",
+        "gp": 9,
+        "g": 3,
+        "a": 3,
+        "pts": 6,
+        "pim": 4
+      },
+      {
+        "number": 28,
+        "name": "Everett Armagan",
+        "position": "F/D",
+        "gp": 9,
+        "g": 4,
+        "a": 0,
+        "pts": 4,
+        "pim": 6
+      },
+      {
+        "number": 8,
+        "name": "Chris Bartels",
+        "position": "F/D",
+        "gp": 9,
+        "g": 2,
+        "a": 2,
+        "pts": 4,
+        "pim": 2
+      },
+      {
+        "number": 9,
+        "name": "Michael Loesser",
+        "position": "F/D",
+        "gp": 9,
+        "g": 3,
+        "a": 0,
+        "pts": 3,
+        "pim": 0
+      },
+      {
+        "number": 39,
+        "name": "Alexander Papagiannakis",
+        "position": "F/D",
+        "gp": 9,
+        "g": 2,
+        "a": 1,
+        "pts": 3,
+        "pim": 4
+      },
+      {
+        "number": "0",
+        "name": "Brock Danenhower",
+        "position": "F/D",
+        "gp": 8,
+        "g": 2,
+        "a": 0,
+        "pts": 2,
+        "pim": 22
+      },
+      {
+        "number": 13,
+        "name": "Finn McNally",
+        "position": "F/D",
+        "gp": 7,
+        "g": 2,
+        "a": 0,
+        "pts": 2,
+        "pim": 0
+      },
+      {
+        "number": 11,
+        "name": "Evelyn Conlon",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 10
+      },
+      {
+        "number": 88,
+        "name": "Vincent Komar",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 2
+      },
+      {
+        "number": 47,
+        "name": "Adam Makleev",
+        "position": "F/D",
+        "gp": 9,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 15,
+        "name": "Remington Worth",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 12
+      },
+      {
+        "number": 27,
+        "name": "Dominick Fittipaldi",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 8
+      },
+      {
+        "number": 14,
+        "name": "Ryan Gonzalez",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 2
+      },
+      {
+        "number": 51,
+        "name": "Carmine Sallemi",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 2
+      },
+      {
+        "number": 21,
+        "name": "Everett (EJ Weber",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 6
+      }
+    ],
+    "goalies": [
+      {
+        "number": 23,
+        "name": "Jesse D'Auria",
+        "position": "G",
+        "gp": 7,
+        "w": 4,
+        "l": 2,
+        "otl": 1,
+        "gaa": "1.56",
+        "svPct": ".885",
+        "so": 1
+      },
+      {
+        "number": 32,
+        "name": "Jaxson Araujo",
+        "position": "G",
+        "gp": 4,
+        "w": 1,
+        "l": 1,
+        "otl": 0,
+        "gaa": "1.00",
+        "svPct": ".804",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 18
+  },
+  "10u-aaa": {
+    "id": "10u-aaa",
+    "name": "10U AAA",
+    "tier": "Tier I AAA",
+    "league": "THF",
+    "leagueId": 5,
+    "teamId": 10301,
+    "baseUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10301&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "1-6-0",
+    "pts": 3,
+    "rank": "#15",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 3,
+        "name": "Michael Schmidt",
+        "position": "F/D",
+        "gp": 6,
+        "g": 6,
+        "a": 4,
+        "pts": 10,
+        "pim": 2
+      },
+      {
+        "number": 10,
+        "name": "Nathan Tempest",
+        "position": "F/D",
+        "gp": 7,
+        "g": 5,
+        "a": 3,
+        "pts": 8,
+        "pim": 4
+      },
+      {
+        "number": 71,
+        "name": "Wesley Schaub",
+        "position": "F/D",
+        "gp": 7,
+        "g": 6,
+        "a": 1,
+        "pts": 7,
+        "pim": 8
+      },
+      {
+        "number": 17,
+        "name": "Trevor O’Dea",
+        "position": "F/D",
+        "gp": 7,
+        "g": 1,
+        "a": 5,
+        "pts": 6,
+        "pim": 2
+      },
+      {
+        "number": 29,
+        "name": "Dillon Brady",
+        "position": "F/D",
+        "gp": 7,
+        "g": 2,
+        "a": 1,
+        "pts": 3,
+        "pim": 4
+      },
+      {
+        "number": 11,
+        "name": "James Cortopassi II",
+        "position": "F/D",
+        "gp": 7,
+        "g": 2,
+        "a": 1,
+        "pts": 3,
+        "pim": 0
+      },
+      {
+        "number": 4,
+        "name": "Andrew Crivello",
+        "position": "F/D",
+        "gp": 7,
+        "g": 2,
+        "a": 1,
+        "pts": 3,
+        "pim": 2
+      },
+      {
+        "number": 22,
+        "name": "Michael Tamasi",
+        "position": "F/D",
+        "gp": 6,
+        "g": 2,
+        "a": 0,
+        "pts": 2,
+        "pim": 0
+      },
+      {
+        "number": 23,
+        "name": "Tommy Brilli",
+        "position": "F/D",
+        "gp": 7,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 6
+      },
+      {
+        "number": 93,
+        "name": "Luke Burger",
+        "position": "F/D",
+        "gp": 6,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 21
+      },
+      {
+        "number": 47,
+        "name": "Alexander Kong",
+        "position": "F/D",
+        "gp": 7,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 88,
+        "name": "Ryan Batjer",
+        "position": "F/D",
+        "gp": 7,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 4
+      }
+    ],
+    "goalies": [
+      {
+        "number": 82,
+        "name": "Henry Guiseppe",
+        "position": "G",
+        "gp": 5,
+        "w": 1,
+        "l": 4,
+        "otl": 0,
+        "gaa": "5.57",
+        "svPct": ".632",
+        "so": 0
+      },
+      {
+        "number": 33,
+        "name": "Lodnon Segal",
+        "position": "G",
+        "gp": 3,
+        "w": 0,
+        "l": 1,
+        "otl": 0,
+        "gaa": "5.25",
+        "svPct": ".604",
+        "so": 0
+      },
+      {
+        "number": 33,
+        "name": "London Segal",
+        "position": "G",
+        "gp": 1,
+        "w": 0,
+        "l": 1,
+        "otl": 0,
+        "gaa": "1.67",
+        "svPct": ".773",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 15
+  },
+  "9u-aaa": {
+    "id": "9u-aaa",
+    "name": "9U AAA",
+    "tier": "Tier I AAA",
+    "league": "THF",
+    "leagueId": 5,
+    "teamId": 10307,
+    "baseUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10307&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "0-7-2",
+    "pts": 2,
+    "rank": "#17",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 29,
+        "name": "Phenix Armagan",
+        "position": "F/D",
+        "gp": 8,
+        "g": 4,
+        "a": 3,
+        "pts": 7,
+        "pim": 26
+      },
+      {
+        "number": 97,
+        "name": "Luke Hulsmann",
+        "position": "F/D",
+        "gp": 9,
+        "g": 5,
+        "a": 1,
+        "pts": 6,
+        "pim": 2
+      },
+      {
+        "number": 34,
+        "name": "Gavin Ewart",
+        "position": "F/D",
+        "gp": 9,
+        "g": 1,
+        "a": 2,
+        "pts": 3,
+        "pim": 20
+      },
+      {
+        "number": 5,
+        "name": "Alexis Gresavage",
+        "position": "F/D",
+        "gp": 8,
+        "g": 3,
+        "a": 0,
+        "pts": 3,
+        "pim": 6
+      },
+      {
+        "number": 98,
+        "name": "Joey Szymanski",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 3,
+        "pts": 3,
+        "pim": 10
+      },
+      {
+        "number": 14,
+        "name": "Sebastian Joyce",
+        "position": "F/D",
+        "gp": 9,
+        "g": 2,
+        "a": 0,
+        "pts": 2,
+        "pim": 0
+      },
+      {
+        "number": 96,
+        "name": "Mason Norman",
+        "position": "F/D",
+        "gp": 8,
+        "g": 2,
+        "a": 0,
+        "pts": 2,
+        "pim": 2
+      },
+      {
+        "number": 12,
+        "name": "Logan Heller",
+        "position": "F/D",
+        "gp": 8,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 2
+      },
+      {
+        "number": 19,
+        "name": "Ryan Palmer",
+        "position": "F/D",
+        "gp": 8,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 7,
+        "name": "Mason Shen",
+        "position": "F/D",
+        "gp": 9,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 2
+      },
+      {
+        "number": 10,
+        "name": "Janus Lin",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 4
+      },
+      {
+        "number": 17,
+        "name": "Edward Szabo",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 16
+      }
+    ],
+    "goalies": [
+      {
+        "number": 30,
+        "name": "Jackson Selmon",
+        "position": "G",
+        "gp": 9,
+        "w": 0,
+        "l": 7,
+        "otl": 0,
+        "gaa": "6.56",
+        "svPct": ".827",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 13
+  },
+  "18u-aa": {
+    "id": "18u-aa",
+    "name": "18U AA",
+    "tier": "Tier II AA",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 15401,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=15401&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "12-5-1",
+    "pts": 33,
+    "rank": "#2",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 89,
+        "name": "Joseph Hayes",
+        "position": "F/D",
+        "gp": 17,
+        "g": 12,
+        "a": 17,
+        "pts": 29,
+        "pim": 25
+      },
+      {
+        "number": 20,
+        "name": "Michael DelPrete",
+        "position": "F/D",
+        "gp": 15,
+        "g": 14,
+        "a": 11,
+        "pts": 25,
+        "pim": 2
+      },
+      {
+        "number": 24,
+        "name": "Aidan Mammolitti",
+        "position": "F/D",
+        "gp": 14,
+        "g": 8,
+        "a": 12,
+        "pts": 20,
+        "pim": 18
+      },
+      {
+        "number": 13,
+        "name": "isaaq shakir",
+        "position": "F/D",
+        "gp": 18,
+        "g": 13,
+        "a": 7,
+        "pts": 20,
+        "pim": 36
+      },
+      {
+        "number": 11,
+        "name": "Daniel Gaffney",
+        "position": "F/D",
+        "gp": 17,
+        "g": 9,
+        "a": 9,
+        "pts": 18,
+        "pim": 12
+      },
+      {
+        "number": 14,
+        "name": "Dominic Caruso",
+        "position": "F/D",
+        "gp": 17,
+        "g": 2,
+        "a": 12,
+        "pts": 14,
+        "pim": 20
+      },
+      {
+        "number": 19,
+        "name": "Michael Cascella",
+        "position": "F/D",
+        "gp": 15,
+        "g": 3,
+        "a": 3,
+        "pts": 6,
+        "pim": 28
+      },
+      {
+        "number": 61,
+        "name": "Vincent Iacobelli",
+        "position": "F/D",
+        "gp": 18,
+        "g": 2,
+        "a": 4,
+        "pts": 6,
+        "pim": 4
+      },
+      {
+        "number": 5,
+        "name": "Colton King",
+        "position": "F/D",
+        "gp": 17,
+        "g": 2,
+        "a": 4,
+        "pts": 6,
+        "pim": 8
+      },
+      {
+        "number": 71,
+        "name": "Travis Neves",
+        "position": "F/D",
+        "gp": 16,
+        "g": 3,
+        "a": 3,
+        "pts": 6,
+        "pim": 45
+      },
+      {
+        "number": 22,
+        "name": "Patrick Linden",
+        "position": "F/D",
+        "gp": 10,
+        "g": 2,
+        "a": 2,
+        "pts": 4,
+        "pim": 2
+      },
+      {
+        "number": 53,
+        "name": "Vincent Lorenzo",
+        "position": "F/D",
+        "gp": 16,
+        "g": 2,
+        "a": 2,
+        "pts": 4,
+        "pim": 20
+      },
+      {
+        "number": 2,
+        "name": "Salvatore Tuorto",
+        "position": "F/D",
+        "gp": 15,
+        "g": 0,
+        "a": 4,
+        "pts": 4,
+        "pim": 27
+      },
+      {
+        "number": 9,
+        "name": "Aiden Jorgensen",
+        "position": "F/D",
+        "gp": 17,
+        "g": 1,
+        "a": 1,
+        "pts": 2,
+        "pim": 4
+      },
+      {
+        "number": 32,
+        "name": "Josh Zhuravskiy",
+        "position": "F/D",
+        "gp": 3,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 38,
+        "name": "Vincent Zammit",
+        "position": "F/D",
+        "gp": 15,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 10
+      }
+    ],
+    "goalies": [
+      {
+        "number": 39,
+        "name": "Daniel Lernerman",
+        "position": "G",
+        "gp": 9,
+        "w": 6,
+        "l": 3,
+        "otl": 0,
+        "gaa": "1.53",
+        "svPct": ".913",
+        "so": 1
+      },
+      {
+        "number": 33,
+        "name": "Tyler Wagner",
+        "position": "G",
+        "gp": 8,
+        "w": 6,
+        "l": 1,
+        "otl": 0,
+        "gaa": "2.71",
+        "svPct": ".845",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 18
+  },
+  "18u-gretzky": {
+    "id": "18u-gretzky",
+    "name": "18U Gretzky (A)",
+    "tier": "Tier II A",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 9878,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=9878&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "5-9-1",
+    "pts": 16,
+    "rank": "#10",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 20,
+        "name": "Thomas Klapak",
+        "position": "F/D",
+        "gp": 14,
+        "g": 9,
+        "a": 3,
+        "pts": 12,
+        "pim": 4
+      },
+      {
+        "number": 10,
+        "name": "John Tomasini",
+        "position": "F/D",
+        "gp": 15,
+        "g": 3,
+        "a": 7,
+        "pts": 10,
+        "pim": 26
+      },
+      {
+        "number": 17,
+        "name": "Peter Martin",
+        "position": "F/D",
+        "gp": 15,
+        "g": 5,
+        "a": 4,
+        "pts": 9,
+        "pim": 8
+      },
+      {
+        "number": 28,
+        "name": "Leonard Rybakov",
+        "position": "F/D",
+        "gp": 11,
+        "g": 3,
+        "a": 5,
+        "pts": 8,
+        "pim": 50
+      },
+      {
+        "number": 93,
+        "name": "Dylan Duch",
+        "position": "F/D",
+        "gp": 10,
+        "g": 5,
+        "a": 2,
+        "pts": 7,
+        "pim": 24
+      },
+      {
+        "number": 6,
+        "name": "Pravit Agarwal",
+        "position": "F/D",
+        "gp": 15,
+        "g": 3,
+        "a": 3,
+        "pts": 6,
+        "pim": 2
+      },
+      {
+        "number": 52,
+        "name": "Russell Brunkovsky",
+        "position": "F/D",
+        "gp": 15,
+        "g": 2,
+        "a": 2,
+        "pts": 4,
+        "pim": 8
+      },
+      {
+        "number": 96,
+        "name": "Colin Napp",
+        "position": "F/D",
+        "gp": 6,
+        "g": 3,
+        "a": 1,
+        "pts": 4,
+        "pim": 4
+      },
+      {
+        "number": "0",
+        "name": "?",
+        "position": "F/D",
+        "gp": 3,
+        "g": 2,
+        "a": 1,
+        "pts": 3,
+        "pim": 4
+      },
+      {
+        "number": 66,
+        "name": "Paul Lombardo",
+        "position": "F/D",
+        "gp": 13,
+        "g": 2,
+        "a": 1,
+        "pts": 3,
+        "pim": 46
+      },
+      {
+        "number": 7,
+        "name": "Colin Carbin",
+        "position": "F/D",
+        "gp": 4,
+        "g": 1,
+        "a": 1,
+        "pts": 2,
+        "pim": 0
+      },
+      {
+        "number": 13,
+        "name": "Timmy Corcoran Jr.",
+        "position": "F/D",
+        "gp": 3,
+        "g": 1,
+        "a": 1,
+        "pts": 2,
+        "pim": 2
+      },
+      {
+        "number": 18,
+        "name": "James Tomasini",
+        "position": "F/D",
+        "gp": 4,
+        "g": 1,
+        "a": 1,
+        "pts": 2,
+        "pim": 12
+      },
+      {
+        "number": 24,
+        "name": "Ian Charbonneau",
+        "position": "F/D",
+        "gp": 14,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 20
+      },
+      {
+        "number": 90,
+        "name": "James Cook",
+        "position": "F/D",
+        "gp": 14,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 53,
+        "name": "Harrison Kochanowski",
+        "position": "F/D",
+        "gp": 2,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 8,
+        "name": "Salvatore Perrott",
+        "position": "F/D",
+        "gp": 2,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 4
+      },
+      {
+        "number": 22,
+        "name": "Shae Samtani",
+        "position": "F/D",
+        "gp": 4,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 97,
+        "name": "Jacob Shlomovich",
+        "position": "F/D",
+        "gp": 11,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 13,
+        "name": "Jacob Trotta",
+        "position": "F/D",
+        "gp": 11,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 4
+      },
+      {
+        "number": 37,
+        "name": "Sam Miller",
+        "position": "F/D",
+        "gp": 1,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 12,
+        "name": "Eamon O’Leary",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 6
+      },
+      {
+        "number": 16,
+        "name": "Connor Wilson",
+        "position": "F/D",
+        "gp": 2,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      }
+    ],
+    "goalies": [
+      {
+        "number": 46,
+        "name": "James Riordan Knox",
+        "position": "G",
+        "gp": 10,
+        "w": 4,
+        "l": 6,
+        "otl": 0,
+        "gaa": "2.67",
+        "svPct": ".907",
+        "so": 0
+      },
+      {
+        "number": 30,
+        "name": "Laith Ramadan",
+        "position": "G",
+        "gp": 5,
+        "w": 1,
+        "l": 3,
+        "otl": 0,
+        "gaa": "2.10",
+        "svPct": ".894",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 25
+  },
+  "16u-lemieux": {
+    "id": "16u-lemieux",
+    "name": "16U Lemieux (A)",
+    "tier": "Tier II A",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 9881,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=9881&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "10-3-0",
+    "pts": 30,
+    "rank": "#5",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 16,
+        "name": "Connor Wilson",
+        "position": "F/D",
+        "gp": 10,
+        "g": 16,
+        "a": 17,
+        "pts": 33,
+        "pim": 6
+      },
+      {
+        "number": 37,
+        "name": "Sam Miller",
+        "position": "F/D",
+        "gp": 13,
+        "g": 14,
+        "a": 14,
+        "pts": 28,
+        "pim": 2
+      },
+      {
+        "number": 53,
+        "name": "Harrison Kochanowski",
+        "position": "F/D",
+        "gp": 13,
+        "g": 10,
+        "a": 10,
+        "pts": 20,
+        "pim": 2
+      },
+      {
+        "number": 7,
+        "name": "Colin Carbin",
+        "position": "F/D",
+        "gp": 13,
+        "g": 9,
+        "a": 10,
+        "pts": 19,
+        "pim": 8
+      },
+      {
+        "number": 13,
+        "name": "Timmy Corcoran Jr.",
+        "position": "F/D",
+        "gp": 13,
+        "g": 6,
+        "a": 5,
+        "pts": 11,
+        "pim": 10
+      },
+      {
+        "number": 87,
+        "name": "Mitchell Minevich",
+        "position": "F/D",
+        "gp": 13,
+        "g": 4,
+        "a": 4,
+        "pts": 8,
+        "pim": 0
+      },
+      {
+        "number": 44,
+        "name": "Luka Staneck",
+        "position": "F/D",
+        "gp": 10,
+        "g": 3,
+        "a": 4,
+        "pts": 7,
+        "pim": 4
+      },
+      {
+        "number": 74,
+        "name": "Ariel Friedman",
+        "position": "F/D",
+        "gp": 9,
+        "g": 4,
+        "a": 2,
+        "pts": 6,
+        "pim": 6
+      },
+      {
+        "number": 71,
+        "name": "Avery Lee",
+        "position": "F/D",
+        "gp": 13,
+        "g": 3,
+        "a": 3,
+        "pts": 6,
+        "pim": 20
+      },
+      {
+        "number": 12,
+        "name": "Max D’Angelo",
+        "position": "F/D",
+        "gp": 13,
+        "g": 3,
+        "a": 1,
+        "pts": 4,
+        "pim": 4
+      },
+      {
+        "number": 10,
+        "name": "Max Kitsis",
+        "position": "F/D",
+        "gp": 13,
+        "g": 2,
+        "a": 2,
+        "pts": 4,
+        "pim": 6
+      },
+      {
+        "number": 22,
+        "name": "Anthony Amabile",
+        "position": "F/D",
+        "gp": 13,
+        "g": 0,
+        "a": 3,
+        "pts": 3,
+        "pim": 2
+      },
+      {
+        "number": 24,
+        "name": "Ryan Garber",
+        "position": "F/D",
+        "gp": 2,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 19,
+        "name": "BRIAN LA CAVA",
+        "position": "F/D",
+        "gp": 13,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 6
+      }
+    ],
+    "goalies": [
+      {
+        "number": 30,
+        "name": "Dusty Everson III",
+        "position": "G",
+        "gp": 11,
+        "w": 8,
+        "l": 2,
+        "otl": 0,
+        "gaa": "3.45",
+        "svPct": ".822",
+        "so": 0
+      },
+      {
+        "number": 30,
+        "name": "Jason Brown",
+        "position": "G",
+        "gp": 1,
+        "w": 1,
+        "l": 0,
+        "otl": 0,
+        "gaa": "—",
+        "svPct": "1.000",
+        "so": 1
+      },
+      {
+        "number": 32,
+        "name": "Trystan O'Keefe",
+        "position": "G",
+        "gp": 1,
+        "w": 0,
+        "l": 1,
+        "otl": 0,
+        "gaa": "5.00",
+        "svPct": ".833",
+        "so": 0
+      },
+      {
+        "number": 14,
+        "name": "Brayden Shearer",
+        "position": "G",
+        "gp": 0,
+        "w": 0,
+        "l": 0,
+        "otl": 0,
+        "gaa": "—",
+        "svPct": "—",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 18
+  },
+  "14u-aa": {
+    "id": "14u-aa",
+    "name": "14U AA",
+    "tier": "Tier II AA",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 9875,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=9875&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "1-9-0",
+    "pts": 3,
+    "rank": "#30",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 7,
+        "name": "Noah Henriques",
+        "position": "F/D",
+        "gp": 10,
+        "g": 2,
+        "a": 4,
+        "pts": 6,
+        "pim": 10
+      },
+      {
+        "number": 16,
+        "name": "Liam Emmer",
+        "position": "F/D",
+        "gp": 9,
+        "g": 1,
+        "a": 2,
+        "pts": 3,
+        "pim": 0
+      },
+      {
+        "number": 11,
+        "name": "Sean OConnor",
+        "position": "F/D",
+        "gp": 4,
+        "g": 3,
+        "a": 0,
+        "pts": 3,
+        "pim": 0
+      },
+      {
+        "number": 88,
+        "name": "Anthony Applegate",
+        "position": "F/D",
+        "gp": 4,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 2
+      },
+      {
+        "number": 23,
+        "name": "Liam Bettcher",
+        "position": "F/D",
+        "gp": 7,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 48,
+        "name": "Matthew Maiseichyk",
+        "position": "F/D",
+        "gp": 4,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 2
+      },
+      {
+        "number": 95,
+        "name": "Thomas Tannenberg",
+        "position": "F/D",
+        "gp": 10,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 6
+      },
+      {
+        "number": 10,
+        "name": "Zecki Ahmed",
+        "position": "F/D",
+        "gp": 5,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 20
+      },
+      {
+        "number": 6,
+        "name": "Joseph Bracco",
+        "position": "F/D",
+        "gp": 10,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 2
+      },
+      {
+        "number": 14,
+        "name": "Keira Gillenwater",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 4
+      },
+      {
+        "number": 77,
+        "name": "Liam Merritt",
+        "position": "F/D",
+        "gp": 10,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 2
+      },
+      {
+        "number": 35,
+        "name": "Brayden O'Keefe",
+        "position": "F/D",
+        "gp": 9,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 2
+      },
+      {
+        "number": 22,
+        "name": "Christopher Pozniak",
+        "position": "F/D",
+        "gp": 7,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      }
+    ],
+    "goalies": [
+      {
+        "number": 30,
+        "name": "Jason Brown",
+        "position": "G",
+        "gp": 5,
+        "w": 0,
+        "l": 5,
+        "otl": 0,
+        "gaa": "3.89",
+        "svPct": ".899",
+        "so": 0
+      },
+      {
+        "number": 32,
+        "name": "Trystan O'Keefe",
+        "position": "G",
+        "gp": 5,
+        "w": 1,
+        "l": 4,
+        "otl": 0,
+        "gaa": "4.00",
+        "svPct": ".864",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 15
+  },
+  "14u-mcdavid": {
+    "id": "14u-mcdavid",
+    "name": "14U McDavid (B)",
+    "tier": "Tier II B",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 15078,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=15078&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "4-6-3",
+    "pts": 14,
+    "rank": "#7",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 12,
+        "name": "Owen Cavanaugh",
+        "position": "F/D",
+        "gp": 12,
+        "g": 26,
+        "a": 10,
+        "pts": 36,
+        "pim": 18
+      },
+      {
+        "number": 26,
+        "name": "Frankie Cicerale",
+        "position": "F/D",
+        "gp": 11,
+        "g": 7,
+        "a": 5,
+        "pts": 12,
+        "pim": 4
+      },
+      {
+        "number": 8,
+        "name": "Michael Edelstein",
+        "position": "F/D",
+        "gp": 13,
+        "g": 7,
+        "a": 2,
+        "pts": 9,
+        "pim": 2
+      },
+      {
+        "number": 92,
+        "name": "David Sevumyants",
+        "position": "F/D",
+        "gp": 10,
+        "g": 6,
+        "a": 3,
+        "pts": 9,
+        "pim": 2
+      },
+      {
+        "number": 55,
+        "name": "Hanshu Wang",
+        "position": "F/D",
+        "gp": 12,
+        "g": 2,
+        "a": 4,
+        "pts": 6,
+        "pim": 4
+      },
+      {
+        "number": 25,
+        "name": "Joseph DeAngelis",
+        "position": "F/D",
+        "gp": 10,
+        "g": 4,
+        "a": 1,
+        "pts": 5,
+        "pim": 6
+      },
+      {
+        "number": 21,
+        "name": "Sasha Ghandour",
+        "position": "F/D",
+        "gp": 8,
+        "g": 3,
+        "a": 2,
+        "pts": 5,
+        "pim": 0
+      },
+      {
+        "number": 15,
+        "name": "Matthew Nasser",
+        "position": "F/D",
+        "gp": 12,
+        "g": 1,
+        "a": 3,
+        "pts": 4,
+        "pim": 0
+      },
+      {
+        "number": 23,
+        "name": "Nathan Shamy",
+        "position": "F/D",
+        "gp": 13,
+        "g": 1,
+        "a": 2,
+        "pts": 3,
+        "pim": 10
+      },
+      {
+        "number": 10,
+        "name": "Matthew Kotik",
+        "position": "F/D",
+        "gp": 13,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 44
+      },
+      {
+        "number": 18,
+        "name": "Alexander Costeira",
+        "position": "F/D",
+        "gp": 13,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 13,
+        "name": "David Melms Jr",
+        "position": "F/D",
+        "gp": 13,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      }
+    ],
+    "goalies": [
+      {
+        "number": 7,
+        "name": "Luke Migliorisi",
+        "position": "G",
+        "gp": 6,
+        "w": 1,
+        "l": 3,
+        "otl": 2,
+        "gaa": "6.17",
+        "svPct": ".792",
+        "so": 0
+      },
+      {
+        "number": 9,
+        "name": "Amelia Klink",
+        "position": "G",
+        "gp": 3,
+        "w": 2,
+        "l": 1,
+        "otl": 0,
+        "gaa": "2.60",
+        "svPct": ".893",
+        "so": 0
+      },
+      {
+        "number": 74,
+        "name": "Madison Goldsmith",
+        "position": "G",
+        "gp": 1,
+        "w": 0,
+        "l": 2,
+        "otl": 0,
+        "gaa": "4.33",
+        "svPct": ".880",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 15
+  },
+  "13u-aa": {
+    "id": "13u-aa",
+    "name": "13U AA",
+    "tier": "Tier II AA",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 15033,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=15033&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "7-5-0",
+    "pts": 21,
+    "rank": "#8",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 16,
+        "name": "Aleksei Mindorashvili",
+        "position": "F/D",
+        "gp": 12,
+        "g": 17,
+        "a": 4,
+        "pts": 21,
+        "pim": 20
+      },
+      {
+        "number": 91,
+        "name": "Oscar Thomann",
+        "position": "F/D",
+        "gp": 12,
+        "g": 5,
+        "a": 8,
+        "pts": 13,
+        "pim": 6
+      },
+      {
+        "number": 8,
+        "name": "Dave Howard",
+        "position": "F/D",
+        "gp": 12,
+        "g": 4,
+        "a": 7,
+        "pts": 11,
+        "pim": 14
+      },
+      {
+        "number": 43,
+        "name": "Riley Chen",
+        "position": "F/D",
+        "gp": 12,
+        "g": 3,
+        "a": 7,
+        "pts": 10,
+        "pim": 4
+      },
+      {
+        "number": 79,
+        "name": "Caleb Zamolodchikov",
+        "position": "F/D",
+        "gp": 12,
+        "g": 8,
+        "a": 2,
+        "pts": 10,
+        "pim": 4
+      },
+      {
+        "number": 11,
+        "name": "Max Jasionowski",
+        "position": "F/D",
+        "gp": 12,
+        "g": 3,
+        "a": 5,
+        "pts": 8,
+        "pim": 6
+      },
+      {
+        "number": 10,
+        "name": "Liam Fixsen",
+        "position": "F/D",
+        "gp": 12,
+        "g": 2,
+        "a": 4,
+        "pts": 6,
+        "pim": 12
+      },
+      {
+        "number": 36,
+        "name": "Agasthya Mabbu",
+        "position": "F/D",
+        "gp": 11,
+        "g": 1,
+        "a": 3,
+        "pts": 4,
+        "pim": 0
+      },
+      {
+        "number": 55,
+        "name": "Ibrahim Mohamed",
+        "position": "F/D",
+        "gp": 12,
+        "g": 1,
+        "a": 3,
+        "pts": 4,
+        "pim": 4
+      },
+      {
+        "number": 87,
+        "name": "Leon Chen",
+        "position": "F/D",
+        "gp": 12,
+        "g": 0,
+        "a": 3,
+        "pts": 3,
+        "pim": 2
+      },
+      {
+        "number": 81,
+        "name": "Brayden Messing",
+        "position": "F/D",
+        "gp": 12,
+        "g": 3,
+        "a": 0,
+        "pts": 3,
+        "pim": 2
+      },
+      {
+        "number": 83,
+        "name": "Huxley Leary",
+        "position": "F/D",
+        "gp": 12,
+        "g": 1,
+        "a": 1,
+        "pts": 2,
+        "pim": 2
+      },
+      {
+        "number": 58,
+        "name": "Angelo Smigiel",
+        "position": "F/D",
+        "gp": 12,
+        "g": 1,
+        "a": 1,
+        "pts": 2,
+        "pim": 6
+      },
+      {
+        "number": 19,
+        "name": "Derek Wang",
+        "position": "F/D",
+        "gp": 12,
+        "g": 0,
+        "a": 2,
+        "pts": 2,
+        "pim": 2
+      },
+      {
+        "number": 24,
+        "name": "Donovan Holland",
+        "position": "F/D",
+        "gp": 11,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 17
+      },
+      {
+        "number": 96,
+        "name": "Britton Whitehouse",
+        "position": "F/D",
+        "gp": 12,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 4
+      }
+    ],
+    "goalies": [
+      {
+        "number": 31,
+        "name": "Alexander Longo",
+        "position": "G",
+        "gp": 6,
+        "w": 4,
+        "l": 2,
+        "otl": 0,
+        "gaa": "1.27",
+        "svPct": ".919",
+        "so": 0
+      },
+      {
+        "number": 40,
+        "name": "Ayrton Whitehouse",
+        "position": "G",
+        "gp": 6,
+        "w": 3,
+        "l": 3,
+        "otl": 0,
+        "gaa": "1.75",
+        "svPct": ".900",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 18
+  },
+  "12u-aa": {
+    "id": "12u-aa",
+    "name": "12U AA",
+    "tier": "Tier II AA",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 14977,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=14977&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "7-7-1",
+    "pts": 22,
+    "rank": "#9",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 9,
+        "name": "Maximus Chen",
+        "position": "F/D",
+        "gp": 15,
+        "g": 11,
+        "a": 13,
+        "pts": 24,
+        "pim": 14
+      },
+      {
+        "number": 15,
+        "name": "Jacoby Czaplewski",
+        "position": "F/D",
+        "gp": 15,
+        "g": 13,
+        "a": 8,
+        "pts": 21,
+        "pim": 12
+      },
+      {
+        "number": 86,
+        "name": "Tyler Grunenthal",
+        "position": "F/D",
+        "gp": 14,
+        "g": 16,
+        "a": 5,
+        "pts": 21,
+        "pim": 4
+      },
+      {
+        "number": 43,
+        "name": "Michael Pozniak",
+        "position": "F/D",
+        "gp": 15,
+        "g": 9,
+        "a": 4,
+        "pts": 13,
+        "pim": 8
+      },
+      {
+        "number": 97,
+        "name": "Salvatore Brozek",
+        "position": "F/D",
+        "gp": 15,
+        "g": 1,
+        "a": 8,
+        "pts": 9,
+        "pim": 10
+      },
+      {
+        "number": 12,
+        "name": "Lukas Gjevukaj",
+        "position": "F/D",
+        "gp": 14,
+        "g": 4,
+        "a": 5,
+        "pts": 9,
+        "pim": 8
+      },
+      {
+        "number": 8,
+        "name": "Brody Jones",
+        "position": "F/D",
+        "gp": 15,
+        "g": 5,
+        "a": 2,
+        "pts": 7,
+        "pim": 0
+      },
+      {
+        "number": 70,
+        "name": "Neel Narayanan",
+        "position": "F/D",
+        "gp": 15,
+        "g": 4,
+        "a": 3,
+        "pts": 7,
+        "pim": 2
+      },
+      {
+        "number": 27,
+        "name": "Alana Lazarovsky Gomez",
+        "position": "F/D",
+        "gp": 15,
+        "g": 2,
+        "a": 4,
+        "pts": 6,
+        "pim": 6
+      },
+      {
+        "number": 76,
+        "name": "Drini Isufi",
+        "position": "F/D",
+        "gp": 14,
+        "g": 0,
+        "a": 3,
+        "pts": 3,
+        "pim": 4
+      },
+      {
+        "number": 65,
+        "name": "Vanessa Kozlik",
+        "position": "F/D",
+        "gp": 13,
+        "g": 0,
+        "a": 3,
+        "pts": 3,
+        "pim": 0
+      },
+      {
+        "number": 16,
+        "name": "Avery Negro",
+        "position": "F/D",
+        "gp": 13,
+        "g": 1,
+        "a": 2,
+        "pts": 3,
+        "pim": 0
+      },
+      {
+        "number": 29,
+        "name": "Celine Sabet",
+        "position": "F/D",
+        "gp": 3,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      }
+    ],
+    "goalies": [
+      {
+        "number": 7,
+        "name": "Luke Migliorisi",
+        "position": "G",
+        "gp": 8,
+        "w": 3,
+        "l": 3,
+        "otl": 0,
+        "gaa": "2.07",
+        "svPct": ".837",
+        "so": 1
+      },
+      {
+        "number": 1,
+        "name": "Kyle Park",
+        "position": "G",
+        "gp": 8,
+        "w": 4,
+        "l": 4,
+        "otl": 0,
+        "gaa": "2.33",
+        "svPct": ".801",
+        "so": 1
+      }
+    ],
+    "totalPlayers": 15
+  },
+  "12u-lemieux": {
+    "id": "12u-lemieux",
+    "name": "12U Lemieux (A)",
+    "tier": "Tier II A",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 15027,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=15027&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "12-2-0",
+    "pts": 36,
+    "rank": "#3",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 16,
+        "name": "Will Squires",
+        "position": "F/D",
+        "gp": 14,
+        "g": 17,
+        "a": 2,
+        "pts": 19,
+        "pim": 8
+      },
+      {
+        "number": 20,
+        "name": "Imran Gafurov",
+        "position": "F/D",
+        "gp": 14,
+        "g": 10,
+        "a": 8,
+        "pts": 18,
+        "pim": 8
+      },
+      {
+        "number": 13,
+        "name": "John Applegate",
+        "position": "F/D",
+        "gp": 14,
+        "g": 9,
+        "a": 6,
+        "pts": 15,
+        "pim": 10
+      },
+      {
+        "number": 29,
+        "name": "Connor Long",
+        "position": "F/D",
+        "gp": 14,
+        "g": 10,
+        "a": 5,
+        "pts": 15,
+        "pim": 10
+      },
+      {
+        "number": 35,
+        "name": "Jacob Psinakis",
+        "position": "F/D",
+        "gp": 11,
+        "g": 10,
+        "a": 4,
+        "pts": 14,
+        "pim": 6
+      },
+      {
+        "number": 11,
+        "name": "Dean Ahmed",
+        "position": "F/D",
+        "gp": 13,
+        "g": 2,
+        "a": 10,
+        "pts": 12,
+        "pim": 4
+      },
+      {
+        "number": 8,
+        "name": "Brandon Rojas",
+        "position": "F/D",
+        "gp": 14,
+        "g": 4,
+        "a": 7,
+        "pts": 11,
+        "pim": 8
+      },
+      {
+        "number": 25,
+        "name": "Ella Garfinkle",
+        "position": "F/D",
+        "gp": 14,
+        "g": 3,
+        "a": 7,
+        "pts": 10,
+        "pim": 0
+      },
+      {
+        "number": 21,
+        "name": "Ryan Gaboy",
+        "position": "F/D",
+        "gp": 10,
+        "g": 7,
+        "a": 2,
+        "pts": 9,
+        "pim": 2
+      },
+      {
+        "number": 78,
+        "name": "Ronin Fleming",
+        "position": "F/D",
+        "gp": 13,
+        "g": 2,
+        "a": 2,
+        "pts": 4,
+        "pim": 2
+      },
+      {
+        "number": 22,
+        "name": "Brody Movshin",
+        "position": "F/D",
+        "gp": 14,
+        "g": 0,
+        "a": 4,
+        "pts": 4,
+        "pim": 0
+      },
+      {
+        "number": 88,
+        "name": "Arianna Rojas",
+        "position": "F/D",
+        "gp": 14,
+        "g": 1,
+        "a": 2,
+        "pts": 3,
+        "pim": 8
+      },
+      {
+        "number": 27,
+        "name": "Jake Liastro",
+        "position": "F/D",
+        "gp": 14,
+        "g": 0,
+        "a": 2,
+        "pts": 2,
+        "pim": 6
+      }
+    ],
+    "goalies": [
+      {
+        "number": 36,
+        "name": "Mason Hilligus",
+        "position": "G",
+        "gp": 7,
+        "w": 6,
+        "l": 1,
+        "otl": 0,
+        "gaa": "0.86",
+        "svPct": ".923",
+        "so": 1
+      },
+      {
+        "number": 10,
+        "name": "Max Schultz",
+        "position": "G",
+        "gp": 7,
+        "w": 6,
+        "l": 1,
+        "otl": 0,
+        "gaa": "0.46",
+        "svPct": ".960",
+        "so": 3
+      }
+    ],
+    "totalPlayers": 15
+  },
+  "12u-mcdavid": {
+    "id": "12u-mcdavid",
+    "name": "12U McDavid (B)",
+    "tier": "Tier II B",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 9874,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=9874&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "1-7-2",
+    "pts": 5,
+    "rank": "#26",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 93,
+        "name": "Calvin Corrigan",
+        "position": "F/D",
+        "gp": 9,
+        "g": 6,
+        "a": 0,
+        "pts": 6,
+        "pim": 8
+      },
+      {
+        "number": 8,
+        "name": "Marjaan Hassan",
+        "position": "F/D",
+        "gp": 10,
+        "g": 4,
+        "a": 1,
+        "pts": 5,
+        "pim": 8
+      },
+      {
+        "number": 87,
+        "name": "Kenneth-Kuttappa Theethira",
+        "position": "F/D",
+        "gp": 10,
+        "g": 3,
+        "a": 2,
+        "pts": 5,
+        "pim": 2
+      },
+      {
+        "number": 10,
+        "name": "Ava Park",
+        "position": "F/D",
+        "gp": 9,
+        "g": 2,
+        "a": 2,
+        "pts": 4,
+        "pim": 2
+      },
+      {
+        "number": 16,
+        "name": "Emma Park",
+        "position": "F/D",
+        "gp": 9,
+        "g": 1,
+        "a": 3,
+        "pts": 4,
+        "pim": 0
+      },
+      {
+        "number": 2,
+        "name": "Landon Lehmkuhl",
+        "position": "F/D",
+        "gp": 10,
+        "g": 1,
+        "a": 1,
+        "pts": 2,
+        "pim": 6
+      },
+      {
+        "number": 11,
+        "name": "Azalea Ellis",
+        "position": "F/D",
+        "gp": 10,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 7,
+        "name": "Niko Hernandez",
+        "position": "F/D",
+        "gp": 8,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 2
+      },
+      {
+        "number": 97,
+        "name": "mason jorgensen",
+        "position": "F/D",
+        "gp": 10,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 20,
+        "name": "Nicholas Vecchio",
+        "position": "F/D",
+        "gp": 10,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 13,
+        "name": "Claire Krisza",
+        "position": "F/D",
+        "gp": 10,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 9,
+        "name": "Atharv Mahale",
+        "position": "F/D",
+        "gp": 8,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 23,
+        "name": "Isabel Matulewicz",
+        "position": "F/D",
+        "gp": 1,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      }
+    ],
+    "goalies": [
+      {
+        "number": 31,
+        "name": "Jenna Ramadan",
+        "position": "G",
+        "gp": 10,
+        "w": 1,
+        "l": 7,
+        "otl": 1,
+        "gaa": "5.30",
+        "svPct": ".825",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 14
+  },
+  "11u-aa": {
+    "id": "11u-aa",
+    "name": "11U AA",
+    "tier": "Tier II AA",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 9872,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=9872&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "7-5-1",
+    "pts": 21,
+    "rank": "#10",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 29,
+        "name": "Landon Peisel",
+        "position": "F/D",
+        "gp": 13,
+        "g": 13,
+        "a": 10,
+        "pts": 23,
+        "pim": 4
+      },
+      {
+        "number": 30,
+        "name": "John Motto",
+        "position": "F/D",
+        "gp": 13,
+        "g": 16,
+        "a": 6,
+        "pts": 22,
+        "pim": 6
+      },
+      {
+        "number": 91,
+        "name": "Hunter Doetsch",
+        "position": "F/D",
+        "gp": 13,
+        "g": 12,
+        "a": 7,
+        "pts": 19,
+        "pim": 4
+      },
+      {
+        "number": 7,
+        "name": "Logan Babapulle",
+        "position": "F/D",
+        "gp": 11,
+        "g": 6,
+        "a": 5,
+        "pts": 11,
+        "pim": 6
+      },
+      {
+        "number": 98,
+        "name": "Lucas Rosanoff",
+        "position": "F/D",
+        "gp": 13,
+        "g": 6,
+        "a": 5,
+        "pts": 11,
+        "pim": 8
+      },
+      {
+        "number": 9,
+        "name": "Shane Larkin",
+        "position": "F/D",
+        "gp": 13,
+        "g": 4,
+        "a": 5,
+        "pts": 9,
+        "pim": 14
+      },
+      {
+        "number": 10,
+        "name": "Jack Wachter",
+        "position": "F/D",
+        "gp": 13,
+        "g": 6,
+        "a": 1,
+        "pts": 7,
+        "pim": 2
+      },
+      {
+        "number": 19,
+        "name": "Dominic Bruccoleri",
+        "position": "F/D",
+        "gp": 12,
+        "g": 3,
+        "a": 3,
+        "pts": 6,
+        "pim": 2
+      },
+      {
+        "number": 16,
+        "name": "Owen Burcz",
+        "position": "F/D",
+        "gp": 13,
+        "g": 3,
+        "a": 3,
+        "pts": 6,
+        "pim": 0
+      },
+      {
+        "number": 36,
+        "name": "Cashton Similo",
+        "position": "F/D",
+        "gp": 13,
+        "g": 2,
+        "a": 4,
+        "pts": 6,
+        "pim": 8
+      },
+      {
+        "number": 26,
+        "name": "Brian Miao",
+        "position": "F/D",
+        "gp": 13,
+        "g": 1,
+        "a": 1,
+        "pts": 2,
+        "pim": 8
+      },
+      {
+        "number": 73,
+        "name": "Jaxson Policano",
+        "position": "F/D",
+        "gp": 13,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 2
+      }
+    ],
+    "goalies": [
+      {
+        "number": "0",
+        "name": "Jack Taylor",
+        "position": "G",
+        "gp": 9,
+        "w": 5,
+        "l": 3,
+        "otl": 0,
+        "gaa": "4.00",
+        "svPct": ".756",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 13
+  },
+  "10u-aa": {
+    "id": "10u-aa",
+    "name": "10U AA",
+    "tier": "Tier II AA",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 9870,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=9870&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "7-4-1",
+    "pts": 22,
+    "rank": "#6",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 56,
+        "name": "Christian Flugrath",
+        "position": "F/D",
+        "gp": 11,
+        "g": 8,
+        "a": 8,
+        "pts": 16,
+        "pim": 0
+      },
+      {
+        "number": 68,
+        "name": "ZANE DELAURA",
+        "position": "F/D",
+        "gp": 12,
+        "g": 6,
+        "a": 7,
+        "pts": 13,
+        "pim": 6
+      },
+      {
+        "number": 2,
+        "name": "Adam Black",
+        "position": "F/D",
+        "gp": 12,
+        "g": 7,
+        "a": 4,
+        "pts": 11,
+        "pim": 0
+      },
+      {
+        "number": 14,
+        "name": "Tristan Barrowman",
+        "position": "F/D",
+        "gp": 12,
+        "g": 6,
+        "a": 4,
+        "pts": 10,
+        "pim": 10
+      },
+      {
+        "number": 10,
+        "name": "Aaron Gubbay",
+        "position": "F/D",
+        "gp": 12,
+        "g": 5,
+        "a": 5,
+        "pts": 10,
+        "pim": 8
+      },
+      {
+        "number": 25,
+        "name": "Zachary Pavese",
+        "position": "F/D",
+        "gp": 12,
+        "g": 4,
+        "a": 4,
+        "pts": 8,
+        "pim": 12
+      },
+      {
+        "number": 98,
+        "name": "Matt Bahr",
+        "position": "F/D",
+        "gp": 12,
+        "g": 4,
+        "a": 3,
+        "pts": 7,
+        "pim": 4
+      },
+      {
+        "number": 23,
+        "name": "Quinn Boorom",
+        "position": "F/D",
+        "gp": 12,
+        "g": 1,
+        "a": 5,
+        "pts": 6,
+        "pim": 2
+      },
+      {
+        "number": 24,
+        "name": "Lorenzo Brozek",
+        "position": "F/D",
+        "gp": 12,
+        "g": 3,
+        "a": 3,
+        "pts": 6,
+        "pim": 2
+      },
+      {
+        "number": 33,
+        "name": "Nicholas Naprawa",
+        "position": "F/D",
+        "gp": 12,
+        "g": 2,
+        "a": 3,
+        "pts": 5,
+        "pim": 18
+      },
+      {
+        "number": 7,
+        "name": "Evelyn Brozek",
+        "position": "F/D",
+        "gp": 11,
+        "g": 2,
+        "a": 2,
+        "pts": 4,
+        "pim": 12
+      },
+      {
+        "number": 13,
+        "name": "Spencer Greenberg",
+        "position": "F/D",
+        "gp": 12,
+        "g": 4,
+        "a": 0,
+        "pts": 4,
+        "pim": 6
+      },
+      {
+        "number": 8,
+        "name": "Daniel Keel",
+        "position": "F/D",
+        "gp": 12,
+        "g": 1,
+        "a": 3,
+        "pts": 4,
+        "pim": 4
+      },
+      {
+        "number": 88,
+        "name": "Brady Thomas",
+        "position": "F/D",
+        "gp": 12,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 12
+      }
+    ],
+    "goalies": [
+      {
+        "number": 18,
+        "name": "Matias Rosanoff",
+        "position": "G",
+        "gp": 10,
+        "w": 7,
+        "l": 3,
+        "otl": 1,
+        "gaa": "2.08",
+        "svPct": ".806",
+        "so": 2
+      }
+    ],
+    "totalPlayers": 15
+  },
+  "10u-lemieux": {
+    "id": "10u-lemieux",
+    "name": "10U Lemieux (A)",
+    "tier": "Tier II A",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 14939,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=14939&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "3-11-0",
+    "pts": 9,
+    "rank": "#17",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 26,
+        "name": "Vicenzo Tiberio",
+        "position": "F/D",
+        "gp": 14,
+        "g": 11,
+        "a": 5,
+        "pts": 16,
+        "pim": 22
+      },
+      {
+        "number": 56,
+        "name": "Colton Gallagher",
+        "position": "F/D",
+        "gp": 14,
+        "g": 7,
+        "a": 7,
+        "pts": 14,
+        "pim": 0
+      },
+      {
+        "number": 20,
+        "name": "Lucien Gloege",
+        "position": "F/D",
+        "gp": 14,
+        "g": 5,
+        "a": 4,
+        "pts": 9,
+        "pim": 0
+      },
+      {
+        "number": 28,
+        "name": "Jake Manion",
+        "position": "F/D",
+        "gp": 14,
+        "g": 1,
+        "a": 3,
+        "pts": 4,
+        "pim": 6
+      },
+      {
+        "number": 18,
+        "name": "Alex Partika",
+        "position": "F/D",
+        "gp": 14,
+        "g": 2,
+        "a": 1,
+        "pts": 3,
+        "pim": 2
+      },
+      {
+        "number": 71,
+        "name": "Brendan Butler",
+        "position": "F/D",
+        "gp": 11,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 2
+      },
+      {
+        "number": 25,
+        "name": "Aria Malneedy",
+        "position": "F/D",
+        "gp": 13,
+        "g": 1,
+        "a": 0,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 10,
+        "name": "Krishiv Jain",
+        "position": "F/D",
+        "gp": 10,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 4
+      },
+      {
+        "number": 57,
+        "name": "Theodore Mulford",
+        "position": "F/D",
+        "gp": 13,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 4
+      },
+      {
+        "number": 7,
+        "name": "DEVON NELSON JR",
+        "position": "F/D",
+        "gp": 14,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 4,
+        "name": "Jamison Poles",
+        "position": "F/D",
+        "gp": 8,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      }
+    ],
+    "goalies": [
+      {
+        "number": 79,
+        "name": "grey dronne",
+        "position": "G",
+        "gp": 14,
+        "w": 3,
+        "l": 11,
+        "otl": 0,
+        "gaa": "9.50",
+        "svPct": ".690",
+        "so": 1
+      }
+    ],
+    "totalPlayers": 12
+  },
+  "10u-mcdavid": {
+    "id": "10u-mcdavid",
+    "name": "10U McDavid (B)",
+    "tier": "Tier II B",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 14950,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=14950&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "9-2-2",
+    "pts": 28,
+    "rank": "#3",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 7,
+        "name": "Michael Allerti",
+        "position": "F/D",
+        "gp": 12,
+        "g": 11,
+        "a": 7,
+        "pts": 18,
+        "pim": 10
+      },
+      {
+        "number": 23,
+        "name": "James Keeley",
+        "position": "F/D",
+        "gp": 13,
+        "g": 13,
+        "a": 5,
+        "pts": 18,
+        "pim": 2
+      },
+      {
+        "number": 17,
+        "name": "Matthew Viox",
+        "position": "F/D",
+        "gp": 11,
+        "g": 9,
+        "a": 9,
+        "pts": 18,
+        "pim": 0
+      },
+      {
+        "number": 16,
+        "name": "Louie Caliandro",
+        "position": "F/D",
+        "gp": 12,
+        "g": 5,
+        "a": 7,
+        "pts": 12,
+        "pim": 6
+      },
+      {
+        "number": 49,
+        "name": "Joseph Abruzzo",
+        "position": "F/D",
+        "gp": 13,
+        "g": 6,
+        "a": 5,
+        "pts": 11,
+        "pim": 2
+      },
+      {
+        "number": 94,
+        "name": "Chase Odman",
+        "position": "F/D",
+        "gp": 13,
+        "g": 4,
+        "a": 7,
+        "pts": 11,
+        "pim": 6
+      },
+      {
+        "number": 32,
+        "name": "Tyler Odman",
+        "position": "F/D",
+        "gp": 12,
+        "g": 8,
+        "a": 3,
+        "pts": 11,
+        "pim": 12
+      },
+      {
+        "number": 14,
+        "name": "Ethan Kalisky",
+        "position": "F/D",
+        "gp": 10,
+        "g": 7,
+        "a": 3,
+        "pts": 10,
+        "pim": 4
+      },
+      {
+        "number": 21,
+        "name": "Declan Boger",
+        "position": "F/D",
+        "gp": 13,
+        "g": 4,
+        "a": 4,
+        "pts": 8,
+        "pim": 4
+      },
+      {
+        "number": 8,
+        "name": "Calan Iannuzzi",
+        "position": "F/D",
+        "gp": 10,
+        "g": 5,
+        "a": 2,
+        "pts": 7,
+        "pim": 0
+      },
+      {
+        "number": 93,
+        "name": "Michael Donnelly",
+        "position": "F/D",
+        "gp": 9,
+        "g": 4,
+        "a": 1,
+        "pts": 5,
+        "pim": 4
+      },
+      {
+        "number": 24,
+        "name": "Savir Arora",
+        "position": "F/D",
+        "gp": 13,
+        "g": 1,
+        "a": 3,
+        "pts": 4,
+        "pim": 2
+      },
+      {
+        "number": 81,
+        "name": "Piper Leary",
+        "position": "F/D",
+        "gp": 13,
+        "g": 1,
+        "a": 2,
+        "pts": 3,
+        "pim": 0
+      },
+      {
+        "number": 84,
+        "name": "Lillian Spinelli",
+        "position": "F/D",
+        "gp": 10,
+        "g": 0,
+        "a": 2,
+        "pts": 2,
+        "pim": 0
+      },
+      {
+        "number": 56,
+        "name": "Emma Velas-Kozlik",
+        "position": "F/D",
+        "gp": 4,
+        "g": 0,
+        "a": 1,
+        "pts": 1,
+        "pim": 0
+      },
+      {
+        "number": 11,
+        "name": "Aadhya Mattam",
+        "position": "F/D",
+        "gp": 6,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      }
+    ],
+    "goalies": [
+      {
+        "number": 31,
+        "name": "Frankie Devlin",
+        "position": "G",
+        "gp": 10,
+        "w": 6,
+        "l": 2,
+        "otl": 0,
+        "gaa": "3.30",
+        "svPct": ".796",
+        "so": 1
+      }
+    ],
+    "totalPlayers": 17
+  },
+  "9u-aa": {
+    "id": "9u-aa",
+    "name": "9U AA",
+    "tier": "Tier II AA",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 9879,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=9879&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "7-4-1",
+    "pts": 22,
+    "rank": "#5",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 13,
+        "name": "Daniel Saroka",
+        "position": "F/D",
+        "gp": 12,
+        "g": 34,
+        "a": 11,
+        "pts": 45,
+        "pim": 12
+      },
+      {
+        "number": 26,
+        "name": "Charles Schultz",
+        "position": "F/D",
+        "gp": 11,
+        "g": 25,
+        "a": 16,
+        "pts": 41,
+        "pim": 8
+      },
+      {
+        "number": 63,
+        "name": "Christian Dimino",
+        "position": "F/D",
+        "gp": 12,
+        "g": 12,
+        "a": 14,
+        "pts": 26,
+        "pim": 2
+      },
+      {
+        "number": 8,
+        "name": "Alex Titov",
+        "position": "F/D",
+        "gp": 11,
+        "g": 14,
+        "a": 5,
+        "pts": 19,
+        "pim": 4
+      },
+      {
+        "number": 85,
+        "name": "Atreyu Mergenthaler",
+        "position": "F/D",
+        "gp": 12,
+        "g": 4,
+        "a": 8,
+        "pts": 12,
+        "pim": 2
+      },
+      {
+        "number": 43,
+        "name": "Christopher Del Plato",
+        "position": "F/D",
+        "gp": 12,
+        "g": 7,
+        "a": 4,
+        "pts": 11,
+        "pim": 0
+      },
+      {
+        "number": 39,
+        "name": "Dylan Mackey",
+        "position": "F/D",
+        "gp": 12,
+        "g": 6,
+        "a": 5,
+        "pts": 11,
+        "pim": 10
+      },
+      {
+        "number": 20,
+        "name": "Hudson Grinshpun",
+        "position": "F/D",
+        "gp": 11,
+        "g": 6,
+        "a": 4,
+        "pts": 10,
+        "pim": 2
+      },
+      {
+        "number": 17,
+        "name": "Noah Manaloto",
+        "position": "F/D",
+        "gp": 12,
+        "g": 5,
+        "a": 5,
+        "pts": 10,
+        "pim": 10
+      },
+      {
+        "number": 21,
+        "name": "Michael Del Duca",
+        "position": "F/D",
+        "gp": 12,
+        "g": 1,
+        "a": 5,
+        "pts": 6,
+        "pim": 4
+      },
+      {
+        "number": 16,
+        "name": "Lorenzo Pais",
+        "position": "F/D",
+        "gp": 11,
+        "g": 0,
+        "a": 3,
+        "pts": 3,
+        "pim": 0
+      },
+      {
+        "number": 1,
+        "name": "Charlotte Murray",
+        "position": "F/D",
+        "gp": 11,
+        "g": 1,
+        "a": 1,
+        "pts": 2,
+        "pim": 0
+      }
+    ],
+    "goalies": [
+      {
+        "number": 9,
+        "name": "Conor Mahoney",
+        "position": "G",
+        "gp": 8,
+        "w": 4,
+        "l": 3,
+        "otl": 0,
+        "gaa": "3.73",
+        "svPct": ".780",
+        "so": 0
+      },
+      {
+        "number": 4,
+        "name": "Maxwell Greenberg",
+        "position": "G",
+        "gp": 6,
+        "w": 2,
+        "l": 1,
+        "otl": 0,
+        "gaa": "1.75",
+        "svPct": ".716",
+        "so": 1
+      }
+    ],
+    "totalPlayers": 14
+  },
+  "8u-advanced": {
+    "id": "8u-advanced",
+    "name": "8U Advanced",
+    "tier": "Tier II Mite",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 10584,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=10584&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "0-1-0",
+    "pts": 0,
+    "rank": "#20",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 17,
+        "name": "Alexander Brozek",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 5,
+        "name": "Autumn Burcz",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 19,
+        "name": "Cole DeBonis",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 91,
+        "name": "Gunnar Doetsch",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 13,
+        "name": "Maggie Murray",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 12,
+        "name": "Veer Nenavath",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 18,
+        "name": "Ava Panwar",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 27,
+        "name": "Jackson Park",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 7,
+        "name": "Tate Peisel",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 87,
+        "name": "Luke Szymczak",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 10,
+        "name": "Zachary Viox",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      }
+    ],
+    "goalies": [
+      {
+        "number": 13,
+        "name": "Thomas Applegate",
+        "position": "G",
+        "gp": 0,
+        "w": 0,
+        "l": 0,
+        "otl": 0,
+        "gaa": "—",
+        "svPct": "—",
+        "so": 0
+      },
+      {
+        "number": 44,
+        "name": "Ryan Hubert",
+        "position": "G",
+        "gp": 0,
+        "w": 0,
+        "l": 0,
+        "otl": 0,
+        "gaa": "—",
+        "svPct": "—",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 13
+  },
+  "8u-int-black": {
+    "id": "8u-int-black",
+    "name": "8U Intermediate Black",
+    "tier": "Tier II Mite",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 10579,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=10579&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "0-0-0",
+    "pts": 0,
+    "rank": "#19",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 33,
+        "name": "James Eisl",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 23,
+        "name": "Christopher Fennimore",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 46,
+        "name": "Anthony Figueroa",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 67,
+        "name": "Daniil Koshlachev",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 43,
+        "name": "Colton Morgante",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 29,
+        "name": "Liam Peters",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 41,
+        "name": "Dante Severino",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 44,
+        "name": "Charles Staples",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      }
+    ],
+    "goalies": [],
+    "totalPlayers": 8
+  },
+  "8u-int-red": {
+    "id": "8u-int-red",
+    "name": "8U Intermediate Red",
+    "tier": "Tier II Mite",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 10583,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=10583&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "0-0-0",
+    "pts": 0,
+    "rank": "#20",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 27,
+        "name": "Zachary Cocozzo",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 99,
+        "name": "Bryce Iannuzzi",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 76,
+        "name": "Miles Koellner",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 5,
+        "name": "Anna Krisza",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 72,
+        "name": "Axel Lazarovsky Gomez",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 88,
+        "name": "Arianna Peyzner",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 29,
+        "name": "Brody Rasimowicz",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      },
+      {
+        "number": 90,
+        "name": "Artyom Uritsky",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      }
+    ],
+    "goalies": [
+      {
+        "number": 88,
+        "name": "Joseph Krisza",
+        "position": "G",
+        "gp": 0,
+        "w": 0,
+        "l": 0,
+        "otl": 0,
+        "gaa": "—",
+        "svPct": "—",
+        "so": 0
+      }
+    ],
+    "totalPlayers": 9
+  },
+  "8u-beginner": {
+    "id": "8u-beginner",
+    "name": "8U Beginner Red",
+    "tier": "Tier II Mite",
+    "league": "AHF",
+    "leagueId": 4,
+    "teamId": 10581,
+    "baseUrl": "https://atlantichockeyfederation.com/team-page/?team=10581&season=190&stat_class=1",
+    "season": "2026/27",
+    "seasonId": 190,
+    "record": "0-0-1",
+    "pts": 1,
+    "rank": "#6",
+    "coaches": [],
+    "skaters": [
+      {
+        "number": 81,
+        "name": "Wesley Hujber",
+        "position": "F/D",
+        "gp": 0,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0
+      }
+    ],
+    "goalies": [],
+    "totalPlayers": 1
+  }
+}

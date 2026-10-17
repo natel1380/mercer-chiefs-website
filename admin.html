@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Portal & Team Admin | Mercer Chiefs Hockey Club</title>
+  <link rel="icon" type="image/png" href="assets/images/mercer-chiefs-crest.png">
+  <link rel="stylesheet" href="index.css">
+  <style>
+    /* Admin Portal Specific Styles */
+    body {
+      background-color: var(--bg-deep);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .admin-navbar {
+      background: rgba(10, 12, 16, 0.95);
+      backdrop-filter: var(--glass-blur);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.85rem 0;
+    }
+
+    .admin-nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+    }
+
+    .admin-brand img {
+      height: 44px;
+      width: auto;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+    }
+
+    .admin-brand-text h1 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0;
+      letter-spacing: 0.03em;
+    }
+
+    .admin-brand-text span {
+      font-size: 0.72rem;
+      color: var(--chiefs-gold);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .admin-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .admin-main {
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    /* Tabs Header */
+    .admin-tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 2rem;
+      padding-bottom: 0.25rem;
+      overflow-x: auto;
+    }
+
+    .admin-tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.75rem 1.4rem;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+    }
+
+    .admin-tab-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .admin-tab-btn.active {
+      color: #fff;
+      background: rgba(189, 50, 59, 0.12);
+      border-bottom: 3px solid var(--chiefs-red);
+    }
+
+    /* Tab Content Panels */
+    .admin-tab-pane {
+      display: none;
+    }
+
+    .admin-tab-pane.active {
+      display: block;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Metric Cards Grid */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      backdrop-filter: var(--glass-blur);
+    }
+
+    .metric-card-lbl {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.35rem;
+    }
+
+    .metric-card-val {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .metric-card-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-top: 0.4rem;
+    }
+
+    /* Panels & Containers */
+    .admin-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      backdrop-filter: var(--glass-blur);
+    }
+
+    .admin-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .admin-card-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0;
+    }
+
+    /* Modern Switch Toggle */
+    .switch-toggle {
+      position: relative;
+      display: inline-block;
+      width: 46px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+
+    .switch-toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .switch-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.15);
+      transition: .25s;
+      border-radius: 34px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .switch-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .25s;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    input:checked+.switch-slider {
+      background-color: #22c55e;
+      border-color: rgba(34, 197, 94, 0.4);
+    }
+
+    input:checked+.switch-slider:before {
+      transform: translateX(20px);
+    }
+
+    /* Team Grid Items */
+    .team-toggle-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+
+    .team-toggle-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: all var(--transition-fast);
+    }
+
+    .team-toggle-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .team-toggle-card.is-hidden {
+      opacity: 0.55;
+      background: rgba(0, 0, 0, 0.25);
+      border-style: dashed;
+    }
+
+    .team-toggle-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .team-toggle-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    /* Terminal Console */
+    .sync-console {
+      background: #030712;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.82rem;
+      color: #a7f3d0;
+      max-height: 280px;
+      overflow-y: auto;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      margin-top: 1rem;
+    }
+
+    /* News Management Table & Cards */
+    .news-manage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .news-manage-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-manage-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      background: #0f172a;
+    }
+
+    .news-manage-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    /* Modal Form Styles */
+    .admin-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .admin-modal-overlay.active {
+      display: flex;
+    }
+
+    .admin-modal {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 680px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .admin-form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .admin-form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .admin-form-input,
+    .admin-form-select,
+    .admin-form-textarea {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      font-family: var(--font-body);
+      transition: border-color var(--transition-fast);
+    }
+
+    .admin-form-input:focus,
+    .admin-form-select:focus,
+    .admin-form-textarea:focus {
+      outline: none;
+      border-color: var(--chiefs-gold);
+      box-shadow: 0 0 10px var(--chiefs-gold-glow);
+    }
+
+    .admin-form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* Season Table Styles */
+    .admin-table-container {
+      overflow-x: auto;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      background: rgba(0, 0, 0, 0.25);
+      margin-top: 1rem;
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+
+    .admin-table th {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      white-space: nowrap;
+    }
+
+    .admin-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: #e2e8f0;
+      vertical-align: middle;
+    }
+
+    .admin-table tr:hover td {
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .table-input {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      padding: 0.4rem 0.65rem;
+      font-size: 0.85rem;
+      font-family: var(--font-body);
+      width: 100%;
+    }
+
+    .table-input:focus {
+      outline: none;
+      border-color: var(--chiefs-gold);
+      box-shadow: 0 0 8px var(--chiefs-gold-glow);
+    }
+
+    /* Toast Notification */
+    .admin-toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #15803d;
+      color: #fff;
+      padding: 0.9rem 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      font-weight: 700;
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      z-index: 9999;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .admin-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Auth Screen */
+    .auth-overlay {
+      position: fixed;
+      inset: 0;
+      background: #08090C;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .auth-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 440px;
+      text-align: center;
+      backdrop-filter: var(--glass-blur);
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       LOCK / PASSKEY SCREEN
+       ========================================================================== -->
+  <div id="auth-screen" class="auth-overlay">
+    <div class="auth-card">
+      <img src="assets/images/mercer-chiefs-crest.png" alt="Mercer Chiefs"
+        style="height: 72px; width: auto; margin-bottom: 1rem;">
+      <h2
+        style="font-family: var(--font-heading); font-size: 1.45rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem;">
+        Staff & Coach Portal
+      </h2>
+      <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+        Enter your team administrator passkey to access roster sync, team display controls, and news updates.
+      </p>
+
+      <form id="auth-form" onsubmit="window.handleAuth(event)">
+        <div class="admin-form-group">
+          <input type="password" id="auth-passkey" class="admin-form-input" placeholder="Enter Staff Passkey" required
+            autofocus style="text-align: center; font-size: 1.1rem; letter-spacing: 0.1em;">
+        </div>
+        <button type="submit" class="btn-primary"
+          style="width: 100%; padding: 0.85rem; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">
+          Unlock Portal
+        </button>
+        <div style="margin-top: 1.25rem;">
+          <a href="index.html" style="font-size: 0.82rem; color: var(--chiefs-gold); text-decoration: none;">← Return to
+            Main Website</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MAIN PORTAL TOP NAVBAR
+       ========================================================================== -->
+  <header class="admin-navbar">
+    <div class="admin-nav-container">
+      <div class="admin-brand">
+        <img src="assets/images/mercer-chiefs-crest.png" alt="Chiefs Crest">
+        <div class="admin-brand-text">
+          <h1>Mercer Chiefs Admin</h1>
+          <span>Staff & Data Management Console</span>
+        </div>
+      </div>
+
+      <div class="admin-nav-actions">
+        <span class="pill-badge" id="admin-season-pill"
+          style="background: rgba(34, 197, 94, 0.15); border-color: rgba(34, 197, 94, 0.4); color: #4ade80; font-size: 0.75rem;">
+          ● 2026/27 Active Season
+        </span>
+        <a href="index.html" target="_blank" class="btn-secondary"
+          style="font-size: 0.82rem; padding: 0.45rem 0.9rem; text-decoration: none;">
+          View Live Website ↗
+        </a>
+        <button type="button" onclick="window.logout()" class="btn-secondary"
+          style="font-size: 0.82rem; padding: 0.45rem 0.85rem; border-color: rgba(239, 68, 68, 0.3); color: #f87171;">
+          Lock Portal
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN ADMIN PORTAL CONTENT
+       ========================================================================== -->
+  <main class="admin-main">
+
+    <!-- Top Navigation Tabs -->
+    <div class="admin-tabs" role="tablist">
+      <button class="admin-tab-btn active" data-tab="tab-sync" onclick="window.switchAdminTab('tab-sync')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+        </svg>
+        Data Sync Center
+      </button>
+      <button class="admin-tab-btn" data-tab="tab-teams" onclick="window.switchAdminTab('tab-teams')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+        Show / Hide Teams
+      </button>
+      <button class="admin-tab-btn" data-tab="tab-season" onclick="window.switchAdminTab('tab-season')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+        Season & Team ID Config
+      </button>
+      <button class="admin-tab-btn" data-tab="tab-news" onclick="window.switchAdminTab('tab-news')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path
+            d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1m2 13a2 2 0 0 1-2-2V7m2 13a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+        </svg>
+        News & Headlines CMS
+      </button>
+      <button class="admin-tab-btn" data-tab="tab-alumni" onclick="window.switchAdminTab('tab-alumni')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+          <path d="M6 12v5c3 3 9 3 12 0v-5" />
+        </svg>
+        Alumni & Commitments
+      </button>
+      <button class="admin-tab-btn" data-tab="tab-settings" onclick="window.switchAdminTab('tab-settings')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3" />
+          <path
+            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+        </svg>
+        Data Tools & Backup
+      </button>
+    </div>
+
+    <!-- ========================================================================
+         TAB 1: DATA SYNC CENTER
+         ======================================================================== -->
+    <div id="tab-sync" class="admin-tab-pane active">
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-card-lbl">Total Registered Teams</div>
+          <div class="metric-card-val" id="metric-total-teams">31</div>
+          <div class="metric-card-desc">2 Junior + 11 Tier I + 18 Tier II</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-lbl">Verified Rostered Athletes</div>
+          <div class="metric-card-val" id="metric-total-players">498+</div>
+          <div class="metric-card-desc">Active 2026/27 League Rosters</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-lbl">Indexed 2026/27 Matches</div>
+          <div class="metric-card-val" id="metric-total-games">780+</div>
+          <div class="metric-card-desc">Schedules, Scores & GameSheets</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-lbl">Last Sync Status</div>
+          <div class="metric-card-val" style="font-size: 1.5rem; color: #4ade80;" id="metric-last-sync">Current</div>
+          <div class="metric-card-desc" id="metric-last-sync-time">Season 190 / Season 67 Verified</div>
+        </div>
+      </div>
+
+      <!-- Sync Action Panel -->
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <div>
+            <h3 class="admin-card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2">
+                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+              </svg>
+              Live League Data Synchronizer
+            </h3>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">
+              Pulls active schedules, scoresheets, rosters, and statistics directly from USPHL (Junior) and TimeToScore
+              / GameSheet (Youth THF & AHF).
+            </p>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button type="button" class="btn-primary" id="btn-sync-all" onclick="window.runDataSync('all')">
+              ⚡ Sync All Teams Now
+            </button>
+            <button type="button" class="btn-secondary" id="btn-sync-junior" onclick="window.runDataSync('junior')">
+              Sync Junior (USPHL)
+            </button>
+            <button type="button" class="btn-secondary" id="btn-sync-youth" onclick="window.runDataSync('youth')">
+              Sync Youth (THF & AHF)
+            </button>
+          </div>
+        </div>
+
+        <!-- Sync Progress Bar -->
+        <div id="sync-progress-container" style="display: none; margin-bottom: 1.25rem;">
+          <div
+            style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem;">
+            <span id="sync-status-text">Synchronizing feeds...</span>
+            <span id="sync-status-pct">0%</span>
+          </div>
+          <div
+            style="width: 100%; height: 8px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden;">
+            <div id="sync-progress-bar"
+              style="width: 0%; height: 100%; background: linear-gradient(90deg, var(--chiefs-red), var(--chiefs-gold)); transition: width 0.3s ease;">
+            </div>
+          </div>
+        </div>
+
+        <!-- Terminal Console Log -->
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+            <span
+              style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Real-Time
+              Sync Console</span>
+            <button type="button" onclick="window.clearConsole()"
+              style="background: none; border: none; color: var(--text-muted); font-size: 0.72rem; cursor: pointer;">Clear
+              Console</button>
+          </div>
+          <div id="sync-console" class="sync-console">[READY] Mercer Chiefs Data Engine initialized. Ready to sync
+            feeds.
+            [ACTIVE FEED] Tier 1 Hockey Federation (THF) - Season 190 (2026/27)
+            [ACTIVE FEED] Atlantic Hockey Federation (AHF) - Season 190 (2026/27)
+            [ACTIVE FEED] USPHL NCDC & Premier - Season 67 (2026/27)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         TAB 2: SHOW / HIDE SPECIFIC TEAMS
+         ======================================================================== -->
+    <div id="tab-teams" class="admin-tab-pane">
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <div>
+            <h3 class="admin-card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              Team Visibility & Display Manager
+            </h3>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">
+              Choose which teams are displayed on the public website. Hidden teams are immediately excluded from the
+              schedule, rosters, and dropdown selectors.
+            </p>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <span id="teams-visible-badge" class="pill-badge"
+              style="background: rgba(245, 166, 35, 0.15); border-color: rgba(245, 166, 35, 0.35); color: var(--chiefs-gold); font-size: 0.8rem;">
+              Showing 31 of 31 Teams
+            </span>
+            <button type="button" class="btn-secondary" onclick="window.toggleAllTeams(true)"
+              style="font-size: 0.78rem; padding: 0.4rem 0.8rem;">
+              Show All
+            </button>
+            <button type="button" class="btn-secondary" onclick="window.toggleAllTeams(false)"
+              style="font-size: 0.78rem; padding: 0.4rem 0.8rem;">
+              Hide All
+            </button>
+            <button type="button" class="btn-secondary" onclick="window.resetTeamVisibility()"
+              style="font-size: 0.78rem; padding: 0.4rem 0.8rem; color: var(--chiefs-gold);">
+              Reset Defaults
+            </button>
+          </div>
+        </div>
+
+        <!-- Section: Junior Teams -->
+        <div style="margin-bottom: 2rem;">
+          <div
+            style="font-size: 0.85rem; font-weight: 800; color: var(--chiefs-red); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span>Junior Squads (USPHL)</span>
+          </div>
+          <div class="team-toggle-grid" id="grid-junior-teams">
+            <!-- Injected by admin.js -->
+          </div>
+        </div>
+
+        <!-- Section: Tier I AAA (THF) -->
+        <div style="margin-bottom: 2rem;">
+          <div
+            style="font-size: 0.85rem; font-weight: 800; color: var(--chiefs-gold); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span>Tier I AAA Teams (Tier 1 Hockey Federation)</span>
+          </div>
+          <div class="team-toggle-grid" id="grid-thf-teams">
+            <!-- Injected by admin.js -->
+          </div>
+        </div>
+
+        <!-- Section: Tier II (AHF) -->
+        <div>
+          <div
+            style="font-size: 0.85rem; font-weight: 800; color: var(--chiefs-gold); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span>Tier II Teams (Atlantic Hockey Federation)</span>
+          </div>
+          <div class="team-toggle-grid" id="grid-ahf-teams">
+            <!-- Injected by admin.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         TAB: SEASON & TEAM ID CONFIGURATION
+         ======================================================================== -->
+    <div id="tab-season" class="admin-tab-pane">
+
+      <!-- Card 1: Active Season Parameters -->
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <div>
+            <h3 class="admin-card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+              Active League Season Parameters
+            </h3>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">
+              Configure season identifiers for TimeToScore (THF / AHF) and USPHL. When transitioning to 2027/28 or
+              beyond, update these season codes or roll over in one click.
+            </p>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button type="button" class="btn-primary" onclick="window.saveSeasonConfig()">
+              Save Season Parameters
+            </button>
+            <button type="button" class="btn-secondary" onclick="window.openRolloverModal()"
+              style="border-color: rgba(245, 166, 35, 0.4); color: var(--chiefs-gold);">
+              ✨ Roll Over to New Season
+            </button>
+          </div>
+        </div>
+
+        <form id="season-config-form" onsubmit="event.preventDefault(); window.saveSeasonConfig();">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem;">
+            <div class="admin-form-group">
+              <label for="cfg-season-label">Active Season Name</label>
+              <input type="text" id="cfg-season-label" class="admin-form-input" value="2026/27"
+                placeholder="e.g. 2026/27">
+            </div>
+
+            <div class="admin-form-group">
+              <label for="cfg-thf-season">THF (Tier I) Season ID</label>
+              <input type="text" id="cfg-thf-season" class="admin-form-input" value="190" placeholder="e.g. 190">
+            </div>
+
+            <div class="admin-form-group">
+              <label for="cfg-ahf-season">AHF (Tier II) Season ID</label>
+              <input type="text" id="cfg-ahf-season" class="admin-form-input" value="190" placeholder="e.g. 190">
+            </div>
+
+            <div class="admin-form-group">
+              <label for="cfg-usphl-season">USPHL Junior Season ID</label>
+              <input type="text" id="cfg-usphl-season" class="admin-form-input" value="67" placeholder="e.g. 67">
+            </div>
+
+            <div class="admin-form-group">
+              <label for="cfg-ncdc-team">NCDC Team ID</label>
+              <input type="text" id="cfg-ncdc-team" class="admin-form-input" value="112" placeholder="e.g. 112">
+            </div>
+
+            <div class="admin-form-group">
+              <label for="cfg-ncdc-coach">NCDC Head Coach</label>
+              <input type="text" id="cfg-ncdc-coach" class="admin-form-input" value="Rob Broderick"
+                placeholder="e.g. Rob Broderick">
+            </div>
+
+            <div class="admin-form-group">
+              <label for="cfg-premier-team">USPHL Premier Team ID</label>
+              <input type="text" id="cfg-premier-team" class="admin-form-input" value="459" placeholder="e.g. 459">
+            </div>
+
+            <div class="admin-form-group">
+              <label for="cfg-premier-coach">Premier Head Coach</label>
+              <input type="text" id="cfg-premier-coach" class="admin-form-input" value=""
+                placeholder="e.g. Head Coach Name">
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Card 2: Team ID Mapping Directory -->
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <div>
+            <h3 class="admin-card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+              </svg>
+              Team League ID Directory & Page Links
+            </h3>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">
+              Point each Mercer Chiefs squad to its official TimeToScore / GameSheet team ID. You can edit IDs or
+              coaches inline, add new teams, or click "Verify Page" to test the live league roster page.
+            </p>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button type="button" class="btn-primary" onclick="window.openTeamModal()">
+              + Add New Team
+            </button>
+            <button type="button" class="btn-secondary" onclick="window.saveAllTeamMappings()"
+              style="border-color: rgba(34, 197, 94, 0.4); color: #4ade80;">
+              Save All Team Mappings
+            </button>
+            <button type="button" class="btn-secondary" onclick="window.resetTeamMappings()"
+              style="font-size: 0.78rem;">
+              Reset Default IDs
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter bar -->
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+          <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;" id="season-filter-buttons">
+            <button type="button" class="btn-secondary active-filter" id="sfilter-all"
+              onclick="window.filterSeasonTable('all')"
+              style="font-size: 0.76rem; padding: 0.35rem 0.75rem; background: var(--chiefs-red); color: #fff;">All
+              Teams (<span id="count-all-teams">31</span>)</button>
+            <button type="button" class="btn-secondary" id="sfilter-thf" onclick="window.filterSeasonTable('thf')"
+              style="font-size: 0.76rem; padding: 0.35rem 0.75rem;">Tier I THF (11)</button>
+            <button type="button" class="btn-secondary" id="sfilter-ahf" onclick="window.filterSeasonTable('ahf')"
+              style="font-size: 0.76rem; padding: 0.35rem 0.75rem;">Tier II AHF (18)</button>
+            <button type="button" class="btn-secondary" id="sfilter-junior" onclick="window.filterSeasonTable('junior')"
+              style="font-size: 0.76rem; padding: 0.35rem 0.75rem;">Junior (2)</button>
+          </div>
+
+          <div style="width: 260px;">
+            <input type="text" id="season-team-search" class="admin-form-input" placeholder="Search teams or coaches..."
+              oninput="window.handleSeasonSearch(this.value)" style="padding: 0.4rem 0.8rem; font-size: 0.82rem;">
+          </div>
+        </div>
+
+        <!-- Team Mapping Table -->
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th style="width: 22%;">Team Name</th>
+                <th style="width: 15%;">League & Tier</th>
+                <th style="width: 15%;">League Team ID</th>
+                <th style="width: 22%;">Head Coach</th>
+                <th style="width: 14%;">League Page Test</th>
+                <th style="width: 12%; text-align: right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="season-teams-table-body">
+              <!-- Populated by admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================
+         TAB 3: NEWS & HEADLINES CMS
+         ======================================================================== -->
+    <div id="tab-news" class="admin-tab-pane">
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <div>
+            <h3 class="admin-card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2">
+                <path
+                  d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1m2 13a2 2 0 0 1-2-2V7m2 13a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+              </svg>
+              Club News & Press Release Manager
+            </h3>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">
+              Publish, edit, and organize club announcements, game recaps, tournament wins, and college commitments
+              directly to the homepage.
+            </p>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+            <button type="button" class="btn-primary"
+              style="background: linear-gradient(135deg, #1877F2, #0A53BE); border-color: #1877F2; display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.85rem;"
+              onclick="window.syncFacebookPosts()" id="btn-sync-facebook">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+              <span>Pull Latest Facebook Posts</span>
+            </button>
+            <button type="button" class="btn-primary" onclick="window.openArticleModal()">
+              + Write New Article
+            </button>
+            <button type="button" class="btn-secondary" onclick="window.resetNewsArticles()"
+              style="font-size: 0.82rem;">
+              Reset to Defaults
+            </button>
+          </div>
+        </div>
+
+        <!-- Facebook Connection Status Banner & Live Meta API Drawer -->
+        <div
+          style="background: rgba(24, 119, 242, 0.08); border: 1px solid rgba(24, 119, 242, 0.25); border-radius: var(--radius-sm); padding: 0.85rem 1rem; margin-bottom: 1.25rem;">
+          <div
+            style="display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; flex-wrap: wrap; gap: 0.75rem;">
+            <div style="display: flex; align-items: center; gap: 0.6rem; color: #93c5fd; flex-wrap: wrap;">
+              <svg width="18" height="18" fill="#1877F2" viewBox="0 0 24 24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+              <span>Linked Facebook Page: <strong>@mercerchiefshockey</strong></span>
+              <span id="fb-token-badge"
+                style="background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); font-size: 0.7rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 999px;">
+                Cached Feed Mode
+              </span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+              <span id="fb-sync-status-text" style="color: var(--text-muted); font-size: 0.78rem;">Status: Ready to
+                Sync</span>
+              <button type="button" class="btn-secondary" id="btn-toggle-fb-settings"
+                onclick="window.toggleFacebookSettings()"
+                style="font-size: 0.75rem; padding: 0.3rem 0.65rem; border-color: rgba(24, 119, 242, 0.4); color: #bfdbfe; display: inline-flex; align-items: center; gap: 0.35rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3" />
+                  <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                </svg>
+                <span>Automated API Settings</span>
+              </button>
+              <a href="https://www.facebook.com/mercerchiefshockey" target="_blank" rel="noopener noreferrer"
+                style="color: #60a5fa; text-decoration: underline; font-weight: 600;">Visit Page ↗</a>
+            </div>
+          </div>
+
+          <!-- Collapsible API Configuration Drawer -->
+          <div id="fb-api-settings-panel"
+            style="display: none; border-top: 1px solid rgba(24, 119, 242, 0.25); padding-top: 0.85rem; margin-top: 0.85rem;">
+            <div
+              style="background: rgba(0, 0, 0, 0.25); border-radius: var(--radius-sm); padding: 0.85rem; border: 1px solid var(--border-subtle); margin-bottom: 0.75rem;">
+              <p style="font-size: 0.8rem; color: #e2e8f0; line-height: 1.5; margin-bottom: 0.4rem;">
+                <strong>Automated Real-Time Sync via Meta Graph API:</strong>
+              </p>
+              <p style="font-size: 0.75rem; color: #94a3b8; line-height: 1.4; margin-bottom: 0.75rem;">
+                Paste your facebook page's <strong>read access token</strong> below. The "Pull Latest Facebook Posts"
+                button will directly import new posts, images, and captions automatically.
+              </p>
+              <div
+                style="display: grid; grid-template-columns: minmax(180px, 1fr) minmax(280px, 2fr) auto; gap: 0.75rem; align-items: end;">
+                <div class="admin-form-group" style="margin-bottom: 0;">
+                  <label for="cfg-fb-page-id"
+                    style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.3rem;">Facebook
+                    Page ID / Handle</label>
+                  <input type="text" id="cfg-fb-page-id" class="admin-form-input"
+                    style="font-size: 0.82rem; padding: 0.45rem 0.75rem;" placeholder="mercerchiefshockey"
+                    value="mercerchiefshockey">
+                </div>
+                <div class="admin-form-group" style="margin-bottom: 0;">
+                  <label for="cfg-fb-access-token"
+                    style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.3rem;">Meta
+                    Page Access Token</label>
+                  <input type="password" id="cfg-fb-access-token" class="admin-form-input"
+                    style="font-size: 0.82rem; padding: 0.45rem 0.75rem;"
+                    placeholder="Paste Meta Page Access Token (starts with EAA...)">
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                  <button type="button" class="btn-primary" onclick="window.saveFacebookApiConfig()"
+                    style="font-size: 0.8rem; padding: 0.5rem 0.85rem; background: #1877F2; border-color: #1877F2;">
+                    Test & Save Token
+                  </button>
+                  <button type="button" class="btn-secondary" onclick="window.clearFacebookApiConfig()"
+                    style="font-size: 0.78rem; padding: 0.5rem 0.75rem; color: var(--text-muted);"
+                    title="Clear saved token">
+                    Clear
+                  </button>
+                </div>
+              </div>
+              <div id="fb-token-test-feedback" style="margin-top: 0.5rem; font-size: 0.75rem; display: none;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- News Cards Grid -->
+        <div class="news-manage-grid" id="news-articles-list">
+          <!-- Populated by admin.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         TAB 4: ALUMNI & COMMITMENTS CMS
+         ======================================================================== -->
+    <div id="tab-alumni" class="admin-tab-pane">
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <div>
+            <h3 class="admin-card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+              </svg>
+              Alumni & College Commitments Manager
+            </h3>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">
+              Manage collegiate commitments, NHL draft picks, and pro alumni. Changes immediately reflect on the live
+              website.
+            </p>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button type="button" class="btn-primary" onclick="window.openAlumniModal()">
+              + Add New Commitment
+            </button>
+            <button type="button" class="btn-secondary" onclick="window.resetAlumni()" style="font-size: 0.82rem;">
+              Reset to Baseline (36)
+            </button>
+          </div>
+        </div>
+
+        <!-- Controls: Filters & Search -->
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+          <div class="filter-pills" id="admin-alumni-filters">
+            <button type="button" class="filter-btn active" data-filter="all"
+              onclick="window.filterAdminAlumni('all')">All (<span id="admin-alumni-count-all">0</span>)</button>
+            <button type="button" class="filter-btn" data-filter="d1" onclick="window.filterAdminAlumni('d1')">NCAA D1
+              (<span id="admin-alumni-count-d1">0</span>)</button>
+            <button type="button" class="filter-btn" data-filter="pro" onclick="window.filterAdminAlumni('pro')">NHL &
+              Pro (<span id="admin-alumni-count-pro">0</span>)</button>
+            <button type="button" class="filter-btn" data-filter="d3" onclick="window.filterAdminAlumni('d3')">NCAA D3
+              (<span id="admin-alumni-count-d3">0</span>)</button>
+          </div>
+
+          <input type="text" id="admin-alumni-search" class="roster-search-input"
+            placeholder="Search alumni by player, college, team..." style="min-width: 280px;"
+            oninput="window.searchAdminAlumni(this.value)">
+        </div>
+
+        <!-- Alumni Table -->
+        <div style="overflow-x: auto;">
+          <table class="admin-table" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="width: 20%;">Player Name</th>
+                <th style="width: 22%;">College / Pro Org</th>
+                <th style="width: 18%;">Division & League</th>
+                <th style="width: 26%;">Career Pathway & Highlights</th>
+                <th style="width: 14%; text-align: right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-alumni-tbody">
+              <!-- Populated by admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         TAB 5: DATA TOOLS & BACKUP
+         ======================================================================== -->
+    <div id="tab-settings" class="admin-tab-pane">
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <div>
+            <h3 class="admin-card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Export & Backup Utilities
+            </h3>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">
+              Download configuration snapshots, sync payloads, and generated code files for hosting or repository
+              deployment.
+            </p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <div
+            style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.5rem;">
+            <h4 style="font-size: 1rem; color: #fff; margin-bottom: 0.5rem;">Export Active Data Payload</h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+              Download all active 2026/27 teams, rosters, game schedules, and news articles as a single clean JSON
+              bundle.
+            </p>
+            <button type="button" class="btn-secondary" onclick="window.exportJsonBackup()"
+              style="width: 100%; font-size: 0.85rem;">
+              Download JSON Backup
+            </button>
+          </div>
+
+          <div
+            style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.5rem;">
+            <h4 style="font-size: 1rem; color: #fff; margin-bottom: 0.5rem;">Reset All Admin Customizations</h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+              Clears browser storage overrides and resets the portal and live website to baseline compiled defaults.
+            </p>
+            <button type="button" class="btn-secondary" onclick="window.clearAllOverrides()"
+              style="width: 100%; font-size: 0.85rem; color: #f87171; border-color: rgba(239, 68, 68, 0.3);">
+              Clear Overrides & Reset
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==========================================================================
+       ARTICLE CREATE / EDIT MODAL
+       ========================================================================== -->
+  <div id="article-modal" class="admin-modal-overlay">
+    <div class="admin-modal">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 id="modal-article-title"
+          style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
+          Write News Article
+        </h3>
+        <button type="button" onclick="window.closeArticleModal()"
+          style="background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer;">&times;</button>
+      </div>
+
+      <form id="article-form" onsubmit="window.saveArticle(event)">
+        <input type="hidden" id="edit-article-id" value="">
+
+        <div class="admin-form-group">
+          <label for="form-article-title">Headline / Title *</label>
+          <input type="text" id="form-article-title" class="admin-form-input"
+            placeholder="e.g. Mercer Chiefs 16U AAA Clinches Showcase Final" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="admin-form-group">
+            <label for="form-article-cat">Category *</label>
+            <select id="form-article-cat" class="admin-form-select" required>
+              <option value="NCDC Junior">NCDC Junior</option>
+              <option value="USPHL Premier">USPHL Premier</option>
+              <option value="Youth AAA">Youth AAA (THF)</option>
+              <option value="Tier II AHF">Tier II AHF</option>
+              <option value="College Commitment">College Commitment</option>
+              <option value="Club Announcement">Club Announcement</option>
+            </select>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="form-article-readtime">Read Time</label>
+            <input type="text" id="form-article-readtime" class="admin-form-input" placeholder="e.g. 3 min read"
+              value="3 min read">
+          </div>
+        </div>
+
+        <div class="admin-form-group">
+          <label for="form-article-date">Publish Date</label>
+          <input type="text" id="form-article-date" class="admin-form-input" placeholder="e.g. October 15, 2026">
+        </div>
+
+        <div class="admin-form-group">
+          <label for="form-article-img">Image URL</label>
+          <input type="text" id="form-article-img" class="admin-form-input"
+            placeholder="assets/images/news/fb_gameday_pal.jpg">
+          <div style="display: flex; gap: 0.4rem; margin-top: 0.5rem; flex-wrap: wrap;">
+            <button type="button" class="btn-secondary" style="font-size: 0.7rem; padding: 0.25rem 0.5rem;"
+              onclick="document.getElementById('form-article-img').value='assets/images/news/fb_gameday_pal.jpg'">FB:
+              Game Day</button>
+            <button type="button" class="btn-secondary" style="font-size: 0.7rem; padding: 0.25rem 0.5rem;"
+              onclick="document.getElementById('form-article-img').value='assets/images/news/fb_ncdc_hitmen_win.jpg'">FB:
+              NCDC 6-4 Win</button>
+            <button type="button" class="btn-secondary" style="font-size: 0.7rem; padding: 0.25rem 0.5rem;"
+              onclick="document.getElementById('form-article-img').value='assets/images/news/fb_premier_renegades_win.jpg'">FB:
+              Premier 6-0</button>
+            <button type="button" class="btn-secondary" style="font-size: 0.7rem; padding: 0.25rem 0.5rem;"
+              onclick="document.getElementById('form-article-img').value='assets/images/news/fb_premier_hitmen_banner.jpg'">FB:
+              Hitmen 3-1</button>
+            <button type="button" class="btn-secondary" style="font-size: 0.7rem; padding: 0.25rem 0.5rem;"
+              onclick="document.getElementById('form-article-img').value='assets/images/news/fb_teamstore_full.jpg'">FB:
+              Team Store</button>
+            <button type="button" class="btn-secondary" style="font-size: 0.7rem; padding: 0.25rem 0.5rem;"
+              onclick="document.getElementById('form-article-img').value='assets/images/hero-action.jpg'">Action</button>
+            <button type="button" class="btn-secondary" style="font-size: 0.7rem; padding: 0.25rem 0.5rem;"
+              onclick="document.getElementById('form-article-img').value='assets/images/mercer-chiefs-crest.png'">Crest</button>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="admin-form-group">
+            <label for="form-article-link">Action / Facebook Link</label>
+            <input type="url" id="form-article-link" class="admin-form-input"
+              placeholder="https://www.facebook.com/mercerchiefshockey">
+          </div>
+          <div class="admin-form-group">
+            <label for="form-article-credit">Photography / Media Credit</label>
+            <input type="text" id="form-article-credit" class="admin-form-input"
+              placeholder="e.g. Heather O'Connell Photography">
+          </div>
+        </div>
+
+        <div class="admin-form-group">
+          <label for="form-article-summary">Summary / Card Blurb *</label>
+          <textarea id="form-article-summary" class="admin-form-textarea"
+            placeholder="Brief 1-2 sentence overview shown on the homepage news grid..." required></textarea>
+        </div>
+
+        <input type="hidden" id="form-article-source" value="manual">
+
+        <div
+          style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
+          <button type="button" class="btn-secondary" onclick="window.closeArticleModal()">Cancel</button>
+          <button type="submit" class="btn-primary">Save & Publish to Live Site</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       ALUMNI CREATE / EDIT MODAL
+       ========================================================================== -->
+  <div id="alumni-modal" class="admin-modal-overlay">
+    <div class="admin-modal" style="max-width: 680px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 id="modal-alumni-title"
+          style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
+          Add New Commitment
+        </h3>
+        <button type="button" onclick="window.closeAlumniModal()"
+          style="background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer;">&times;</button>
+      </div>
+
+      <form id="alumni-form" onsubmit="window.saveAlumni(event)">
+        <input type="hidden" id="edit-alumni-id" value="">
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="admin-form-group">
+            <label for="form-alumni-name">Player Name *</label>
+            <input type="text" id="form-alumni-name" class="admin-form-input" placeholder="e.g. Ross Colton" required>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="form-alumni-college">College / School / Pro Org *</label>
+            <input type="text" id="form-alumni-college" class="admin-form-input"
+              placeholder="e.g. Penn State University or Tampa Bay Lightning" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="admin-form-group">
+            <label for="form-alumni-division">Division / Classification *</label>
+            <select id="form-alumni-division" class="admin-form-select" required>
+              <option value="NCAA Division I">NCAA Division I</option>
+              <option value="NHL & Professional">NHL & Professional</option>
+              <option value="NCAA Division III">NCAA Division III</option>
+              <option value="Junior Hockey Alumni">Junior Hockey Alumni</option>
+            </select>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="form-alumni-conference">Conference / League</label>
+            <input type="text" id="form-alumni-conference" class="admin-form-input"
+              placeholder="e.g. Hockey East, Big Ten, ECAC Hockey, NHL">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="admin-form-group">
+            <label for="form-alumni-junior">Junior Team Pathway</label>
+            <input type="text" id="form-alumni-junior" class="admin-form-input"
+              placeholder="e.g. Cedar Rapids RoughRiders (USHL)">
+          </div>
+
+          <div class="admin-form-group">
+            <label for="form-alumni-pro">Pro Team(s) (if applicable)</label>
+            <input type="text" id="form-alumni-pro" class="admin-form-input"
+              placeholder="e.g. Colorado Avalanche (NHL) • Syracuse Crunch (AHL)">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="admin-form-group">
+            <label for="form-alumni-draft">NHL Draft Details (if applicable)</label>
+            <input type="text" id="form-alumni-draft" class="admin-form-input"
+              placeholder="e.g. Tampa Bay Lightning (1st Round, #19 Overall)">
+          </div>
+
+          <div class="admin-form-group">
+            <label for="form-alumni-badge">Distinction Badge Text</label>
+            <input type="text" id="form-alumni-badge" class="admin-form-input"
+              placeholder="e.g. Stanley Cup Champion, NCAA D1 Commit, 1st Round NHL Draft">
+          </div>
+        </div>
+
+        <div class="admin-form-group">
+          <label for="form-alumni-badgetype">Badge Style / Accent</label>
+          <select id="form-alumni-badgetype" class="admin-form-select">
+            <option value="d1">NCAA D1 Commit (Gold Glow)</option>
+            <option value="cup">Stanley Cup Champion (Trophy Glow)</option>
+            <option value="draft">NHL Draft Pick (Red/Gold)</option>
+            <option value="olympic">US Olympian (Red/White/Blue)</option>
+            <option value="champ">National Champion (Gold)</option>
+            <option value="pro">Pro Hockey / NHL Alumni (Silver)</option>
+            <option value="d3">NCAA D3 Commit (Sky Blue)</option>
+            <option value="junior">Junior Advancement (Slate)</option>
+          </select>
+        </div>
+
+        <div class="admin-form-group">
+          <label for="form-alumni-highlight">Career Highlight / Summary *</label>
+          <textarea id="form-alumni-highlight" class="admin-form-textarea"
+            placeholder="Brief summary of their collegiate, junior, or professional accomplishments..."
+            required></textarea>
+        </div>
+
+        <div
+          style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
+          <button type="button" class="btn-secondary" onclick="window.closeAlumniModal()">Cancel</button>
+          <button type="submit" class="btn-primary">Save & Publish to Live Site</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       TEAM CREATE / EDIT MODAL
+       ========================================================================== -->
+  <div id="team-modal" class="admin-modal-overlay">
+    <div class="admin-modal">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 id="modal-team-title"
+          style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
+          Add / Edit Team Configuration
+        </h3>
+        <button type="button" onclick="window.closeTeamModal()"
+          style="background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer;">&times;</button>
+      </div>
+
+      <form id="team-form" onsubmit="window.saveTeam(event)">
+        <input type="hidden" id="edit-team-id" value="">
+        <input type="hidden" id="edit-team-is-new" value="false">
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="admin-form-group">
+            <label for="form-team-name">Team Name *</label>
+            <input type="text" id="form-team-name" class="admin-form-input" placeholder="e.g. 15U Pure AAA" required>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="form-team-slug">Team Identifier Slug *</label>
+            <input type="text" id="form-team-slug" class="admin-form-input" placeholder="e.g. 15u-pure-aaa" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="admin-form-group">
+            <label for="form-team-league">League Affiliation *</label>
+            <select id="form-team-league" class="admin-form-select" required
+              onchange="window.handleTeamLeagueChange(this.value)">
+              <option value="THF">Tier 1 Hockey Federation (THF - League 5)</option>
+              <option value="AHF">Atlantic Hockey Federation (AHF - League 4)</option>
+              <option value="USPHL-NCDC">USPHL NCDC Junior</option>
+              <option value="USPHL-Premier">USPHL Premier Junior</option>
+              <option value="Independent">Independent / Showcase</option>
+            </select>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="form-team-tier">Tier Classification *</label>
+            <input type="text" id="form-team-tier" class="admin-form-input" placeholder="e.g. Tier I AAA or Tier II AA"
+              required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="admin-form-group">
+            <label for="form-team-league-id">League Team ID (TimeToScore / USPHL) *</label>
+            <input type="number" id="form-team-league-id" class="admin-form-input" placeholder="e.g. 10306" required>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="form-team-coach">Head Coach *</label>
+            <input type="text" id="form-team-coach" class="admin-form-input" placeholder="e.g. Bobby Goepfert" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="admin-form-group">
+            <label for="form-team-record">Initial / Active Record</label>
+            <input type="text" id="form-team-record" class="admin-form-input" placeholder="e.g. 14-3-1" value="0-0-0">
+          </div>
+
+          <div class="admin-form-group">
+            <label for="form-team-rank">Standing / Division Rank</label>
+            <input type="text" id="form-team-rank" class="admin-form-input" placeholder="e.g. #1 South Division"
+              value="Regular Season">
+          </div>
+        </div>
+
+        <div class="admin-form-group">
+          <label for="form-team-url">Official League Roster URL (Optional Override)</label>
+          <input type="url" id="form-team-url" class="admin-form-input"
+            placeholder="Leave blank to auto-generate from Season & Team ID">
+        </div>
+
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
+          <button type="button" id="btn-delete-team" class="btn-secondary"
+            style="color: #f87171; border-color: rgba(239, 68, 68, 0.3); display: none;" onclick="window.deleteTeam()">
+            Delete Team
+          </button>
+          <div style="display: flex; gap: 0.75rem; margin-left: auto;">
+            <button type="button" class="btn-secondary" onclick="window.closeTeamModal()">Cancel</button>
+            <button type="submit" class="btn-primary">Save Team Configuration</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       SEASON ROLLOVER WIZARD MODAL
+       ========================================================================== -->
+  <div id="rollover-modal" class="admin-modal-overlay">
+    <div class="admin-modal" style="max-width: 620px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <span style="font-size: 1.5rem;">✨</span>
+          <h3 style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0;">
+            Roll Over to New Season
+          </h3>
+        </div>
+        <button type="button" onclick="window.closeRolloverModal()"
+          style="background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer;">&times;</button>
+      </div>
+
+      <div
+        style="background: rgba(245, 166, 35, 0.08); border: 1px solid rgba(245, 166, 35, 0.25); border-radius: var(--radius-sm); padding: 0.9rem 1.1rem; margin-bottom: 1.5rem;">
+        <div style="font-weight: 700; color: var(--chiefs-gold); font-size: 0.85rem; margin-bottom: 0.25rem;">
+          Prepare Mercer Chiefs Data for Next Competitive Year
+        </div>
+        <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 0; line-height: 1.45;">
+          This wizard updates the active season code, points all live TimeToScore widgets and schedule links to the new
+          year, and resets season records for the fresh competitive campaign.
+        </p>
+      </div>
+
+      <form id="rollover-form" onsubmit="window.applyRollover(event)">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="admin-form-group">
+            <label for="ro-season-label">Upcoming Season Label *</label>
+            <input type="text" id="ro-season-label" class="admin-form-input" value="2027/28" placeholder="e.g. 2027/28"
+              required>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="ro-thf-season">THF New Season ID *</label>
+            <input type="text" id="ro-thf-season" class="admin-form-input" value="245" placeholder="e.g. 245" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="admin-form-group">
+            <label for="ro-ahf-season">AHF New Season ID *</label>
+            <input type="text" id="ro-ahf-season" class="admin-form-input" value="245" placeholder="e.g. 245" required>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="ro-usphl-season">USPHL Junior Season ID *</label>
+            <input type="text" id="ro-usphl-season" class="admin-form-input" value="68" placeholder="e.g. 68" required>
+          </div>
+        </div>
+
+        <div
+          style="margin-top: 1rem; padding: 1rem; background: rgba(0,0,0,0.3); border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+          <div
+            style="font-size: 0.78rem; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.75rem;">
+            Rollover Automation Options
+          </div>
+
+          <label
+            style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.82rem; color: #e2e8f0; cursor: pointer; margin-bottom: 0.6rem;">
+            <input type="checkbox" id="ro-opt-reset-records" checked style="margin-top: 0.2rem;">
+            <span>Reset team win/loss records and standings summaries to <strong>0-0-0 (Pre-Season)</strong></span>
+          </label>
+
+          <label
+            style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.82rem; color: #e2e8f0; cursor: pointer; margin-bottom: 0.6rem;">
+            <input type="checkbox" id="ro-opt-clear-results" checked style="margin-top: 0.2rem;">
+            <span>Clear prior season match scorecards and await new schedule feed</span>
+          </label>
+
+          <label
+            style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.82rem; color: #e2e8f0; cursor: pointer;">
+            <input type="checkbox" id="ro-opt-preserve-coaches" checked style="margin-top: 0.2rem;">
+            <span>Preserve current head coaches and athlete rosters as baseline training camp rosters</span>
+          </label>
+        </div>
+
+        <div
+          style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
+          <button type="button" class="btn-secondary" onclick="window.closeRolloverModal()">Cancel</button>
+          <button type="submit" class="btn-primary"
+            style="background: linear-gradient(135deg, var(--chiefs-gold), #d97706); color: #000; font-weight: 800;">
+            🚀 Complete Season Rollover
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="admin-toast" class="admin-toast">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+    <span id="toast-message">Changes saved to live site!</span>
+  </div>
+
+  <!-- Admin Controller -->
+  <script type="module" src="admin.js"></script>
+</body>
+
+</html>
