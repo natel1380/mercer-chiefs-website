@@ -7920,10 +7920,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Rob Colton",
     "level": "14U Bantam Major AAA",
-    "record": "6-1-0",
-    "pts": 18,
+    "record": "7-1-0",
+    "pts": 14,
     "rank": "#3",
-    "standingSummary": "6-1-0 | 17 Active Players | 2026/27 Season",
+    "standingSummary": "7-1-0 | 14 Active Players | 2026/27 Season",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10305&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -7935,16 +7935,6 @@ export const YOUTH_TEAMS = [
         "loc": "Home",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=89257",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=89257"
-      },
-      {
-        "id": "81824",
-        "date": "2026-10-17",
-        "time": "01:15 PM",
-        "opp": "Jr Comets 14U",
-        "rink": "Adirondack Bank Center",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81824",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81824"
       },
       {
         "id": "81825",
@@ -8386,16 +8376,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=89257"
       },
       {
-        "id": "81824",
-        "date": "2026-10-17",
-        "time": "01:15 PM",
-        "opp": "Jr Comets 14U",
-        "rink": "Adirondack Bank Center",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81824",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81824"
-      },
-      {
         "id": "81825",
         "date": "2026-10-17",
         "time": "04:30 PM",
@@ -8467,6 +8447,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "81824",
+        "date": "2026-10-17",
+        "time": "01:15 PM",
+        "opp": "Utica Jr Comets 14U",
+        "rink": "Adirondack Bank Center",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "4-3",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=81824",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=81824"
+      },
       {
         "id": "81895",
         "date": "2026-10-04",
@@ -8574,7 +8567,7 @@ export const YOUTH_TEAMS = [
     "record": "4-1-0",
     "pts": 12,
     "rank": "#7",
-    "standingSummary": "4-0-0 | 17 Active Players | 2026/27 Season",
+    "standingSummary": "4-1-0 | 17 Active Players | 2026/27 Season",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=11519&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -8586,16 +8579,6 @@ export const YOUTH_TEAMS = [
         "loc": "Away",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82128",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82128"
-      },
-      {
-        "id": "82130",
-        "date": "2026-10-17",
-        "time": "01:30 PM",
-        "opp": "Jr. Islanders 13U",
-        "rink": "Northwell Ice Center Torrey",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82130",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82130"
       },
       {
         "id": "81986",
@@ -9026,16 +9009,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82128"
       },
       {
-        "id": "82130",
-        "date": "2026-10-17",
-        "time": "01:30 PM",
-        "opp": "Jr. Islanders 13U",
-        "rink": "Northwell Ice Center Torrey",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82130",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82130"
-      },
-      {
         "id": "81986",
         "date": "2026-10-18",
         "time": "12:30 PM",
@@ -9217,6 +9190,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "82130",
+        "date": "2026-10-17",
+        "time": "01:30 PM",
+        "opp": "PAL Jr Islanders 13U",
+        "rink": "Northwell Ice Center Torrey",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "5-9",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82130",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82130"
+      },
       {
         "id": "91651",
         "date": "2026-10-11",
@@ -12095,10 +12081,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Vincent Caruso",
     "level": "18U Midget Major AA",
-    "record": "12-5-2",
-    "pts": 34,
+    "record": "12-5-3",
+    "pts": 35,
     "rank": "#2",
-    "standingSummary": "12-5-1 | 18 Active Players | 2026/27 Season",
+    "standingSummary": "12-5-3 | 35 PTS | #2 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15401&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -12110,26 +12096,6 @@ export const YOUTH_TEAMS = [
         "loc": "Home",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=90567",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=90567"
-      },
-      {
-        "id": "92739",
-        "date": "2026-10-17",
-        "time": "07:20 AM",
-        "opp": "Generals 18AA White",
-        "rink": "Hatfield Ice Arena Gray",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92739",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92739"
-      },
-      {
-        "id": "92756",
-        "date": "2026-10-17",
-        "time": "02:20 PM",
-        "opp": "Hockey Club 18AA",
-        "rink": "Ice Line Rink 1",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92756",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92756"
       },
       {
         "id": "92773",
@@ -12572,26 +12538,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=90567"
       },
       {
-        "id": "92739",
-        "date": "2026-10-17",
-        "time": "07:20 AM",
-        "opp": "Generals 18AA White",
-        "rink": "Hatfield Ice Arena Gray",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92739",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92739"
-      },
-      {
-        "id": "92756",
-        "date": "2026-10-17",
-        "time": "02:20 PM",
-        "opp": "Hockey Club 18AA",
-        "rink": "Ice Line Rink 1",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92756",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92756"
-      },
-      {
         "id": "92773",
         "date": "2026-10-18",
         "time": "07:15 AM",
@@ -12753,6 +12699,32 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "92756",
+        "date": "2026-10-17",
+        "time": "02:20 PM",
+        "opp": "Genesis Hockey Club 18AA",
+        "rink": "Ice Line Rink 1",
+        "loc": "Home",
+        "outcome": "T",
+        "score": "4-4",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=92756",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=92756"
+      },
+      {
+        "id": "92739",
+        "date": "2026-10-17",
+        "time": "07:20 AM",
+        "opp": "Red Bank Generals 18AA White",
+        "rink": "Hatfield Ice Arena Gray",
+        "loc": "Away",
+        "outcome": "T",
+        "score": "3-3",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=92739",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=92739"
+      },
       {
         "id": "77334",
         "date": "2026-10-04",
@@ -20300,10 +20272,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Xan Doetsch",
     "level": "10U Squirt Major AA",
-    "record": "8-4-1",
-    "pts": 25,
+    "record": "6-9-1",
+    "pts": 13,
     "rank": "#4",
-    "standingSummary": "7-4-1 | 15 Active Players | 2026/27 Season",
+    "standingSummary": "6-9-1 | 25 Active Players | 2026/27 Season",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9870&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -20315,16 +20287,6 @@ export const YOUTH_TEAMS = [
         "loc": "Home",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76531",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76531"
-      },
-      {
-        "id": "78194",
-        "date": "2026-10-17",
-        "time": "09:45 AM",
-        "opp": "Wolfpack HC 10AA",
-        "rink": "WCC Ice Rink Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=78194",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=78194"
       },
       {
         "id": "74952",
@@ -20707,16 +20669,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76531"
       },
       {
-        "id": "78194",
-        "date": "2026-10-17",
-        "time": "09:45 AM",
-        "opp": "Wolfpack HC 10AA",
-        "rink": "WCC Ice Rink Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=78194",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=78194"
-      },
-      {
         "id": "74952",
         "date": "2026-10-18",
         "time": "11:30 AM",
@@ -20888,6 +20840,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "78194",
+        "date": "2026-10-17",
+        "time": "09:45 AM",
+        "opp": "Woodbridge Wolfpack 10U AA",
+        "rink": "WCC Ice Rink Rink 1",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "3-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=78194",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=78194"
+      },
       {
         "id": "78119",
         "date": "2026-10-11",
@@ -24877,7 +24842,6 @@ export const YOUTH_TEAMS = [
     ]
   }
 ];
-
 export const CLUB_NEWS = [
   {
     id: "fb-post-premier-gameday-cjr-oct16",

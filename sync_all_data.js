@@ -537,28 +537,163 @@ async function syncFacebook(token = process.env.MERCER_FB_TOKEN, pageId = 'merce
 }
 
 /* ==========================================================================
-   5. YOUTH TEAMS FEED VERIFICATION
+   5. YOUTH TEAMS FEED VERIFICATION & SCORECARD AUTO-SYNC
    ========================================================================== */
+import zlib from 'zlib';
+
+function parseScorecardBuffer(buf) {
+  let pos = 0;
+  while (pos < buf.length) {
+    const sIdx = buf.indexOf('stream', pos);
+    if (sIdx === -1) break;
+    
+    let dataStart = sIdx + 6;
+    if (buf[dataStart] === 0x0d && buf[dataStart + 1] === 0x0a) dataStart += 2;
+    else if (buf[dataStart] === 0x0a || buf[dataStart] === 0x0d) dataStart += 1;
+
+    const eIdx = buf.indexOf('endstream', dataStart);
+    if (eIdx === -1) break;
+
+    const streamSlice = buf.subarray(dataStart, eIdx);
+    try {
+      const decomp = zlib.inflateSync(streamSlice);
+      const txt = decomp.toString('latin1');
+      if (txt.includes('Referee Signoff') || txt.includes('Signoff at')) {
+        const matches = [...txt.matchAll(/\((.*?)\)\s*Tj/g)].map(m => m[1]);
+        for (let i = 0; i < matches.length; i++) {
+          if (matches[i].includes('Referee Signoff') || matches[i].includes('Signoff at')) {
+            const chunk = matches.slice(Math.max(0, i - 4), i + 1);
+            const score1 = parseInt(chunk[2]);
+            const score2 = parseInt(chunk[3]);
+            if (!isNaN(score1) && !isNaN(score2)) {
+              return {
+                team1: chunk[0],
+                team2: chunk[1],
+                score1,
+                score2,
+                signoff: chunk[4]
+              };
+            }
+          }
+        }
+      }
+    } catch (e) {}
+
+    pos = eIdx + 9;
+  }
+  return null;
+}
+
 async function syncYouthFeed() {
-  console.log('[YOUTH SYNC] Checking Youth Teams Feed...');
+  console.log('[YOUTH SYNC] Checking Youth Teams Feed and resolving completed games...');
   try {
+    let feed = null;
     if (fs.existsSync(YOUTH_FEED_PATH)) {
-      const feed = JSON.parse(fs.readFileSync(YOUTH_FEED_PATH, 'utf-8'));
-      console.log(`[YOUTH SYNC] Found verified youth feed with ${feed.teams?.length || 0} teams (Season: ${feed.seasonLabel || '2026/27'}).`);
-      return feed;
+      feed = JSON.parse(fs.readFileSync(YOUTH_FEED_PATH, 'utf-8'));
     } else {
       const chiefsDataModule = await import('./data/chiefs-data.js');
       const { YOUTH_TEAMS } = chiefsDataModule;
-      const feedData = {
+      feed = {
         lastSynced: new Date().toISOString(),
         seasonLabel: '2026/27',
         totalTeams: YOUTH_TEAMS.length,
         teams: YOUTH_TEAMS
       };
-      fs.writeFileSync(YOUTH_FEED_PATH, JSON.stringify(feedData, null, 2), 'utf-8');
-      console.log(`[YOUTH SYNC SUCCESS] Generated ${YOUTH_FEED_PATH} with ${YOUTH_TEAMS.length} teams.`);
-      return feedData;
     }
+
+    const todayStr = new Date().toISOString().split('T')[0];
+    let totalResolved = 0;
+
+    for (const team of feed.teams) {
+      const upcoming = team.upcomingSchedule || [];
+      const recent = team.recentResults || [];
+      const checkGames = upcoming.filter(g => g.id && g.date && g.date <= todayStr);
+      if (checkGames.length === 0) continue;
+
+      const toRemoveUpcomingIds = new Set();
+      let winsDelta = 0;
+      let lossesDelta = 0;
+      let tiesDelta = 0;
+
+      await Promise.all(checkGames.map(async (g) => {
+        const url = `https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=${g.id}`;
+        try {
+          const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
+          if (!res.ok) return;
+          const buf = Buffer.from(await res.arrayBuffer());
+          const parsed = parseScorecardBuffer(buf);
+          if (parsed) {
+            const isTeam1Chiefs = parsed.team1.toLowerCase().includes('mercer') || parsed.team1.toLowerCase().includes('chiefs');
+            const chiefsScore = isTeam1Chiefs ? parsed.score1 : parsed.score2;
+            const oppScore = isTeam1Chiefs ? parsed.score2 : parsed.score1;
+            const outcome = chiefsScore > oppScore ? 'W' : (chiefsScore < oppScore ? 'L' : 'T');
+
+            if (outcome === 'W') winsDelta++;
+            else if (outcome === 'L') lossesDelta++;
+            else tiesDelta++;
+
+            toRemoveUpcomingIds.add(String(g.id));
+
+            if (!recent.some(r => String(r.id) === String(g.id))) {
+              recent.unshift({
+                id: String(g.id),
+                date: g.date,
+                time: g.time || '',
+                opp: g.opp,
+                rink: g.rink || '',
+                loc: g.loc || 'Away',
+                outcome,
+                score: `${chiefsScore}-${oppScore}`,
+                status: 'Final',
+                scoresheetUrl: `https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=${g.id}`,
+                liveUrl: `http://live.blackbear.timetoscore.com/index.php?game_id=${g.id}`
+              });
+              console.log(`  [RESOLVED] ${team.name}: Game #${g.id} vs ${g.opp} -> ${outcome} (${chiefsScore}-${oppScore})`);
+              totalResolved++;
+            }
+          }
+        } catch (e) {}
+      }));
+
+      if (toRemoveUpcomingIds.size > 0) {
+        team.upcomingSchedule = upcoming.filter(g => !toRemoveUpcomingIds.has(String(g.id)));
+        if (team.featuredSchedule) {
+          team.featuredSchedule = team.featuredSchedule.filter(g => !toRemoveUpcomingIds.has(String(g.id)));
+        }
+        team.recentResults = recent;
+
+        if (winsDelta > 0 || lossesDelta > 0 || tiesDelta > 0) {
+          const parts = (team.record || '0-0-0').split('-').map(Number);
+          const w = (parts[0] || 0) + winsDelta;
+          const l = (parts[1] || 0) + lossesDelta;
+          const t = (parts[2] || 0) + tiesDelta;
+          team.record = `${w}-${l}-${t}`;
+          team.pts = (team.pts || 0) + (winsDelta * 2) + tiesDelta;
+          const rankPart = team.rank ? ` | ${team.rank}` : '';
+          team.standingSummary = `${team.record} | ${team.pts} PTS${rankPart} ${team.league}`;
+        }
+      }
+    }
+
+    feed.lastSynced = new Date().toISOString();
+    fs.writeFileSync(YOUTH_FEED_PATH, JSON.stringify(feed, null, 2), 'utf-8');
+    console.log(`[YOUTH SYNC SUCCESS] Wrote refreshed youth feed (${feed.teams.length} teams, ${totalResolved} new finals resolved) to ${YOUTH_FEED_PATH}`);
+
+    // Synchronize YOUTH_TEAMS in chiefs-data.js
+    try {
+      let source = fs.readFileSync(CHIEFS_DATA_PATH, 'utf-8');
+      const ytStart = source.find ? source.indexOf('export const YOUTH_TEAMS = [') : -1;
+      const newsStart = source.find ? source.indexOf('\nexport const CLUB_NEWS = [') : -1;
+      if (ytStart !== -1 && newsStart !== -1) {
+        source = source.slice(0, ytStart) + 'export const YOUTH_TEAMS = ' + JSON.stringify(feed.teams, null, 2) + ';' + source.slice(newsStart);
+        fs.writeFileSync(CHIEFS_DATA_PATH, source, 'utf-8');
+        console.log(`[CHIEFS DATA SYNC SUCCESS] Synchronized YOUTH_TEAMS in ${CHIEFS_DATA_PATH}`);
+      }
+    } catch (e) {
+      console.warn('[CHIEFS DATA SYNC WARNING] Could not update YOUTH_TEAMS in chiefs-data.js:', e.message);
+    }
+
+    return feed;
   } catch (err) {
     console.error('[YOUTH SYNC ERROR]', err);
     return null;

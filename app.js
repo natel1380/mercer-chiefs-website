@@ -191,6 +191,62 @@ export function applyVerifiedYouthResults(teams) {
 
       return updated;
     }
+
+    if (t.id === '18u-aa') {
+      const updated = { ...t };
+      // 1. Remove Games 92756 and 92739 from featuredSchedule and upcomingSchedule
+      if (Array.isArray(updated.featuredSchedule)) {
+        updated.featuredSchedule = updated.featuredSchedule.filter(g => String(g.id) !== '92756' && String(g.id) !== '92739');
+      }
+      if (Array.isArray(updated.upcomingSchedule)) {
+        updated.upcomingSchedule = updated.upcomingSchedule.filter(g => String(g.id) !== '92756' && String(g.id) !== '92739');
+      }
+
+      // 2. Ensure both games are at top of recentResults
+      const recent = Array.isArray(updated.recentResults) ? [...updated.recentResults] : [];
+      if (!recent.some(g => String(g.id) === '92756')) {
+        recent.unshift({
+          id: "92756",
+          date: "2026-10-17",
+          time: "02:20 PM",
+          opp: "Genesis Hockey Club 18AA",
+          rink: "Ice Line Rink 1",
+          loc: "Home",
+          outcome: "T",
+          score: "4-4",
+          status: "Final",
+          scoresheetUrl: "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=92756",
+          liveUrl: "http://live.blackbear.timetoscore.com/index.php?game_id=92756"
+        });
+      }
+      if (!recent.some(g => String(g.id) === '92739')) {
+        // Place morning game right after afternoon game
+        const insertIdx = recent.some(g => String(g.id) === '92756') ? 1 : 0;
+        recent.splice(insertIdx, 0, {
+          id: "92739",
+          date: "2026-10-17",
+          time: "07:20 AM",
+          opp: "Red Bank Generals 18AA White",
+          rink: "Hatfield Ice Arena Gray",
+          loc: "Away",
+          outcome: "T",
+          score: "3-3",
+          status: "Final",
+          scoresheetUrl: "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=92739",
+          liveUrl: "http://live.blackbear.timetoscore.com/index.php?game_id=92739"
+        });
+      }
+      updated.recentResults = recent;
+
+      // 3. Update Official Record, Points, and Standings
+      updated.record = '12-5-3';
+      updated.pts = 35;
+      updated.rank = '#2';
+      updated.standingSummary = '12-5-3 | 35 PTS | #2 Atlantic Hockey Federation (AHF)';
+
+      return updated;
+    }
+
     return t;
   });
 }
