@@ -165,17 +165,17 @@ export const LIVE_TICKER_GAMES = [
 
 // Dual Junior Teams Structure
 export const JUNIOR_TEAMS = {
-  ncdc: {
-    id: "ncdc",
-    name: "NCDC Junior Team",
-    leagueName: "National Collegiate Development Conference",
-    tier: "Tier II Tuition-Free",
-    division: "Atlantic Division",
-    teamId: 112,
-    seasonId: 67,
-    usphlUrl: "https://usphl.com/ncdc/game-center/teams/?team=112&season=67",
-    logo: "assets/images/ncdc-logo.png",
-    roster: [
+  "ncdc": {
+    "id": "ncdc",
+    "name": "NCDC Junior Team",
+    "leagueName": "National Collegiate Development Conference",
+    "tier": "Tier II Tuition-Free",
+    "division": "Atlantic Division",
+    "teamId": 112,
+    "seasonId": 67,
+    "usphlUrl": "https://usphl.com/ncdc/game-center/teams/?team=112&season=67",
+    "logo": "assets/images/ncdc-logo.png",
+    "roster": [
       {
         "number": 13,
         "name": "Antonijs Marks",
@@ -218,7 +218,7 @@ export const JUNIOR_TEAMS = {
         "g": 0,
         "a": 1,
         "pts": 1,
-        "pim": 0,
+        "pim": 2,
         "plusMinus": "+2",
         "ppg": 0,
         "shg": 0,
@@ -386,7 +386,7 @@ export const JUNIOR_TEAMS = {
         "g": 1,
         "a": 7,
         "pts": 8,
-        "pim": 8,
+        "pim": 10,
         "plusMinus": "+5",
         "ppg": 0,
         "shg": 0,
@@ -770,12 +770,12 @@ export const JUNIOR_TEAMS = {
         "l": 0,
         "otl": 0,
         "gaa": "2.00",
-        "svPct": ".929",
+        "svPct": ".964",
         "so": 0,
         "sol": 0,
         "ga": 2,
-        "sv": 26,
-        "sa": 28,
+        "sv": 53,
+        "sa": 55,
         "pim": 0
       },
       {
@@ -822,7 +822,7 @@ export const JUNIOR_TEAMS = {
         "w": 0,
         "l": 2,
         "otl": 0,
-        "gaa": "4.02",
+        "gaa": "4.00",
         "svPct": ".887",
         "so": 0,
         "sol": 0,
@@ -832,7 +832,7 @@ export const JUNIOR_TEAMS = {
         "pim": 0
       }
     ],
-    schedule: [
+    "schedule": [
       {
         "id": "sch-ncdc-24373",
         "gmNumber": 24373,
@@ -908,10 +908,10 @@ export const JUNIOR_TEAMS = {
         "rink": "Bridgewater Sports Arena Red",
         "city": "Bridgewater",
         "state": "NJ",
-        "result": "SOL",
+        "result": "L",
         "chiefsScore": 1,
         "oppScore": 2,
-        "status": "FINAL/SO"
+        "status": "FINAL"
       },
       {
         "id": "sch-ncdc-24782",
@@ -1743,7 +1743,7 @@ export const JUNIOR_TEAMS = {
         "time": "6:00 PM EST"
       }
     ],
-    standings: [
+    "standings": [
       {
         "rank": 1,
         "team": "Wilkes-Barre Scranton Knights",
@@ -1752,7 +1752,7 @@ export const JUNIOR_TEAMS = {
         "gp": 9,
         "w": 7,
         "l": 1,
-        "otl": 1,
+        "otl": 0,
         "pts": 15,
         "gf": 35,
         "ga": 26,
@@ -1810,6 +1810,22 @@ export const JUNIOR_TEAMS = {
       },
       {
         "rank": 5,
+        "team": "West Chester Wolves",
+        "logo": "assets/images/logos/west-chester-wolves.png",
+        "isChiefs": false,
+        "gp": 9,
+        "w": 3,
+        "l": 5,
+        "otl": 0,
+        "pts": 7,
+        "gf": 29,
+        "ga": 32,
+        "diff": "-3",
+        "streak": "3L",
+        "pct": ".389"
+      },
+      {
+        "rank": 6,
         "team": "Connecticut Junior Rangers",
         "logo": "assets/images/logos/ct-jr-rangers.png",
         "isChiefs": false,
@@ -1825,50 +1841,34 @@ export const JUNIOR_TEAMS = {
         "pct": ".389"
       },
       {
-        "rank": 6,
-        "team": "Mercer Chiefs (NCDC)",
+        "rank": 7,
+        "team": "Mercer Chiefs",
         "logo": "assets/images/logos/mercer-chiefs-junior.png",
         "isChiefs": true,
         "gp": 10,
         "w": 3,
         "l": 6,
-        "otl": 1,
+        "otl": 0,
         "pts": 7,
         "gf": 27,
         "ga": 36,
         "diff": "-9",
         "streak": "2L",
         "pct": ".350"
-      },
-      {
-        "rank": 7,
-        "team": "West Chester Wolves",
-        "logo": "assets/images/logos/west-chester-wolves.png",
-        "isChiefs": false,
-        "gp": 9,
-        "w": 3,
-        "l": 5,
-        "otl": 1,
-        "pts": 7,
-        "gf": 29,
-        "ga": 32,
-        "diff": "-3",
-        "streak": "3L",
-        "pct": ".389"
       }
     ]
   },
-  premier: {
-    id: "premier",
-    name: "USPHL Premier Junior Team",
-    leagueName: "USPHL Premier Division",
-    tier: "Junior Tier III / Premier",
-    division: "Atlantic Division",
-    teamId: 459,
-    seasonId: 67,
-    usphlUrl: "https://usphl.com/premier/game-center/teams/?team=459&season=67",
-    logo: "assets/images/usphl-premier-logo.png",
-    roster: [
+  "premier": {
+    "id": "premier",
+    "name": "USPHL Premier Junior Team",
+    "leagueName": "USPHL Premier Division",
+    "tier": "Junior Tier III / Premier",
+    "division": "Atlantic Division",
+    "teamId": 459,
+    "seasonId": 67,
+    "usphlUrl": "https://usphl.com/premier/game-center/teams/?team=459&season=67",
+    "logo": "assets/images/usphl-premier-logo.png",
+    "roster": [
       {
         "number": 51,
         "name": "Caden Allen",
@@ -1982,7 +1982,7 @@ export const JUNIOR_TEAMS = {
         "g": 2,
         "a": 5,
         "pts": 7,
-        "pim": 18,
+        "pim": 4,
         "plusMinus": "+6",
         "ppg": 0,
         "shg": 0,
@@ -2079,7 +2079,7 @@ export const JUNIOR_TEAMS = {
         "plusMinus": "+3",
         "ppg": 0,
         "shg": 0,
-        "gwg": 0
+        "gwg": 1
       },
       {
         "number": 47,
@@ -2127,7 +2127,7 @@ export const JUNIOR_TEAMS = {
         "plusMinus": "+7",
         "ppg": 3,
         "shg": 0,
-        "gwg": 2
+        "gwg": 1
       },
       {
         "number": 40,
@@ -2213,12 +2213,15 @@ export const JUNIOR_TEAMS = {
         "commitment": null,
         "featured": false,
         "headshot": "assets/images/players/premier_0_mozuraitis_alexander.png",
-        "gp": 5,
-        "g": 1,
-        "a": 1,
-        "pts": 2,
+        "gp": 1,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
         "pim": 0,
-        "plusMinus": "+1"
+        "plusMinus": "+1",
+        "ppg": 0,
+        "shg": 0,
+        "gwg": 0
       },
       {
         "number": 72,
@@ -2413,7 +2416,7 @@ export const JUNIOR_TEAMS = {
         "otl": 0,
         "gaa": "2.50",
         "svPct": ".927",
-        "so": 0,
+        "so": 1,
         "sol": 0,
         "ga": 10,
         "sv": 127,
@@ -2468,7 +2471,7 @@ export const JUNIOR_TEAMS = {
         "so": 0
       }
     ],
-    schedule: [
+    "schedule": [
       {
         "id": "sch-prem-25684",
         "gmNumber": 25684,
@@ -2554,7 +2557,7 @@ export const JUNIOR_TEAMS = {
         "gmNumber": 25419,
         "scoresheetUrl": "https://stats.usphl.timetoscore.com/generate-scorecard.php?game_id=25419",
         "date": "Oct 04, 2026",
-        "opponent": "Universel Coll\u00e8ge Gatineau",
+        "opponent": "Universel Collège Gatineau",
         "opponentLogo": "assets/images/logos/universel-coll-ge-gatineau.png",
         "location": "Away",
         "rink": "Ice Vault Rink 3",
@@ -3210,7 +3213,7 @@ export const JUNIOR_TEAMS = {
         "time": "2:30 PM EST"
       }
     ],
-    standings: [
+    "standings": [
       {
         "rank": 1,
         "team": "Rockets Hockey Club",
@@ -3229,22 +3232,6 @@ export const JUNIOR_TEAMS = {
       },
       {
         "rank": 2,
-        "team": "Mercer Chiefs (Premier)",
-        "logo": "assets/images/logos/mercer-chiefs-junior.png",
-        "isChiefs": true,
-        "gp": 9,
-        "w": 7,
-        "l": 2,
-        "otl": 0,
-        "pts": 14,
-        "gf": 40,
-        "ga": 17,
-        "diff": "+23",
-        "streak": "4W",
-        "pct": ".778"
-      },
-      {
-        "rank": 3,
         "team": "P.A.L. Junior Islanders",
         "logo": "assets/images/logos/pal-jr-islanders.png",
         "isChiefs": false,
@@ -3260,6 +3247,22 @@ export const JUNIOR_TEAMS = {
         "pct": "1.000"
       },
       {
+        "rank": 3,
+        "team": "Mercer Chiefs (Premier)",
+        "logo": "assets/images/logos/mercer-chiefs-junior.png",
+        "isChiefs": true,
+        "gp": 9,
+        "w": 7,
+        "l": 2,
+        "otl": 0,
+        "pts": 14,
+        "gf": 40,
+        "ga": 17,
+        "diff": "+23",
+        "streak": "4W",
+        "pct": ".778"
+      },
+      {
         "rank": 4,
         "team": "West Chester Wolves",
         "logo": "assets/images/logos/west-chester-wolves.png",
@@ -3267,7 +3270,7 @@ export const JUNIOR_TEAMS = {
         "gp": 9,
         "w": 6,
         "l": 2,
-        "otl": 1,
+        "otl": 0,
         "pts": 13,
         "gf": 41,
         "ga": 25,
@@ -3277,22 +3280,6 @@ export const JUNIOR_TEAMS = {
       },
       {
         "rank": 5,
-        "team": "Jersey Hitmen",
-        "logo": "assets/images/logos/jersey-hitmen.png",
-        "isChiefs": false,
-        "gp": 9,
-        "w": 5,
-        "l": 4,
-        "otl": 0,
-        "pts": 10,
-        "gf": 39,
-        "ga": 43,
-        "diff": "-4",
-        "streak": "1W",
-        "pct": ".556"
-      },
-      {
-        "rank": 6,
         "team": "Red Bank Generals",
         "logo": "assets/images/logos/red-bank-generals.png",
         "isChiefs": false,
@@ -3306,6 +3293,22 @@ export const JUNIOR_TEAMS = {
         "diff": "+17",
         "streak": "1L",
         "pct": ".714"
+      },
+      {
+        "rank": 6,
+        "team": "Jersey Hitmen",
+        "logo": "assets/images/logos/jersey-hitmen.png",
+        "isChiefs": false,
+        "gp": 9,
+        "w": 5,
+        "l": 4,
+        "otl": 0,
+        "pts": 10,
+        "gf": 39,
+        "ga": 43,
+        "diff": "-4",
+        "streak": "1W",
+        "pct": ".556"
       },
       {
         "rank": 7,
@@ -3331,7 +3334,7 @@ export const JUNIOR_TEAMS = {
         "gp": 10,
         "w": 1,
         "l": 7,
-        "otl": 2,
+        "otl": 1,
         "pts": 4,
         "gf": 26,
         "ga": 72,
