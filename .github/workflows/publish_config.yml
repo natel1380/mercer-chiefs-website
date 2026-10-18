@@ -1,0 +1,41 @@
+name: Publish Site Configuration & Team Visibility
+
+on:
+  workflow_dispatch:
+    inputs:
+      hidden_teams:
+        description: 'JSON array of hidden team IDs'
+        required: true
+        default: '[]'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v4
+
+      - name: Update site-config.json
+        run: |
+          node -e "
+          const fs = require('fs');
+          const hidden = JSON.parse(process.env.INPUT_HIDDEN || '[]');
+          const p = 'data/site-config.json';
+          let cfg = { seasonLabel: '2026/27', hiddenTeams: [] };
+          try { cfg = JSON.parse(fs.readFileSync(p, 'utf8')); } catch(e){}
+          cfg.hiddenTeams = hidden;
+          fs.writeFileSync(p, JSON.stringify(cfg, null, 2), 'utf8');
+          console.log('[CONFIG] Saved hidden teams to data/site-config.json:', hidden);
+          "
+        env:
+          INPUT_HIDDEN: ${{ github.event.inputs.hidden_teams }}
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "Mercer Chiefs Bot"
+          git config --global user.email "bot@mercerchiefshockey.com"
+          git add data/site-config.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: publish team visibility settings" && git push)

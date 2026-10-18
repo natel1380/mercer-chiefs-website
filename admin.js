@@ -784,6 +784,109 @@ window.resetTeamVisibility = function () {
   window.dispatchEvent(new Event('storage'));
 };
 
+window.publishTeamVisibility = async function () {
+  const token = localStorage.getItem('mercer_github_token')?.trim();
+  const hiddenTeams = adminState.hiddenTeams || [];
+  const btn = document.getElementById('btn-publish-visibility');
+  const originalHtml = btn ? btn.innerHTML : '';
+  const repoOwner = 'natel1380';
+  const repoName = 'mercer-chiefs-website';
+
+  if (!token) {
+    window.switchAdminTab('tab-sync');
+    window.toggleGitHubSettings();
+    showToast('Please enter and save your GitHub Token in Data Sync Center first to publish to the live site.');
+    return;
+  }
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = `⏳ Publishing to Cloud...`;
+  }
+
+  try {
+    // 1. Try direct GitHub Contents API (instant ~1s if token has Contents write permission)
+    const contentUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/data/site-config.json`;
+    let sha = null;
+    try {
+      const getRes = await fetch(contentUrl, {
+        headers: {
+          'Accept': 'application/vnd.github+json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (getRes.ok) {
+        const fileData = await getRes.json();
+        sha = fileData.sha;
+      }
+    } catch (e) {}
+
+    const newContent = JSON.stringify({ seasonLabel: '2026/27', hiddenTeams }, null, 2);
+    const putRes = await fetch(contentUrl, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/vnd.github+json',
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: `chore: update team visibility (${hiddenTeams.length} hidden)`,
+        content: btoa(unescape(encodeURIComponent(newContent))),
+        sha: sha || undefined
+      })
+    });
+
+    if (putRes.ok) {
+      showToast(`✓ Published visibility to live site (${hiddenTeams.length} hidden)!`);
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = `✓ Published!`;
+        setTimeout(() => { btn.innerHTML = originalHtml; }, 2500);
+      }
+      return;
+    }
+
+    // 2. Fallback: Trigger dedicated lightweight publish_config.yml workflow (takes ~8s with Actions permission)
+    const dispatchUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/actions/workflows/publish_config.yml/dispatches`;
+    const res = await fetch(dispatchUrl, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/vnd.github+json',
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        ref: 'main',
+        inputs: {
+          hidden_teams: JSON.stringify(hiddenTeams)
+        }
+      })
+    });
+
+    if (res.status === 204) {
+      showToast(`✓ Visibility update dispatched to cloud runner (~8s to deploy)!`);
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = `✓ Dispatched (~8s)!`;
+        setTimeout(() => { btn.innerHTML = originalHtml; }, 3000);
+      }
+    } else {
+      const err = await res.json().catch(() => ({}));
+      showToast(`Publish error: ${err.message || res.statusText}`, 'error');
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = originalHtml;
+      }
+    }
+  } catch (err) {
+    showToast(`Network error: ${err.message}`, 'error');
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = originalHtml;
+    }
+  }
+};
+
 function updateVisibleTeamsBadge() {
   const total = 2 + adminState.youthTeams.length;
   const visible = total - adminState.hiddenTeams.length;
