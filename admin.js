@@ -176,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateMetrics();
   initSeasonParameters();
   initFacebookConfigUI();
+  initGitHubConfigUI();
   renderTeamToggles();
   renderSeasonTable();
   renderNewsList();
@@ -264,14 +265,267 @@ function formatLastSync(isoStr) {
 }
 
 /* ==========================================================================
-   4. DATA SYNCHRONIZATION
+   4. DATA SYNCHRONIZATION & GITHUB CLOUD AUTOMATION
    ========================================================================== */
+
+// 4A. GitHub Cloud Automation Configuration
+function initGitHubConfigUI() {
+  const tokenInput = document.getElementById('cfg-github-token');
+  const badge = document.getElementById('github-token-status-badge');
+  const token = localStorage.getItem('mercer_github_token')?.trim();
+
+  if (tokenInput && token && !tokenInput.value) {
+    tokenInput.value = token;
+  }
+
+  if (badge) {
+    if (token) {
+      badge.textContent = "● GitHub Connected";
+      badge.style.background = "rgba(34, 197, 94, 0.15)";
+      badge.style.color = "#4ade80";
+      badge.style.borderColor = "rgba(34, 197, 94, 0.35)";
+    } else {
+      badge.textContent = "○ Token Not Configured";
+      badge.style.background = "rgba(245, 158, 11, 0.15)";
+      badge.style.color = "var(--chiefs-gold)";
+      badge.style.borderColor = "rgba(245, 158, 11, 0.35)";
+    }
+  }
+}
+
+window.toggleGitHubSettings = function () {
+  const panel = document.getElementById('github-api-settings-panel');
+  if (!panel) return;
+  const isHidden = panel.style.display === 'none' || !panel.style.display;
+  panel.style.display = isHidden ? 'block' : 'none';
+  if (isHidden) {
+    initGitHubConfigUI();
+  }
+};
+
+window.toggleGitHubTokenVisibility = function () {
+  const input = document.getElementById('cfg-github-token');
+  if (input) {
+    input.type = input.type === 'password' ? 'text' : 'password';
+  }
+};
+
+window.saveGitHubConfig = function () {
+  const input = document.getElementById('cfg-github-token');
+  const feedback = document.getElementById('github-token-feedback');
+  const token = (input ? input.value : '').trim();
+
+  if (!token) {
+    if (feedback) {
+      feedback.style.display = 'block';
+      feedback.style.color = '#f87171';
+      feedback.textContent = 'Please paste a GitHub Personal Access Token or click Clear.';
+    }
+    showToast("Please enter a GitHub Personal Access Token.", "error");
+    return;
+  }
+
+  localStorage.setItem('mercer_github_token', token);
+  initGitHubConfigUI();
+
+  if (feedback) {
+    feedback.style.display = 'block';
+    feedback.style.color = '#4ade80';
+    feedback.innerHTML = '✓ Token saved securely in local browser storage. Ready for 1-click cloud sync!';
+  }
+  showToast("GitHub Personal Access Token saved successfully!");
+};
+
+window.clearGitHubConfig = function () {
+  localStorage.removeItem('mercer_github_token');
+  const input = document.getElementById('cfg-github-token');
+  if (input) input.value = '';
+  initGitHubConfigUI();
+  const feedback = document.getElementById('github-token-feedback');
+  if (feedback) {
+    feedback.style.display = 'block';
+    feedback.style.color = '#94a3b8';
+    feedback.textContent = 'GitHub token removed from this browser.';
+  }
+  showToast("GitHub token cleared.");
+};
+
+// 4B. 1-Click Cloud Scraper Trigger (Dispatches GitHub Actions Ubuntu Runner)
+window.triggerGitHubCloudSync = async function () {
+  const token = localStorage.getItem('mercer_github_token')?.trim();
+  const repoOwner = 'natel1380';
+  const repoName = 'mercer-chiefs-website';
+  const workflowFile = 'hourly_sync.yml';
+
+  const btn = document.getElementById('btn-cloud-sync');
+  const originalHtml = btn ? btn.innerHTML : '';
+  const pContainer = document.getElementById('sync-progress-container');
+  const pBar = document.getElementById('sync-progress-bar');
+  const pText = document.getElementById('sync-status-text');
+  const pPct = document.getElementById('sync-status-pct');
+  const consoleEl = document.getElementById('sync-console');
+
+  const log = (msg) => {
+    if (consoleEl) {
+      const time = new Date().toLocaleTimeString();
+      consoleEl.innerHTML += `\n[${time}] ${msg}`;
+      consoleEl.scrollTop = consoleEl.scrollHeight;
+    }
+  };
+
+  const updateProgress = (pct, msg) => {
+    if (pBar) pBar.style.width = `${pct}%`;
+    if (pPct) pPct.textContent = `${pct}%`;
+    if (pText) pText.textContent = msg;
+  };
+
+  if (!token) {
+    window.toggleGitHubSettings();
+    const panel = document.getElementById('github-api-settings-panel');
+    if (panel) panel.style.display = 'block';
+    const feedback = document.getElementById('github-token-feedback');
+    if (feedback) {
+      feedback.style.display = 'block';
+      feedback.style.color = '#f87171';
+      feedback.textContent = 'A GitHub Personal Access Token is required to trigger cloud scraper runs.';
+    }
+    document.getElementById('cfg-github-token')?.focus();
+    log(`[ERROR] Cannot trigger cloud sync: No GitHub token configured.`);
+    log(`[ACTION] Please paste your GitHub Personal Access Token in the settings drawer above and click 'Save Token'.`);
+    log(`[OR] Click 'Actions Tab ↗' to manually click 'Run workflow' directly in GitHub.`);
+    showToast('Please enter your GitHub token first (or run manually in Actions tab).');
+    return;
+  }
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = `⏳ Launching Cloud Runner...`;
+  }
+  if (pContainer) pContainer.style.display = 'block';
+
+  log(`[START] Contacting GitHub Actions API to trigger '${workflowFile}' on ${repoOwner}/${repoName}...`);
+  updateProgress(15, 'Dispatching workflow to GitHub Actions...');
+
+  try {
+    const dispatchUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/actions/workflows/${workflowFile}/dispatches`;
+    const res = await fetch(dispatchUrl, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/vnd.github+json',
+        'Authorization': `Bearer ${token}`,
+        'X-GitHub-Api-Version': '2022-11-28',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ref: 'main' })
+    });
+
+    if (res.status === 204) {
+      log(`[GITHUB SUCCESS] Workflow dispatched successfully! Runner started in cloud.`);
+      updateProgress(35, 'Cloud VM spinning up Ubuntu runner & Node.js environment...');
+      if (btn) btn.innerHTML = `⚙️ Cloud Scraper Running...`;
+
+      // Poll GitHub Actions workflow runs to monitor progress
+      let attempts = 0;
+      const maxAttempts = 35; // ~70-100 seconds
+      let runStarted = false;
+
+      const pollInterval = setInterval(async () => {
+        attempts++;
+        try {
+          const runsUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/actions/workflows/${workflowFile}/runs?per_page=1`;
+          const runRes = await fetch(runsUrl, {
+            headers: {
+              'Accept': 'application/vnd.github+json',
+              'Authorization': `Bearer ${token}`,
+              'X-GitHub-Api-Version': '2022-11-28'
+            }
+          });
+
+          if (runRes.ok) {
+            const runData = await runRes.json();
+            const latest = runData.workflow_runs?.[0];
+            if (latest) {
+              if (latest.status === 'in_progress' || latest.status === 'queued') {
+                runStarted = true;
+                const pct = Math.min(85, 35 + (attempts * 3));
+                updateProgress(pct, `Cloud Scraper Run #${latest.run_number}: ${latest.status.toUpperCase()} (scraping USPHL & TimeToScore)...`);
+                if (attempts % 4 === 0) {
+                  log(`[RUN #${latest.run_number}] Status: ${latest.status} | Scraping league box scores & decompressed PDFs...`);
+                }
+              } else if (latest.status === 'completed' && runStarted) {
+                clearInterval(pollInterval);
+                if (latest.conclusion === 'success') {
+                  updateProgress(100, `Cloud Sync Completed Successfully! Deploying site...`);
+                  log(`[COMPLETE] Run #${latest.run_number} finished with conclusion: SUCCESS!`);
+                  log(`[PAGES] Mercer Chiefs Bot committed updated feeds. Live site is deploying.`);
+                  showToast('Cloud scraper completed successfully! Live feeds updated.');
+                  // Automatically reload the fresh feeds into this admin dashboard
+                  setTimeout(() => {
+                    window.runDataSync('all');
+                  }, 1200);
+                } else {
+                  updateProgress(100, `Run finished with: ${latest.conclusion}`);
+                  log(`[WARN] Workflow concluded with: ${latest.conclusion}. Log: ${latest.html_url}`);
+                  showToast(`Cloud run finished: ${latest.conclusion}`);
+                }
+
+                if (btn) {
+                  btn.disabled = false;
+                  btn.innerHTML = originalHtml;
+                }
+                return;
+              }
+            }
+          }
+        } catch (pollErr) {
+          console.debug('Polling error:', pollErr);
+        }
+
+        if (attempts >= maxAttempts) {
+          clearInterval(pollInterval);
+          updateProgress(100, 'Cloud runner initiated. Check GitHub Actions tab for logs.');
+          log(`[INFO] Workflow has been dispatched. Track completion live at: https://github.com/${repoOwner}/${repoName}/actions`);
+          if (btn) {
+            btn.disabled = false;
+            btn.innerHTML = originalHtml;
+          }
+          // Fetch whatever is ready
+          window.runDataSync('all');
+        }
+      }, 3000);
+
+    } else {
+      const err = await res.json().catch(() => ({}));
+      log(`[GITHUB ERROR] HTTP ${res.status}: ${err.message || res.statusText}`);
+      if (res.status === 401 || res.status === 403) {
+        log(`[HINT] Check that your token is valid and has 'actions:write' (or repo) permission.`);
+        window.toggleGitHubSettings();
+      }
+      showToast(`GitHub API error: ${err.message || 'Check token permissions'}`);
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = originalHtml;
+      }
+      if (pContainer) pContainer.style.display = 'none';
+    }
+  } catch (err) {
+    log(`[NETWORK ERROR] Could not reach GitHub API: ${err.message}`);
+    showToast(`Network error: ${err.message}`);
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = originalHtml;
+    }
+    if (pContainer) pContainer.style.display = 'none';
+  }
+};
+
+// 4C. Browser Cache Feeds Reloader
 window.runDataSync = async function (scope = 'all') {
-  const btn = document.getElementById(`btn-sync-${scope}`);
+  const btn = document.getElementById('btn-sync-all');
   const originalText = btn ? btn.innerHTML : '';
   if (btn) {
     btn.disabled = true;
-    btn.innerHTML = `Syncing...`;
+    btn.innerHTML = `Reloading...`;
   }
 
   const pContainer = document.getElementById('sync-progress-container');
@@ -297,14 +551,13 @@ window.runDataSync = async function (scope = 'all') {
   };
 
   const cfg = adminState.seasonConfig;
-  log(`[START] Initiating live feed sync for scope: ${scope.toUpperCase()} (Season ${cfg.seasonLabel})`);
-  updateProgress(15, `Querying USPHL TimeToScore & Junior Data Feed (Season ${cfg.usphlSeasonId})...`);
+  log(`[RELOAD] Reading latest published feeds from server (Season ${cfg.seasonLabel})...`);
+  updateProgress(20, `Fetching data/junior-feed.json (Season ${cfg.usphlSeasonId})...`);
 
   let updatedJunior = null;
   let updatedTicker = null;
 
   try {
-    // 1. Fetch live junior feed with cache buster
     const res = await fetch(`data/junior-feed.json?t=${Date.now()}`);
     if (res.ok) {
       const feed = await res.json();
@@ -314,70 +567,43 @@ window.runDataSync = async function (scope = 'all') {
           premier: feed.premier
         };
         updatedTicker = feed.ticker || null;
-        log(`[USPHL] Connected to TimeToScore Junior feed. Season ${feed.seasonLabel || cfg.seasonLabel} verified.`);
-        if (feed.recentFinals && feed.recentFinals.length > 0) {
-          feed.recentFinals.forEach(rf => {
-            log(`[RESULT] ${rf.league} (${rf.date}): ${rf.away} ${rf.awayScore} @ ${rf.home} ${rf.homeScore} [${rf.result}] - ${rf.highlight || 'Final'}`);
-          });
+        log(`[JUNIOR FEED] Loaded Junior feed. Last Synced: ${feed.lastSynced || 'Current'}`);
+        if (feed.premier?.standings) {
+          const chiefsPrem = feed.premier.standings.find(t => t.team?.includes('Mercer'));
+          if (chiefsPrem) {
+            log(`[STANDINGS] Premier: Rank #${chiefsPrem.rank} (${chiefsPrem.gp} GP, ${chiefsPrem.w}-${chiefsPrem.l}-${chiefsPrem.otl}, ${chiefsPrem.pts} PTS)`);
+          }
         }
       }
     }
   } catch (err) {
-    log(`[WARN] Feed fetch failed (${err.message}). Using local base data.`);
+    log(`[WARN] Junior feed fetch failed (${err.message}). Using local base data.`);
   }
 
-  if (!updatedJunior) {
-    updatedJunior = JUNIOR_TEAMS;
-  }
-  if (!updatedTicker) {
-    updatedTicker = LIVE_TICKER_GAMES;
-  }
-
-  // Auto-resolve verified game completions (Oct 16: Premier 10-4 win, NCDC 1-4 loss)
-  const resolved = applyVerifiedResults(updatedJunior, updatedTicker);
-  updatedJunior = resolved.junior;
-  updatedTicker = resolved.ticker;
-  log(`[RESULT] USPHL Premier: Connecticut Junior Rangers 4 @ Mercer Chiefs Premier 10 [W] - Chiefs 10-4 win • Kapitan 3G • Meseroll 2G 2A • Vernier 1G 4A`);
-  log(`[RESULT] NCDC: P.A.L. Junior Islanders 4 @ Mercer Chiefs NCDC 1 [L] - Marks 1G • Scali 40 saves on 44 shots`);
+  if (!updatedJunior) updatedJunior = JUNIOR_TEAMS;
+  if (!updatedTicker) updatedTicker = LIVE_TICKER_GAMES;
 
   adminState.juniorTeams = updatedJunior;
 
-  updateProgress(45, "Parsing NCDC & Premier skater stats, goalie splits, and standings...");
-  await new Promise(r => setTimeout(r, 250));
-  log(`[STATS] Validated NCDC roster: Antonijs Marks (2G 1A), Emmett Auch, Chris Sarver (1G 6A), Jack Scali (202 SV, .914 SV%).`);
-  log(`[STATS] Validated Premier roster: Andrii Kapitan (9G, Hat-trick), Zachary Meseroll (20 PTS), Maxime Vernier (17 PTS), Christophe Martin (.927 SV%).`);
-
-  updateProgress(70, `Querying TimeToScore GameSheet servers (THF Season ${cfg.thfSeasonId}, AHF Season ${cfg.ahfSeasonId})...`);
+  updateProgress(60, `Fetching data/youth-feed.json (THF & AHF)...`);
   try {
     const youthFeedResp = await fetch(`data/youth-feed.json?t=${Date.now()}`);
     if (youthFeedResp.ok) {
       const youthFeedData = await youthFeedResp.json();
       if (youthFeedData && Array.isArray(youthFeedData.teams) && youthFeedData.teams.length > 0) {
         adminState.youthTeams = youthFeedData.teams;
+        log(`[YOUTH FEED] Loaded ${youthFeedData.teams.length} youth squads. Last Synced: ${youthFeedData.lastSynced || 'Current'}`);
+        const u18aa = youthFeedData.teams.find(t => t.id === '18u-aa');
+        if (u18aa) {
+          log(`[YOUTH] 18U AA Record: ${u18aa.record} | Recent: ${u18aa.recentResults?.[0]?.opp || 'N/A'} (${u18aa.recentResults?.[0]?.score || ''})`);
+        }
       }
     }
-  } catch (e) {}
-  await new Promise(r => setTimeout(r, 250));
-  log(`[YOUTH] Fetched ${adminState.youthTeams.length} youth squads across THF & AHF. Rosters and schedules validated.`);
-
-  // If Facebook config is present, run Facebook post sync as well!
-  if (adminState.fbConfig?.accessToken?.trim()) {
-    updateProgress(85, "Querying Meta Graph API for latest Facebook updates...");
-    try {
-      if (typeof window.syncFacebookPosts === 'function') {
-        await window.syncFacebookPosts(true);
-        log(`[FACEBOOK] Synced verified club posts from Meta Graph API.`);
-      }
-    } catch (fbErr) {
-      log(`[FACEBOOK WARN] ${fbErr.message}`);
-    }
-  } else {
-    updateProgress(85, "Indexing completed scorecards and upcoming weekend match schedules...");
-    await new Promise(r => setTimeout(r, 200));
-    log(`[SCHEDULE] Indexed live official scorecards from stats.usphl.timetoscore.com.`);
+  } catch (e) {
+    log(`[WARN] Youth feed fetch failed (${e.message}).`);
   }
 
-  updateProgress(100, "Synchronizing coaching directory and updating browser cache...");
+  updateProgress(85, "Synchronizing coaching directory and updating browser cache...");
   await new Promise(r => setTimeout(r, 200));
 
   // Update timestamps and persist
@@ -388,14 +614,15 @@ window.runDataSync = async function (scope = 'all') {
   localStorage.setItem('mercer_synced_junior_data', JSON.stringify(updatedJunior));
   localStorage.setItem('mercer_synced_ticker_data', JSON.stringify(updatedTicker));
 
-  // Trigger cross-tab sync event and custom event
+  // Trigger cross-tab sync event
   window.dispatchEvent(new Event('storage'));
   window.dispatchEvent(new CustomEvent('mercer:datasync', { 
     detail: { juniorTeams: updatedJunior, ticker: updatedTicker, timestamp: nowIso } 
   }));
 
-  log(`[COMPLETE] Synchronized successfully! All 2 junior teams and ${adminState.youthTeams.length} youth teams active.`);
-  showToast(`League data synchronized successfully! Oct 16 junior game results and player stats updated.`);
+  updateProgress(100, "Reload complete!");
+  log(`[COMPLETE] Dashboard reloaded! 2 junior teams and ${adminState.youthTeams.length} youth teams active.`);
+  showToast(`Browser feeds reloaded successfully.`);
 
   setTimeout(() => {
     if (pContainer) pContainer.style.display = 'none';

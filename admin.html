@@ -693,16 +693,82 @@
             </p>
           </div>
 
-          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-            <button type="button" class="btn-primary" id="btn-sync-all" onclick="window.runDataSync('all')">
-              ⚡ Sync All Teams Now
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+            <button type="button" class="btn-primary" id="btn-cloud-sync" onclick="window.triggerGitHubCloudSync()"
+              style="background: linear-gradient(135deg, #f59e0b, #d97706); border-color: #f59e0b; box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);">
+              🚀 Trigger Cloud Scraper (GitHub Actions)
             </button>
-            <button type="button" class="btn-secondary" id="btn-sync-junior" onclick="window.runDataSync('junior')">
-              Sync Junior (USPHL)
+            <button type="button" class="btn-secondary" id="btn-github-settings" onclick="window.toggleGitHubSettings()"
+              style="display: flex; align-items: center; gap: 0.4rem;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              GitHub Setup
             </button>
-            <button type="button" class="btn-secondary" id="btn-sync-youth" onclick="window.runDataSync('youth')">
-              Sync Youth (THF & AHF)
+            <button type="button" class="btn-secondary" id="btn-sync-all" onclick="window.runDataSync('all')"
+              title="Re-read current feeds already published on the server">
+              🔄 Reload Browser Feeds
             </button>
+          </div>
+        </div>
+
+        <!-- Collapsible GitHub Actions Configuration Drawer -->
+        <div id="github-api-settings-panel"
+          style="display: none; border-top: 1px solid rgba(245, 158, 11, 0.25); padding-top: 1rem; margin-top: 0.5rem; margin-bottom: 1.25rem;">
+          <div
+            style="background: rgba(0, 0, 0, 0.35); border-radius: var(--radius-md); padding: 1.25rem; border: 1px solid rgba(245, 158, 11, 0.3);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <span style="font-size: 1.1rem;">⚡</span>
+                <strong style="color: #fff; font-size: 0.92rem;">GitHub Actions 1-Click Cloud Automation:</strong>
+              </div>
+              <span id="github-token-status-badge" class="pill-badge"
+                style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.35); color: var(--chiefs-gold); font-size: 0.75rem;">
+                ○ Token Not Configured
+              </span>
+            </div>
+            <p style="font-size: 0.78rem; color: #94a3b8; line-height: 1.45; margin-bottom: 0.85rem;">
+              Triggering the cloud runner starts an Ubuntu VM on GitHub that runs <code>sync_all_data.js</code>, decompresses live TimeToScore PDF scorecards, syncs USPHL rosters &amp; standings, commits the update, and deploys the website (~45s).
+              To authorize this from your browser, save a <strong>GitHub Personal Access Token (PAT)</strong> with <code>Actions: Read &amp; Write</code> permission.
+            </p>
+            <div
+              style="display: grid; grid-template-columns: minmax(280px, 3fr) auto; gap: 0.75rem; align-items: end;">
+              <div class="admin-form-group" style="margin-bottom: 0;">
+                <label for="cfg-github-token"
+                  style="font-size: 0.75rem; color: var(--text-secondary); display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
+                  <span>GitHub Personal Access Token</span>
+                  <a href="https://github.com/settings/tokens/new?description=Mercer+Chiefs+Portal+Cloud+Sync&amp;scopes=repo" target="_blank"
+                    style="color: var(--chiefs-gold); text-decoration: none;">🔑 Generate Token on GitHub ↗</a>
+                </label>
+                <div style="position: relative;">
+                  <input type="password" id="cfg-github-token" class="admin-form-input"
+                    style="font-size: 0.85rem; padding: 0.5rem 2.5rem 0.5rem 0.75rem; font-family: monospace;"
+                    placeholder="Paste token (ghp_... or github_pat_...)">
+                  <button type="button" onclick="window.toggleGitHubTokenVisibility()"
+                    style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.8rem;">
+                    👁️
+                  </button>
+                </div>
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button type="button" class="btn-primary" onclick="window.saveGitHubConfig()"
+                  style="font-size: 0.82rem; padding: 0.55rem 1rem; background: var(--chiefs-gold); border-color: var(--chiefs-gold); color: #000; font-weight: 700;">
+                  Save Token
+                </button>
+                <button type="button" class="btn-secondary" onclick="window.clearGitHubConfig()"
+                  style="font-size: 0.82rem; padding: 0.55rem 0.85rem; color: var(--text-muted);"
+                  title="Remove saved token from this browser">
+                  Clear
+                </button>
+                <a href="https://github.com/natel1380/mercer-chiefs-website/actions/workflows/hourly_sync.yml" target="_blank"
+                  class="btn-secondary" style="font-size: 0.82rem; padding: 0.55rem 0.85rem; text-decoration: none; display: flex; align-items: center; gap: 0.3rem;"
+                  title="Open GitHub Actions page to run manually without a token">
+                  Actions Tab ↗
+                </a>
+              </div>
+            </div>
+            <div id="github-token-feedback" style="margin-top: 0.5rem; font-size: 0.78rem; display: none;"></div>
           </div>
         </div>
 
