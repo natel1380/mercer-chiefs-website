@@ -17887,22 +17887,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Fritz Brown",
     "level": "12U Peewee A",
-    "record": "12-3-0",
-    "pts": 36,
+    "record": "13-3-0",
+    "pts": 38,
     "rank": "#3",
-    "standingSummary": "12-3-0 | 36 PTS | #3 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "13-3-0 | 38 PTS | #3 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15027&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "75261",
-        "date": "2026-10-18",
-        "time": "11:00 AM",
-        "opp": "Rockets HC 12L ",
-        "rink": "RSG Arenas at Bridgewater Blue Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75261",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75261"
-      },
       {
         "id": "76217",
         "date": "2026-10-25",
@@ -18278,16 +18268,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "75261",
-        "date": "2026-10-18",
-        "time": "11:00 AM",
-        "opp": "Rockets HC 12L ",
-        "rink": "RSG Arenas at Bridgewater Blue Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75261",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75261"
-      },
-      {
         "id": "76217",
         "date": "2026-10-25",
         "time": "05:50 PM",
@@ -18439,6 +18419,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "75261",
+        "date": "2026-10-18",
+        "time": "11:00 AM",
+        "opp": "Rockets HC 12L ",
+        "rink": "RSG Arenas at Bridgewater Blue Rink",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "4-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75261",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75261"
+      },
       {
         "id": "78979",
         "date": "2026-10-17",
