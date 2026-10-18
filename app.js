@@ -357,7 +357,7 @@ export function applyVerifiedResults(baseJunior, baseTicker) {
     }
   }
 
-  // Official Verified USPHL Premier Atlantic Division Standings (Baseline through Oct 16, 2026)
+  // Official Verified USPHL Premier Atlantic Division Standings (Baseline through Oct 17, 2026)
   const officialPremierStandings = [
     {
       rank: 1,
@@ -377,35 +377,35 @@ export function applyVerifiedResults(baseJunior, baseTicker) {
     },
     {
       rank: 2,
-      team: "Mercer Chiefs (Premier)",
-      logo: "assets/images/logos/mercer-chiefs-junior.png",
-      isChiefs: true,
-      gp: 9,
-      w: 7,
-      l: 2,
-      otl: 0,
-      pts: 14,
-      gf: 40,
-      ga: 17,
-      diff: "+23",
-      streak: "4W",
-      pct: ".778"
-    },
-    {
-      rank: 3,
       team: "P.A.L. Junior Islanders",
       logo: "assets/images/logos/pal-jr-islanders.png",
       isChiefs: false,
-      gp: 7,
-      w: 7,
+      gp: 8,
+      w: 8,
       l: 0,
       otl: 0,
-      pts: 14,
-      gf: 39,
-      ga: 14,
-      diff: "+25",
-      streak: "7W",
+      pts: 16,
+      gf: 47,
+      ga: 17,
+      diff: "+30",
+      streak: "8W",
       pct: "1.000"
+    },
+    {
+      rank: 3,
+      team: "Mercer Chiefs (Premier)",
+      logo: "assets/images/logos/mercer-chiefs-junior.png",
+      isChiefs: true,
+      gp: 10,
+      w: 7,
+      l: 3,
+      otl: 0,
+      pts: 14,
+      gf: 43,
+      ga: 25,
+      diff: "+18",
+      streak: "1L",
+      pct: ".700"
     },
     {
       rank: 4,
@@ -425,6 +425,22 @@ export function applyVerifiedResults(baseJunior, baseTicker) {
     },
     {
       rank: 5,
+      team: "Red Bank Generals",
+      logo: "assets/images/logos/red-bank-generals.png",
+      isChiefs: false,
+      gp: 8,
+      w: 6,
+      l: 2,
+      otl: 0,
+      pts: 12,
+      gf: 39,
+      ga: 14,
+      diff: "+25",
+      streak: "1W",
+      pct: ".750"
+    },
+    {
+      rank: 6,
       team: "Jersey Hitmen",
       logo: "assets/images/logos/jersey-hitmen.png",
       isChiefs: false,
@@ -438,22 +454,6 @@ export function applyVerifiedResults(baseJunior, baseTicker) {
       diff: "-4",
       streak: "1W",
       pct: ".556"
-    },
-    {
-      rank: 6,
-      team: "Red Bank Generals",
-      logo: "assets/images/logos/red-bank-generals.png",
-      isChiefs: false,
-      gp: 7,
-      w: 5,
-      l: 2,
-      otl: 0,
-      pts: 10,
-      gf: 31,
-      ga: 14,
-      diff: "+17",
-      streak: "1L",
-      pct: ".714"
     },
     {
       rank: 7,
@@ -476,16 +476,16 @@ export function applyVerifiedResults(baseJunior, baseTicker) {
       team: "New Jersey Renegades",
       logo: "assets/images/logos/nj-renegades.png",
       isChiefs: false,
-      gp: 10,
+      gp: 11,
       w: 1,
-      l: 7,
+      l: 8,
       otl: 2,
       pts: 4,
       gf: 26,
-      ga: 72,
-      diff: "-46",
-      streak: "4L",
-      pct: ".200"
+      ga: 80,
+      diff: "-54",
+      streak: "5L",
+      pct: ".182"
     },
     {
       rank: 9,
@@ -505,13 +505,9 @@ export function applyVerifiedResults(baseJunior, baseTicker) {
     }
   ];
 
-  // Auto-update Premier Standings if missing, less than the 9-team Atlantic Division, or stale
+  // Auto-update Premier Standings if missing or less than the 9-team Atlantic Division
   const curPremStandings = junior.premier?.standings;
-  const isPremStale = !Array.isArray(curPremStandings) || 
-                      curPremStandings.length < 9 || 
-                      curPremStandings.reduce((sum, t) => sum + (t.gp || 0), 0) < 76 ||
-                      curPremStandings.some(t => t.team.includes('Rockets') && t.pts < 16) ||
-                      curPremStandings.some(t => t.team.includes('Mercer') && t.rank !== 2);
+  const isPremStale = !Array.isArray(curPremStandings) || curPremStandings.length < 9;
   if (isPremStale) {
     junior.premier.standings = officialPremierStandings;
   }
@@ -711,13 +707,9 @@ export function applyVerifiedResults(baseJunior, baseTicker) {
     }
   ];
 
-  // Auto-update NCDC Standings if missing, less than the 7-team Atlantic Division, inverted, or stale
+  // Auto-update NCDC Standings if missing or less than the 7-team Atlantic Division
   const curNcdcStandings = junior.ncdc?.standings;
-  const isOldNcdcBug = Array.isArray(curNcdcStandings) && curNcdcStandings.some(t => t.team.includes('Connecticut') && t.rank === 1 && t.pts === 15);
-  const isNcdcStale = !Array.isArray(curNcdcStandings) || 
-                      curNcdcStandings.length < 7 || 
-                      isOldNcdcBug || 
-                      curNcdcStandings.reduce((sum, t) => sum + (t.gp || 0), 0) < 63;
+  const isNcdcStale = !Array.isArray(curNcdcStandings) || curNcdcStandings.length < 7;
   if (isNcdcStale) {
     junior.ncdc.standings = officialNcdcStandings;
   }
@@ -878,22 +870,13 @@ export function getStoredTickerGames() {
     ticker = LIVE_TICKER_GAMES;
   }
 
-  const { ticker: resolvedTicker } = applyVerifiedResults(JUNIOR_TEAMS, ticker);
-  // Ensure the latest Oct 16 games and upcoming games are at the front of the ticker
-  const priorityIds = ['g-live-3', 'g-live-4', 'g-live-next-1', 'g-live-next-2'];
-  resolvedTicker.sort((a, b) => {
-    const idxA = priorityIds.indexOf(a.id);
-    const idxB = priorityIds.indexOf(b.id);
-    if (idxA !== -1 && idxB !== -1) return idxA - idxB;
-    if (idxA !== -1) return -1;
-    if (idxB !== -1) return 1;
-    return 0;
-  });
+  // Filter out any obsolete static placeholders like g-live-next-1 if dynamic games exist
+  const hasDynamic = ticker.some(g => g.id?.includes('ticker-prem') || g.id?.includes('ticker-ncdc'));
+  if (hasDynamic) {
+    ticker = ticker.filter(g => g.id !== 'g-live-next-1' && !g.date?.includes('Oct 17, 7:00 PM'));
+  }
 
-  try {
-    localStorage.setItem('mercer_synced_ticker_data', JSON.stringify(resolvedTicker));
-  } catch (e) {}
-  return resolvedTicker;
+  return ticker;
 }
 
 export function refreshJuniorDataUI() {

@@ -2,8 +2,8 @@ name: Mercer Chiefs Automated Data & Social Sync
 
 on:
   schedule:
-    # Runs automatically every hour at minute 0
-    - cron: '0 * * * *'
+    # Runs automatically twice an hour at off-peak minutes (14 and 44) to bypass GitHub queue delays
+    - cron: '14,44 * * * *'
   workflow_dispatch: # Allows manual trigger anytime from the GitHub Actions tab
 
 permissions:

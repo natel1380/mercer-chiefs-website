@@ -371,55 +371,92 @@ async function syncJuniorData() {
   if (premierStandings.length > 0) baseJuniorTeams.premier.standings = premierStandings;
   if (ncdcStandings.length > 0) baseJuniorTeams.ncdc.standings = ncdcStandings;
 
-  // Build live ticker games
-  const tickerGames = [
-    {
-      id: "g-live-3",
+  // Build live ticker games dynamically from latest finals and next matchups
+  const tickerGames = [];
+
+  const premFinals = (baseJuniorTeams.premier.schedule || []).filter(g => g.status === 'FINAL');
+  if (premFinals.length > 0) {
+    const latestPrem = premFinals[premFinals.length - 1];
+    const isHome = (latestPrem.location || '').toLowerCase() === 'home';
+    tickerGames.push({
+      id: `ticker-prem-${latestPrem.gmNumber || latestPrem.id}`,
       league: "USPHL Premier",
       status: "FINAL",
-      home: "Mercer Chiefs Premier",
-      away: "Connecticut Junior Rangers",
-      homeScore: 10,
-      awayScore: 4,
-      date: "Oct 16, 2026",
-      highlight: "Chiefs 10-4 win • Kapitan hat-trick (3G) • Meseroll 2G 2A • Vernier 1G 4A"
-    },
-    {
-      id: "g-live-4",
+      home: isHome ? "Mercer Chiefs Premier" : latestPrem.opponent,
+      away: isHome ? latestPrem.opponent : "Mercer Chiefs Premier",
+      homeScore: isHome ? latestPrem.chiefsScore : latestPrem.oppScore,
+      awayScore: isHome ? latestPrem.oppScore : latestPrem.chiefsScore,
+      date: latestPrem.date,
+      highlight: `Premier: Chiefs ${latestPrem.chiefsScore}, ${latestPrem.opponent} ${latestPrem.oppScore} (Final)`
+    });
+  }
+
+  const ncdcFinals = (baseJuniorTeams.ncdc.schedule || []).filter(g => g.status === 'FINAL');
+  if (ncdcFinals.length > 0) {
+    const latestNcdc = ncdcFinals[ncdcFinals.length - 1];
+    const isHome = (latestNcdc.location || '').toLowerCase() === 'home';
+    tickerGames.push({
+      id: `ticker-ncdc-${latestNcdc.gmNumber || latestNcdc.id}`,
       league: "NCDC",
       status: "FINAL",
-      home: "Mercer Chiefs NCDC",
-      away: "P.A.L. Junior Islanders",
-      homeScore: 1,
-      awayScore: 4,
-      date: "Oct 16, 2026",
-      highlight: "Marks 1G • Scali 40 saves on 44 shots"
-    },
-    {
-      id: "g-live-next-1",
-      league: "USPHL Premier",
-      status: "UPCOMING",
-      home: "Mercer Chiefs Premier",
-      away: "P.A.L. Junior Islanders",
-      homeScore: null,
-      awayScore: null,
-      date: "Oct 17, 7:00 PM EDT",
-      rink: "Ice Land Black Bear",
-      streamUrl: "https://blackbearsports.tv/"
-    },
-    {
-      id: "g-live-next-2",
+      home: isHome ? "Mercer Chiefs NCDC" : latestNcdc.opponent,
+      away: isHome ? latestNcdc.opponent : "Mercer Chiefs NCDC",
+      homeScore: isHome ? latestNcdc.chiefsScore : latestNcdc.oppScore,
+      awayScore: isHome ? latestNcdc.oppScore : latestNcdc.chiefsScore,
+      date: latestNcdc.date,
+      highlight: `NCDC: Chiefs ${latestNcdc.chiefsScore}, ${latestNcdc.opponent} ${latestNcdc.oppScore} (Final)`
+    });
+  }
+
+  const nextNcdc = (baseJuniorTeams.ncdc.schedule || []).find(g => g.status !== 'FINAL');
+  if (nextNcdc) {
+    const isHome = (nextNcdc.location || '').toLowerCase() === 'home';
+    tickerGames.push({
+      id: `ticker-ncdc-up-${nextNcdc.gmNumber || nextNcdc.id}`,
       league: "NCDC",
       status: "UPCOMING",
-      home: "Jersey Hitmen",
-      away: "Mercer Chiefs NCDC",
+      home: isHome ? "Mercer Chiefs NCDC" : nextNcdc.opponent,
+      away: isHome ? nextNcdc.opponent : "Mercer Chiefs NCDC",
       homeScore: null,
       awayScore: null,
-      date: "Oct 18, 1:30 PM EDT",
-      rink: "Ice Vault Arena",
+      date: `${nextNcdc.date}${nextNcdc.time ? ', ' + nextNcdc.time : ''}`,
+      rink: nextNcdc.rink || "Ice Vault Arena",
       streamUrl: "https://blackbearsports.tv/"
-    }
-  ];
+    });
+  }
+
+  const nextPrem = (baseJuniorTeams.premier.schedule || []).find(g => g.status !== 'FINAL');
+  if (nextPrem) {
+    const isHome = (nextPrem.location || '').toLowerCase() === 'home';
+    tickerGames.push({
+      id: `ticker-prem-up-${nextPrem.gmNumber || nextPrem.id}`,
+      league: "USPHL Premier",
+      status: "UPCOMING",
+      home: isHome ? "Mercer Chiefs Premier" : nextPrem.opponent,
+      away: isHome ? nextPrem.opponent : "Mercer Chiefs Premier",
+      homeScore: null,
+      awayScore: null,
+      date: `${nextPrem.date}${nextPrem.time ? ', ' + nextPrem.time : ''}`,
+      rink: nextPrem.rink || "Ice Land Black Bear",
+      streamUrl: "https://blackbearsports.tv/"
+    });
+  }
+
+  if (premFinals.length > 1) {
+    const prevPrem = premFinals[premFinals.length - 2];
+    const isHome = (prevPrem.location || '').toLowerCase() === 'home';
+    tickerGames.push({
+      id: `ticker-prem-prev-${prevPrem.gmNumber || prevPrem.id}`,
+      league: "USPHL Premier",
+      status: "FINAL",
+      home: isHome ? "Mercer Chiefs Premier" : prevPrem.opponent,
+      away: isHome ? prevPrem.opponent : "Mercer Chiefs Premier",
+      homeScore: isHome ? prevPrem.chiefsScore : prevPrem.oppScore,
+      awayScore: isHome ? prevPrem.oppScore : prevPrem.chiefsScore,
+      date: prevPrem.date,
+      highlight: `Premier: Chiefs ${prevPrem.chiefsScore}, ${prevPrem.opponent} ${prevPrem.oppScore} (Final)`
+    });
+  }
 
   // 4. Write data/junior-feed.json
   const juniorFeedData = {
@@ -438,14 +475,21 @@ async function syncJuniorData() {
   try {
     let source = fs.readFileSync(CHIEFS_DATA_PATH, 'utf-8');
     
+    // Replace LIVE_TICKER_GAMES block
+    const tickerRegex = /export const LIVE_TICKER_GAMES = \[[\s\S]*?\n\];/;
+    if (tickerRegex.test(source)) {
+      source = source.replace(tickerRegex, `export const LIVE_TICKER_GAMES = ${JSON.stringify(tickerGames, null, 2)};`);
+    }
+
     // Replace JUNIOR_TEAMS block
     const jtRegex = /export const JUNIOR_TEAMS = \{[\s\S]*?\n\};\n\n\/\/ Backwards compatibility/;
     if (jtRegex.test(source)) {
       const newJtStr = `export const JUNIOR_TEAMS = ${JSON.stringify(baseJuniorTeams, null, 2)};\n\n// Backwards compatibility`;
       source = source.replace(jtRegex, newJtStr);
-      fs.writeFileSync(CHIEFS_DATA_PATH, source, 'utf-8');
-      console.log(`[CHIEFS DATA SYNC SUCCESS] Updated JUNIOR_TEAMS in ${CHIEFS_DATA_PATH}`);
     }
+
+    fs.writeFileSync(CHIEFS_DATA_PATH, source, 'utf-8');
+    console.log(`[CHIEFS DATA SYNC SUCCESS] Updated JUNIOR_TEAMS & LIVE_TICKER_GAMES in ${CHIEFS_DATA_PATH}`);
   } catch (err) {
     console.warn('[CHIEFS DATA SYNC WARNING] Could not patch chiefs-data.js source directly:', err.message);
   }

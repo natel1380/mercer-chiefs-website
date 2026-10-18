@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-10-18T04:14:06.191Z",
+  "lastSynced": "2026-10-18T04:24:13.911Z",
   "seasonLabel": "2026-27",
   "ncdc": {
     "id": "ncdc",
@@ -3198,18 +3198,18 @@
   },
   "ticker": [
     {
-      "id": "g-live-3",
+      "id": "ticker-prem-26852",
       "league": "USPHL Premier",
       "status": "FINAL",
-      "home": "Mercer Chiefs Premier",
-      "away": "Connecticut Junior Rangers",
-      "homeScore": 10,
-      "awayScore": 4,
-      "date": "Oct 16, 2026",
-      "highlight": "Chiefs 10-4 win • Kapitan hat-trick (3G) • Meseroll 2G 2A • Vernier 1G 4A"
+      "home": "P.A.L. Junior Islanders",
+      "away": "Mercer Chiefs Premier",
+      "homeScore": 8,
+      "awayScore": 3,
+      "date": "Oct 17, 2026",
+      "highlight": "Premier: Chiefs 3, P.A.L. Junior Islanders 8 (Final)"
     },
     {
-      "id": "g-live-4",
+      "id": "ticker-ncdc-24378",
       "league": "NCDC",
       "status": "FINAL",
       "home": "Mercer Chiefs NCDC",
@@ -3217,31 +3217,42 @@
       "homeScore": 1,
       "awayScore": 4,
       "date": "Oct 16, 2026",
-      "highlight": "Marks 1G • Scali 40 saves on 44 shots"
+      "highlight": "NCDC: Chiefs 1, P.A.L. Junior Islanders 4 (Final)"
     },
     {
-      "id": "g-live-next-1",
-      "league": "USPHL Premier",
-      "status": "UPCOMING",
-      "home": "Mercer Chiefs Premier",
-      "away": "P.A.L. Junior Islanders",
-      "homeScore": null,
-      "awayScore": null,
-      "date": "Oct 17, 7:00 PM EDT",
-      "rink": "Ice Land Black Bear",
-      "streamUrl": "https://blackbearsports.tv/"
-    },
-    {
-      "id": "g-live-next-2",
+      "id": "ticker-ncdc-up-24401",
       "league": "NCDC",
       "status": "UPCOMING",
       "home": "Jersey Hitmen",
       "away": "Mercer Chiefs NCDC",
       "homeScore": null,
       "awayScore": null,
-      "date": "Oct 18, 1:30 PM EDT",
-      "rink": "Ice Vault Arena",
+      "date": "Oct 18, 2026, 4:00 PM EDT",
+      "rink": "Ice Vault Rink 3",
       "streamUrl": "https://blackbearsports.tv/"
+    },
+    {
+      "id": "ticker-prem-up-26155",
+      "league": "USPHL Premier",
+      "status": "UPCOMING",
+      "home": "Mercer Chiefs Premier",
+      "away": "Connecticut Junior Rangers",
+      "homeScore": null,
+      "awayScore": null,
+      "date": "Oct 22, 2026, 1:00 PM EDT",
+      "rink": "Ice Land Black Bear",
+      "streamUrl": "https://blackbearsports.tv/"
+    },
+    {
+      "id": "ticker-prem-prev-26219",
+      "league": "USPHL Premier",
+      "status": "FINAL",
+      "home": "Mercer Chiefs Premier",
+      "away": "Connecticut Junior Rangers",
+      "homeScore": 10,
+      "awayScore": 4,
+      "date": "Oct 16, 2026",
+      "highlight": "Premier: Chiefs 10, Connecticut Junior Rangers 4 (Final)"
     }
   ],
   "recentFinals": [
