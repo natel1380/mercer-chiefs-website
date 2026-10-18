@@ -14682,10 +14682,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Jason Bracco",
     "level": "14U Bantam Major AA",
-    "record": "1-13-0",
+    "record": "1-14-0",
     "pts": 3,
     "rank": "#33",
-    "standingSummary": "1-13-0 | 3 PTS | #33 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "1-14-0 | 3 PTS | #33 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9875&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -14697,16 +14697,6 @@ export const YOUTH_TEAMS = [
         "loc": "Home",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76646",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76646"
-      },
-      {
-        "id": "92621",
-        "date": "2026-10-18",
-        "time": "08:40 AM",
-        "opp": "Avalanche 14AA",
-        "rink": "Ice Land Black Bear Rink",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92621",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92621"
       },
       {
         "id": "92633",
@@ -15073,16 +15063,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76646"
       },
       {
-        "id": "92621",
-        "date": "2026-10-18",
-        "time": "08:40 AM",
-        "opp": "Avalanche 14AA",
-        "rink": "Ice Land Black Bear Rink",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92621",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92621"
-      },
-      {
         "id": "92633",
         "date": "2026-10-18",
         "time": "01:45 PM",
@@ -15304,6 +15284,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "92621",
+        "date": "2026-10-18",
+        "time": "08:40 AM",
+        "opp": "Avalanche 14AA",
+        "rink": "Ice Land Black Bear Rink",
+        "loc": "Home",
+        "outcome": "L",
+        "score": "1-6",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=92621",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=92621"
+      },
       {
         "id": "92585",
         "date": "2026-10-17",
@@ -22359,22 +22352,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Nick Dimino",
     "level": "9U Squirt Minor AA",
-    "record": "7-4-1",
-    "pts": 22,
+    "record": "8-4-1",
+    "pts": 24,
     "rank": "#6",
-    "standingSummary": "7-4-1 | 14 Active Players | 2026/27 Season",
+    "standingSummary": "8-4-1 | 24 PTS | #6 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9879&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "75161",
-        "date": "2026-10-18",
-        "time": "09:20 AM",
-        "opp": "Hockey Club 9AA",
-        "rink": "RSG Arenas at Bridgewater Blue Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75161",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75161"
-      },
       {
         "id": "76706",
         "date": "2026-10-31",
@@ -22738,16 +22721,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "75161",
-        "date": "2026-10-18",
-        "time": "09:20 AM",
-        "opp": "Hockey Club 9AA",
-        "rink": "RSG Arenas at Bridgewater Blue Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75161",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75161"
-      },
-      {
         "id": "76706",
         "date": "2026-10-31",
         "time": "10:00 AM",
@@ -22939,6 +22912,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "75161",
+        "date": "2026-10-18",
+        "time": "09:20 AM",
+        "opp": "Hockey Club 9AA",
+        "rink": "RSG Arenas at Bridgewater Blue Rink",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "9-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75161",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75161"
+      },
       {
         "id": "76705",
         "date": "2026-10-10",
