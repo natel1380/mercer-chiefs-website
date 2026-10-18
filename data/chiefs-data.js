@@ -11967,10 +11967,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Vincent Caruso",
     "level": "18U Midget Major AA",
-    "record": "12-5-3",
+    "record": "12-6-3",
     "pts": 35,
     "rank": "#2",
-    "standingSummary": "12-5-3 | 35 PTS | #2 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "12-6-3 | 35 PTS | #2 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15401&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -11982,16 +11982,6 @@ export const YOUTH_TEAMS = [
         "loc": "Home",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=90567",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=90567"
-      },
-      {
-        "id": "92773",
-        "date": "2026-10-18",
-        "time": "07:15 AM",
-        "opp": "VFC 18AA ",
-        "rink": "Ice Line Rink 2",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92773",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92773"
       },
       {
         "id": "92790",
@@ -12424,16 +12414,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=90567"
       },
       {
-        "id": "92773",
-        "date": "2026-10-18",
-        "time": "07:15 AM",
-        "opp": "VFC 18AA ",
-        "rink": "Ice Line Rink 2",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92773",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92773"
-      },
-      {
         "id": "92790",
         "date": "2026-10-18",
         "time": "02:20 PM",
@@ -12585,6 +12565,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "92773",
+        "date": "2026-10-18",
+        "time": "07:15 AM",
+        "opp": "VFC 18AA ",
+        "rink": "Ice Line Rink 2",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "3-9",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=92773",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=92773"
+      },
       {
         "id": "92756",
         "date": "2026-10-17",
