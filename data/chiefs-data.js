@@ -9182,22 +9182,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Chris Barcless",
     "level": "12U Peewee Major AAA",
-    "record": "8-3-1",
+    "record": "8-4-1",
     "pts": 24,
     "rank": "#2",
-    "standingSummary": "8-3-1 | 24 PTS | #2 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "8-4-1 | 24 PTS | #2 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10303&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "82202",
-        "date": "2026-10-18",
-        "time": "08:25 AM",
-        "opp": "Hockey Club 12U",
-        "rink": "RSG Arena at Dunellen",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82202",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82202"
-      },
       {
         "id": "81873",
         "date": "2026-10-31",
@@ -9569,16 +9559,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "82202",
-        "date": "2026-10-18",
-        "time": "08:25 AM",
-        "opp": "Hockey Club 12U",
-        "rink": "RSG Arena at Dunellen",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82202",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82202"
-      },
-      {
         "id": "81873",
         "date": "2026-10-31",
         "time": "09:45 AM",
@@ -9700,6 +9680,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "82202",
+        "date": "2026-10-18",
+        "time": "08:25 AM",
+        "opp": "Rockets Hockey Club 12U",
+        "rink": "RSG Arena at Dunellen",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "0-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82202",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82202"
+      },
       {
         "id": "81705",
         "date": "2026-10-17",
@@ -20831,22 +20824,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Samuel Libetti",
     "level": "10U Squirt A",
-    "record": "3-11-0",
+    "record": "3-12-0",
     "pts": 9,
     "rank": "#16",
-    "standingSummary": "3-11-0 | 12 Active Players | 2026/27 Season",
+    "standingSummary": "3-12-0 | 9 PTS | #16 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=14939&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "76277",
-        "date": "2026-10-18",
-        "time": "08:10 AM",
-        "opp": "Wildcats 10GRY",
-        "rink": "Jersey Shore Arena Red Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76277",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76277"
-      },
       {
         "id": "79576",
         "date": "2026-10-31",
@@ -21162,16 +21145,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "76277",
-        "date": "2026-10-18",
-        "time": "08:10 AM",
-        "opp": "Wildcats 10GRY",
-        "rink": "Jersey Shore Arena Red Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76277",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76277"
-      },
-      {
         "id": "79576",
         "date": "2026-10-31",
         "time": "08:20 AM",
@@ -21353,6 +21326,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76277",
+        "date": "2026-10-18",
+        "time": "08:10 AM",
+        "opp": "Jersey Shore Wildcats 10GRY",
+        "rink": "Jersey Shore Arena Red Rink",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "0-7",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76277",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76277"
+      },
       {
         "id": "79571",
         "date": "2026-10-11",

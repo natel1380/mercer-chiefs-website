@@ -629,16 +629,23 @@ function parseScorecardBuffer(buf) {
   const homeTeamItem = items.find(i => Math.abs(i.y - 725.18) < 4 && i.x >= 300 && !i.text.includes('Home Team:'));
   const signoffItem = items.find(i => i.text.toLowerCase().includes('signoff') || i.text.toLowerCase().includes('signature'));
 
-  if (visScoreItem && homeScoreItem) {
-    const vScore = parseInt(visScoreItem.text.trim());
-    const hScore = parseInt(homeScoreItem.text.trim());
+  const hasSignoff = !!signoffItem;
+  let vScore = visScoreItem ? parseInt(visScoreItem.text.trim(), 10) : null;
+  let hScore = homeScoreItem ? parseInt(homeScoreItem.text.trim(), 10) : null;
+
+  // In TimeToScore scorecards, a score of 0 (shutout) is omitted from the PDF text stream.
+  // When official signoffs are present or one team's score is recorded, default missing score to 0.
+  if (hasSignoff || vScore !== null || hScore !== null) {
+    if (vScore === null && (hasSignoff || hScore !== null)) vScore = 0;
+    if (hScore === null && (hasSignoff || vScore !== null)) hScore = 0;
+
     if (!isNaN(vScore) && !isNaN(hScore)) {
       return {
-        team1: visTeamItem?.text || 'Visitor',
-        team2: homeTeamItem?.text || 'Home',
+        team1: visTeamItem?.text?.trim() || 'Visitor',
+        team2: homeTeamItem?.text?.trim() || 'Home',
         score1: vScore,
         score2: hScore,
-        signoff: signoffItem?.text || 'Official'
+        signoff: signoffItem?.text?.trim() || 'Official'
       };
     }
   }
@@ -701,11 +708,16 @@ async function syncYouthFeed() {
             toRemoveUpcomingIds.add(String(g.id));
 
             if (!recent.some(r => String(r.id) === String(g.id))) {
+              const oppNameFromScorecard = (isTeam1Chiefs ? parsed.team2 : parsed.team1)?.trim();
+              const cleanOpp = (oppNameFromScorecard && oppNameFromScorecard !== 'Visitor' && oppNameFromScorecard !== 'Home')
+                ? oppNameFromScorecard
+                : (g.opp || '').trim();
+
               recent.unshift({
                 id: String(g.id),
                 date: g.date,
                 time: g.time || '',
-                opp: g.opp,
+                opp: cleanOpp,
                 rink: g.rink || '',
                 loc: g.loc || 'Away',
                 outcome,
@@ -714,7 +726,7 @@ async function syncYouthFeed() {
                 scoresheetUrl: `https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=${g.id}`,
                 liveUrl: `http://live.blackbear.timetoscore.com/index.php?game_id=${g.id}`
               });
-              console.log(`  [RESOLVED] ${team.name}: Game #${g.id} vs ${g.opp} -> ${outcome} (${chiefsScore}-${oppScore})`);
+              console.log(`  [RESOLVED] ${team.name}: Game #${g.id} vs ${cleanOpp} -> ${outcome} (${chiefsScore}-${oppScore})`);
               totalResolved++;
             }
           }
