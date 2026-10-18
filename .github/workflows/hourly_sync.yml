@@ -4,7 +4,12 @@ on:
   schedule:
     # Runs automatically twice an hour at off-peak minutes (14 and 44) to bypass GitHub queue delays
     - cron: '14,44 * * * *'
-  workflow_dispatch: # Allows manual trigger anytime from the GitHub Actions tab
+  workflow_dispatch: # Allows manual trigger anytime from the GitHub Actions tab or Admin dashboard
+    inputs:
+      hidden_teams:
+        description: 'JSON array of hidden team IDs'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -20,6 +25,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      - name: Update Site Config from Input
+        if: ${{ github.event.inputs.hidden_teams != '' }}
+        run: |
+          node -e "
+          const fs = require('fs');
+          const hidden = JSON.parse(process.env.INPUT_HIDDEN || '[]');
+          const p = 'data/site-config.json';
+          let cfg = { seasonLabel: '2026/27', hiddenTeams: [] };
+          try { cfg = JSON.parse(fs.readFileSync(p, 'utf8')); } catch(e){}
+          cfg.hiddenTeams = hidden;
+          fs.writeFileSync(p, JSON.stringify(cfg, null, 2), 'utf8');
+          console.log('[CONFIG] Saved hidden teams to data/site-config.json:', hidden);
+          "
+        env:
+          INPUT_HIDDEN: ${{ github.event.inputs.hidden_teams }}
 
       - name: Run Hourly Autonomous Data Sync
         env:

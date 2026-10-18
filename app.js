@@ -694,6 +694,25 @@ function initAutoBackgroundSync() {
         console.debug('Youth feed background auto-sync skipped:', youthErr);
       }
 
+      // 4. Automated Site Config & Team Visibility Sync
+      try {
+        const cfgResp = await fetch('data/site-config.json?t=' + Date.now());
+        if (cfgResp.ok) {
+          const cfg = await cfgResp.json();
+          if (cfg && Array.isArray(cfg.hiddenTeams)) {
+            const currentHidden = getStoredHiddenTeams();
+            if (JSON.stringify(currentHidden) !== JSON.stringify(cfg.hiddenTeams)) {
+              localStorage.setItem('mercer_hidden_teams', JSON.stringify(cfg.hiddenTeams));
+              if (typeof populateYouthDropdown === 'function') populateYouthDropdown();
+              if (typeof renderYouthDisplay === 'function') renderYouthDisplay();
+              console.log('[AUTO-SYNC] Updated global team visibility preferences from site-config.json.');
+            }
+          }
+        }
+      } catch (cfgErr) {
+        console.debug('Site config sync skipped:', cfgErr);
+      }
+
       localStorage.setItem('mercer_auto_sync_ts', new Date().toISOString());
     } catch (err) {
       console.debug('Background auto-sync error:', err);

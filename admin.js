@@ -407,6 +407,7 @@ window.triggerGitHubCloudSync = async function () {
   updateProgress(15, 'Dispatching workflow to GitHub Actions...');
 
   try {
+    const hiddenTeams = adminState.hiddenTeams || [];
     const dispatchUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/actions/workflows/${workflowFile}/dispatches`;
     const res = await fetch(dispatchUrl, {
       method: 'POST',
@@ -416,11 +417,19 @@ window.triggerGitHubCloudSync = async function () {
         'X-GitHub-Api-Version': '2022-11-28',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ ref: 'main' })
+      body: JSON.stringify({
+        ref: 'main',
+        inputs: {
+          hidden_teams: JSON.stringify(hiddenTeams)
+        }
+      })
     });
 
     if (res.status === 204) {
       log(`[GITHUB SUCCESS] Workflow dispatched successfully! Runner started in cloud.`);
+      if (hiddenTeams.length > 0) {
+        log(`[CONFIG] Synced ${hiddenTeams.length} hidden team preferences to cloud runner.`);
+      }
       updateProgress(35, 'Cloud VM spinning up Ubuntu runner & Node.js environment...');
       if (btn) btn.innerHTML = `⚙️ Cloud Scraper Running...`;
 
@@ -602,6 +611,19 @@ window.runDataSync = async function (scope = 'all') {
   } catch (e) {
     log(`[WARN] Youth feed fetch failed (${e.message}).`);
   }
+
+  try {
+    const cfgResp = await fetch(`data/site-config.json?t=${Date.now()}`);
+    if (cfgResp.ok) {
+      const siteCfg = await cfgResp.json();
+      if (siteCfg && Array.isArray(siteCfg.hiddenTeams)) {
+        adminState.hiddenTeams = siteCfg.hiddenTeams;
+        localStorage.setItem('mercer_hidden_teams', JSON.stringify(siteCfg.hiddenTeams));
+        renderTeamToggles();
+        log(`[SITE CONFIG] Synced global hidden teams (${siteCfg.hiddenTeams.length} hidden) from server.`);
+      }
+    }
+  } catch (e) {}
 
   updateProgress(85, "Synchronizing coaching directory and updating browser cache...");
   await new Promise(r => setTimeout(r, 200));
