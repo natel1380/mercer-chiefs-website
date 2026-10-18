@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-10-18T19:26:12.627Z",
+  "lastSynced": "2026-10-18T21:54:27.835Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -8025,10 +8025,10 @@
       "season": "2026/27",
       "headCoach": "Vincent Caruso",
       "level": "18U Midget Major AA",
-      "record": "12-6-3",
+      "record": "12-7-3",
       "pts": 35,
       "rank": "#2",
-      "standingSummary": "12-6-3 | 35 PTS | #2 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "12-7-3 | 35 PTS | #2 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15401&season=190&stat_class=1",
       "featuredSchedule": [
         {
@@ -8040,16 +8040,6 @@
           "loc": "Home",
           "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=90567",
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=90567"
-        },
-        {
-          "id": "92790",
-          "date": "2026-10-18",
-          "time": "02:20 PM",
-          "opp": "Avalanche 18AA Blue",
-          "rink": "Ice Line Rink 1",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92790",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92790"
         }
       ],
       "roster": [
@@ -8472,16 +8462,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=90567"
         },
         {
-          "id": "92790",
-          "date": "2026-10-18",
-          "time": "02:20 PM",
-          "opp": "Avalanche 18AA Blue",
-          "rink": "Ice Line Rink 1",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92790",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92790"
-        },
-        {
           "id": "75391",
           "date": "2026-10-24",
           "time": "09:50 AM",
@@ -8623,6 +8603,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "92790",
+          "date": "2026-10-18",
+          "time": "02:20 PM",
+          "opp": "North Jersey Avalanche 18AA Blue",
+          "rink": "Ice Line Rink 1",
+          "loc": "Home",
+          "outcome": "L",
+          "score": "0-6",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=92790",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=92790"
+        },
         {
           "id": "92773",
           "date": "2026-10-18",
@@ -12288,22 +12281,12 @@
       "season": "2026/27",
       "headCoach": "Don Migliorisi",
       "level": "13U Bantam Minor AA",
-      "record": "10-5-0",
-      "pts": 28,
+      "record": "11-5-0",
+      "pts": 30,
       "rank": "#8",
-      "standingSummary": "10-5-0 | 28 PTS | #8 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "11-5-0 | 30 PTS | #8 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15033&season=190&stat_class=1",
       "featuredSchedule": [
-        {
-          "id": "92569",
-          "date": "2026-10-18",
-          "time": "01:50 PM",
-          "opp": "Selects 13AA",
-          "rink": "Skylands Ice World Forum",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92569",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92569"
-        },
         {
           "id": "92579",
           "date": "2026-10-18",
@@ -12735,16 +12718,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "92569",
-          "date": "2026-10-18",
-          "time": "01:50 PM",
-          "opp": "Selects 13AA",
-          "rink": "Skylands Ice World Forum",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92569",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92569"
-        },
-        {
           "id": "92579",
           "date": "2026-10-18",
           "time": "06:40 PM",
@@ -12956,6 +12929,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "92569",
+          "date": "2026-10-18",
+          "time": "01:50 PM",
+          "opp": "TI Selects 13AA",
+          "rink": "Skylands Ice World Forum",
+          "loc": "Home",
+          "outcome": "W",
+          "score": "7-2",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=92569",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=92569"
+        },
         {
           "id": "92551",
           "date": "2026-10-17",
