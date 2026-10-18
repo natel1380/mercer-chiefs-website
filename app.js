@@ -1190,7 +1190,9 @@ function initAutoBackgroundSync() {
       const stored = getStoredJuniorTeams();
       const ncdcNeedsUpdate = !stored.ncdc?.schedule?.some(g => g.gmNumber === 24378 && g.status === 'FINAL');
       const premNeedsUpdate = !stored.premier?.schedule?.some(g => g.gmNumber === 26219 && g.status === 'FINAL');
+      const premOct17NeedsUpdate = !stored.premier?.schedule?.some(g => g.gmNumber === 26852 && g.status === 'FINAL');
       const premStandingsNeedUpdate = !stored.premier?.standings || stored.premier.standings.some(t => t.team?.includes('Rockets') && t.pts < 16);
+      const premStandingsOct17NeedsUpdate = !stored.premier?.standings || stored.premier.standings.some(t => t.team?.includes('Mercer') && (t.gp || 0) < 10);
       const youthNeedsUpdate = !localStorage.getItem('mercer_synced_youth_data');
 
       // 1. Check if Facebook Meta Graph API token is configured (throttled to 1 hour to respect Meta API rate limits)
@@ -1315,7 +1317,7 @@ function initAutoBackgroundSync() {
             const feedTs = jrFeed.lastSynced ? new Date(jrFeed.lastSynced).getTime() : 0;
             const storedTs = localStorage.getItem('mercer_last_sync_timestamp') ? new Date(localStorage.getItem('mercer_last_sync_timestamp')).getTime() : 0;
 
-            if (ncdcNeedsUpdate || premNeedsUpdate || premStandingsNeedUpdate || feedTs > storedTs || !localStorage.getItem('mercer_synced_junior_data')) {
+            if (ncdcNeedsUpdate || premNeedsUpdate || premOct17NeedsUpdate || premStandingsNeedUpdate || premStandingsOct17NeedsUpdate || feedTs > storedTs || !localStorage.getItem('mercer_synced_junior_data')) {
               const updatedJunior = {
                 ncdc: jrFeed.ncdc,
                 premier: jrFeed.premier
