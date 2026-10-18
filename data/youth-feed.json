@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-10-18T00:39:22.314Z",
+  "lastSynced": "2026-10-18T04:14:07.258Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -12337,22 +12337,12 @@
       "season": "2026/27",
       "headCoach": "Don Migliorisi",
       "level": "13U Bantam Minor AA",
-      "record": "9-5-0",
-      "pts": 26,
+      "record": "10-5-0",
+      "pts": 28,
       "rank": "#8",
-      "standingSummary": "9-5-0 | 26 PTS | #8 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "10-5-0 | 28 PTS | #8 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15033&season=190&stat_class=1",
       "featuredSchedule": [
-        {
-          "id": "92551",
-          "date": "2026-10-17",
-          "time": "08:20 PM",
-          "opp": "Hawks 13AA",
-          "rink": "Sportscare Arena Rink 1",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92551",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92551"
-        },
         {
           "id": "92569",
           "date": "2026-10-18",
@@ -12794,16 +12784,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "92551",
-          "date": "2026-10-17",
-          "time": "08:20 PM",
-          "opp": "Hawks 13AA",
-          "rink": "Sportscare Arena Rink 1",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92551",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92551"
-        },
-        {
           "id": "92569",
           "date": "2026-10-18",
           "time": "01:50 PM",
@@ -13025,6 +13005,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "92551",
+          "date": "2026-10-17",
+          "time": "08:20 PM",
+          "opp": "Hawks 13AA",
+          "rink": "Sportscare Arena Rink 1",
+          "loc": "Home",
+          "outcome": "W",
+          "score": "8-6",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=92551",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=92551"
+        },
         {
           "id": "92523",
           "date": "2026-10-16",
