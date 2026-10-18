@@ -1797,16 +1797,16 @@ export const JUNIOR_TEAMS = {
         "team": "Rockets Hockey Club",
         "logo": "assets/images/logos/rockets-hc.png",
         "isChiefs": false,
-        "gp": 9,
+        "gp": 10,
         "w": 4,
-        "l": 4,
+        "l": 5,
         "otl": 1,
         "pts": 9,
-        "gf": 27,
-        "ga": 29,
-        "diff": "-2",
-        "streak": "2L",
-        "pct": ".500"
+        "gf": 29,
+        "ga": 34,
+        "diff": "-5",
+        "streak": "3L",
+        "pct": ".450"
       },
       {
         "rank": 5,
