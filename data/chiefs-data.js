@@ -10637,22 +10637,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Brian Batjer",
     "level": "10U Squirt Major AAA",
-    "record": "1-10-0",
+    "record": "1-11-0",
     "pts": 3,
     "rank": "#16",
-    "standingSummary": "1-10-0 | 3 PTS | #16 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "1-11-0 | 3 PTS | #16 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10301&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "82179",
-        "date": "2026-10-18",
-        "time": "11:15 AM",
-        "opp": " Hockey Club 10U",
-        "rink": "RSG Arena at Dunellen",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82179",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82179"
-      },
       {
         "id": "81853",
         "date": "2026-10-31",
@@ -11022,16 +11012,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "82179",
-        "date": "2026-10-18",
-        "time": "11:15 AM",
-        "opp": " Hockey Club 10U",
-        "rink": "RSG Arena at Dunellen",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82179",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82179"
-      },
-      {
         "id": "81853",
         "date": "2026-10-31",
         "time": "01:00 PM",
@@ -11213,6 +11193,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "82179",
+        "date": "2026-10-18",
+        "time": "11:15 AM",
+        "opp": "Rockets  Hockey Club 10U",
+        "rink": "RSG Arena at Dunellen",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "1-13",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82179",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82179"
+      },
       {
         "id": "83465",
         "date": "2026-10-17",
