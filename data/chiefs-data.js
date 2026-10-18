@@ -4179,7 +4179,7 @@ export const YOUTH_TEAMS = [
       },
       {
         "no": 45,
-        "name": "Allan O\u2019Connor",
+        "name": "Allan O’Connor",
         "pos": "F/D",
         "gp": 13,
         "g": 0,
@@ -4350,7 +4350,7 @@ export const YOUTH_TEAMS = [
       },
       {
         "no": 45,
-        "name": "Allan O\u2019Connor",
+        "name": "Allan O’Connor",
         "pos": "F/D",
         "gp": 13,
         "g": 0,
@@ -5177,8 +5177,8 @@ export const YOUTH_TEAMS = [
         "w": 0,
         "l": 0,
         "otl": 0,
-        "gaa": "\u2014",
-        "svPct": "\u2014",
+        "gaa": "—",
+        "svPct": "—",
         "so": 0,
         "town": "Mercer County Area"
       },
@@ -7920,10 +7920,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Rob Colton",
     "level": "14U Bantam Major AAA",
-    "record": "7-1-0",
-    "pts": 14,
+    "record": "8-1-0",
+    "pts": 16,
     "rank": "#3",
-    "standingSummary": "7-1-0 | 14 Active Players | 2026/27 Season",
+    "standingSummary": "8-1-0 | 16 PTS | #3 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10305&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -7935,16 +7935,6 @@ export const YOUTH_TEAMS = [
         "loc": "Home",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=89257",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=89257"
-      },
-      {
-        "id": "81825",
-        "date": "2026-10-17",
-        "time": "04:30 PM",
-        "opp": "Jr Comets 14U",
-        "rink": "Adirondack Bank Center",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81825",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81825"
       },
       {
         "id": "82477",
@@ -8376,16 +8366,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=89257"
       },
       {
-        "id": "81825",
-        "date": "2026-10-17",
-        "time": "04:30 PM",
-        "opp": "Jr Comets 14U",
-        "rink": "Adirondack Bank Center",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81825",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81825"
-      },
-      {
         "id": "82477",
         "date": "2026-10-18",
         "time": "04:45 PM",
@@ -8447,6 +8427,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "81825",
+        "date": "2026-10-17",
+        "time": "04:30 PM",
+        "opp": "Jr Comets 14U",
+        "rink": "Adirondack Bank Center",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "6-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=81825",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=81825"
+      },
       {
         "id": "81824",
         "date": "2026-10-17",
@@ -9268,22 +9261,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Chris Barcless",
     "level": "12U Peewee Major AAA",
-    "record": "7-3-1",
-    "pts": 22,
+    "record": "8-3-1",
+    "pts": 24,
     "rank": "#2",
-    "standingSummary": "6-3-1 | 15 Active Players | 2026/27 Season",
+    "standingSummary": "8-3-1 | 24 PTS | #2 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10303&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "81705",
-        "date": "2026-10-17",
-        "time": "12:45 PM",
-        "opp": "Mustangs 12U",
-        "rink": "Twin Oaks",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81705",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81705"
-      },
       {
         "id": "82202",
         "date": "2026-10-18",
@@ -9352,7 +9335,7 @@ export const YOUTH_TEAMS = [
       },
       {
         "no": 13,
-        "name": "Oliver O\u2019Hare",
+        "name": "Oliver O’Hare",
         "pos": "F/D",
         "gp": 11,
         "g": 8,
@@ -9519,7 +9502,7 @@ export const YOUTH_TEAMS = [
       },
       {
         "no": 13,
-        "name": "Oliver O\u2019Hare",
+        "name": "Oliver O’Hare",
         "pos": "F/D",
         "gp": 10,
         "g": 6,
@@ -9665,16 +9648,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "81705",
-        "date": "2026-10-17",
-        "time": "12:45 PM",
-        "opp": "Mustangs 12U",
-        "rink": "Twin Oaks",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81705",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81705"
-      },
-      {
         "id": "82202",
         "date": "2026-10-18",
         "time": "08:25 AM",
@@ -9806,6 +9779,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "81705",
+        "date": "2026-10-17",
+        "time": "12:45 PM",
+        "opp": "Mustangs 12U",
+        "rink": "Twin Oaks",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "4-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=81705",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=81705"
+      },
       {
         "id": "81882",
         "date": "2026-10-11",
@@ -10737,32 +10723,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Brian Batjer",
     "level": "10U Squirt Major AAA",
-    "record": "1-8-0",
+    "record": "1-10-0",
     "pts": 3,
     "rank": "#16",
-    "standingSummary": "1-6-0 | 15 Active Players | 2026/27 Season",
+    "standingSummary": "1-10-0 | 3 PTS | #16 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10301&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "83465",
-        "date": "2026-10-17",
-        "time": "10:00 AM",
-        "opp": "PBK 10U ",
-        "rink": "Klick Lewis Arena Rink 3",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=83465",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=83465"
-      },
-      {
-        "id": "83466",
-        "date": "2026-10-17",
-        "time": "01:00 PM",
-        "opp": "PBK 10U ",
-        "rink": "Klick Lewis Arena Rink 3",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=83466",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=83466"
-      },
       {
         "id": "82179",
         "date": "2026-10-18",
@@ -10869,7 +10835,7 @@ export const YOUTH_TEAMS = [
       },
       {
         "no": 17,
-        "name": "Trevor O\u2019Dea",
+        "name": "Trevor O’Dea",
         "pos": "F/D",
         "gp": 9,
         "g": 2,
@@ -11014,7 +10980,7 @@ export const YOUTH_TEAMS = [
       },
       {
         "no": 17,
-        "name": "Trevor O\u2019Dea",
+        "name": "Trevor O’Dea",
         "pos": "F/D",
         "gp": 7,
         "g": 1,
@@ -11141,26 +11107,6 @@ export const YOUTH_TEAMS = [
       }
     ],
     "upcomingSchedule": [
-      {
-        "id": "83465",
-        "date": "2026-10-17",
-        "time": "10:00 AM",
-        "opp": "PBK 10U ",
-        "rink": "Klick Lewis Arena Rink 3",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=83465",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=83465"
-      },
-      {
-        "id": "83466",
-        "date": "2026-10-17",
-        "time": "01:00 PM",
-        "opp": "PBK 10U ",
-        "rink": "Klick Lewis Arena Rink 3",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=83466",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=83466"
-      },
       {
         "id": "82179",
         "date": "2026-10-18",
@@ -11354,6 +11300,32 @@ export const YOUTH_TEAMS = [
     ],
     "recentResults": [
       {
+        "id": "83465",
+        "date": "2026-10-17",
+        "time": "10:00 AM",
+        "opp": "PBK 10U ",
+        "rink": "Klick Lewis Arena Rink 3",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "2-6",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=83465",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=83465"
+      },
+      {
+        "id": "83466",
+        "date": "2026-10-17",
+        "time": "01:00 PM",
+        "opp": "PBK 10U ",
+        "rink": "Klick Lewis Arena Rink 3",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "5-7",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=83466",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=83466"
+      },
+      {
         "id": "81609",
         "date": "2026-10-11",
         "time": "12:25 PM",
@@ -11457,22 +11429,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Oktay Armagan",
     "level": "9U Squirt Minor AAA",
-    "record": "0-7-2",
+    "record": "0-8-2",
     "pts": 2,
     "rank": "#17",
-    "standingSummary": "0-7-2 | 13 Active Players | 2026/27 Season",
+    "standingSummary": "0-8-2 | 2 PTS | #17 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10307&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "82165",
-        "date": "2026-10-17",
-        "time": "01:50 PM",
-        "opp": "Hockey Club 9U",
-        "rink": "RSG Arenas at Bridgewater Blue Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82165",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82165"
-      },
       {
         "id": "81035",
         "date": "2026-10-25",
@@ -11810,16 +11772,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "82165",
-        "date": "2026-10-17",
-        "time": "01:50 PM",
-        "opp": "Hockey Club 9U",
-        "rink": "RSG Arenas at Bridgewater Blue Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82165",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82165"
-      },
-      {
         "id": "81035",
         "date": "2026-10-25",
         "time": "12:10 PM",
@@ -11951,6 +11903,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "82165",
+        "date": "2026-10-17",
+        "time": "01:50 PM",
+        "opp": "Hockey Club 9U",
+        "rink": "RSG Arenas at Bridgewater Blue Rink",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "1-8",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82165",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82165"
+      },
       {
         "id": "81837",
         "date": "2026-10-11",
@@ -13289,7 +13254,7 @@ export const YOUTH_TEAMS = [
       },
       {
         "no": 12,
-        "name": "Eamon O\u2019Leary",
+        "name": "Eamon O’Leary",
         "pos": "F/D",
         "gp": 9,
         "g": 0,
@@ -13368,7 +13333,7 @@ export const YOUTH_TEAMS = [
       },
       {
         "no": 12,
-        "name": "Eamon O\u2019Leary",
+        "name": "Eamon O’Leary",
         "pos": "F/D",
         "gp": 9,
         "g": 0,
@@ -13972,22 +13937,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Joseph Maslott",
     "level": "16U Midget Minor A",
-    "record": "11-3-0",
-    "pts": 33,
+    "record": "12-3-0",
+    "pts": 35,
     "rank": "#4",
-    "standingSummary": "10-3-0 | 18 Active Players | 2026/27 Season",
+    "standingSummary": "12-3-0 | 35 PTS | #4 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9881&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "76098",
-        "date": "2026-10-16",
-        "time": "06:00 PM",
-        "opp": "Wildcats Red 16L Franklin",
-        "rink": "Howell Ice Arena Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76098",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76098"
-      },
       {
         "id": "76752",
         "date": "2026-10-17",
@@ -14051,7 +14006,7 @@ export const YOUTH_TEAMS = [
         "w": 1,
         "l": 0,
         "otl": 0,
-        "gaa": "\u2014",
+        "gaa": "—",
         "svPct": "1.000",
         "so": 1,
         "town": "Mercer County Area"
@@ -14161,7 +14116,7 @@ export const YOUTH_TEAMS = [
       },
       {
         "no": 12,
-        "name": "Max D\u2019Angelo",
+        "name": "Max D’Angelo",
         "pos": "F/D",
         "gp": 14,
         "g": 5,
@@ -14262,7 +14217,7 @@ export const YOUTH_TEAMS = [
       },
       {
         "no": 12,
-        "name": "Max D\u2019Angelo",
+        "name": "Max D’Angelo",
         "pos": "F/D",
         "gp": 13,
         "g": 3,
@@ -14290,8 +14245,8 @@ export const YOUTH_TEAMS = [
         "w": 0,
         "l": 0,
         "otl": 0,
-        "gaa": "\u2014",
-        "svPct": "\u2014",
+        "gaa": "—",
+        "svPct": "—",
         "so": 0,
         "town": "Mercer County Area"
       },
@@ -14360,7 +14315,7 @@ export const YOUTH_TEAMS = [
         "w": 1,
         "l": 0,
         "otl": 0,
-        "gaa": "\u2014",
+        "gaa": "—",
         "svPct": "1.000",
         "so": 1,
         "town": "Mercer County Area"
@@ -14446,16 +14401,6 @@ export const YOUTH_TEAMS = [
       }
     ],
     "upcomingSchedule": [
-      {
-        "id": "76098",
-        "date": "2026-10-16",
-        "time": "06:00 PM",
-        "opp": "Wildcats Red 16L Franklin",
-        "rink": "Howell Ice Arena Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76098",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76098"
-      },
       {
         "id": "76752",
         "date": "2026-10-17",
@@ -14628,6 +14573,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76098",
+        "date": "2026-10-16",
+        "time": "06:00 PM",
+        "opp": "Wildcats Red 16L Franklin",
+        "rink": "Howell Ice Arena Rink 1",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "11-3",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76098",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76098"
+      },
       {
         "id": "76662",
         "date": "2026-10-04",
@@ -14810,10 +14768,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Jason Bracco",
     "level": "14U Bantam Major AA",
-    "record": "1-11-0",
+    "record": "1-13-0",
     "pts": 3,
     "rank": "#33",
-    "standingSummary": "1-9-0 | 15 Active Players | 2026/27 Season",
+    "standingSummary": "1-13-0 | 3 PTS | #33 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9875&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -14825,26 +14783,6 @@ export const YOUTH_TEAMS = [
         "loc": "Home",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76646",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76646"
-      },
-      {
-        "id": "92582",
-        "date": "2026-10-16",
-        "time": "05:00 PM",
-        "opp": "Bobcats 14AA",
-        "rink": "Pro Skate NHL",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92582",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92582"
-      },
-      {
-        "id": "92585",
-        "date": "2026-10-17",
-        "time": "07:00 AM",
-        "opp": "Jaguars 14AA",
-        "rink": "Ice Land Black Bear Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92585",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92585"
       },
       {
         "id": "92621",
@@ -15221,26 +15159,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76646"
       },
       {
-        "id": "92582",
-        "date": "2026-10-16",
-        "time": "05:00 PM",
-        "opp": "Bobcats 14AA",
-        "rink": "Pro Skate NHL",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92582",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92582"
-      },
-      {
-        "id": "92585",
-        "date": "2026-10-17",
-        "time": "07:00 AM",
-        "opp": "Jaguars 14AA",
-        "rink": "Ice Land Black Bear Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92585",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92585"
-      },
-      {
         "id": "92621",
         "date": "2026-10-18",
         "time": "08:40 AM",
@@ -15472,6 +15390,32 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "92585",
+        "date": "2026-10-17",
+        "time": "07:00 AM",
+        "opp": "Jaguars 14AA",
+        "rink": "Ice Land Black Bear Rink",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "1-5",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=92585",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=92585"
+      },
+      {
+        "id": "92582",
+        "date": "2026-10-16",
+        "time": "05:00 PM",
+        "opp": "Bobcats 14AA",
+        "rink": "Pro Skate NHL",
+        "loc": "Home",
+        "outcome": "L",
+        "score": "1-12",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=92582",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=92582"
+      },
       {
         "id": "76647",
         "date": "2026-10-04",
@@ -16393,22 +16337,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Don Migliorisi",
     "level": "13U Bantam Minor AA",
-    "record": "8-5-0",
-    "pts": 24,
+    "record": "9-5-0",
+    "pts": 26,
     "rank": "#8",
-    "standingSummary": "7-5-0 | 18 Active Players | 2026/27 Season",
+    "standingSummary": "9-5-0 | 26 PTS | #8 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15033&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "92523",
-        "date": "2026-10-16",
-        "time": "08:20 PM",
-        "opp": "Colts 13AA",
-        "rink": "Pro Skate NHL",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92523",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92523"
-      },
       {
         "id": "92551",
         "date": "2026-10-17",
@@ -16860,16 +16794,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "92523",
-        "date": "2026-10-16",
-        "time": "08:20 PM",
-        "opp": "Colts 13AA",
-        "rink": "Pro Skate NHL",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=92523",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=92523"
-      },
-      {
         "id": "92551",
         "date": "2026-10-17",
         "time": "08:20 PM",
@@ -17101,6 +17025,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "92523",
+        "date": "2026-10-16",
+        "time": "08:20 PM",
+        "opp": "Colts 13AA",
+        "rink": "Pro Skate NHL",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "4-1",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=92523",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=92523"
+      },
       {
         "id": "76620",
         "date": "2026-10-11",
@@ -18050,22 +17987,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Fritz Brown",
     "level": "12U Peewee A",
-    "record": "12-2-0",
+    "record": "12-3-0",
     "pts": 36,
     "rank": "#3",
-    "standingSummary": "12-2-0 | 15 Active Players | 2026/27 Season",
+    "standingSummary": "12-3-0 | 36 PTS | #3 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15027&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "78979",
-        "date": "2026-10-17",
-        "time": "06:50 PM",
-        "opp": "Saints 12L",
-        "rink": "Sport-O-Rama Rink 2",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=78979",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=78979"
-      },
       {
         "id": "75261",
         "date": "2026-10-18",
@@ -18451,16 +18378,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "78979",
-        "date": "2026-10-17",
-        "time": "06:50 PM",
-        "opp": "Saints 12L",
-        "rink": "Sport-O-Rama Rink 2",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=78979",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=78979"
-      },
-      {
         "id": "75261",
         "date": "2026-10-18",
         "time": "11:00 AM",
@@ -18622,6 +18539,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "78979",
+        "date": "2026-10-17",
+        "time": "06:50 PM",
+        "opp": "Saints 12L",
+        "rink": "Sport-O-Rama Rink 2",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "2-5",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=78979",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=78979"
+      },
       {
         "id": "76596",
         "date": "2026-10-11",
@@ -18817,10 +18747,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Chris Corrigan",
     "level": "12U Peewee B",
-    "record": "1-8-2",
+    "record": "1-9-2",
     "pts": 5,
     "rank": "#26",
-    "standingSummary": "1-7-2 | 14 Active Players | 2026/27 Season",
+    "standingSummary": "1-9-2 | 5 PTS | #26 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9874&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -18832,16 +18762,6 @@ export const YOUTH_TEAMS = [
         "loc": "Home",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76602",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76602"
-      },
-      {
-        "id": "76819",
-        "date": "2026-10-17",
-        "time": "08:30 AM",
-        "opp": "Blues 12M",
-        "rink": "Montclair State Ice Arena Red Hawk",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76819",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76819"
       },
       {
         "id": "76402",
@@ -19202,16 +19122,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76602"
       },
       {
-        "id": "76819",
-        "date": "2026-10-17",
-        "time": "08:30 AM",
-        "opp": "Blues 12M",
-        "rink": "Montclair State Ice Arena Red Hawk",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76819",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76819"
-      },
-      {
         "id": "76402",
         "date": "2026-10-24",
         "time": "09:35 AM",
@@ -19414,6 +19324,19 @@ export const YOUTH_TEAMS = [
     ],
     "recentResults": [
       {
+        "id": "76819",
+        "date": "2026-10-17",
+        "time": "08:30 AM",
+        "opp": "Blues 12M",
+        "rink": "Montclair State Ice Arena Red Hawk",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "1-4",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76819",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76819"
+      },
+      {
         "id": "76818",
         "date": "2026-10-11",
         "time": "09:30 AM",
@@ -19556,22 +19479,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Xan Doetsch",
     "level": "11U Peewee Minor AA",
-    "record": "7-5-1",
-    "pts": 21,
+    "record": "8-5-1",
+    "pts": 23,
     "rank": "#10",
-    "standingSummary": "7-5-1 | 13 Active Players | 2026/27 Season",
+    "standingSummary": "8-5-1 | 23 PTS | #10 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9872&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "77451",
-        "date": "2026-10-17",
-        "time": "02:15 PM",
-        "opp": "Colts 11AA",
-        "rink": "Twin Oaks",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77451",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77451"
-      },
       {
         "id": "76563",
         "date": "2026-10-18",
@@ -19909,16 +19822,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "77451",
-        "date": "2026-10-17",
-        "time": "02:15 PM",
-        "opp": "Colts 11AA",
-        "rink": "Twin Oaks",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77451",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77451"
-      },
-      {
         "id": "76563",
         "date": "2026-10-18",
         "time": "01:00 PM",
@@ -20090,6 +19993,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "77451",
+        "date": "2026-10-17",
+        "time": "02:15 PM",
+        "opp": "Colts 11AA",
+        "rink": "Twin Oaks",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "5-4",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=77451",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=77451"
+      },
       {
         "id": "76564",
         "date": "2026-10-11",
@@ -21739,22 +21655,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Ivan Chavez",
     "level": "10U Squirt B",
-    "record": "9-3-2",
+    "record": "9-4-2",
     "pts": 28,
     "rank": "#3",
-    "standingSummary": "9-2-2 | 17 Active Players | 2026/27 Season",
+    "standingSummary": "9-4-2 | 28 PTS | #3 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=14950&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "77512",
-        "date": "2026-10-17",
-        "time": "11:15 AM",
-        "opp": "Colts 10M Silver",
-        "rink": "Twin Oaks",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77512",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77512"
-      },
       {
         "id": "74942",
         "date": "2026-10-24",
@@ -22180,16 +22086,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "77512",
-        "date": "2026-10-17",
-        "time": "11:15 AM",
-        "opp": "Colts 10M Silver",
-        "rink": "Twin Oaks",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77512",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77512"
-      },
-      {
         "id": "74942",
         "date": "2026-10-24",
         "time": "08:30 AM",
@@ -22361,6 +22257,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "77512",
+        "date": "2026-10-17",
+        "time": "11:15 AM",
+        "opp": "Colts 10M Silver",
+        "rink": "Twin Oaks",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "2-4",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=77512",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=77512"
+      },
       {
         "id": "76551",
         "date": "2026-10-10",
@@ -23358,8 +23267,8 @@ export const YOUTH_TEAMS = [
         "w": 0,
         "l": 0,
         "otl": 0,
-        "gaa": "\u2014",
-        "svPct": "\u2014",
+        "gaa": "—",
+        "svPct": "—",
         "so": 0,
         "town": "Mercer County Area"
       },
@@ -23371,8 +23280,8 @@ export const YOUTH_TEAMS = [
         "w": 0,
         "l": 0,
         "otl": 0,
-        "gaa": "\u2014",
-        "svPct": "\u2014",
+        "gaa": "—",
+        "svPct": "—",
         "so": 0,
         "town": "Mercer County Area"
       },
@@ -23551,8 +23460,8 @@ export const YOUTH_TEAMS = [
         "w": 0,
         "l": 0,
         "otl": 0,
-        "gaa": "\u2014",
-        "svPct": "\u2014",
+        "gaa": "—",
+        "svPct": "—",
         "so": 0,
         "town": "Mercer County Area"
       },
@@ -23619,8 +23528,8 @@ export const YOUTH_TEAMS = [
         "w": 0,
         "l": 0,
         "otl": 0,
-        "gaa": "\u2014",
-        "svPct": "\u2014",
+        "gaa": "—",
+        "svPct": "—",
         "so": 0,
         "town": "Mercer County Area"
       },
@@ -24244,8 +24153,8 @@ export const YOUTH_TEAMS = [
         "w": 0,
         "l": 0,
         "otl": 0,
-        "gaa": "\u2014",
-        "svPct": "\u2014",
+        "gaa": "—",
+        "svPct": "—",
         "so": 0,
         "town": "Mercer County Area"
       },
@@ -24402,8 +24311,8 @@ export const YOUTH_TEAMS = [
         "w": 0,
         "l": 0,
         "otl": 0,
-        "gaa": "\u2014",
-        "svPct": "\u2014",
+        "gaa": "—",
+        "svPct": "—",
         "so": 0,
         "town": "Mercer County Area"
       },

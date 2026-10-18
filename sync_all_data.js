@@ -543,6 +543,7 @@ import zlib from 'zlib';
 
 function parseScorecardBuffer(buf) {
   let pos = 0;
+  const items = [];
   while (pos < buf.length) {
     const sIdx = buf.indexOf('stream', pos);
     if (sIdx === -1) break;
@@ -558,29 +559,46 @@ function parseScorecardBuffer(buf) {
     try {
       const decomp = zlib.inflateSync(streamSlice);
       const txt = decomp.toString('latin1');
-      if (txt.includes('Referee Signoff') || txt.includes('Signoff at')) {
-        const matches = [...txt.matchAll(/\((.*?)\)\s*Tj/g)].map(m => m[1]);
-        for (let i = 0; i < matches.length; i++) {
-          if (matches[i].includes('Referee Signoff') || matches[i].includes('Signoff at')) {
-            const chunk = matches.slice(Math.max(0, i - 4), i + 1);
-            const score1 = parseInt(chunk[2]);
-            const score2 = parseInt(chunk[3]);
-            if (!isNaN(score1) && !isNaN(score2)) {
-              return {
-                team1: chunk[0],
-                team2: chunk[1],
-                score1,
-                score2,
-                signoff: chunk[4]
-              };
-            }
-          }
+      const regex = /(?:([0-9.]+)\s+([0-9.]+)\s+Td\s+)?\((.*?)\)\s*Tj/g;
+      let match;
+      let lastX = 0, lastY = 0;
+      while ((match = regex.exec(txt)) !== null) {
+        if (match[1] && match[2]) {
+          lastX = parseFloat(match[1]);
+          lastY = parseFloat(match[2]);
         }
+        items.push({ x: lastX, y: lastY, text: match[3] });
       }
     } catch (e) {}
 
     pos = eIdx + 9;
   }
+
+  // TimeToScore standard scorecard coordinates:
+  // Visitor score is at (x ~ 262.83, y ~ 693.20)
+  // Home score is at (x ~ 412.83, y ~ 693.20)
+  // Visitor team name is at (x ~ 113.39, y ~ 725.18)
+  // Home team name is at (x ~ 422.36, y ~ 725.18)
+  const visScoreItem = items.find(i => Math.abs(i.y - 693.2) < 4 && Math.abs(i.x - 262.83) < 4);
+  const homeScoreItem = items.find(i => Math.abs(i.y - 693.2) < 4 && Math.abs(i.x - 412.83) < 4);
+  const visTeamItem = items.find(i => Math.abs(i.y - 725.18) < 4 && i.x < 300 && !i.text.includes('Visitor Team:'));
+  const homeTeamItem = items.find(i => Math.abs(i.y - 725.18) < 4 && i.x >= 300 && !i.text.includes('Home Team:'));
+  const signoffItem = items.find(i => i.text.toLowerCase().includes('signoff') || i.text.toLowerCase().includes('signature'));
+
+  if (visScoreItem && homeScoreItem) {
+    const vScore = parseInt(visScoreItem.text.trim());
+    const hScore = parseInt(homeScoreItem.text.trim());
+    if (!isNaN(vScore) && !isNaN(hScore)) {
+      return {
+        team1: visTeamItem?.text || 'Visitor',
+        team2: homeTeamItem?.text || 'Home',
+        score1: vScore,
+        score2: hScore,
+        signoff: signoffItem?.text || 'Official'
+      };
+    }
+  }
+
   return null;
 }
 
@@ -623,7 +641,11 @@ async function syncYouthFeed() {
           const buf = Buffer.from(await res.arrayBuffer());
           const parsed = parseScorecardBuffer(buf);
           if (parsed) {
-            const isTeam1Chiefs = parsed.team1.toLowerCase().includes('mercer') || parsed.team1.toLowerCase().includes('chiefs');
+            let isTeam1Chiefs = parsed.team1.toLowerCase().includes('mercer') || parsed.team1.toLowerCase().includes('chiefs');
+            let isTeam2Chiefs = parsed.team2.toLowerCase().includes('mercer') || parsed.team2.toLowerCase().includes('chiefs');
+            if (!isTeam1Chiefs && !isTeam2Chiefs) {
+              isTeam1Chiefs = (g.loc || '').toLowerCase().includes('away');
+            }
             const chiefsScore = isTeam1Chiefs ? parsed.score1 : parsed.score2;
             const oppScore = isTeam1Chiefs ? parsed.score2 : parsed.score1;
             const outcome = chiefsScore > oppScore ? 'W' : (chiefsScore < oppScore ? 'L' : 'T');
@@ -682,8 +704,8 @@ async function syncYouthFeed() {
     // Synchronize YOUTH_TEAMS in chiefs-data.js
     try {
       let source = fs.readFileSync(CHIEFS_DATA_PATH, 'utf-8');
-      const ytStart = source.find ? source.indexOf('export const YOUTH_TEAMS = [') : -1;
-      const newsStart = source.find ? source.indexOf('\nexport const CLUB_NEWS = [') : -1;
+      const ytStart = source.indexOf('export const YOUTH_TEAMS = [');
+      const newsStart = source.indexOf('\nexport const CLUB_NEWS = [');
       if (ytStart !== -1 && newsStart !== -1) {
         source = source.slice(0, ytStart) + 'export const YOUTH_TEAMS = ' + JSON.stringify(feed.teams, null, 2) + ';' + source.slice(newsStart);
         fs.writeFileSync(CHIEFS_DATA_PATH, source, 'utf-8');
