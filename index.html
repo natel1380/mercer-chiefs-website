@@ -7,7 +7,7 @@
   <title>Mercer Chiefs Hockey Club | Official NCDC Junior & Youth AAA Website</title>
   <meta name="description"
     content="Official home of the Mercer Chiefs Hockey Club. Featuring our Tier II Tuition-Free NCDC Junior team, USPHL Premier, and Elite Tier 1 AAA youth teams at Ice Land Arena, Hamilton NJ.">
-  <link rel="icon" type="image/png" href="assets/images/mercer-chiefs-crest.png">
+  <link id="site-favicon" rel="icon" type="image/png" href="assets/images/mercer-chiefs-crest.png">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Mercer Chiefs Hockey Club | Modern Redesign">
@@ -79,10 +79,10 @@
   <header class="site-header" id="site-header">
     <div class="container header-container">
       <a href="#top" class="brand-wrapper" id="brand-home-link">
-        <img src="assets/images/mercer-chiefs-logo.png" alt="Mercer Chiefs Logo" class="brand-logo-img">
+        <img id="site-brand-logo" src="assets/images/mercer-chiefs-logo.png" alt="Club Logo" class="brand-logo-img">
         <div class="brand-text">
-          <span class="brand-title">MERCER CHIEFS</span>
-          <span class="brand-sub">JUNIOR & ELITE YOUTH HOCKEY</span>
+          <span class="brand-title" id="site-brand-title">MERCER CHIEFS</span>
+          <span class="brand-sub" id="site-brand-sub">JUNIOR & ELITE YOUTH HOCKEY</span>
         </div>
       </a>
 
@@ -538,7 +538,7 @@
 
           <div class="video-player-footer">
             <div class="video-source-info">
-              <img src="assets/images/mercer-chiefs-crest.png" alt="Mercer Chiefs Crest" class="video-source-crest">
+              <img id="prog-crest-logo" src="assets/images/mercer-chiefs-crest.png" alt="Club Crest" class="video-source-crest">
               <div>
                 <strong class="video-source-title" id="prog-source-title">Mercer Chiefs NCDC & Premier Hockey Club</strong>
                 <span class="video-source-sub" id="prog-source-sub">Ice Land Skating Center • Hamilton Township, NJ</span>
@@ -891,17 +891,17 @@
         <!-- Col 1: Brand Info -->
         <div class="footer-brand">
           <div style="display: flex; align-items: center; gap: 1rem;">
-            <img src="assets/images/mercer-chiefs-crest.png" alt="Mercer Chiefs Crest"
+            <img id="footer-crest-logo" src="assets/images/mercer-chiefs-crest.png" alt="Club Crest"
               style="height: 52px; width: auto;">
             <div>
-              <div style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: #fff;">MERCER
+              <div id="footer-brand-title" style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: #fff;">MERCER
                 CHIEFS</div>
-              <div style="font-size: 0.72rem; color: var(--chiefs-gold); font-weight: 600;">HOCKEY CLUB • EST. 1990
+              <div id="footer-brand-sub" style="font-size: 0.72rem; color: var(--chiefs-gold); font-weight: 600;">HOCKEY CLUB • EST. 1990
               </div>
             </div>
           </div>
 
-          <p>
+          <p id="footer-brand-desc">
             Dedicated to developing student-athletes through competitive Tier II tuition-free junior hockey and premier
             Tier 1 AAA youth competition in Hamilton, New Jersey.
           </p>
@@ -1005,7 +1005,7 @@
 
       <!-- Copyright Bottom Bar -->
       <div class="footer-bottom-bar">
-        <div>
+        <div id="footer-copyright-text">
           © 2026 Mercer Chiefs Hockey Club. All rights reserved. Member of Black Bear Sports Group.
         </div>
         <div style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">

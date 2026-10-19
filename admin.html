@@ -80,43 +80,89 @@
       width: 100%;
     }
 
-    /* Tabs Header */
+    /* Tabs Navigation Bar - Responsive Segmented Grid (No Horizontal Scrollbar) */
     .admin-tabs {
-      display: flex;
-      gap: 0.5rem;
-      border-bottom: 1px solid var(--border-subtle);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.65rem;
       margin-bottom: 2rem;
-      padding-bottom: 0.25rem;
-      overflow-x: auto;
+      padding: 0.65rem;
+      background: rgba(14, 16, 23, 0.85);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+      backdrop-filter: var(--glass-blur);
+    }
+
+    @media (max-width: 1100px) {
+      .admin-tabs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .admin-tabs {
+        grid-template-columns: 1fr;
+      }
     }
 
     .admin-tab-btn {
-      background: transparent;
-      border: none;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
       color: var(--text-secondary);
       font-family: var(--font-heading);
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       font-weight: 700;
-      padding: 0.75rem 1.4rem;
-      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
       cursor: pointer;
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.65rem;
       transition: all var(--transition-fast);
       white-space: nowrap;
-      border-bottom: 3px solid transparent;
+      text-align: left;
+      position: relative;
+    }
+
+    .admin-tab-btn svg {
+      flex-shrink: 0;
+      color: var(--text-muted);
+      transition: color var(--transition-fast), transform var(--transition-fast);
     }
 
     .admin-tab-btn:hover {
       color: #fff;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .admin-tab-btn:hover svg {
+      color: var(--chiefs-gold);
+      transform: scale(1.1);
     }
 
     .admin-tab-btn.active {
       color: #fff;
-      background: rgba(189, 50, 59, 0.12);
-      border-bottom: 3px solid var(--chiefs-red);
+      background: linear-gradient(135deg, rgba(189, 50, 59, 0.25) 0%, rgba(18, 20, 26, 0.85) 100%);
+      border-color: var(--chiefs-red);
+      box-shadow: 0 0 16px rgba(189, 50, 59, 0.28);
+    }
+
+    .admin-tab-btn.active svg {
+      color: var(--chiefs-gold);
+    }
+
+    .admin-tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 15%;
+      right: 15%;
+      height: 2px;
+      background: var(--chiefs-gold);
+      border-radius: 2px;
     }
 
     /* Tab Content Panels */
@@ -623,6 +669,16 @@
           <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
         </svg>
         Website Content CMS
+      </button>
+      <button class="admin-tab-btn" data-tab="tab-branding" onclick="window.switchAdminTab('tab-branding')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
+          <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
+          <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
+          <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+          <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
+        </svg>
+        Club Branding & Colors
       </button>
       <button class="admin-tab-btn" data-tab="tab-season" onclick="window.switchAdminTab('tab-season')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1293,6 +1349,264 @@
             </div>
           </div>
         </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================
+         TAB: CLUB BRANDING, LOGOS & COLOR THEME CMS
+         ======================================================================== -->
+    <div id="tab-branding" class="admin-tab-pane">
+
+      <!-- Header & Action Bar -->
+      <div class="admin-card" style="margin-bottom: 1.5rem;">
+        <div class="admin-card-header">
+          <div>
+            <h3 class="admin-card-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2">
+                <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
+                <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
+                <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
+                <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
+              </svg>
+              Club Branding, Logos & Theme Engine
+            </h3>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">
+              Complete white-label rebrand suite. Update club naming, official logos, and live color palette tokens.
+              Click <strong>"Publish Branding to Live Site"</strong> to deploy theme changes instantly without touching code.
+            </p>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <span id="site-branding-status-badge" class="pill-badge"
+              style="background: rgba(34, 197, 94, 0.15); border-color: rgba(34, 197, 94, 0.35); color: #4ade80; font-size: 0.8rem;">
+              ● Up to Date
+            </span>
+            <button type="button" class="btn-primary" id="btn-publish-branding" onclick="window.publishClubBranding()"
+              style="font-size: 0.82rem; padding: 0.45rem 1rem; background: var(--chiefs-gold); border-color: var(--chiefs-gold); color: #000; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">
+              💾 Publish Branding to Live Site
+            </button>
+            <a href="index.html" target="_blank" class="btn-secondary"
+              style="font-size: 0.8rem; padding: 0.45rem 0.85rem; text-decoration: none;">
+              Preview Site ↗
+            </a>
+            <button type="button" class="btn-secondary" onclick="window.resetBrandingDefaults()"
+              style="font-size: 0.78rem; padding: 0.4rem 0.8rem; color: var(--chiefs-gold);">
+              Reset to Mercer Chiefs
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid Layout: Left Column Controls, Right Column Live Preview -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+
+        <!-- Left Column: Identity & Logos -->
+        <div>
+          <!-- Card 1: Club Identity & Names -->
+          <div class="admin-card" style="margin-bottom: 1.5rem;">
+            <h4 style="font-size: 1.05rem; color: #fff; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>🏒</span> Club Identity & Names
+            </h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+              Customize club naming across the navbar header, page titles, and legal footer.
+            </p>
+
+            <div class="admin-form-group" style="margin-bottom: 0.85rem;">
+              <label>Full Organization Name</label>
+              <input type="text" id="cms-brand-club-name" class="admin-form-input" placeholder="e.g. Mercer Chiefs Hockey Club" oninput="window.updateBrandingPreview()">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.85rem;">
+              <div class="admin-form-group">
+                <label>Short Brand Name</label>
+                <input type="text" id="cms-brand-club-short" class="admin-form-input" placeholder="e.g. Mercer Chiefs" oninput="window.updateBrandingPreview()">
+              </div>
+              <div class="admin-form-group">
+                <label>Established Year</label>
+                <input type="text" id="cms-brand-founded" class="admin-form-input" placeholder="e.g. 1990" oninput="window.updateBrandingPreview()">
+              </div>
+            </div>
+
+            <div class="admin-form-group" style="margin-bottom: 0.85rem;">
+              <label>Club Slogan / Subtitle Tagline</label>
+              <input type="text" id="cms-brand-tagline" class="admin-form-input" placeholder="e.g. Junior & Elite Youth Hockey" oninput="window.updateBrandingPreview()">
+            </div>
+
+            <div class="admin-form-group">
+              <label>Footer Description / Mission</label>
+              <textarea id="cms-brand-desc" class="admin-form-input" rows="3" placeholder="Dedicated to developing student-athletes..." oninput="window.updateBrandingPreview()"></textarea>
+            </div>
+          </div>
+
+          <!-- Card 2: Club Logos & Media Assets -->
+          <div class="admin-card">
+            <h4 style="font-size: 1.05rem; color: #fff; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>🛡️</span> Logos & Visual Assets
+            </h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+              Set the primary crest, banner wordmark, and browser favicon URL.
+            </p>
+
+            <div class="admin-form-group" style="margin-bottom: 0.85rem;">
+              <label>Primary Crest Logo URL / Path</label>
+              <input type="text" id="cms-brand-crest-url" class="admin-form-input" placeholder="assets/images/mercer-chiefs-crest.png" oninput="window.updateBrandingPreview()">
+            </div>
+
+            <div class="admin-form-group" style="margin-bottom: 0.85rem;">
+              <label>Wordmark / Header Banner Logo URL</label>
+              <input type="text" id="cms-brand-wordmark-url" class="admin-form-input" placeholder="assets/images/mercer-chiefs-logo.png" oninput="window.updateBrandingPreview()">
+            </div>
+
+            <div class="admin-form-group" style="margin-bottom: 1.25rem;">
+              <label>Browser Favicon URL</label>
+              <input type="text" id="cms-brand-favicon-url" class="admin-form-input" placeholder="assets/images/mercer-chiefs-crest.png">
+            </div>
+
+            <!-- Logo Live Visual Preview -->
+            <div style="background: rgba(0,0,0,0.4); border: 1px dashed var(--border-subtle); border-radius: var(--radius-md); padding: 1rem; display: flex; align-items: center; justify-content: space-around; gap: 1rem;">
+              <div style="text-align: center;">
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase;">Crest Preview</div>
+                <img id="preview-crest-img" src="assets/images/mercer-chiefs-crest.png" alt="Crest" style="height: 52px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));">
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase;">Wordmark Preview</div>
+                <img id="preview-wordmark-img" src="assets/images/mercer-chiefs-logo.png" alt="Wordmark" style="height: 40px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Theme Colors, Presets & Live UI Mockup -->
+        <div>
+          <!-- Card 3: Color Palette & Theme Engine -->
+          <div class="admin-card" style="margin-bottom: 1.5rem;">
+            <h4 style="font-size: 1.05rem; color: #fff; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>🎨</span> Color Palette & Dynamic Theme
+            </h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+              Pick your club's primary and secondary accent colors. All shades and glows are computed dynamically.
+            </p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+              <!-- Primary Brand Color -->
+              <div class="admin-form-group">
+                <label>Primary Brand Color</label>
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                  <input type="color" id="cms-color-primary-picker" value="#BD323B" style="width: 44px; height: 38px; padding: 2px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); background: transparent; cursor: pointer;" oninput="document.getElementById('cms-color-primary').value = this.value; window.updateBrandingPreview();">
+                  <input type="text" id="cms-color-primary" class="admin-form-input" value="#BD323B" style="flex: 1; font-family: monospace;" oninput="document.getElementById('cms-color-primary-picker').value = this.value; window.updateBrandingPreview();">
+                </div>
+              </div>
+
+              <!-- Secondary Accent Color -->
+              <div class="admin-form-group">
+                <label>Secondary Accent Color</label>
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                  <input type="color" id="cms-color-accent-picker" value="#F5A623" style="width: 44px; height: 38px; padding: 2px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); background: transparent; cursor: pointer;" oninput="document.getElementById('cms-color-accent').value = this.value; window.updateBrandingPreview();">
+                  <input type="text" id="cms-color-accent" class="admin-form-input" value="#F5A623" style="flex: 1; font-family: monospace;" oninput="document.getElementById('cms-color-accent-picker').value = this.value; window.updateBrandingPreview();">
+                </div>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+              <!-- Deep Background -->
+              <div class="admin-form-group">
+                <label>Deep Stadium Background</label>
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                  <input type="color" id="cms-color-bg-picker" value="#08090C" style="width: 44px; height: 38px; padding: 2px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); background: transparent; cursor: pointer;" oninput="document.getElementById('cms-color-bg').value = this.value; window.updateBrandingPreview();">
+                  <input type="text" id="cms-color-bg" class="admin-form-input" value="#08090C" style="flex: 1; font-family: monospace;" oninput="document.getElementById('cms-color-bg-picker').value = this.value; window.updateBrandingPreview();">
+                </div>
+              </div>
+
+              <!-- Card Surface -->
+              <div class="admin-form-group">
+                <label>Card Surface Background</label>
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                  <input type="color" id="cms-color-card-picker" value="#12151C" style="width: 44px; height: 38px; padding: 2px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); background: transparent; cursor: pointer;" oninput="document.getElementById('cms-color-card').value = this.value; window.updateBrandingPreview();">
+                  <input type="text" id="cms-color-card" class="admin-form-input" value="#12151C" style="flex: 1; font-family: monospace;" oninput="document.getElementById('cms-color-card-picker').value = this.value; window.updateBrandingPreview();">
+                </div>
+              </div>
+            </div>
+
+            <!-- 1-Click Presets -->
+            <label style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 700; margin-bottom: 0.5rem; display: block;">
+              ⚡ 1-Click Theme Presets:
+            </label>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+              <button type="button" class="btn-secondary" style="font-size: 0.76rem; padding: 0.35rem 0.7rem; border-color: #BD323B;" onclick="window.applyColorPreset('#BD323B', '#F5A623', '#08090C', '#12151C')">
+                🏒 Chiefs Red & Gold
+              </button>
+              <button type="button" class="btn-secondary" style="font-size: 0.76rem; padding: 0.35rem 0.7rem; border-color: #1E3A8A;" onclick="window.applyColorPreset('#1E3A8A', '#F59E0B', '#050B14', '#0F1D38')">
+                ⚡ Royal Navy & Gold
+              </button>
+              <button type="button" class="btn-secondary" style="font-size: 0.76rem; padding: 0.35rem 0.7rem; border-color: #065F46;" onclick="window.applyColorPreset('#065F46', '#D97706', '#06120D', '#0D281E')">
+                🌲 Forest Green & Gold
+              </button>
+              <button type="button" class="btn-secondary" style="font-size: 0.76rem; padding: 0.35rem 0.7rem; border-color: #0284C7;" onclick="window.applyColorPreset('#0284C7', '#38BDF8', '#0A0F1D', '#131C31')">
+                ❄️ Steel Ice & Cyan
+              </button>
+              <button type="button" class="btn-secondary" style="font-size: 0.76rem; padding: 0.35rem 0.7rem; border-color: #7C3AED;" onclick="window.applyColorPreset('#7C3AED', '#E2E8F0', '#0D0714', '#1B102A')">
+                🟣 Midnight Purple
+              </button>
+              <button type="button" class="btn-secondary" style="font-size: 0.76rem; padding: 0.35rem 0.7rem; border-color: #FBBF24;" onclick="window.applyColorPreset('#27272A', '#FBBF24', '#000000', '#18181B')">
+                🖤 Onyx & Amber
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 4: Real-Time Live UI Theme Preview Swatch -->
+          <div class="admin-card">
+            <h4 style="font-size: 1.05rem; color: #fff; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>👁️</span> Real-Time Live UI Preview
+            </h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              Preview how buttons, cards, typography, and badges look in real time with your selected branding.
+            </p>
+
+            <div id="live-theme-preview-box" style="background: #08090C; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); padding: 1.5rem; transition: all 0.25s ease;">
+              <!-- Mini Header Mockup -->
+              <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.85rem; margin-bottom: 1.25rem;">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <img id="mockup-crest" src="assets/images/mercer-chiefs-crest.png" alt="Crest" style="height: 38px; width: auto;">
+                  <div>
+                    <div id="mockup-title" style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: #fff; letter-spacing: 0.03em;">MERCER CHIEFS</div>
+                    <div id="mockup-sub" style="font-size: 0.68rem; color: #F5A623; font-weight: 700;">JUNIOR & ELITE YOUTH HOCKEY</div>
+                  </div>
+                </div>
+                <span id="mockup-badge" style="background: rgba(245, 166, 35, 0.15); border: 1px solid #F5A623; color: #F5A623; font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 9999px;">
+                  Tier 1 AAA — THF
+                </span>
+              </div>
+
+              <!-- Mockup Card Body -->
+              <div id="mockup-card-surface" style="background: rgba(18, 21, 28, 0.85); border: 1px solid rgba(189, 50, 59, 0.35); border-radius: var(--radius-sm); padding: 1.15rem; margin-bottom: 1.25rem;">
+                <h5 id="mockup-card-title" style="font-size: 1rem; color: #fff; margin-bottom: 0.4rem; font-weight: 800;">
+                  2026/27 Season Evaluations & Camps
+                </h5>
+                <p id="mockup-card-desc" style="font-size: 0.8rem; color: #cbd5e1; margin-bottom: 1rem; line-height: 1.4;">
+                  Experience championship coaching, daily on-ice development, and a proven pathway to NCAA college hockey.
+                </p>
+
+                <!-- Mockup Buttons -->
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                  <button type="button" id="mockup-primary-btn" style="background: #BD323B; color: #fff; border: 1px solid #BD323B; padding: 0.45rem 1rem; font-weight: 700; border-radius: 4px; font-size: 0.82rem; cursor: default; box-shadow: 0 0 10px rgba(189, 50, 59, 0.4);">
+                    Register for Tryouts ↗
+                  </button>
+                  <button type="button" id="mockup-secondary-btn" style="background: transparent; color: #F5A623; border: 1px solid #F5A623; padding: 0.45rem 0.85rem; font-weight: 700; border-radius: 4px; font-size: 0.82rem; cursor: default;">
+                    View Schedule
+                  </button>
+                </div>
+              </div>
+
+              <!-- Mini Footer Mockup -->
+              <div style="font-size: 0.72rem; color: #8492a6; text-align: center;">
+                <span id="mockup-copyright">© 2026 Mercer Chiefs Hockey Club. All rights reserved.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>

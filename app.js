@@ -990,6 +990,127 @@ export function applySiteContent(content) {
     const desc = document.getElementById('tryout-modal-desc');
     if (desc && tr.desc) desc.textContent = tr.desc;
   }
+
+  // 7. Club Branding & Theme (Colors, Logos, Names)
+  if (content.branding) {
+    applyClubBranding(content.branding);
+  }
+}
+
+export function hexToRgba(hex, alpha) {
+  if (!hex) return '';
+  hex = hex.replace('#', '');
+  if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+  const num = parseInt(hex, 16);
+  if (isNaN(num)) return '';
+  const r = (num >> 16) & 255;
+  const g = (num >> 8) & 255;
+  const b = num & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+export function adjustHex(hex, percent) {
+  if (!hex) return '';
+  hex = hex.replace('#', '');
+  if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+  const num = parseInt(hex, 16);
+  if (isNaN(num)) return hex;
+  let r = (num >> 16) + Math.round(255 * (percent / 100));
+  let g = ((num >> 8) & 255) + Math.round(255 * (percent / 100));
+  let b = (num & 255) + Math.round(255 * (percent / 100));
+  r = Math.min(255, Math.max(0, r));
+  g = Math.min(255, Math.max(0, g));
+  b = Math.min(255, Math.max(0, b));
+  return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+}
+
+export function applyClubBranding(b) {
+  if (!b) return;
+
+  // 1. Color Palette Tokens & Dynamic CSS Variables
+  if (b.colors) {
+    const root = document.documentElement;
+    const { primary, accent, bgDeep, bgCard } = b.colors;
+
+    if (primary) {
+      root.style.setProperty('--chiefs-red', primary);
+      root.style.setProperty('--chiefs-red-dark', adjustHex(primary, -22));
+      root.style.setProperty('--chiefs-red-hover', adjustHex(primary, 15));
+      root.style.setProperty('--chiefs-red-glow', hexToRgba(primary, 0.45));
+      root.style.setProperty('--border-glow-red', hexToRgba(primary, 0.45));
+    }
+
+    if (accent) {
+      root.style.setProperty('--chiefs-gold', accent);
+      root.style.setProperty('--chiefs-gold-dark', adjustHex(accent, -22));
+      root.style.setProperty('--chiefs-gold-light', adjustHex(accent, 20));
+      root.style.setProperty('--chiefs-gold-glow', hexToRgba(accent, 0.4));
+      root.style.setProperty('--chiefs-gold-muted', hexToRgba(accent, 0.15));
+      root.style.setProperty('--border-glow-gold', hexToRgba(accent, 0.4));
+      root.style.setProperty('--text-accent', accent);
+    }
+
+    if (bgDeep) {
+      root.style.setProperty('--bg-deep', bgDeep);
+      root.style.setProperty('--bg-surface', adjustHex(bgDeep, 6));
+    }
+
+    if (bgCard) {
+      root.style.setProperty('--bg-card', hexToRgba(bgCard, 0.88));
+      root.style.setProperty('--bg-card-hover', hexToRgba(adjustHex(bgCard, 8), 0.94));
+    }
+  }
+
+  // 2. Logos & Icons
+  if (b.crestLogo) {
+    const progCrest = document.getElementById('prog-crest-logo');
+    if (progCrest) progCrest.src = b.crestLogo;
+    const footerCrest = document.getElementById('footer-crest-logo');
+    if (footerCrest) footerCrest.src = b.crestLogo;
+    document.querySelectorAll('.modal-crest-logo').forEach(img => img.src = b.crestLogo);
+  }
+
+  if (b.wordmarkLogo) {
+    const brandLogo = document.getElementById('site-brand-logo');
+    if (brandLogo) brandLogo.src = b.wordmarkLogo;
+  }
+
+  if (b.favicon) {
+    const fav = document.getElementById('site-favicon');
+    if (fav) fav.href = b.favicon;
+  }
+
+  // 3. Club Names & Typography
+  if (b.shortName) {
+    const navTitle = document.getElementById('site-brand-title');
+    if (navTitle) navTitle.textContent = b.shortName.toUpperCase();
+    const footerTitle = document.getElementById('footer-brand-title');
+    if (footerTitle) footerTitle.textContent = b.shortName.toUpperCase();
+  }
+
+  if (b.tagline) {
+    const navSub = document.getElementById('site-brand-sub');
+    if (navSub) navSub.textContent = b.tagline.toUpperCase();
+  }
+
+  if (b.founded && b.shortName) {
+    const footerSub = document.getElementById('footer-brand-sub');
+    if (footerSub) footerSub.textContent = `HOCKEY CLUB • EST. ${b.founded}`;
+  }
+
+  if (b.description) {
+    const footerDesc = document.getElementById('footer-brand-desc');
+    if (footerDesc) footerDesc.textContent = b.description;
+  }
+
+  if (b.clubName) {
+    document.title = `${b.clubName} | Official Website`;
+    const copyEl = document.getElementById('footer-copyright-text');
+    if (copyEl) {
+      const year = new Date().getFullYear();
+      copyEl.textContent = `© ${year} ${b.clubName}. All rights reserved. Member of Black Bear Sports Group.`;
+    }
+  }
 }
 
 /* ==========================================================================

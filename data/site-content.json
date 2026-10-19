@@ -116,5 +116,21 @@
     "title": "Tryout Registration Portal",
     "desc": "Register your player for upcoming Tier I AAA (THF) and Tier II (AHF) evaluations at Ice Land Arena.",
     "externalRegisterUrl": ""
+  },
+  "branding": {
+    "clubName": "Mercer Chiefs Hockey Club",
+    "shortName": "Mercer Chiefs",
+    "tagline": "Junior & Elite Youth Hockey",
+    "description": "Dedicated to developing student-athletes through competitive Tier II tuition-free junior hockey and premier Tier 1 AAA youth competition in Hamilton, New Jersey.",
+    "founded": "1990",
+    "crestLogo": "assets/images/mercer-chiefs-crest.png",
+    "wordmarkLogo": "assets/images/mercer-chiefs-logo.png",
+    "favicon": "assets/images/mercer-chiefs-crest.png",
+    "colors": {
+      "primary": "#BD323B",
+      "accent": "#F5A623",
+      "bgDeep": "#08090C",
+      "bgCard": "#12151C"
+    }
   }
 }

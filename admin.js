@@ -182,6 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderNewsList();
   renderAlumniTable();
   initSiteContentCMS();
+  initClubBrandingCMS();
 });
 
 /* ==========================================================================
@@ -242,6 +243,9 @@ window.switchAdminTab = function (tabId) {
 
   if (tabId === 'tab-content') {
     window.initSiteContentCMS();
+  }
+  if (tabId === 'tab-branding') {
+    window.initClubBrandingCMS();
   }
 };
 
@@ -2522,6 +2526,11 @@ function populateSiteContentUI(data) {
   setCmsVal('cms-tryout-title', tr.title || '');
   setCmsVal('cms-tryout-desc', tr.desc || '');
   setCmsVal('cms-tryout-url', tr.externalRegisterUrl || '');
+
+  // 6. Club Branding
+  if (data.branding) {
+    populateBrandingUI(data.branding);
+  }
 }
 
 function renderCmsCampsList() {
@@ -2704,6 +2713,22 @@ window.collectSiteContentFromUI = function () {
       title: getCmsVal('cms-tryout-title') || 'Tryout Registration Portal',
       desc: getCmsVal('cms-tryout-desc'),
       externalRegisterUrl: getCmsVal('cms-tryout-url')
+    },
+    branding: {
+      clubName: getCmsVal('cms-brand-club-name') || 'Mercer Chiefs Hockey Club',
+      shortName: getCmsVal('cms-brand-club-short') || 'Mercer Chiefs',
+      tagline: getCmsVal('cms-brand-tagline') || 'Junior & Elite Youth Hockey',
+      description: getCmsVal('cms-brand-desc'),
+      founded: getCmsVal('cms-brand-founded') || '1990',
+      crestLogo: getCmsVal('cms-brand-crest-url') || 'assets/images/mercer-chiefs-crest.png',
+      wordmarkLogo: getCmsVal('cms-brand-wordmark-url') || 'assets/images/mercer-chiefs-logo.png',
+      favicon: getCmsVal('cms-brand-favicon-url') || 'assets/images/mercer-chiefs-crest.png',
+      colors: {
+        primary: getCmsVal('cms-color-primary') || '#BD323B',
+        accent: getCmsVal('cms-color-accent') || '#F5A623',
+        bgDeep: getCmsVal('cms-color-bg') || '#08090C',
+        bgCard: getCmsVal('cms-color-card') || '#12151C'
+      }
     }
   };
 
@@ -2714,25 +2739,30 @@ window.publishSiteContent = async function () {
   const token = localStorage.getItem('mercer_github_token')?.trim();
   const repoOwner = 'natel1380';
   const repoName = 'mercer-chiefs-website';
-  const btn = document.getElementById('btn-publish-site-content');
-  const badge = document.getElementById('site-content-status-badge');
-  const originalHtml = btn ? btn.innerHTML : '💾 Publish to Live Site';
+
+  const btnContent = document.getElementById('btn-publish-site-content');
+  const badgeContent = document.getElementById('site-content-status-badge');
+  const btnBranding = document.getElementById('btn-publish-branding');
+  const badgeBranding = document.getElementById('site-branding-status-badge');
+
+  const btns = [btnContent, btnBranding].filter(Boolean);
+  const badges = [badgeContent, badgeBranding].filter(Boolean);
 
   if (!token) {
     window.switchAdminTab('tab-sync');
     window.toggleGitHubSettings();
-    showToast('Please enter and save your GitHub Token in Data Sync Center first to publish content to the live site.');
+    showToast('Please enter and save your GitHub Token in Data Sync Center first to publish changes to the live site.');
     return;
   }
 
-  if (btn) {
-    btn.disabled = true;
-    btn.innerHTML = '⏳ Publishing to Live Site...';
-  }
-  if (badge) {
-    badge.textContent = '○ Uploading...';
-    badge.style.color = 'var(--chiefs-gold)';
-  }
+  btns.forEach(b => {
+    b.disabled = true;
+    b.innerHTML = '⏳ Publishing to Live Site...';
+  });
+  badges.forEach(b => {
+    b.textContent = '○ Uploading...';
+    b.style.color = 'var(--chiefs-gold)';
+  });
 
   const content = window.collectSiteContentFromUI();
   const jsonString = JSON.stringify(content, null, 2);
@@ -2765,39 +2795,41 @@ window.publishSiteContent = async function () {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        message: 'chore: update website content via CMS (tryouts, camps, rink, modals)',
+        message: 'chore: update website content and club branding via CMS',
         content: btoa(unescape(encodeURIComponent(jsonString))),
         sha: sha || undefined
       })
     });
 
     if (putRes.ok) {
-      showToast('✓ Successfully published website content to live website!');
-      if (badge) {
-        badge.textContent = '● Published Live';
-        badge.style.color = '#4ade80';
-      }
-      if (btn) {
-        btn.disabled = false;
-        btn.innerHTML = '✓ Published!';
-        setTimeout(() => { btn.innerHTML = originalHtml; }, 2500);
-      }
+      showToast('✓ Successfully published updates to live website!');
+      badges.forEach(b => {
+        b.textContent = '● Published Live';
+        b.style.color = '#4ade80';
+      });
+      btns.forEach(b => {
+        b.disabled = false;
+        b.innerHTML = '✓ Published!';
+        setTimeout(() => {
+          b.innerHTML = b.id === 'btn-publish-branding' ? '💾 Publish Branding to Live Site' : '💾 Publish to Live Site';
+        }, 2500);
+      });
       return;
     }
 
     const errData = await putRes.json();
     throw new Error(errData.message || 'GitHub API returned an error');
   } catch (err) {
-    console.error('Publish site content error:', err);
+    console.error('Publish error:', err);
     showToast(`Publish failed: ${err.message || 'Check token permissions'}`);
-    if (badge) {
-      badge.textContent = '● Saved Locally Only';
-      badge.style.color = '#f87171';
-    }
-    if (btn) {
-      btn.disabled = false;
-      btn.innerHTML = originalHtml;
-    }
+    badges.forEach(b => {
+      b.textContent = '● Saved Locally Only';
+      b.style.color = '#f87171';
+    });
+    btns.forEach(b => {
+      b.disabled = false;
+      b.innerHTML = b.id === 'btn-publish-branding' ? '💾 Publish Branding to Live Site' : '💾 Publish to Live Site';
+    });
   }
 };
 
@@ -2811,4 +2843,171 @@ window.resetSiteContentDefaults = async function () {
       showToast('Content reset to file defaults.');
     }
   } catch (e) {}
+};
+
+/* ==========================================================================
+   11. CLUB BRANDING & THEME CMS
+   ========================================================================== */
+
+async function initClubBrandingCMS() {
+  try {
+    let content = cmsContentState;
+    if (!content) {
+      try {
+        const cached = localStorage.getItem('mercer_site_content');
+        if (cached) content = JSON.parse(cached);
+      } catch (e) {}
+    }
+
+    if (!content) {
+      const res = await fetch(`data/site-content.json?t=${Date.now()}`);
+      if (res.ok) {
+        content = await res.json();
+      }
+    }
+
+    if (content && content.branding) {
+      populateBrandingUI(content.branding);
+    } else {
+      window.resetBrandingDefaults(false);
+    }
+  } catch (err) {
+    console.warn('Failed to load branding in admin:', err);
+  }
+}
+window.initClubBrandingCMS = initClubBrandingCMS;
+
+function populateBrandingUI(b) {
+  if (!b) return;
+
+  setCmsVal('cms-brand-club-name', b.clubName || 'Mercer Chiefs Hockey Club');
+  setCmsVal('cms-brand-club-short', b.shortName || 'Mercer Chiefs');
+  setCmsVal('cms-brand-tagline', b.tagline || 'Junior & Elite Youth Hockey');
+  setCmsVal('cms-brand-founded', b.founded || '1990');
+  setCmsVal('cms-brand-desc', b.description || '');
+
+  setCmsVal('cms-brand-crest-url', b.crestLogo || 'assets/images/mercer-chiefs-crest.png');
+  setCmsVal('cms-brand-wordmark-url', b.wordmarkLogo || 'assets/images/mercer-chiefs-logo.png');
+  setCmsVal('cms-brand-favicon-url', b.favicon || 'assets/images/mercer-chiefs-crest.png');
+
+  const colors = b.colors || {};
+  const primary = colors.primary || '#BD323B';
+  const accent = colors.accent || '#F5A623';
+  const bg = colors.bgDeep || '#08090C';
+  const card = colors.bgCard || '#12151C';
+
+  setCmsVal('cms-color-primary', primary);
+  setCmsVal('cms-color-primary-picker', primary);
+  setCmsVal('cms-color-accent', accent);
+  setCmsVal('cms-color-accent-picker', accent);
+  setCmsVal('cms-color-bg', bg);
+  setCmsVal('cms-color-bg-picker', bg);
+  setCmsVal('cms-color-card', card);
+  setCmsVal('cms-color-card-picker', card);
+
+  window.updateBrandingPreview();
+}
+
+window.updateBrandingPreview = function () {
+  const shortName = getCmsVal('cms-brand-club-short') || 'MERCER CHIEFS';
+  const tagline = getCmsVal('cms-brand-tagline') || 'JUNIOR & ELITE YOUTH HOCKEY';
+  const crestUrl = getCmsVal('cms-brand-crest-url') || 'assets/images/mercer-chiefs-crest.png';
+  const wordmarkUrl = getCmsVal('cms-brand-wordmark-url') || 'assets/images/mercer-chiefs-logo.png';
+  const primary = getCmsVal('cms-color-primary') || '#BD323B';
+  const accent = getCmsVal('cms-color-accent') || '#F5A623';
+  const bg = getCmsVal('cms-color-bg') || '#08090C';
+  const card = getCmsVal('cms-color-card') || '#12151C';
+  const fullName = getCmsVal('cms-brand-club-name') || 'Mercer Chiefs Hockey Club';
+
+  // Update Image Previews
+  const previewCrest = document.getElementById('preview-crest-img');
+  if (previewCrest) previewCrest.src = crestUrl;
+  const previewWordmark = document.getElementById('preview-wordmark-img');
+  if (previewWordmark) previewWordmark.src = wordmarkUrl;
+
+  // Update Mockup Elements
+  const mockCrest = document.getElementById('mockup-crest');
+  if (mockCrest) mockCrest.src = crestUrl;
+  const mockTitle = document.getElementById('mockup-title');
+  if (mockTitle) mockTitle.textContent = shortName.toUpperCase();
+  const mockSub = document.getElementById('mockup-sub');
+  if (mockSub) {
+    mockSub.textContent = tagline.toUpperCase();
+    mockSub.style.color = accent;
+  }
+  const mockCopy = document.getElementById('mockup-copyright');
+  if (mockCopy) mockCopy.textContent = `© ${new Date().getFullYear()} ${fullName}. All rights reserved.`;
+
+  // Update Mockup Colors & Borders
+  const previewBox = document.getElementById('live-theme-preview-box');
+  if (previewBox) previewBox.style.background = bg;
+
+  const mockCard = document.getElementById('mockup-card-surface');
+  if (mockCard) {
+    mockCard.style.background = card;
+    mockCard.style.borderColor = primary;
+  }
+
+  const mockBadge = document.getElementById('mockup-badge');
+  if (mockBadge) {
+    mockBadge.style.color = accent;
+    mockBadge.style.borderColor = accent;
+    mockBadge.style.background = hexToRgba(accent, 0.15);
+  }
+
+  const primBtn = document.getElementById('mockup-primary-btn');
+  if (primBtn) {
+    primBtn.style.background = primary;
+    primBtn.style.borderColor = primary;
+    primBtn.style.boxShadow = `0 0 12px ${hexToRgba(primary, 0.45)}`;
+  }
+
+  const secBtn = document.getElementById('mockup-secondary-btn');
+  if (secBtn) {
+    secBtn.style.color = accent;
+    secBtn.style.borderColor = accent;
+  }
+
+  // Also apply dynamically to active page root so admin portal feels themed
+  document.documentElement.style.setProperty('--chiefs-red', primary);
+  document.documentElement.style.setProperty('--chiefs-gold', accent);
+};
+
+window.applyColorPreset = function (primary, accent, bgDeep, bgCard) {
+  setCmsVal('cms-color-primary', primary);
+  setCmsVal('cms-color-primary-picker', primary);
+  setCmsVal('cms-color-accent', accent);
+  setCmsVal('cms-color-accent-picker', accent);
+  setCmsVal('cms-color-bg', bgDeep);
+  setCmsVal('cms-color-bg-picker', bgDeep);
+  setCmsVal('cms-color-card', bgCard);
+  setCmsVal('cms-color-card-picker', bgCard);
+
+  window.updateBrandingPreview();
+  showToast('Color preset applied. See preview below.');
+};
+
+window.resetBrandingDefaults = function (promptUser = true) {
+  if (promptUser && !confirm('Reset club branding back to Mercer Chiefs authentic defaults?')) return;
+  populateBrandingUI({
+    clubName: 'Mercer Chiefs Hockey Club',
+    shortName: 'Mercer Chiefs',
+    tagline: 'Junior & Elite Youth Hockey',
+    description: 'Dedicated to developing student-athletes through competitive Tier II tuition-free junior hockey and premier Tier 1 AAA youth competition in Hamilton, New Jersey.',
+    founded: '1990',
+    crestLogo: 'assets/images/mercer-chiefs-crest.png',
+    wordmarkLogo: 'assets/images/mercer-chiefs-logo.png',
+    favicon: 'assets/images/mercer-chiefs-crest.png',
+    colors: {
+      primary: '#BD323B',
+      accent: '#F5A623',
+      bgDeep: '#08090C',
+      bgCard: '#12151C'
+    }
+  });
+  if (promptUser) showToast('Branding reset to Mercer Chiefs defaults.');
+};
+
+window.publishClubBranding = function () {
+  window.publishSiteContent();
 };
