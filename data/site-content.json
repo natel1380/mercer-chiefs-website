@@ -1,5 +1,17 @@
 {
+  "sections": {
+    "hero": true,
+    "juniorHub": true,
+    "youthHub": true,
+    "video": true,
+    "tryouts": true,
+    "camps": true,
+    "arena": true,
+    "news": true,
+    "ticker": true
+  },
   "hero": {
+    "enabled": true,
     "backdropImage": "assets/images/hero-action.jpg",
     "headlineLine1": "CHAMPIONSHIP HOCKEY.",
     "headlineGradient": "PROVEN ADVANCEMENT.",
@@ -18,6 +30,7 @@
     "stat4Label": "Cup Championship Finalist"
   },
   "tryouts": {
+    "enabled": true,
     "sectionTag": "2026 / 2027 Season Evaluations",
     "title": "Join The Chiefs Tradition",
     "subtitle": "Evaluations for Tier I AAA and Tier II AA teams are held at Ice Land Arena in Hamilton, NJ. Experience elite coaching, high-tempo practices, and premier league competition.",
@@ -75,17 +88,52 @@
     ]
   },
   "arena": {
-    "sectionTag": "Home Facility",
+    "enabled": true,
+    "sectionTag": "Home Facilities",
+    "sectionTitle": "Home Rinks & Facilities",
+    "sectionSubtitle": "The Mercer Chiefs train and compete across premier twin-sheet regional ice complexes in Central New Jersey.",
     "title": "Ice Land Skating Center",
-    "desc": "Located in Hamilton Township, NJ, Ice Land is the dedicated home ice of the Mercer Chiefs Junior and Youth hockey clubs. Featuring two NHL-regulation ice rinks, dedicated Chiefs team locker rooms, and comprehensive athlete training facilities.",
+    "desc": "Located in Hamilton Township, NJ, Ice Land is the flagship home ice of the Mercer Chiefs Tuition-Free NCDC Tier II Junior team, USPHL Premier, and Tier 1 AAA youth hockey teams. Featuring two NHL-regulation ice sheets, dedicated Junior player locker rooms, and comprehensive athletic training facilities.",
     "address": "6 Tennis Court, Hamilton Township, NJ 08619",
     "mapUrl": "https://maps.google.com/?q=6+Tennis+Ct,+Hamilton+Township,+NJ+08619",
     "phone": "(609) 588-6672",
     "amenities": [
       "2 NHL-Size Ice Sheets",
-      "Full-menu Concessions",
-      "Off-Ice Dryland Training",
-      "Blackbear TV Broadcast Rinks"
+      "Dedicated Chiefs Team Locker Rooms",
+      "Off-Ice Dryland Training Center",
+      "Black Bear TV Broadcast Rinks"
+    ],
+    "rinks": [
+      {
+        "id": "rink-iceland",
+        "name": "Ice Land Skating Center",
+        "tag": "Junior (NCDC/Premier) & Tier 1 AAA Home",
+        "desc": "Flagship home ice of the Mercer Chiefs Tuition-Free NCDC Tier II Junior team, USPHL Premier, and Tier 1 AAA youth hockey teams. Featuring two NHL-regulation ice sheets, dedicated Junior team locker rooms, video theater, and comprehensive athlete training facilities.",
+        "address": "6 Tennis Court, Hamilton Township, NJ 08619",
+        "phone": "(609) 588-6672",
+        "mapUrl": "https://maps.google.com/?q=6+Tennis+Ct,+Hamilton+Township,+NJ+08619",
+        "amenities": [
+          "2 NHL-Size Ice Sheets",
+          "Dedicated Chiefs Team Locker Rooms",
+          "Off-Ice Dryland Training Center",
+          "Black Bear TV Broadcast Rinks"
+        ]
+      },
+      {
+        "id": "rink-proskate",
+        "name": "Pro Skate Ice Arena",
+        "tag": "Tier 2 AA/A Youth Hockey Home",
+        "desc": "Dedicated home venue for Mercer Chiefs Tier 2 AA and A youth hockey teams competing in the Atlantic Hockey Federation (AHF). Features two regulation ice surfaces, full-service pro shop, and athlete development skill clinics.",
+        "address": "1000 Cornwall Rd, Monmouth Junction, NJ 08852",
+        "phone": "(732) 940-6400",
+        "mapUrl": "https://maps.google.com/?q=1000+Cornwall+Rd,+Monmouth+Junction,+NJ+08852",
+        "amenities": [
+          "2 Regulation Ice Surfaces",
+          "Full-Service Pro Shop & Sharpening",
+          "Shooting & Stickhandling Stations",
+          "High-Definition Game Streaming"
+        ]
+      }
     ],
     "broadcastTag": "Live Broadcasts",
     "broadcastTitle": "Watch On Black Bear TV",
@@ -93,6 +141,7 @@
     "broadcastUrl": "https://blackbearsports.tv/"
   },
   "program": {
+    "enabled": true,
     "sectionTag": "Inside The Mercer Chiefs Experience",
     "title": "Junior Hockey Defined",
     "subtitle": "Watch the official Mercer Chiefs commercial highlighting our tuition-free NCDC Tier II program, USPHL Premier development, and daily pathway to NCAA college hockey commitments.",

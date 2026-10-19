@@ -24,6 +24,14 @@ export function getStoredHiddenTeams() {
   return [];
 }
 
+export function getStoredSectionVisibility() {
+  try {
+    const raw = localStorage.getItem('mercer_section_visibility');
+    if (raw) return JSON.parse(raw);
+  } catch (e) { }
+  return {};
+}
+
 export function getStoredClubNews() {
   try {
     const raw = localStorage.getItem('mercer_club_news');
@@ -241,10 +249,21 @@ if (typeof window !== 'undefined' && typeof window.addEventListener === 'functio
     if (!e.key || e.key.includes('mercer_synced_junior') || e.key.includes('mercer_synced_ticker') || e.key.includes('mercer_last_sync')) {
       refreshJuniorDataUI();
     }
+    if (!e.key || e.key.includes('mercer_site_content') || e.key.includes('mercer_section_visibility') || e.key.includes('mercer_junior_hub') || e.key.includes('mercer_youth_hub') || e.key.includes('mercer_visibility_updated')) {
+      initSiteContent();
+    }
   });
+
+  try {
+    const bc = new BroadcastChannel('mercer_visibility_channel');
+    bc.onmessage = () => {
+      initSiteContent();
+    };
+  } catch (e) {}
 
   window.addEventListener('mercer:datasync', () => {
     refreshJuniorDataUI();
+    initSiteContent();
   });
 }
 
@@ -700,13 +719,21 @@ function initAutoBackgroundSync() {
         const cfgResp = await fetch('data/site-config.json?t=' + Date.now());
         if (cfgResp.ok) {
           const cfg = await cfgResp.json();
-          if (cfg && Array.isArray(cfg.hiddenTeams)) {
-            const currentHidden = getStoredHiddenTeams();
-            if (JSON.stringify(currentHidden) !== JSON.stringify(cfg.hiddenTeams)) {
-              localStorage.setItem('mercer_hidden_teams', JSON.stringify(cfg.hiddenTeams));
-              if (typeof populateYouthDropdown === 'function') populateYouthDropdown();
-              if (typeof renderYouthDisplay === 'function') renderYouthDisplay();
-              console.log('[AUTO-SYNC] Updated global team visibility preferences from site-config.json.');
+          if (cfg) {
+            if (cfg.juniorHubVisible !== undefined) {
+              localStorage.setItem('mercer_junior_hub_visible', String(cfg.juniorHubVisible));
+            }
+            if (cfg.youthHubVisible !== undefined) {
+              localStorage.setItem('mercer_youth_hub_visible', String(cfg.youthHubVisible));
+            }
+            if (Array.isArray(cfg.hiddenTeams)) {
+              const currentHidden = getStoredHiddenTeams();
+              if (JSON.stringify(currentHidden) !== JSON.stringify(cfg.hiddenTeams)) {
+                localStorage.setItem('mercer_hidden_teams', JSON.stringify(cfg.hiddenTeams));
+                if (typeof populateYouthDropdown === 'function') populateYouthDropdown();
+                if (typeof renderYouthDisplay === 'function') renderYouthDisplay();
+                console.log('[AUTO-SYNC] Updated global team visibility preferences from site-config.json.');
+              }
             }
           }
         }
@@ -751,6 +778,23 @@ export async function initSiteContent() {
     const res = await fetch('data/site-content.json?t=' + Date.now());
     if (res.ok) {
       const data = await res.json();
+      
+      // Preserve active section visibility preferences from storage
+      const storedVis = getStoredSectionVisibility();
+      if (!data.sections) data.sections = {};
+      Object.keys(storedVis).forEach(k => {
+        data.sections[k] = storedVis[k];
+        if (k === 'hero' && data.hero) data.hero.enabled = storedVis[k];
+        if (k === 'camps' && data.camps) data.camps.enabled = storedVis[k];
+        if (k === 'tryouts' && data.tryouts) data.tryouts.enabled = storedVis[k];
+        if (k === 'arena' && data.arena) data.arena.enabled = storedVis[k];
+        if (k === 'video' && data.program) data.program.enabled = storedVis[k];
+        if (k === 'news' && data.news) data.news.enabled = storedVis[k];
+        if (k === 'ticker' && data.ticker) data.ticker.enabled = storedVis[k];
+        if (k === 'juniorHub' && data.juniorHub) data.juniorHub.enabled = storedVis[k];
+        if (k === 'youthHub' && data.youthHub) data.youthHub.enabled = storedVis[k];
+      });
+
       applySiteContent(data);
       localStorage.setItem('mercer_site_content', JSON.stringify(data));
     }
@@ -761,6 +805,103 @@ export async function initSiteContent() {
 
 export function applySiteContent(content) {
   if (!content) return;
+
+  const storedVis = getStoredSectionVisibility();
+  const sec = content.sections || {};
+
+  // 1. Live Section & Hub Visibility Controls
+  const isHeroVisible = storedVis.hero !== undefined ? storedVis.hero : (content.hero?.enabled ?? sec.hero ?? true);
+  const heroEl = document.getElementById('hero-section');
+  if (heroEl) heroEl.style.display = isHeroVisible ? '' : 'none';
+
+  // Junior Hub Visibility
+  let isJuniorVisible = storedVis.juniorHub !== undefined ? storedVis.juniorHub : (content.juniorHub?.enabled ?? sec.juniorHub ?? (content.juniorHubVisible ?? true));
+  try {
+    const storedJunior = localStorage.getItem('mercer_junior_hub_visible');
+    if (storedJunior !== null && storedVis.juniorHub === undefined) isJuniorVisible = storedJunior === 'true';
+  } catch (e) {}
+  const juniorHubEl = document.getElementById('ncdc-hub');
+  if (juniorHubEl) juniorHubEl.style.display = isJuniorVisible ? '' : 'none';
+  const juniorNav = document.getElementById('nav-link-ncdc')?.closest('li');
+  if (juniorNav) juniorNav.style.display = isJuniorVisible ? '' : 'none';
+
+  // Youth Hub Visibility
+  let isYouthVisible = storedVis.youthHub !== undefined ? storedVis.youthHub : (content.youthHub?.enabled ?? sec.youthHub ?? (content.youthHubVisible ?? true));
+  try {
+    const storedYouth = localStorage.getItem('mercer_youth_hub_visible');
+    if (storedYouth !== null && storedVis.youthHub === undefined) isYouthVisible = storedYouth === 'true';
+  } catch (e) {}
+  const youthHubEl = document.getElementById('youth-hub');
+  if (youthHubEl) youthHubEl.style.display = isYouthVisible ? '' : 'none';
+  const youthNav = document.getElementById('nav-link-youth')?.closest('li');
+  if (youthNav) youthNav.style.display = isYouthVisible ? '' : 'none';
+
+  // Program Video Visibility
+  const isVideoVisible = storedVis.video !== undefined ? storedVis.video : (content.program?.enabled ?? content.video?.enabled ?? sec.video ?? true);
+  const videoEl = document.getElementById('program-video-section');
+  if (videoEl) videoEl.style.display = isVideoVisible ? '' : 'none';
+
+  // Tryouts & Camps Visibility
+  const isTryoutsVisible = storedVis.tryouts !== undefined ? storedVis.tryouts : (content.tryouts?.enabled ?? sec.tryouts ?? true);
+  const isCampsVisible = storedVis.camps !== undefined ? storedVis.camps : (content.camps?.enabled ?? sec.camps ?? true);
+  const tryoutsSection = document.getElementById('tryouts-section');
+  const tryoutsNav = document.getElementById('nav-link-tryouts');
+  const tryoutsNavLi = tryoutsNav?.closest('li');
+  const tryoutsGrid = tryoutsSection?.querySelector('.tryouts-grid');
+  const tryoutsHeader = tryoutsSection?.querySelector('.section-header');
+  const campsContainer = document.getElementById('camps-container');
+
+  if (tryoutsSection) {
+    if (!isTryoutsVisible && !isCampsVisible) {
+      tryoutsSection.style.display = 'none';
+      if (tryoutsNavLi) tryoutsNavLi.style.display = 'none';
+    } else {
+      tryoutsSection.style.display = '';
+      if (tryoutsNavLi) tryoutsNavLi.style.display = '';
+      if (tryoutsGrid) tryoutsGrid.style.display = isTryoutsVisible ? '' : 'none';
+      if (tryoutsHeader) tryoutsHeader.style.display = isTryoutsVisible ? '' : 'none';
+
+      if (tryoutsNav) {
+        if (isTryoutsVisible && isCampsVisible) {
+          tryoutsNav.textContent = 'Tryouts & Camps';
+        } else if (isTryoutsVisible) {
+          tryoutsNav.textContent = 'Tryouts';
+        } else {
+          tryoutsNav.textContent = 'Camps & Clinics';
+        }
+      }
+    }
+  }
+
+  // Handle camps container visibility directly
+  if (campsContainer) {
+    campsContainer.style.display = isCampsVisible ? '' : 'none';
+  }
+
+  // Top header CTA Tryouts buttons
+  const navTryoutBtn = document.getElementById('nav-tryout-btn');
+  if (navTryoutBtn) navTryoutBtn.style.display = isTryoutsVisible ? '' : 'none';
+  const mobileTryoutBtn = document.getElementById('mobile-tryout-btn');
+  if (mobileTryoutBtn) mobileTryoutBtn.style.display = isTryoutsVisible ? '' : 'none';
+
+  // Arena Visibility
+  const isArenaVisible = storedVis.arena !== undefined ? storedVis.arena : (content.arena?.enabled ?? sec.arena ?? true);
+  const arenaEl = document.getElementById('arena-section');
+  if (arenaEl) arenaEl.style.display = isArenaVisible ? '' : 'none';
+  const arenaNav = document.getElementById('nav-link-arena')?.closest('li');
+  if (arenaNav) arenaNav.style.display = isArenaVisible ? '' : 'none';
+
+  // News Visibility
+  const isNewsVisible = storedVis.news !== undefined ? storedVis.news : (content.news?.enabled ?? sec.news ?? true);
+  const newsEl = document.getElementById('news-section');
+  if (newsEl) newsEl.style.display = isNewsVisible ? '' : 'none';
+  const newsNav = document.getElementById('nav-link-news')?.closest('li');
+  if (newsNav) newsNav.style.display = isNewsVisible ? '' : 'none';
+
+  // Ticker Visibility
+  const isTickerVisible = storedVis.ticker !== undefined ? storedVis.ticker : (content.ticker?.enabled ?? sec.ticker ?? true);
+  const tickerEl = document.getElementById('live-scoreboard-ribbon') || document.getElementById('ticker-bar');
+  if (tickerEl) tickerEl.style.display = isTickerVisible ? '' : 'none';
 
   // 0. Top Hero Showcase & Banner
   if (content.hero) {
@@ -779,18 +920,36 @@ export function applySiteContent(content) {
 
     const pBtn = document.getElementById('hero-explore-ncdc-btn');
     if (pBtn) {
-      if (h.primaryBtnText) {
-        pBtn.innerHTML = `${h.primaryBtnText} <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6" /></svg>`;
+      if (!isJuniorVisible) {
+        if (isYouthVisible) {
+          pBtn.innerHTML = `Explore Teams <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6" /></svg>`;
+          pBtn.href = '#youth-hub';
+        } else if (isTryoutsVisible || isCampsVisible) {
+          pBtn.innerHTML = `Tryouts & Camps <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6" /></svg>`;
+          pBtn.href = '#tryouts-section';
+        } else {
+          pBtn.innerHTML = `Explore Facility <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6" /></svg>`;
+          pBtn.href = '#arena-section';
+        }
+      } else {
+        if (h.primaryBtnText) {
+          pBtn.innerHTML = `${h.primaryBtnText} <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6" /></svg>`;
+        }
+        if (h.primaryBtnUrl) pBtn.href = h.primaryBtnUrl;
       }
-      if (h.primaryBtnUrl) pBtn.href = h.primaryBtnUrl;
     }
 
     const sBtn = document.getElementById('hero-gamesheet-btn');
     if (sBtn) {
-      if (h.secondaryBtnText) {
-        sBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg> ${h.secondaryBtnText}`;
+      if (!isYouthVisible) {
+        sBtn.style.display = isJuniorVisible ? 'none' : '';
+      } else {
+        sBtn.style.display = '';
+        if (h.secondaryBtnText) {
+          sBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg> ${h.secondaryBtnText}`;
+        }
+        if (h.secondaryBtnUrl) sBtn.href = h.secondaryBtnUrl;
       }
-      if (h.secondaryBtnUrl) sBtn.href = h.secondaryBtnUrl;
     }
 
     const s1Num = document.getElementById('hero-stat1-num');
@@ -928,9 +1087,8 @@ export function applySiteContent(content) {
   }
 
   // 3. Camps & Clinics
-  const campsContainer = document.getElementById('camps-container');
   if (campsContainer) {
-    if (content.camps && content.camps.enabled && Array.isArray(content.camps.items) && content.camps.items.length > 0) {
+    if (isCampsVisible && content.camps && Array.isArray(content.camps.items) && content.camps.items.length > 0) {
       const c = content.camps;
       campsContainer.innerHTML = `
         <div class="camps-showcase" style="margin-top: 3.5rem; padding-top: 3rem; border-top: 1px solid var(--border-subtle);">
@@ -972,39 +1130,96 @@ export function applySiteContent(content) {
           </div>
         </div>
       `;
+      campsContainer.style.display = '';
     } else {
       campsContainer.innerHTML = '';
+      campsContainer.style.display = 'none';
     }
   }
 
-  // 4. Arena & Facilities
+  // 4. Arena & Facilities (Multi-Rink Support)
   if (content.arena) {
     const a = content.arena;
     const tag = document.getElementById('arena-facility-tag');
     if (tag && a.sectionTag) tag.textContent = a.sectionTag;
-    const name = document.getElementById('arena-facility-name');
-    if (name && a.title) name.textContent = a.title;
-    const desc = document.getElementById('arena-facility-desc');
-    if (desc && a.desc) desc.textContent = a.desc;
+    const title = document.getElementById('arena-section-title');
+    if (title && a.sectionTitle) title.textContent = a.sectionTitle;
+    const subtitle = document.getElementById('arena-section-subtitle');
+    if (subtitle && a.sectionSubtitle) subtitle.textContent = a.sectionSubtitle;
 
-    if (a.address) {
-      const parts = a.address.split(',');
-      const line1 = document.getElementById('arena-address-line1');
-      const line2 = document.getElementById('arena-address-line2');
-      if (line1) line1.textContent = parts[0]?.trim() || a.address;
-      if (line2) line2.textContent = parts.slice(1).join(',').trim() || '';
+    const navLink = document.getElementById('nav-link-arena');
+    if (navLink) {
+      navLink.textContent = a.navLabel || 'Home Rink/s';
     }
 
-    const dirBtn = document.getElementById('arena-directions-btn');
-    if (dirBtn && a.mapUrl) dirBtn.href = a.mapUrl;
-
-    if (Array.isArray(a.amenities)) {
-      const amenityItems = document.querySelectorAll('#arena-amenities-list .amenity-item span');
-      a.amenities.forEach((text, i) => {
-        if (amenityItems[i]) amenityItems[i].textContent = text;
-      });
+    // Determine rinks list (support both array of rinks or fallback legacy single object)
+    let rinks = [];
+    if (Array.isArray(a.rinks) && a.rinks.length > 0) {
+      rinks = a.rinks;
+    } else if (a.title) {
+      rinks = [{
+        name: a.title,
+        tag: a.tag || 'Home Facility',
+        desc: a.desc || '',
+        address: a.address || '',
+        phone: a.phone || '',
+        mapUrl: a.mapUrl || '',
+        amenities: Array.isArray(a.amenities) ? a.amenities : []
+      }];
     }
 
+    const rinksContainer = document.getElementById('arena-rinks-container');
+    if (rinksContainer && rinks.length > 0) {
+      rinksContainer.innerHTML = rinks.map((rink) => {
+        const parts = (rink.address || '').split(',');
+        const line1 = parts[0]?.trim() || rink.address || '';
+        const line2 = parts.slice(1).join(',').trim() || '';
+        const amenities = Array.isArray(rink.amenities) ? rink.amenities : [];
+
+        return `
+          <div class="arena-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+                <span class="tryout-badge" style="background: rgba(245, 166, 35, 0.15); color: var(--chiefs-gold); border-color: rgba(245, 166, 35, 0.4);">${rink.tag || 'Home Facility'}</span>
+                ${rink.phone ? `<a href="tel:${String(rink.phone).replace(/[^0-9]/g, '')}" style="color: var(--text-muted); font-size: 0.85rem; text-decoration: none;">📞 ${rink.phone}</a>` : ''}
+              </div>
+              <h3 style="font-size: 1.5rem; color: #fff; margin-bottom: 0.75rem;">${rink.name || 'Ice Arena'}</h3>
+              <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.92rem; margin-bottom: 1.25rem;">
+                ${rink.desc || ''}
+              </p>
+
+              ${amenities.length > 0 ? `
+                <div class="arena-amenities-grid" style="margin: 1rem 0 1.5rem 0;">
+                  ${amenities.map(item => `
+                    <div class="amenity-item" style="padding: 0.55rem 0.75rem; font-size: 0.84rem;">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2" style="flex-shrink: 0;">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 6v6l4 2" />
+                      </svg>
+                      <span>${item}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              ` : ''}
+            </div>
+
+            <div style="margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+              <div>
+                <div style="font-weight: 700; color: #fff; font-size: 0.92rem;">${line1}</div>
+                ${line2 ? `<div style="font-size: 0.84rem; color: var(--text-secondary);">${line2}</div>` : ''}
+              </div>
+              ${rink.mapUrl ? `
+                <a href="${rink.mapUrl}" target="_blank" class="btn-secondary" style="font-size: 0.82rem; padding: 0.45rem 0.9rem;">
+                  Get Directions ↗
+                </a>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Broadcast card
     const bTag = document.getElementById('arena-broadcast-tag');
     if (bTag && a.broadcastTag) bTag.textContent = a.broadcastTag;
     const bTitle = document.getElementById('arena-broadcast-title');
@@ -3026,27 +3241,101 @@ function initModals() {
     });
   });
 
-  // Scout Inquiry Form submission
+  // Pre-filled mailto helper
+  function openPreFilledMailto(toEmail, subject, bodyText) {
+    const cleanTo = String(toEmail).replace(/\s+/g, '');
+    const mailtoUrl = `mailto:${encodeURIComponent(cleanTo).replace(/%2C/g, ',')}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+    const tempLink = document.createElement('a');
+    tempLink.href = mailtoUrl;
+    tempLink.style.display = 'none';
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    setTimeout(() => {
+      if (tempLink.parentNode) tempLink.parentNode.removeChild(tempLink);
+    }, 1000);
+  }
+
+  // 1. Scout Inquiry Form submission
   const scoutForm = document.getElementById('scout-inquiry-form');
   if (scoutForm) {
     scoutForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const name = document.getElementById('scout-name')?.value || 'Scout';
-      alert(`Thank you, ${name}. Your scout inquiry package request has been routed directly to GM & Head Coach Rob Broderick and Head Scout Ryan Kosecki.`);
+      const name = document.getElementById('scout-name')?.value.trim() || 'Scout';
+      const org = document.getElementById('scout-org')?.value.trim() || 'N/A';
+      const email = document.getElementById('scout-email')?.value.trim() || 'N/A';
+      const phone = document.getElementById('scout-phone')?.value.trim() || 'N/A';
+      const player = document.getElementById('scout-target-player')?.value.trim() || 'All Roster Prospects';
+      const notes = document.getElementById('scout-notes')?.value.trim() || 'Requesting complete scouting evaluation package and game video.';
+
+      const targetEmails = 'mercerjuniorhockey@gmail.com,recruiting@mercerchiefs.com';
+      const subject = `Scout Inquiry: ${player} - ${org} (${name})`;
+      const body = `Dear Coach Broderick & Mercer Chiefs Scouting Staff,\n\nI am submitting a player evaluation and recruiting inquiry:\n\n• Scout Name: ${name}\n• College / Pro Organization: ${org}\n• Email: ${email}\n• Phone: ${phone}\n• Player(s) of Interest: ${player}\n\nInquiry Details / Request:\n${notes}\n\nThank you,\n${name}`;
+
+      openPreFilledMailto(targetEmails, subject, body);
+
+      alert(`Thank you, ${name}! Opening your email client with your scouting questionnaire pre-filled for Coach Broderick and Head Scout Ryan Kosecki. Please click 'Send' in your mail program.`);
       document.getElementById('scout-inquiry-modal')?.classList.remove('open');
       scoutForm.reset();
     });
   }
 
-  // Billet Form submission
+  // 2. Billet Form submission
   const billetForm = document.getElementById('billet-app-form');
   if (billetForm) {
     billetForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const hostName = document.getElementById('billet-host-name')?.value || 'Family';
-      alert(`Thank you, ${hostName}! Your Mercer Chiefs Billet Host Family application has been received. Our Billet Coordinator Heather O'Connell will contact you for a home visit.`);
+      const hostName = document.getElementById('billet-host-name')?.value.trim() || 'Prospective Host Family';
+      const phone = document.getElementById('billet-phone')?.value.trim() || 'N/A';
+      const email = document.getElementById('billet-email')?.value.trim() || 'N/A';
+      const town = document.getElementById('billet-town')?.value.trim() || 'N/A';
+      const roomsSelect = document.getElementById('billet-rooms');
+      const roomsText = roomsSelect?.options[roomsSelect.selectedIndex]?.text || roomsSelect?.value || '1 Private Bedroom';
+
+      let coordEmail = 'billet@mercerchiefshockey.com';
+      try {
+        const raw = localStorage.getItem('mercer_site_content');
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed?.billetModal?.coordinatorEmail) {
+            coordEmail = parsed.billetModal.coordinatorEmail;
+          }
+        }
+      } catch (err) {}
+
+      const subject = `Mercer Chiefs Billet Family Application - ${hostName}`;
+      const body = `Dear Mercer Chiefs Billeting Staff & Coordinator,\n\nI would like to apply to host a junior player for the 2026/27 season:\n\n• Primary Contact: ${hostName}\n• Phone Number: ${phone}\n• Email Address: ${email}\n• Town / Township: ${town}\n• Accommodations: ${roomsText}\n\nPlease let us know the next steps for a family interview, home visit, and orientation.\n\nThank you,\n${hostName}`;
+
+      openPreFilledMailto(coordEmail, subject, body);
+
+      alert(`Thank you, ${hostName}! Opening your email client to send your billet host application directly to Coordinator Heather O'Connell (${coordEmail}). Please click 'Send' in your mail program.`);
       document.getElementById('billet-modal')?.classList.remove('open');
       billetForm.reset();
+    });
+  }
+
+  // 3. Tryout Registration Form submission
+  const tryoutForm = document.getElementById('tryout-register-form');
+  if (tryoutForm) {
+    tryoutForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const playerName = document.getElementById('player-reg-name')?.value.trim() || 'Player';
+      const birthYear = document.getElementById('player-reg-by')?.value.trim() || '2012';
+      const position = document.getElementById('player-pos')?.value.trim() || 'Forward';
+      const tierTargetSelect = document.getElementById('player-tier-target');
+      const tierTarget = tierTargetSelect?.options[tierTargetSelect.selectedIndex]?.text || 'Tier 1 AAA (THF)';
+      const parentName = document.getElementById('parent-name')?.value.trim() || 'Parent';
+      const parentEmail = document.getElementById('parent-email')?.value.trim() || 'N/A';
+      const lastTeam = document.getElementById('last-team')?.value.trim() || 'N/A';
+
+      const targetEmails = 'mercerjuniorhockey@gmail.com,heather@ice-land.com';
+      const subject = `Tryout Evaluation Registration: ${playerName} (${birthYear} ${position})`;
+      const body = `Dear Mercer Chiefs Hockey Operations,\n\nPlease find our evaluation registration details for upcoming 2026/27 tryouts at Ice Land Arena:\n\n• Player Name: ${playerName}\n• Birth Year: ${birthYear}\n• Position: ${position}\n• Target Level: ${tierTarget}\n• Parent / Guardian: ${parentName}\n• Parent Email: ${parentEmail}\n• 2025/26 Previous Team: ${lastTeam}\n\nPlease reply with our evaluation session ice times, check-in instructions, and jersey assignment.\n\nThank you,\n${parentName}`;
+
+      openPreFilledMailto(targetEmails, subject, body);
+
+      alert(`Thank you, ${parentName}! Opening your email client with ${playerName}'s tryout registration pre-filled for Mercer Chiefs Hockey Operations. Please click 'Send' in your mail program.`);
+      document.getElementById('tryout-modal')?.classList.remove('open');
+      tryoutForm.reset();
     });
   }
 }

@@ -9,6 +9,8 @@ import {
 // Portal State
 const adminState = {
   hiddenTeams: getStoredHiddenTeams(),
+  juniorHubVisible: getStoredJuniorHubVisible(),
+  youthHubVisible: getStoredYouthHubVisible(),
   newsArticles: getStoredClubNews(),
   alumniCommitments: getStoredAlumniCommitments(),
   youthTeams: getStoredYouthTeams(),
@@ -97,6 +99,34 @@ function getStoredHiddenTeams() {
   return [];
 }
 
+function getStoredJuniorHubVisible() {
+  const v = localStorage.getItem('mercer_junior_hub_visible');
+  if (v !== null) return v === 'true';
+  try {
+    const raw = localStorage.getItem('mercer_site_content');
+    if (raw) {
+      const p = JSON.parse(raw);
+      if (p.juniorHub?.enabled !== undefined) return p.juniorHub.enabled !== false;
+      if (p.sections?.juniorHub !== undefined) return p.sections.juniorHub !== false;
+    }
+  } catch (e) {}
+  return true;
+}
+
+function getStoredYouthHubVisible() {
+  const v = localStorage.getItem('mercer_youth_hub_visible');
+  if (v !== null) return v === 'true';
+  try {
+    const raw = localStorage.getItem('mercer_site_content');
+    if (raw) {
+      const p = JSON.parse(raw);
+      if (p.youthHub?.enabled !== undefined) return p.youthHub.enabled !== false;
+      if (p.sections?.youthHub !== undefined) return p.sections.youthHub !== false;
+    }
+  } catch (e) {}
+  return true;
+}
+
 function getStoredClubNews() {
   try {
     const raw = localStorage.getItem('mercer_club_news');
@@ -183,6 +213,9 @@ document.addEventListener('DOMContentLoaded', () => {
   renderAlumniTable();
   initSiteContentCMS();
   initClubBrandingCMS();
+  if (typeof window.updateAdminHeaderAndConsole === 'function') {
+    window.updateAdminHeaderAndConsole();
+  }
 });
 
 /* ==========================================================================
@@ -214,7 +247,8 @@ window.handleAuth = async function (e) {
     if (hashHex === AUTH_HASH) {
       sessionStorage.setItem('mercer_admin_auth', 'true');
       checkAuth();
-      showToast('Portal unlocked. Welcome, Mercer Chiefs Staff!');
+      const clubShort = typeof window.getActiveClubShortName === 'function' ? window.getActiveClubShortName() : 'Mercer Chiefs';
+      showToast(`Portal unlocked. Welcome, ${clubShort} Staff!`);
     } else {
       alert('Invalid Passkey. Please enter the authorized staff passkey or contact organization administration.');
     }
@@ -356,9 +390,9 @@ window.saveGitHubConfig = function () {
   if (feedback) {
     feedback.style.display = 'block';
     feedback.style.color = '#4ade80';
-    feedback.innerHTML = '✓ Token saved securely in local browser storage. Ready for 1-click cloud sync!';
+    feedback.innerHTML = '✓ Access token saved securely in browser. Live publishing & 1-click cloud sync enabled!';
   }
-  showToast("GitHub Personal Access Token saved successfully!");
+  showToast("Access token saved successfully!");
 };
 
 window.clearGitHubConfig = function () {
@@ -412,13 +446,12 @@ window.triggerGitHubCloudSync = async function () {
     if (feedback) {
       feedback.style.display = 'block';
       feedback.style.color = '#f87171';
-      feedback.textContent = 'A GitHub Personal Access Token is required to trigger cloud scraper runs.';
+      feedback.textContent = 'A GitHub Access Token is required to publish updates and trigger cloud syncs.';
     }
     document.getElementById('cfg-github-token')?.focus();
-    log(`[ERROR] Cannot trigger cloud sync: No GitHub token configured.`);
-    log(`[ACTION] Please paste your GitHub Personal Access Token in the settings drawer above and click 'Save Token'.`);
-    log(`[OR] Click 'Actions Tab ↗' to manually click 'Run workflow' directly in GitHub.`);
-    showToast('Please enter your GitHub token first (or run manually in Actions tab).');
+    log(`[NOTE] Please paste your GitHub Access Token above and click 'Save Token'.`);
+    log(`[INFO] Your token enables live website publishing and 1-click game schedule syncs.`);
+    showToast('Please enter your GitHub Access Token above to authorize live publishing.');
     return;
   }
 
@@ -491,7 +524,8 @@ window.triggerGitHubCloudSync = async function () {
                 if (latest.conclusion === 'success') {
                   updateProgress(100, `Cloud Sync Completed Successfully! Deploying site...`);
                   log(`[COMPLETE] Run #${latest.run_number} finished with conclusion: SUCCESS!`);
-                  log(`[PAGES] Mercer Chiefs Bot committed updated feeds. Live site is deploying.`);
+                  const botName = typeof window.getActiveClubShortName === 'function' ? window.getActiveClubShortName() : 'Club';
+                  log(`[PAGES] ${botName} Bot committed updated feeds. Live site is deploying.`);
                   showToast('Cloud scraper completed successfully! Live feeds updated.');
                   // Automatically reload the fresh feeds into this admin dashboard
                   setTimeout(() => {
@@ -685,7 +719,8 @@ window.runDataSync = async function (scope = 'all') {
 window.clearConsole = function () {
   const consoleEl = document.getElementById('sync-console');
   if (consoleEl) {
-    consoleEl.textContent = `[CLEARED] Ready for new sync activity.`;
+    const shortName = typeof window.getActiveClubShortName === 'function' ? window.getActiveClubShortName() : 'Club';
+    consoleEl.textContent = `[CLEARED] ${shortName} Data Engine ready for new sync activity.`;
   }
 };
 
@@ -734,7 +769,203 @@ function renderTeamToggles() {
   }
 
   updateVisibleTeamsBadge();
+
+  const hubJuniorEl = document.getElementById('toggle-hub-junior');
+  if (hubJuniorEl) hubJuniorEl.checked = adminState.juniorHubVisible !== false;
+  const hubYouthEl = document.getElementById('toggle-hub-youth');
+  if (hubYouthEl) hubYouthEl.checked = adminState.youthHubVisible !== false;
 }
+
+function getStoredSectionVisibility() {
+  try {
+    const raw = localStorage.getItem('mercer_section_visibility');
+    if (raw) return JSON.parse(raw);
+  } catch (e) {}
+  return {};
+}
+
+function saveStoredSectionVisibility(vis) {
+  try {
+    localStorage.setItem('mercer_section_visibility', JSON.stringify(vis));
+  } catch (e) {}
+}
+window.getStoredSectionVisibility = getStoredSectionVisibility;
+window.saveStoredSectionVisibility = saveStoredSectionVisibility;
+
+window.toggleJuniorHubVisibility = function (isVisible) {
+  adminState.juniorHubVisible = !!isVisible;
+  localStorage.setItem('mercer_junior_hub_visible', String(adminState.juniorHubVisible));
+
+  const quickEl = document.getElementById('cms-quick-junior');
+  if (quickEl && quickEl.checked !== adminState.juniorHubVisible) {
+    quickEl.checked = adminState.juniorHubVisible;
+  }
+  const hubEl = document.getElementById('toggle-hub-junior');
+  if (hubEl && hubEl.checked !== adminState.juniorHubVisible) {
+    hubEl.checked = adminState.juniorHubVisible;
+  }
+
+  const vis = getStoredSectionVisibility();
+  vis.juniorHub = adminState.juniorHubVisible;
+  saveStoredSectionVisibility(vis);
+
+  try {
+    let p = {};
+    const raw = localStorage.getItem('mercer_site_content');
+    if (raw) p = JSON.parse(raw);
+    if (!p.juniorHub) p.juniorHub = {};
+    p.juniorHub.enabled = adminState.juniorHubVisible;
+    if (!p.sections) p.sections = {};
+    p.sections.juniorHub = adminState.juniorHubVisible;
+    localStorage.setItem('mercer_site_content', JSON.stringify(p));
+  } catch (e) {}
+
+  localStorage.setItem('mercer_visibility_updated_ts', Date.now().toString());
+  try {
+    const bc = new BroadcastChannel('mercer_visibility_channel');
+    bc.postMessage({ type: 'visibility_change' });
+  } catch (e) {}
+
+  window.dispatchEvent(new Event('storage'));
+  showToast(isVisible ? 'Junior Hub is now visible on the website.' : 'Junior Hub is now hidden from the website.');
+};
+
+window.toggleYouthHubVisibility = function (isVisible) {
+  adminState.youthHubVisible = !!isVisible;
+  localStorage.setItem('mercer_youth_hub_visible', String(adminState.youthHubVisible));
+
+  const quickEl = document.getElementById('cms-quick-youth');
+  if (quickEl && quickEl.checked !== adminState.youthHubVisible) {
+    quickEl.checked = adminState.youthHubVisible;
+  }
+  const hubEl = document.getElementById('toggle-hub-youth');
+  if (hubEl && hubEl.checked !== adminState.youthHubVisible) {
+    hubEl.checked = adminState.youthHubVisible;
+  }
+
+  const vis = getStoredSectionVisibility();
+  vis.youthHub = adminState.youthHubVisible;
+  saveStoredSectionVisibility(vis);
+
+  try {
+    let p = {};
+    const raw = localStorage.getItem('mercer_site_content');
+    if (raw) p = JSON.parse(raw);
+    if (!p.youthHub) p.youthHub = {};
+    p.youthHub.enabled = adminState.youthHubVisible;
+    if (!p.sections) p.sections = {};
+    p.sections.youthHub = adminState.youthHubVisible;
+    localStorage.setItem('mercer_site_content', JSON.stringify(p));
+  } catch (e) {}
+
+  localStorage.setItem('mercer_visibility_updated_ts', Date.now().toString());
+  try {
+    const bc = new BroadcastChannel('mercer_visibility_channel');
+    bc.postMessage({ type: 'visibility_change' });
+  } catch (e) {}
+
+  window.dispatchEvent(new Event('storage'));
+  showToast(isVisible ? 'Youth Hub is now visible on the website.' : 'Youth Hub is now hidden from the website.');
+};
+
+window.syncSectionVisibilityToggles = function (sourceId, isChecked) {
+  isChecked = !!isChecked;
+  const mapping = {
+    'cms-quick-ticker': 'cms-ticker-enabled',
+    'cms-quick-hero': 'cms-hero-enabled',
+    'cms-quick-junior': 'toggle-hub-junior',
+    'cms-quick-youth': 'toggle-hub-youth',
+    'cms-quick-tryouts': 'cms-tryouts-enabled',
+    'cms-quick-camps': 'cms-camps-enabled',
+    'cms-quick-video': 'cms-video-enabled',
+    'cms-quick-arena': 'cms-arena-enabled',
+    'cms-quick-news': 'cms-news-enabled',
+
+    'cms-hero-enabled': 'cms-quick-hero',
+    'cms-tryouts-enabled': 'cms-quick-tryouts',
+    'cms-camps-enabled': 'cms-quick-camps',
+    'cms-video-enabled': 'cms-quick-video',
+    'cms-arena-enabled': 'cms-quick-arena',
+    'toggle-hub-junior': 'cms-quick-junior',
+    'toggle-hub-youth': 'cms-quick-youth'
+  };
+
+  const targetId = mapping[sourceId];
+  if (targetId) {
+    const targetEl = document.getElementById(targetId);
+    if (targetEl && targetEl.checked !== isChecked) {
+      targetEl.checked = isChecked;
+    }
+  }
+
+  // Determine section key
+  let sectionKey = null;
+  let labelName = 'Section';
+  if (sourceId.includes('ticker')) { sectionKey = 'ticker'; labelName = 'Scores Ticker Bar'; }
+  else if (sourceId.includes('hero')) { sectionKey = 'hero'; labelName = 'Hero Showcase'; }
+  else if (sourceId.includes('junior')) { sectionKey = 'juniorHub'; labelName = 'Junior Hockey Hub'; }
+  else if (sourceId.includes('youth')) { sectionKey = 'youthHub'; labelName = 'Youth Hockey Hub'; }
+  else if (sourceId.includes('tryouts')) { sectionKey = 'tryouts'; labelName = 'Tryouts / Evaluations'; }
+  else if (sourceId.includes('camps')) { sectionKey = 'camps'; labelName = 'Camps & Clinics'; }
+  else if (sourceId.includes('video')) { sectionKey = 'video'; labelName = 'Program Video'; }
+  else if (sourceId.includes('arena')) { sectionKey = 'arena'; labelName = 'Home Rink/s'; }
+  else if (sourceId.includes('news')) { sectionKey = 'news'; labelName = 'News & Updates'; }
+
+  if (sectionKey) {
+    const vis = getStoredSectionVisibility();
+    vis[sectionKey] = isChecked;
+    saveStoredSectionVisibility(vis);
+  }
+
+  if (sourceId.includes('junior')) {
+    adminState.juniorHubVisible = isChecked;
+    localStorage.setItem('mercer_junior_hub_visible', String(isChecked));
+    const hubEl = document.getElementById('toggle-hub-junior');
+    if (hubEl && hubEl.checked !== isChecked) hubEl.checked = isChecked;
+    const quickEl = document.getElementById('cms-quick-junior');
+    if (quickEl && quickEl.checked !== isChecked) quickEl.checked = isChecked;
+  } else if (sourceId.includes('youth')) {
+    adminState.youthHubVisible = isChecked;
+    localStorage.setItem('mercer_youth_hub_visible', String(isChecked));
+    const hubEl = document.getElementById('toggle-hub-youth');
+    if (hubEl && hubEl.checked !== isChecked) hubEl.checked = isChecked;
+    const quickEl = document.getElementById('cms-quick-youth');
+    if (quickEl && quickEl.checked !== isChecked) quickEl.checked = isChecked;
+  }
+
+  // Update mercer_site_content in localStorage
+  try {
+    let p = {};
+    const raw = localStorage.getItem('mercer_site_content');
+    if (raw) {
+      p = JSON.parse(raw);
+    }
+    if (!p.sections) p.sections = {};
+    if (sectionKey) {
+      p.sections[sectionKey] = isChecked;
+      if (sectionKey === 'hero') { if (!p.hero) p.hero = {}; p.hero.enabled = isChecked; }
+      else if (sectionKey === 'juniorHub') { if (!p.juniorHub) p.juniorHub = {}; p.juniorHub.enabled = isChecked; }
+      else if (sectionKey === 'youthHub') { if (!p.youthHub) p.youthHub = {}; p.youthHub.enabled = isChecked; }
+      else if (sectionKey === 'tryouts') { if (!p.tryouts) p.tryouts = {}; p.tryouts.enabled = isChecked; }
+      else if (sectionKey === 'camps') { if (!p.camps) p.camps = {}; p.camps.enabled = isChecked; }
+      else if (sectionKey === 'video') { if (!p.program) p.program = {}; p.program.enabled = isChecked; }
+      else if (sectionKey === 'arena') { if (!p.arena) p.arena = {}; p.arena.enabled = isChecked; }
+      else if (sectionKey === 'news') { if (!p.news) p.news = {}; p.news.enabled = isChecked; }
+      else if (sectionKey === 'ticker') { if (!p.ticker) p.ticker = {}; p.ticker.enabled = isChecked; }
+      localStorage.setItem('mercer_site_content', JSON.stringify(p));
+    }
+  } catch (e) {}
+
+  localStorage.setItem('mercer_visibility_updated_ts', Date.now().toString());
+  try {
+    const bc = new BroadcastChannel('mercer_visibility_channel');
+    bc.postMessage({ type: 'visibility_change' });
+  } catch (e) {}
+
+  window.dispatchEvent(new Event('storage'));
+  showToast(`${labelName} is now ${isChecked ? 'visible on' : 'hidden from'} the website.`);
+};
+
 
 function renderSingleTeamCard(t) {
   const isHidden = adminState.hiddenTeams.includes(t.id);
@@ -846,7 +1077,12 @@ window.publishTeamVisibility = async function () {
       }
     } catch (e) {}
 
-    const newContent = JSON.stringify({ seasonLabel: '2026/27', hiddenTeams }, null, 2);
+    const newContent = JSON.stringify({
+      seasonLabel: '2026/27',
+      juniorHubVisible: adminState.juniorHubVisible !== false,
+      youthHubVisible: adminState.youthHubVisible !== false,
+      hiddenTeams
+    }, null, 2);
     const putRes = await fetch(contentUrl, {
       method: 'PUT',
       headers: {
@@ -2032,34 +2268,155 @@ window.applyRollover = function (e) {
   updateMetrics();
 
   window.dispatchEvent(new Event('storage'));
-  showToast(`🎉 Rollover complete! Mercer Chiefs are now active for season ${newSeasonLabel}.`);
+  const clubShort = typeof window.getActiveClubShortName === 'function' ? window.getActiveClubShortName() : 'Club';
+  showToast(`🎉 Rollover complete! ${clubShort} is now active for season ${newSeasonLabel}.`);
 };
 
 /* ==========================================================================
    8. BACKUP & EXPORT UTILITIES
    ========================================================================== */
 window.exportJsonBackup = function () {
+  // Capture current live CMS state (or fallback to cache)
+  let currentSiteContent = null;
+  try {
+    if (typeof window.collectSiteContentFromUI === 'function') {
+      currentSiteContent = window.collectSiteContentFromUI();
+    }
+  } catch (e) {}
+
+  if (!currentSiteContent) {
+    try {
+      const cached = localStorage.getItem('mercer_site_content');
+      if (cached) currentSiteContent = JSON.parse(cached);
+    } catch (e) {}
+  }
+
+  if (!currentSiteContent && typeof cmsContentState !== 'undefined') {
+    currentSiteContent = cmsContentState;
+  }
+
   const payload = {
+    backupVersion: '2.0',
     exportedAt: new Date().toISOString(),
-    seasonConfig: adminState.seasonConfig,
-    hiddenTeams: adminState.hiddenTeams,
+    clubName: currentSiteContent?.branding?.clubName || 'Mercer Chiefs Hockey Club',
+    siteContent: currentSiteContent,
     newsArticles: adminState.newsArticles,
+    alumniCommitments: adminState.alumniCommitments,
+    seasonConfig: adminState.seasonConfig,
     youthTeams: adminState.youthTeams,
-    alumniCommitments: adminState.alumniCommitments
+    hiddenTeams: adminState.hiddenTeams,
+    sectionVisibility: getStoredSectionVisibility(),
+    juniorHubVisible: adminState.juniorHubVisible !== false,
+    youthHubVisible: adminState.youthHubVisible !== false
   };
 
+  const safeClub = (payload.clubName || 'club').toLowerCase().replace(/[^a-z0-9]/g, '_');
+  const dateStr = new Date().toISOString().split('T')[0];
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `mercer_chiefs_admin_backup_${Date.now()}.json`;
+  a.download = `${safeClub}_full_backup_${dateStr}.json`;
   a.click();
   URL.revokeObjectURL(url);
-  showToast("Backup JSON file downloaded.");
+  showToast("Complete organization & website backup downloaded.");
+};
+
+window.importJsonBackup = function (fileInput) {
+  const file = fileInput.files && fileInput.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!data || typeof data !== 'object') {
+        throw new Error('Invalid backup file format');
+      }
+
+      const dateMsg = data.exportedAt ? ` from ${data.exportedAt.split('T')[0]}` : '';
+      if (!confirm(`Restore all settings, content, and data from backup${dateMsg}? This will overwrite your current draft edits.`)) {
+        fileInput.value = '';
+        return;
+      }
+
+      // 1. Site Content, Coaching Staff & Club Branding
+      const siteContent = data.siteContent || (data.branding ? { ...data, branding: data.branding, staff: data.staff } : null);
+      if (siteContent) {
+        localStorage.setItem('mercer_site_content', JSON.stringify(siteContent));
+        cmsContentState = siteContent;
+        if (typeof populateSiteContentUI === 'function') {
+          populateSiteContentUI(siteContent);
+        }
+        if (siteContent.branding && typeof populateBrandingUI === 'function') {
+          populateBrandingUI(siteContent.branding);
+        }
+      }
+
+      // 1b. Section Visibility Preferences
+      if (data.sectionVisibility && typeof data.sectionVisibility === 'object') {
+        saveStoredSectionVisibility(data.sectionVisibility);
+      }
+      if (data.juniorHubVisible !== undefined) {
+        localStorage.setItem('mercer_junior_hub_visible', String(data.juniorHubVisible));
+        adminState.juniorHubVisible = !!data.juniorHubVisible;
+      }
+      if (data.youthHubVisible !== undefined) {
+        localStorage.setItem('mercer_youth_hub_visible', String(data.youthHubVisible));
+        adminState.youthHubVisible = !!data.youthHubVisible;
+      }
+
+      // 2. News Articles
+      if (Array.isArray(data.newsArticles)) {
+        adminState.newsArticles = data.newsArticles;
+        localStorage.setItem('mercer_club_news', JSON.stringify(data.newsArticles));
+        renderNewsList();
+      }
+
+      // 3. Alumni Commitments
+      if (Array.isArray(data.alumniCommitments)) {
+        adminState.alumniCommitments = data.alumniCommitments;
+        localStorage.setItem('mercer_alumni_commitments', JSON.stringify(data.alumniCommitments));
+        renderAlumniTable();
+      }
+
+      // 4. Season Config & Teams
+      if (data.seasonConfig) {
+        adminState.seasonConfig = data.seasonConfig;
+        localStorage.setItem('mercer_season_config', JSON.stringify(data.seasonConfig));
+        initSeasonParameters();
+      }
+      if (Array.isArray(data.hiddenTeams)) {
+        adminState.hiddenTeams = data.hiddenTeams;
+        localStorage.setItem('mercer_hidden_teams', JSON.stringify(data.hiddenTeams));
+        renderTeamToggles();
+      }
+      if (Array.isArray(data.youthTeams)) {
+        adminState.youthTeams = data.youthTeams;
+        localStorage.setItem('mercer_configured_teams', JSON.stringify(data.youthTeams));
+        renderSeasonTable();
+      }
+
+      updateMetrics();
+      window.dispatchEvent(new Event('storage'));
+      showToast('✓ Successfully restored all settings from backup file!');
+    } catch (err) {
+      console.error('Import backup error:', err);
+      alert('Error parsing backup JSON file: ' + err.message);
+    } finally {
+      fileInput.value = '';
+    }
+  };
+  reader.readAsText(file);
 };
 
 window.clearAllOverrides = function () {
-  if (!confirm("Clear all admin overrides (season configuration, team mappings, news edits, alumni changes, and visibility)? The site will return to initial baseline.")) return;
+  if (!confirm("Clear all admin overrides (website content, coaching staff, branding, season configuration, news, and alumni)? The site will return to initial baseline.")) return;
+  localStorage.removeItem('mercer_site_content');
+  localStorage.removeItem('mercer_section_visibility');
+  localStorage.removeItem('mercer_junior_hub_visible');
+  localStorage.removeItem('mercer_youth_hub_visible');
+  localStorage.removeItem('mercer_visibility_updated_ts');
   localStorage.removeItem('mercer_season_config');
   localStorage.removeItem('mercer_configured_teams');
   localStorage.removeItem('mercer_hidden_teams');
@@ -2067,6 +2424,7 @@ window.clearAllOverrides = function () {
   localStorage.removeItem('mercer_alumni_commitments');
   localStorage.removeItem('mercer_synced_youth_data');
   localStorage.removeItem('mercer_last_sync_timestamp');
+
 
   adminState.seasonConfig = getStoredSeasonConfig();
   adminState.hiddenTeams = [];
@@ -2080,6 +2438,14 @@ window.clearAllOverrides = function () {
   renderNewsList();
   renderAlumniTable();
   updateMetrics();
+
+  if (typeof window.initSiteContentCMS === 'function') {
+    window.initSiteContentCMS();
+  }
+  if (typeof window.initClubBrandingCMS === 'function') {
+    window.initClubBrandingCMS();
+  }
+
   showToast("All overrides cleared. Defaults restored.");
   window.dispatchEvent(new Event('storage'));
 };
@@ -2394,6 +2760,7 @@ function showToast(msg) {
 
 let cmsContentState = null;
 let cmsCampsList = [];
+let cmsRinksList = [];
 let cmsStaffList = [];
 
 function escapeCmsHtml(str) {
@@ -2522,6 +2889,53 @@ window.initSiteContentCMS = initSiteContentCMS;
 function populateSiteContentUI(data) {
   if (!data) return;
 
+  const storedVis = getStoredSectionVisibility();
+  const sec = data.sections || {};
+  const setCheck = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.checked = val !== false;
+  };
+
+  const heroVal = storedVis.hero !== undefined ? storedVis.hero : (data.hero?.enabled ?? sec.hero ?? true);
+  setCheck('cms-hero-enabled', heroVal);
+  setCheck('cms-quick-hero', heroVal);
+
+  let juniorVal = storedVis.juniorHub !== undefined ? storedVis.juniorHub : (data.juniorHub?.enabled ?? sec.juniorHub ?? (data.juniorHubVisible ?? adminState.juniorHubVisible ?? true));
+  const storedJr = localStorage.getItem('mercer_junior_hub_visible');
+  if (storedJr !== null && storedVis.juniorHub === undefined) juniorVal = storedJr === 'true';
+  setCheck('toggle-hub-junior', juniorVal);
+  setCheck('cms-quick-junior', juniorVal);
+  adminState.juniorHubVisible = juniorVal !== false;
+
+  let youthVal = storedVis.youthHub !== undefined ? storedVis.youthHub : (data.youthHub?.enabled ?? sec.youthHub ?? (data.youthHubVisible ?? adminState.youthHubVisible ?? true));
+  const storedYth = localStorage.getItem('mercer_youth_hub_visible');
+  if (storedYth !== null && storedVis.youthHub === undefined) youthVal = storedYth === 'true';
+  setCheck('toggle-hub-youth', youthVal);
+  setCheck('cms-quick-youth', youthVal);
+  adminState.youthHubVisible = youthVal !== false;
+
+  const tryoutsVal = storedVis.tryouts !== undefined ? storedVis.tryouts : (data.tryouts?.enabled ?? sec.tryouts ?? true);
+  setCheck('cms-tryouts-enabled', tryoutsVal);
+  setCheck('cms-quick-tryouts', tryoutsVal);
+
+  const campsVal = storedVis.camps !== undefined ? storedVis.camps : (data.camps?.enabled ?? sec.camps ?? true);
+  setCheck('cms-camps-enabled', campsVal);
+  setCheck('cms-quick-camps', campsVal);
+
+  const videoVal = storedVis.video !== undefined ? storedVis.video : (data.program?.enabled ?? sec.video ?? true);
+  setCheck('cms-video-enabled', videoVal);
+  setCheck('cms-quick-video', videoVal);
+
+  const arenaVal = storedVis.arena !== undefined ? storedVis.arena : (data.arena?.enabled ?? sec.arena ?? true);
+  setCheck('cms-arena-enabled', arenaVal);
+  setCheck('cms-quick-arena', arenaVal);
+
+  const newsVal = storedVis.news !== undefined ? storedVis.news : (data.news?.enabled ?? sec.news ?? true);
+  setCheck('cms-quick-news', newsVal);
+
+  const tickerVal = storedVis.ticker !== undefined ? storedVis.ticker : (data.ticker?.enabled ?? sec.ticker ?? true);
+  setCheck('cms-quick-ticker', tickerVal);
+
   // 0. Hero Showcase
   const h = data.hero || {};
   setCmsVal('cms-hero-backdrop', h.backdropImage || 'assets/images/hero-action.jpg');
@@ -2582,22 +2996,66 @@ function populateSiteContentUI(data) {
   cmsCampsList = Array.isArray(c.items) ? JSON.parse(JSON.stringify(c.items)) : [];
   renderCmsCampsList();
 
-  // 3. Arena & Facility
+  // 3. Home Rink/s & Facilities (Multi-Rink Support)
   const a = data.arena || {};
-  setCmsVal('cms-arena-title', a.title || '');
-  setCmsVal('cms-arena-desc', a.desc || '');
-  setCmsVal('cms-arena-address', a.address || '');
-  setCmsVal('cms-arena-phone', a.phone || '');
-  setCmsVal('cms-arena-mapurl', a.mapUrl || '');
+  setCmsVal('cms-arena-section-tag', a.sectionTag || 'Home Facilities');
+  setCmsVal('cms-arena-section-title', a.sectionTitle || 'Home Rinks & Facilities');
+  setCmsVal('cms-arena-section-subtitle', a.sectionSubtitle || '');
 
-  const amenities = Array.isArray(a.amenities) ? a.amenities : [];
-  for (let i = 0; i < 4; i++) {
-    setCmsVal(`cms-amenity-${i}`, amenities[i] || '');
+  // Populate rinks array (support array of rinks or fallback single rink)
+  if (Array.isArray(a.rinks) && a.rinks.length > 0) {
+    cmsRinksList = JSON.parse(JSON.stringify(a.rinks));
+  } else if (a.title) {
+    cmsRinksList = [{
+      id: 'rink-1',
+      name: a.title,
+      tag: a.tag || 'Home Facility',
+      desc: a.desc || '',
+      address: a.address || '',
+      phone: a.phone || '',
+      mapUrl: a.mapUrl || '',
+      amenities: Array.isArray(a.amenities) ? [...a.amenities] : []
+    }];
+  } else {
+    cmsRinksList = [
+      {
+        id: "rink-iceland",
+        name: "Ice Land Skating Center",
+        tag: "Junior (NCDC/Premier) & Tier 1 AAA Home",
+        desc: "Flagship home ice of the Mercer Chiefs Tuition-Free NCDC Tier II Junior team, USPHL Premier, and Tier 1 AAA youth hockey teams. Featuring two NHL-regulation ice sheets, dedicated Junior team locker rooms, video theater, and comprehensive athlete training facilities.",
+        address: "6 Tennis Court, Hamilton Township, NJ 08619",
+        phone: "(609) 588-6672",
+        mapUrl: "https://maps.google.com/?q=6+Tennis+Ct,+Hamilton+Township,+NJ+08619",
+        amenities: [
+          "2 NHL-Size Ice Sheets",
+          "Dedicated Chiefs Team Locker Rooms",
+          "Off-Ice Dryland Training Center",
+          "Black Bear TV Broadcast Rinks"
+        ]
+      },
+      {
+        id: "rink-proskate",
+        name: "Pro Skate Ice Arena",
+        tag: "Tier 2 AA/A Youth Hockey Home",
+        desc: "Dedicated home venue for Mercer Chiefs Tier 2 AA and A youth hockey teams competing in the Atlantic Hockey Federation (AHF). Features two regulation ice surfaces, full-service pro shop, and athlete development skill clinics.",
+        address: "1000 Cornwall Rd, Monmouth Junction, NJ 08852",
+        phone: "(732) 940-6400",
+        mapUrl: "https://maps.google.com/?q=1000+Cornwall+Rd,+Monmouth+Junction,+NJ+08852",
+        amenities: [
+          "2 Regulation Ice Surfaces",
+          "Full-Service Pro Shop & Sharpening",
+          "Shooting & Skills Stations",
+          "High-Definition Game Streaming"
+        ]
+      }
+    ];
   }
+  renderCmsRinksList();
 
-  setCmsVal('cms-broadcast-title', a.broadcastTitle || '');
+  setCmsVal('cms-broadcast-tag', a.broadcastTag || 'Live Broadcasts');
+  setCmsVal('cms-broadcast-title', a.broadcastTitle || 'Watch On Black Bear TV');
   setCmsVal('cms-broadcast-desc', a.broadcastDesc || '');
-  setCmsVal('cms-broadcast-url', a.broadcastUrl || '');
+  setCmsVal('cms-broadcast-url', a.broadcastUrl || 'https://blackbearsports.tv/');
 
   // 4. Program Video
   const p = data.program || {};
@@ -2734,6 +3192,158 @@ window.removeCmsCampItem = function (idx) {
   if (confirm('Are you sure you want to remove this camp?')) {
     cmsCampsList.splice(idx, 1);
     renderCmsCampsList();
+  }
+};
+
+/* --- Multi-Rink & Facilities CMS Handlers --- */
+function renderCmsRinksList() {
+  const container = document.getElementById('cms-rinks-list');
+  if (!container) return;
+
+  if (cmsRinksList.length === 0) {
+    container.innerHTML = `
+      <div style="padding: 1.5rem; text-align: center; color: var(--text-muted); background: rgba(0,0,0,0.2); border: 1px dashed var(--border-subtle); border-radius: var(--radius-sm);">
+        No home rinks configured. Click "+ Add Another Home Rink" below to add a facility.
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = cmsRinksList.map((item, idx) => {
+    const amenities = Array.isArray(item.amenities) ? item.amenities : [];
+    const canRemove = cmsRinksList.length > 1;
+
+    return `
+      <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.6rem;">
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <span style="font-weight: 700; color: var(--chiefs-gold); font-size: 0.95rem;">📍 Rink #${idx + 1}: ${escapeCmsHtml(item.name || 'Unnamed Arena')}</span>
+          </div>
+          ${canRemove ? `
+            <button type="button" onclick="window.removeCmsRinkItem(${idx})" class="btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.6rem; color: #f87171; border-color: rgba(239,68,68,0.3);">
+              ✕ Remove Rink
+            </button>
+          ` : `
+            <span style="font-size: 0.72rem; color: var(--text-muted);">Primary Venue</span>
+          `}
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <div class="admin-form-group">
+            <label>Rink / Arena Name *</label>
+            <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.name || '')}" placeholder="e.g. Ice Land Skating Center" oninput="cmsRinksList[${idx}].name = this.value; window.syncRinksLive();">
+          </div>
+          <div class="admin-form-group">
+            <label>Program / Division Tag</label>
+            <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.tag || '')}" placeholder="e.g. Junior & Tier 1 AAA Home" oninput="cmsRinksList[${idx}].tag = this.value; window.syncRinksLive();">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr 2fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <div class="admin-form-group">
+            <label>Street Address</label>
+            <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.address || '')}" placeholder="6 Tennis Court, Hamilton Township, NJ 08619" oninput="cmsRinksList[${idx}].address = this.value; window.syncRinksLive();">
+          </div>
+          <div class="admin-form-group">
+            <label>Phone Number</label>
+            <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.phone || '')}" placeholder="(609) 588-6672" oninput="cmsRinksList[${idx}].phone = this.value; window.syncRinksLive();">
+          </div>
+          <div class="admin-form-group">
+            <label>Google Maps Directions URL</label>
+            <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.mapUrl || '')}" placeholder="https://maps.google.com/..." oninput="cmsRinksList[${idx}].mapUrl = this.value; window.syncRinksLive();">
+          </div>
+        </div>
+
+        <div class="admin-form-group" style="margin-bottom: 0.85rem;">
+          <label>Facility Overview & Description</label>
+          <textarea class="admin-form-input" rows="2" placeholder="Description of rinks, locker rooms, training center..." oninput="cmsRinksList[${idx}].desc = this.value; window.syncRinksLive();">${escapeCmsHtml(item.desc || '')}</textarea>
+        </div>
+
+        <div>
+          <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.4rem; display: block;">Facility Features & Amenities (Up to 4)</label>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.6rem;">
+            <input type="text" class="admin-form-input" value="${escapeCmsHtml(amenities[0] || '')}" placeholder="Feature 1 (e.g. 2 NHL-Size Ice Sheets)" oninput="if (!cmsRinksList[${idx}].amenities) cmsRinksList[${idx}].amenities = []; cmsRinksList[${idx}].amenities[0] = this.value; window.syncRinksLive();">
+            <input type="text" class="admin-form-input" value="${escapeCmsHtml(amenities[1] || '')}" placeholder="Feature 2 (e.g. Chiefs Locker Rooms)" oninput="if (!cmsRinksList[${idx}].amenities) cmsRinksList[${idx}].amenities = []; cmsRinksList[${idx}].amenities[1] = this.value; window.syncRinksLive();">
+            <input type="text" class="admin-form-input" value="${escapeCmsHtml(amenities[2] || '')}" placeholder="Feature 3 (e.g. Dryland Training)" oninput="if (!cmsRinksList[${idx}].amenities) cmsRinksList[${idx}].amenities = []; cmsRinksList[${idx}].amenities[2] = this.value; window.syncRinksLive();">
+            <input type="text" class="admin-form-input" value="${escapeCmsHtml(amenities[3] || '')}" placeholder="Feature 4 (e.g. Black Bear TV Rinks)" oninput="if (!cmsRinksList[${idx}].amenities) cmsRinksList[${idx}].amenities = []; cmsRinksList[${idx}].amenities[3] = this.value; window.syncRinksLive();">
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+window.addCmsRinkItem = function () {
+  cmsRinksList.push({
+    id: `rink-${Date.now()}`,
+    name: 'New Ice Arena',
+    tag: 'Home Facility',
+    desc: 'Full-service ice arena featuring NHL-regulation ice sheets, dedicated Chiefs team locker rooms, and comprehensive athlete training facilities.',
+    address: '123 Arena Way, Township, NJ 08000',
+    phone: '(555) 000-0000',
+    mapUrl: 'https://maps.google.com/',
+    amenities: [
+      'Regulation Ice Sheets',
+      'Dedicated Team Locker Rooms',
+      'Pro Shop & Skate Sharpening',
+      'Live Game Streaming'
+    ]
+  });
+  renderCmsRinksList();
+  window.syncRinksLive();
+  showToast('New home rink added. Configure details and click Publish.');
+};
+
+window.removeCmsRinkItem = function (idx) {
+  if (cmsRinksList.length <= 1) {
+    alert('At least one home rink is required.');
+    return;
+  }
+  const item = cmsRinksList[idx];
+  const name = item ? item.name : 'this rink';
+  if (!confirm(`Are you sure you want to remove ${name}?`)) return;
+  cmsRinksList.splice(idx, 1);
+  renderCmsRinksList();
+  window.syncRinksLive();
+  showToast(`${name} removed.`);
+};
+
+window.syncRinksLive = function () {
+  try {
+    let p = {};
+    const raw = localStorage.getItem('mercer_site_content');
+    if (raw) {
+      p = JSON.parse(raw);
+    }
+    if (!p.arena) p.arena = {};
+    p.arena.sectionTag = getCmsVal('cms-arena-section-tag') || 'Home Facilities';
+    p.arena.sectionTitle = getCmsVal('cms-arena-section-title') || 'Home Rinks & Facilities';
+    p.arena.sectionSubtitle = getCmsVal('cms-arena-section-subtitle');
+    p.arena.rinks = cmsRinksList;
+
+    if (cmsRinksList[0]) {
+      p.arena.title = cmsRinksList[0].name || '';
+      p.arena.tag = cmsRinksList[0].tag || '';
+      p.arena.desc = cmsRinksList[0].desc || '';
+      p.arena.address = cmsRinksList[0].address || '';
+      p.arena.phone = cmsRinksList[0].phone || '';
+      p.arena.mapUrl = cmsRinksList[0].mapUrl || '';
+      p.arena.amenities = cmsRinksList[0].amenities || [];
+    }
+
+    p.arena.broadcastTag = getCmsVal('cms-broadcast-tag') || 'Live Broadcasts';
+    p.arena.broadcastTitle = getCmsVal('cms-broadcast-title') || 'Watch On Black Bear TV';
+    p.arena.broadcastUrl = getCmsVal('cms-broadcast-url') || 'https://blackbearsports.tv/';
+    p.arena.broadcastDesc = getCmsVal('cms-broadcast-desc');
+
+    localStorage.setItem('mercer_site_content', JSON.stringify(p));
+    window.dispatchEvent(new Event('storage'));
+    try {
+      const bc = new BroadcastChannel('mercer_visibility_channel');
+      bc.postMessage({ type: 'content_change' });
+    } catch (e) {}
+  } catch (err) {
+    console.error('syncRinksLive error:', err);
   }
 };
 
@@ -2917,8 +3527,31 @@ window.collectSiteContentFromUI = function () {
     yt = yt.split('embed/')[1].split('?')[0];
   }
 
+  const storedVis = getStoredSectionVisibility();
+  const isHeroEnabled = document.getElementById('cms-hero-enabled')?.checked ?? document.getElementById('cms-quick-hero')?.checked ?? (storedVis.hero ?? true);
+  const isJuniorEnabled = document.getElementById('toggle-hub-junior')?.checked ?? document.getElementById('cms-quick-junior')?.checked ?? (storedVis.juniorHub ?? (adminState.juniorHubVisible ?? true));
+  const isYouthEnabled = document.getElementById('toggle-hub-youth')?.checked ?? document.getElementById('cms-quick-youth')?.checked ?? (storedVis.youthHub ?? (adminState.youthHubVisible ?? true));
+  const isTryoutsEnabled = document.getElementById('cms-tryouts-enabled')?.checked ?? document.getElementById('cms-quick-tryouts')?.checked ?? (storedVis.tryouts ?? true);
+  const isCampsEnabled = document.getElementById('cms-camps-enabled')?.checked ?? document.getElementById('cms-quick-camps')?.checked ?? (storedVis.camps ?? true);
+  const isVideoEnabled = document.getElementById('cms-video-enabled')?.checked ?? document.getElementById('cms-quick-video')?.checked ?? (storedVis.video ?? true);
+  const isArenaEnabled = document.getElementById('cms-arena-enabled')?.checked ?? document.getElementById('cms-quick-arena')?.checked ?? (storedVis.arena ?? true);
+  const isNewsEnabled = document.getElementById('cms-quick-news')?.checked ?? (storedVis.news ?? true);
+  const isTickerEnabled = document.getElementById('cms-quick-ticker')?.checked ?? (storedVis.ticker ?? true);
+
   const content = {
+    sections: {
+      hero: isHeroEnabled,
+      juniorHub: isJuniorEnabled,
+      youthHub: isYouthEnabled,
+      video: isVideoEnabled,
+      tryouts: isTryoutsEnabled,
+      camps: isCampsEnabled,
+      arena: isArenaEnabled,
+      news: isNewsEnabled,
+      ticker: isTickerEnabled
+    },
     hero: {
+      enabled: isHeroEnabled,
       backdropImage: getCmsVal('cms-hero-backdrop') || 'assets/images/hero-action.jpg',
       headlineLine1: getCmsVal('cms-hero-headline-1') || 'CHAMPIONSHIP HOCKEY.',
       headlineGradient: getCmsVal('cms-hero-headline-grad') || 'PROVEN ADVANCEMENT.',
@@ -2937,6 +3570,7 @@ window.collectSiteContentFromUI = function () {
       stat4Label: getCmsVal('cms-hero-stat4-lbl') || 'Cup Championship Finalist'
     },
     tryouts: {
+      enabled: isTryoutsEnabled,
       sectionTag: getCmsVal('cms-tryouts-tag') || '2026 / 2027 Season Evaluations',
       title: getCmsVal('cms-tryouts-title') || 'Join The Chiefs Tradition',
       subtitle: getCmsVal('cms-tryouts-subtitle'),
@@ -2964,31 +3598,37 @@ window.collectSiteContentFromUI = function () {
       }
     },
     camps: {
-      enabled: document.getElementById('cms-camps-enabled')?.checked ?? true,
+      enabled: isCampsEnabled,
       sectionTag: getCmsVal('cms-camps-tag') || 'Player Development & Skills',
       title: getCmsVal('cms-camps-title') || 'Camps & Clinics',
       subtitle: getCmsVal('cms-camps-subtitle'),
       items: cmsCampsList
     },
     arena: {
-      sectionTag: 'Home Facility',
-      title: getCmsVal('cms-arena-title') || 'Ice Land Skating Center',
-      desc: getCmsVal('cms-arena-desc'),
-      address: getCmsVal('cms-arena-address') || '6 Tennis Court, Hamilton Township, NJ 08619',
-      mapUrl: getCmsVal('cms-arena-mapurl') || 'https://maps.google.com/?q=6+Tennis+Ct,+Hamilton+Township,+NJ+08619',
-      phone: getCmsVal('cms-arena-phone') || '(609) 588-6672',
-      amenities: [
-        getCmsVal('cms-amenity-0') || '2 NHL-Size Ice Sheets',
-        getCmsVal('cms-amenity-1') || 'Full-menu Concessions',
-        getCmsVal('cms-amenity-2') || 'Off-Ice Dryland Training',
-        getCmsVal('cms-amenity-3') || 'Blackbear TV Broadcast Rinks'
+      enabled: isArenaEnabled,
+      sectionTag: getCmsVal('cms-arena-section-tag') || 'Home Facilities',
+      sectionTitle: getCmsVal('cms-arena-section-title') || 'Home Rinks & Facilities',
+      sectionSubtitle: getCmsVal('cms-arena-section-subtitle') || 'The Mercer Chiefs train and compete across premier twin-sheet regional ice complexes in Central New Jersey.',
+      title: cmsRinksList[0]?.name || 'Ice Land Skating Center',
+      tag: cmsRinksList[0]?.tag || 'Home Facility',
+      desc: cmsRinksList[0]?.desc || '',
+      address: cmsRinksList[0]?.address || '6 Tennis Court, Hamilton Township, NJ 08619',
+      mapUrl: cmsRinksList[0]?.mapUrl || 'https://maps.google.com/?q=6+Tennis+Ct,+Hamilton+Township,+NJ+08619',
+      phone: cmsRinksList[0]?.phone || '(609) 588-6672',
+      amenities: cmsRinksList[0]?.amenities || [
+        '2 NHL-Size Ice Sheets',
+        'Dedicated Chiefs Team Locker Rooms',
+        'Off-Ice Dryland Training Center',
+        'Black Bear TV Broadcast Rinks'
       ],
-      broadcastTag: 'Live Broadcasts',
+      rinks: cmsRinksList,
+      broadcastTag: getCmsVal('cms-broadcast-tag') || 'Live Broadcasts',
       broadcastTitle: getCmsVal('cms-broadcast-title') || 'Watch On Black Bear TV',
       broadcastDesc: getCmsVal('cms-broadcast-desc'),
       broadcastUrl: getCmsVal('cms-broadcast-url') || 'https://blackbearsports.tv/'
     },
     program: {
+      enabled: isVideoEnabled,
       sectionTag: getCmsVal('cms-prog-tag') || 'Inside The Mercer Chiefs Experience',
       title: getCmsVal('cms-prog-title') || 'Junior Hockey Defined',
       subtitle: getCmsVal('cms-prog-subtitle'),
@@ -3002,6 +3642,18 @@ window.collectSiteContentFromUI = function () {
         { title: getCmsVal('cms-pillar-3-title'), desc: getCmsVal('cms-pillar-3-desc') }
       ],
       calloutText: getCmsVal('cms-prog-callout') || 'Ready to take the ice for the 2026/27 campaign?'
+    },
+    juniorHub: {
+      enabled: isJuniorEnabled
+    },
+    youthHub: {
+      enabled: isYouthEnabled
+    },
+    news: {
+      enabled: isNewsEnabled
+    },
+    ticker: {
+      enabled: isTickerEnabled
     },
     billetModal: {
       goldTag: 'Support Junior Hockey in Hamilton',
@@ -3292,6 +3944,9 @@ window.updateBrandingPreview = function () {
   // Also apply dynamically to active page root so admin portal feels themed
   document.documentElement.style.setProperty('--chiefs-red', primary);
   document.documentElement.style.setProperty('--chiefs-gold', accent);
+  if (typeof window.updateAdminHeaderAndConsole === 'function') {
+    window.updateAdminHeaderAndConsole();
+  }
 };
 
 window.applyColorPreset = function (primary, accent, bgDeep, bgCard) {
@@ -3327,6 +3982,74 @@ window.resetBrandingDefaults = function (promptUser = true) {
     }
   });
   if (promptUser) showToast('Branding reset to Mercer Chiefs defaults.');
+};
+
+window.getActiveClubShortName = function () {
+  const shortInput = document.getElementById('cms-brand-club-short');
+  if (shortInput && shortInput.value.trim()) return shortInput.value.trim();
+  try {
+    const raw = localStorage.getItem('mercer_site_content');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed?.branding?.shortName) return parsed.branding.shortName;
+      if (parsed?.branding?.clubName) return parsed.branding.clubName;
+    }
+  } catch (e) {}
+  if (typeof cmsContentState !== 'undefined' && cmsContentState?.branding) {
+    if (cmsContentState.branding.shortName) return cmsContentState.branding.shortName;
+    if (cmsContentState.branding.clubName) return cmsContentState.branding.clubName;
+  }
+  return 'Mercer Chiefs';
+};
+
+window.getActiveClubFullName = function () {
+  const fullInput = document.getElementById('cms-brand-club-name');
+  if (fullInput && fullInput.value.trim()) return fullInput.value.trim();
+  try {
+    const raw = localStorage.getItem('mercer_site_content');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed?.branding?.clubName) return parsed.branding.clubName;
+    }
+  } catch (e) {}
+  if (typeof cmsContentState !== 'undefined' && cmsContentState?.branding?.clubName) {
+    return cmsContentState.branding.clubName;
+  }
+  return 'Mercer Chiefs Hockey Club';
+};
+
+window.updateAdminHeaderAndConsole = function () {
+  const shortName = window.getActiveClubShortName();
+  const fullName = window.getActiveClubFullName();
+
+  // 1. Top Navbar Title & Logo
+  const titleEl = document.getElementById('admin-header-title');
+  if (titleEl) titleEl.textContent = `${shortName} Admin`;
+
+  const crestInput = document.getElementById('cms-brand-crest-url');
+  let crestUrl = crestInput ? crestInput.value.trim() : null;
+  if (!crestUrl) {
+    try {
+      const raw = localStorage.getItem('mercer_site_content');
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        crestUrl = parsed?.branding?.crestLogo;
+      }
+    } catch (e) {}
+  }
+  const crestEl = document.getElementById('admin-header-crest');
+  if (crestEl && crestUrl) crestEl.src = crestUrl;
+  const authCrestEl = document.getElementById('admin-auth-crest');
+  if (authCrestEl && crestUrl) authCrestEl.src = crestUrl;
+
+  // 2. Real-Time Sync Console text
+  const consoleEl = document.getElementById('sync-console');
+  if (consoleEl && consoleEl.innerHTML.includes('[READY]')) {
+    consoleEl.innerHTML = `[READY] ${shortName} Data Engine initialized. Ready to sync feeds.
+[ACTIVE FEED] Tier 1 Hockey Federation (THF) - Season 190 (2026/27)
+[ACTIVE FEED] Atlantic Hockey Federation (AHF) - Season 190 (2026/27)
+[ACTIVE FEED] USPHL NCDC & Premier - Season 67 (2026/27)`;
+  }
 };
 
 window.publishClubBranding = function () {

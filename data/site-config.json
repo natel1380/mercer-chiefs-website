@@ -1,5 +1,7 @@
 {
   "seasonLabel": "2026/27",
+  "juniorHubVisible": true,
+  "youthHubVisible": true,
   "hiddenTeams": [
     "18u-prep-aaa",
     "16u-premier-aaa"

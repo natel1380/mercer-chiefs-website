@@ -91,7 +91,7 @@
           <li><a href="#ncdc-hub" class="nav-link" id="nav-link-ncdc">Junior Hub</a></li>
           <li><a href="#youth-hub" class="nav-link" id="nav-link-youth">Youth Hub</a></li>
           <li><a href="#tryouts-section" class="nav-link" id="nav-link-tryouts">Tryouts & Camps</a></li>
-          <li><a href="#arena-section" class="nav-link" id="nav-link-arena">Ice Land Arena</a></li>
+          <li><a href="#arena-section" class="nav-link" id="nav-link-arena">Home Rink/s</a></li>
           <li><a href="#news-section" class="nav-link" id="nav-link-news">News</a></li>
           <li class="mobile-nav-cta">
             <button class="btn-primary mobile-menu-btn" id="mobile-tryout-btn"
@@ -738,90 +738,101 @@
   </section>
 
   <!-- ==========================================================================
-       SECTION 5: ICE LAND ARENA & BROADCASTING
+       SECTION 5: HOME RINK/S & FACILITIES
        ========================================================================== -->
   <section class="section-padding" id="arena-section">
-    <div class="container">
-      <div class="arena-grid">
-        <!-- Rink Info -->
-        <div class="arena-card">
-          <div class="section-tag" id="arena-facility-tag" style="margin-bottom: 0.5rem;">Home Facility</div>
-          <h3 id="arena-facility-name">Ice Land Skating Center</h3>
-          <p id="arena-facility-desc" style="color: var(--text-secondary); line-height: 1.6;">
-            Located in Hamilton Township, NJ, Ice Land is the dedicated home ice of the Mercer Chiefs Junior and Youth
-            hockey clubs. Featuring two NHL-regulation ice rinks, dedicated Chiefs team locker rooms, and
-            comprehensive athlete training facilities.
-          </p>
+    <div class="container" id="arena-section-container">
+      <div class="section-header" style="text-align: center; margin-bottom: 2.5rem;">
+        <div class="section-tag" id="arena-facility-tag">Home Facilities</div>
+        <h2 class="section-title" id="arena-section-title">Home Rinks & Facilities</h2>
+        <p class="section-subtitle" id="arena-section-subtitle">The Mercer Chiefs train and compete across premier twin-sheet regional ice complexes in Central New Jersey.</p>
+      </div>
 
-          <div class="arena-amenities-grid" id="arena-amenities-list">
-            <div class="amenity-item">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-              </svg>
-              <span>2 NHL-Size Ice Sheets</span>
+      <!-- Multi-Rink Grid -->
+      <div class="arena-grid" id="arena-rinks-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        <!-- Rink 1: Ice Land -->
+        <div class="arena-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+              <span class="tryout-badge" style="background: rgba(245, 166, 35, 0.15); color: var(--chiefs-gold); border-color: rgba(245, 166, 35, 0.4);">Junior (NCDC/Premier) & Tier 1 AAA Home</span>
+              <a href="tel:6095886672" style="color: var(--text-muted); font-size: 0.85rem; text-decoration: none;">📞 (609) 588-6672</a>
             </div>
-            <div class="amenity-item">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-              </svg>
-              <span>Full-menu Concessions</span>
-            </div>
-            <div class="amenity-item">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2">
-                <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
-                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
-              </svg>
-              <span>Off-Ice Dryland Training</span>
-            </div>
-            <div class="amenity-item">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2">
-                <circle cx="12" cy="12" r="10" />
-              </svg>
-              <span>Blackbear TV Broadcast Rinks</span>
+            <h3 style="font-size: 1.5rem; color: #fff; margin-bottom: 0.75rem;">Ice Land Skating Center</h3>
+            <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.92rem; margin-bottom: 1.25rem;">
+              Flagship home ice of the Mercer Chiefs Tuition-Free NCDC Tier II Junior team, USPHL Premier, and Tier 1 AAA youth hockey teams. Featuring two NHL-regulation ice sheets, dedicated Junior team locker rooms, video theater, and athlete training center.
+            </p>
+
+            <div class="arena-amenities-grid" style="margin: 1rem 0 1.5rem 0;">
+              <div class="amenity-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" /></svg><span>2 NHL-Size Ice Sheets</span></div>
+              <div class="amenity-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg><span>Dedicated Chiefs Locker Rooms</span></div>
+              <div class="amenity-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1" /><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" /></svg><span>Off-Ice Dryland Training</span></div>
+              <div class="amenity-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3" /></svg><span>Black Bear TV Broadcast Rinks</span></div>
             </div>
           </div>
 
-          <div
-            style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+          <div style="margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
             <div>
-              <div id="arena-address-line1" style="font-weight: 700; color: #fff;">6 Tennis Court</div>
-              <div id="arena-address-line2" style="font-size: 0.85rem; color: var(--text-secondary);">Hamilton Township, NJ 08619</div>
+              <div style="font-weight: 700; color: #fff; font-size: 0.92rem;">6 Tennis Court</div>
+              <div style="font-size: 0.84rem; color: var(--text-secondary);">Hamilton Township, NJ 08619</div>
             </div>
-            <a id="arena-directions-btn" href="https://maps.google.com/?q=6+Tennis+Ct,+Hamilton+Township,+NJ+08619" target="_blank"
-              class="btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+            <a href="https://maps.google.com/?q=6+Tennis+Ct,+Hamilton+Township,+NJ+08619" target="_blank" class="btn-secondary" style="font-size: 0.82rem; padding: 0.45rem 0.9rem;">
               Get Directions ↗
             </a>
           </div>
         </div>
 
-        <!-- Live Streaming -->
+        <!-- Rink 2: Pro Skate -->
         <div class="arena-card" style="display: flex; flex-direction: column; justify-content: space-between;">
           <div>
-            <div class="section-tag" id="arena-broadcast-tag" style="margin-bottom: 0.5rem;">Live Broadcasts</div>
-            <h3 id="arena-broadcast-title">Watch On Black Bear TV</h3>
-            <p id="arena-broadcast-desc" style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
-              Never miss a moment of the action. Every Mercer Chiefs home and away game in the NCDC, USPHL Premier, and
-              THF is broadcast in high-definition with live play-by-play, scoring overlays, and instant game replays.
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+              <span class="tryout-badge" style="background: rgba(245, 166, 35, 0.15); color: var(--chiefs-gold); border-color: rgba(245, 166, 35, 0.4);">Tier 2 AA/A Youth Hockey Home</span>
+              <a href="tel:7329406400" style="color: var(--text-muted); font-size: 0.85rem; text-decoration: none;">📞 (732) 940-6400</a>
+            </div>
+            <h3 style="font-size: 1.5rem; color: #fff; margin-bottom: 0.75rem;">Pro Skate Ice Arena</h3>
+            <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.92rem; margin-bottom: 1.25rem;">
+              Dedicated home venue for Mercer Chiefs Tier 2 AA and A youth hockey teams competing in the Atlantic Hockey Federation (AHF). Features two regulation ice surfaces, full-service pro shop, and athlete development skill clinics.
             </p>
 
-            <div
-              style="background: rgba(0,0,0,0.4); border-radius: var(--radius-md); padding: 1.25rem; border: 1px solid var(--border-subtle); margin-bottom: 1.5rem;">
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
-                <span style="font-weight: 700; color: #fff; font-size: 0.95rem;">Live Game Stream Engine</span>
-                <span class="badge-status final">HD 1080P</span>
-              </div>
-              <p style="font-size: 0.82rem; color: var(--text-muted);">
-                Subscribers receive full access to Black Bear TV apps across iOS, Android, Roku, Apple TV, and web
-                browsers.
-              </p>
+            <div class="arena-amenities-grid" style="margin: 1rem 0 1.5rem 0;">
+              <div class="amenity-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" /></svg><span>2 Regulation Ice Surfaces</span></div>
+              <div class="amenity-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg><span>Full-Service Pro Shop</span></div>
+              <div class="amenity-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1" /><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" /></svg><span>Shooting & Skills Stations</span></div>
+              <div class="amenity-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3" /></svg><span>High-Definition Game Streaming</span></div>
             </div>
           </div>
 
-          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-            <a id="arena-broadcast-link" href="https://blackbearsports.tv/" target="_blank" class="btn-primary"
-              style="flex: 1; text-align: center; justify-content: center;">
-              Launch Black Bear TV ↗
+          <div style="margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <div style="font-weight: 700; color: #fff; font-size: 0.92rem;">1000 Cornwall Rd</div>
+              <div style="font-size: 0.84rem; color: var(--text-secondary);">Monmouth Junction, NJ 08852</div>
+            </div>
+            <a href="https://maps.google.com/?q=1000+Cornwall+Rd,+Monmouth+Junction,+NJ+08852" target="_blank" class="btn-secondary" style="font-size: 0.82rem; padding: 0.45rem 0.9rem;">
+              Get Directions ↗
             </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Broadcast Banner -->
+      <div id="arena-broadcast-container" style="margin-top: 2rem;">
+        <div class="arena-card" style="background: linear-gradient(135deg, rgba(18,21,28,0.95), rgba(8,9,12,0.95)); border-color: rgba(245, 166, 35, 0.25);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+            <div style="max-width: 650px;">
+              <div class="section-tag" id="arena-broadcast-tag" style="margin-bottom: 0.4rem;">Live Broadcasts</div>
+              <h3 id="arena-broadcast-title" style="font-size: 1.5rem; color: #fff; margin-bottom: 0.5rem;">Watch On Black Bear TV</h3>
+              <p id="arena-broadcast-desc" style="color: var(--text-secondary); line-height: 1.6; font-size: 0.9rem; margin: 0;">
+                Never miss a moment of the action. Every Mercer Chiefs home and away game in the NCDC, USPHL Premier, and THF is broadcast in high-definition with live play-by-play, scoring overlays, and instant game replays.
+              </p>
+            </div>
+            <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+              <div style="background: rgba(0,0,0,0.4); border-radius: var(--radius-sm); padding: 0.5rem 0.9rem; border: 1px solid var(--border-subtle); display: flex; align-items: center; gap: 0.6rem;">
+                <span class="ticker-pulsing-dot"></span>
+                <span style="font-weight: 700; color: #fff; font-size: 0.85rem;">HD Live & On-Demand</span>
+              </div>
+              <a id="arena-broadcast-link" href="https://blackbearsports.tv/" target="_blank" class="btn-primary" style="font-size: 0.9rem; padding: 0.65rem 1.4rem;">
+                Launch Black Bear TV ↗
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -1195,8 +1206,7 @@
           </p>
         </div>
 
-        <form class="chiefs-form" id="tryout-register-form"
-          onsubmit="event.preventDefault(); alert('Tryout registration received! You will receive evaluation session times and check-in instructions at your registered email.'); document.getElementById('tryout-modal').classList.remove('open');">
+        <form class="chiefs-form" id="tryout-register-form">
           <div class="form-row">
             <div class="form-group">
               <label for="player-reg-name">Player Name *</label>

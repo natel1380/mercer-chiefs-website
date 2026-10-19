@@ -586,7 +586,7 @@
        ========================================================================== -->
   <div id="auth-screen" class="auth-overlay">
     <div class="auth-card">
-      <img src="assets/images/mercer-chiefs-crest.png" alt="Mercer Chiefs"
+      <img id="admin-auth-crest" src="assets/images/mercer-chiefs-crest.png" alt="Club Crest"
         style="height: 72px; width: auto; margin-bottom: 1rem;">
       <h2
         style="font-family: var(--font-heading); font-size: 1.45rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem;">
@@ -619,9 +619,9 @@
   <header class="admin-navbar">
     <div class="admin-nav-container">
       <div class="admin-brand">
-        <img src="assets/images/mercer-chiefs-crest.png" alt="Chiefs Crest">
+        <img id="admin-header-crest" src="assets/images/mercer-chiefs-crest.png" alt="Chiefs Crest">
         <div class="admin-brand-text">
-          <h1>Mercer Chiefs Admin</h1>
+          <h1 id="admin-header-title">Mercer Chiefs Admin</h1>
           <span>Staff & Data Management Console</span>
         </div>
       </div>
@@ -783,17 +783,16 @@
             style="background: rgba(0, 0, 0, 0.35); border-radius: var(--radius-md); padding: 1.25rem; border: 1px solid rgba(245, 158, 11, 0.3);">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
               <div style="display: flex; align-items: center; gap: 0.6rem;">
-                <span style="font-size: 1.1rem;">⚡</span>
-                <strong style="color: #fff; font-size: 0.92rem;">GitHub Actions 1-Click Cloud Automation:</strong>
+                <span style="font-size: 1.1rem;">🔑</span>
+                <strong style="color: #fff; font-size: 0.92rem;">Website Publishing & Live Cloud Sync Authorization:</strong>
               </div>
               <span id="github-token-status-badge" class="pill-badge"
                 style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.35); color: var(--chiefs-gold); font-size: 0.75rem;">
                 ○ Token Not Configured
               </span>
             </div>
-            <p style="font-size: 0.78rem; color: #94a3b8; line-height: 1.45; margin-bottom: 0.85rem;">
-              Triggering the cloud runner starts an Ubuntu VM on GitHub that runs <code>sync_all_data.js</code>, decompresses live TimeToScore PDF scorecards, syncs USPHL rosters &amp; standings, commits the update, and deploys the website (~45s).
-              To authorize this from your browser, save a <strong>GitHub Personal Access Token (PAT)</strong> with <code>Actions: Read &amp; Write</code> permission.
+            <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 0.85rem;">
+              To publish updates to the live website from this admin portal &mdash; including updating website content, uploading staff photos or club logos, and running live game syncs &mdash; enter your club's GitHub Access Token below. <strong>It only needs to be entered once per device and is saved securely in your browser.</strong>
             </p>
             <div
               style="display: grid; grid-template-columns: minmax(280px, 3fr) auto; gap: 0.75rem; align-items: end;">
@@ -860,8 +859,7 @@
               style="background: none; border: none; color: var(--text-muted); font-size: 0.72rem; cursor: pointer;">Clear
               Console</button>
           </div>
-          <div id="sync-console" class="sync-console">[READY] Mercer Chiefs Data Engine initialized. Ready to sync
-            feeds.
+          <div id="sync-console" class="sync-console">[READY] Data Engine initialized. Ready to sync feeds.
             [ACTIVE FEED] Tier 1 Hockey Federation (THF) - Season 190 (2026/27)
             [ACTIVE FEED] Atlantic Hockey Federation (AHF) - Season 190 (2026/27)
             [ACTIVE FEED] USPHL NCDC & Premier - Season 67 (2026/27)</div>
@@ -910,6 +908,28 @@
               style="font-size: 0.78rem; padding: 0.4rem 0.8rem; color: var(--chiefs-gold);">
               Reset Defaults
             </button>
+          </div>
+        </div>
+
+        <!-- Master Hub Visibility Controls -->
+        <div style="background: rgba(0,0,0,0.35); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1rem 1.25rem; margin-bottom: 1.75rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+          <div>
+            <div style="font-weight: 700; color: #fff; font-size: 0.95rem; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>🌐</span> Master Hub Website Visibility
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">
+              Show or hide the entire Junior or Youth divisions on the public website (including their navigation links).
+            </p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+            <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem; color: #fff; background: rgba(189, 50, 59, 0.15); border: 1px solid rgba(189, 50, 59, 0.4); padding: 0.5rem 0.95rem; border-radius: var(--radius-sm);">
+              <input type="checkbox" id="toggle-hub-junior" checked style="accent-color: var(--chiefs-red); width: 18px; height: 18px;" onchange="window.toggleJuniorHubVisibility(this.checked)">
+              <span style="font-weight: 700;">Junior Hub (NCDC & Premier)</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem; color: #fff; background: rgba(245, 166, 35, 0.15); border: 1px solid rgba(245, 166, 35, 0.4); padding: 0.5rem 0.95rem; border-radius: var(--radius-sm);">
+              <input type="checkbox" id="toggle-hub-youth" checked style="accent-color: var(--chiefs-gold); width: 18px; height: 18px;" onchange="window.toggleYouthHubVisibility(this.checked)">
+              <span style="font-weight: 700;">Youth Hub (THF & AHF)</span>
+            </label>
           </div>
         </div>
 
@@ -991,14 +1011,78 @@
         </div>
       </div>
 
+      <!-- CMS Global Section Visibility Master Strip -->
+      <div class="admin-card" style="margin-bottom: 1.5rem; background: rgba(0,0,0,0.35); border-color: rgba(245, 166, 35, 0.3);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div>
+            <h4 style="font-size: 1.05rem; color: #fff; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>👁️</span> Website Section Visibility Controls
+            </h4>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">
+              Turn major website sections and navigation links ON or OFF. You can also toggle each section inside its card below.
+            </p>
+          </div>
+          <span style="font-size: 0.75rem; color: var(--chiefs-gold); background: rgba(245, 166, 35, 0.12); padding: 0.25rem 0.6rem; border-radius: 4px; border: 1px solid rgba(245, 166, 35, 0.25);">
+            ⚡ Real-time Dynamic
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;">
+          <label style="display: flex; align-items: center; gap: 0.55rem; cursor: pointer; font-size: 0.84rem; color: #fff; background: rgba(255,255,255,0.03); padding: 0.55rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+            <input type="checkbox" id="cms-quick-ticker" checked style="accent-color: var(--chiefs-gold); width: 17px; height: 17px;" onchange="window.syncSectionVisibilityToggles('cms-quick-ticker', this.checked)">
+            <span>Scores Ticker Bar</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.55rem; cursor: pointer; font-size: 0.84rem; color: #fff; background: rgba(255,255,255,0.03); padding: 0.55rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+            <input type="checkbox" id="cms-quick-hero" checked style="accent-color: var(--chiefs-gold); width: 17px; height: 17px;" onchange="window.syncSectionVisibilityToggles('cms-quick-hero', this.checked)">
+            <span>Hero Showcase</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.55rem; cursor: pointer; font-size: 0.84rem; color: #fff; background: rgba(255,255,255,0.03); padding: 0.55rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+            <input type="checkbox" id="cms-quick-junior" checked style="accent-color: var(--chiefs-red); width: 17px; height: 17px;" onchange="window.syncSectionVisibilityToggles('cms-quick-junior', this.checked)">
+            <span>Junior Hockey Hub</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.55rem; cursor: pointer; font-size: 0.84rem; color: #fff; background: rgba(255,255,255,0.03); padding: 0.55rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+            <input type="checkbox" id="cms-quick-youth" checked style="accent-color: var(--chiefs-gold); width: 17px; height: 17px;" onchange="window.syncSectionVisibilityToggles('cms-quick-youth', this.checked)">
+            <span>Youth Hockey Hub</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.55rem; cursor: pointer; font-size: 0.84rem; color: #fff; background: rgba(255,255,255,0.03); padding: 0.55rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+            <input type="checkbox" id="cms-quick-tryouts" checked style="accent-color: var(--chiefs-gold); width: 17px; height: 17px;" onchange="window.syncSectionVisibilityToggles('cms-quick-tryouts', this.checked)">
+            <span>Evaluations / Tryouts</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.55rem; cursor: pointer; font-size: 0.84rem; color: #fff; background: rgba(255,255,255,0.03); padding: 0.55rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+            <input type="checkbox" id="cms-quick-camps" checked style="accent-color: var(--chiefs-gold); width: 17px; height: 17px;" onchange="window.syncSectionVisibilityToggles('cms-quick-camps', this.checked)">
+            <span>Camps & Clinics</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.55rem; cursor: pointer; font-size: 0.84rem; color: #fff; background: rgba(255,255,255,0.03); padding: 0.55rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+            <input type="checkbox" id="cms-quick-video" checked style="accent-color: var(--chiefs-gold); width: 17px; height: 17px;" onchange="window.syncSectionVisibilityToggles('cms-quick-video', this.checked)">
+            <span>Program Video</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.55rem; cursor: pointer; font-size: 0.84rem; color: #fff; background: rgba(255,255,255,0.03); padding: 0.55rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+            <input type="checkbox" id="cms-quick-arena" checked style="accent-color: var(--chiefs-gold); width: 17px; height: 17px;" onchange="window.syncSectionVisibilityToggles('cms-quick-arena', this.checked)">
+            <span>Home Rink/s</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.55rem; cursor: pointer; font-size: 0.84rem; color: #fff; background: rgba(255,255,255,0.03); padding: 0.55rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+            <input type="checkbox" id="cms-quick-news" checked style="accent-color: var(--chiefs-gold); width: 17px; height: 17px;" onchange="window.syncSectionVisibilityToggles('cms-quick-news', this.checked)">
+            <span>News & Updates</span>
+          </label>
+        </div>
+      </div>
+
       <!-- CMS Section 0: Top Hero Showcase & Background Banner -->
       <div class="admin-card" style="margin-bottom: 1.5rem;">
-        <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem;">
-          <span>⚡</span> Top Hero Showcase & Background Banner
-        </h4>
-        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
-          Configure the main homepage hero presentation, action photography backdrop, headline typography, and key achievement counters.
-        </p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+          <div>
+            <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>⚡</span> Top Hero Showcase & Background Banner
+            </h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0;">
+              Configure the main homepage hero presentation, action photography backdrop, headline typography, and key achievement counters.
+            </p>
+          </div>
+          <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem; color: #fff; background: rgba(0,0,0,0.3); padding: 0.5rem 0.9rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+            <input type="checkbox" id="cms-hero-enabled" checked style="accent-color: var(--chiefs-gold); width: 18px; height: 18px;" onchange="window.syncSectionVisibilityToggles('cms-hero-enabled', this.checked)">
+            <span>Display Hero Section</span>
+          </label>
+        </div>
 
         <!-- Backdrop Image URL & Live Preview -->
         <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; margin-bottom: 1rem; align-items: start;">
@@ -1103,12 +1187,20 @@
 
       <!-- CMS Section 1: Tryouts & Evaluations -->
       <div class="admin-card" style="margin-bottom: 1.5rem;">
-        <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem;">
-          <span>🏒</span> Tryouts & Evaluations Section
-        </h4>
-        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
-          Configure the main tryout headline, evaluation dates, eligible birth years, and registration actions.
-        </p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+          <div>
+            <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>🏒</span> Tryouts & Evaluations Section
+            </h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0;">
+              Configure the main tryout headline, evaluation dates, eligible birth years, and registration actions.
+            </p>
+          </div>
+          <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem; color: #fff; background: rgba(0,0,0,0.3); padding: 0.5rem 0.9rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+            <input type="checkbox" id="cms-tryouts-enabled" checked style="accent-color: var(--chiefs-gold); width: 18px; height: 18px;" onchange="window.syncSectionVisibilityToggles('cms-tryouts-enabled', this.checked)">
+            <span>Display Tryouts on Website</span>
+          </label>
+        </div>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
           <div class="admin-form-group">
@@ -1227,7 +1319,7 @@
             </p>
           </div>
           <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem; color: #fff; background: rgba(0,0,0,0.3); padding: 0.5rem 0.9rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
-            <input type="checkbox" id="cms-camps-enabled" style="accent-color: var(--chiefs-gold); width: 18px; height: 18px;">
+            <input type="checkbox" id="cms-camps-enabled" checked style="accent-color: var(--chiefs-gold); width: 18px; height: 18px;" onchange="window.syncSectionVisibilityToggles('cms-camps-enabled', this.checked)">
             <span>Display Camps on Website</span>
           </label>
         </div>
@@ -1259,81 +1351,94 @@
         </button>
       </div>
 
-      <!-- CMS Section 3: Rink & Facility (Ice Land Arena) -->
+      <!-- CMS Section 3: Rink & Facility (Home Rink/s) -->
       <div class="admin-card" style="margin-bottom: 1.5rem;">
-        <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem;">
-          <span>🏟</span> Home Facility (Ice Land Arena & Broadcasting)
-        </h4>
-        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
-          Edit rink address, phone number, amenities, and live video broadcast links.
-        </p>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
-          <!-- Left: Facility Details -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
           <div>
-            <div class="admin-form-group" style="margin-bottom: 0.75rem;">
-              <label>Facility Name</label>
-              <input type="text" id="cms-arena-title" class="admin-form-input" placeholder="Ice Land Skating Center">
-            </div>
-            <div class="admin-form-group" style="margin-bottom: 0.75rem;">
-              <label>Description</label>
-              <textarea id="cms-arena-desc" class="admin-form-input" rows="3"></textarea>
-            </div>
-            <div class="admin-form-group" style="margin-bottom: 0.75rem;">
-              <label>Street Address & City</label>
-              <input type="text" id="cms-arena-address" class="admin-form-input" placeholder="6 Tennis Court, Hamilton Township, NJ 08619">
-            </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
-              <div class="admin-form-group">
-                <label>Phone Number</label>
-                <input type="text" id="cms-arena-phone" class="admin-form-input" placeholder="(609) 588-6672">
-              </div>
-              <div class="admin-form-group">
-                <label>Google Maps Directions URL</label>
-                <input type="text" id="cms-arena-mapurl" class="admin-form-input" placeholder="https://maps.google.com/...">
-              </div>
-            </div>
-
-            <div style="margin-top: 1rem;">
-              <label style="font-size: 0.82rem; font-weight: 700; color: #fff; display: block; margin-bottom: 0.5rem;">4 Facility Amenities</label>
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
-                <input type="text" id="cms-amenity-0" class="admin-form-input" placeholder="Amenity 1">
-                <input type="text" id="cms-amenity-1" class="admin-form-input" placeholder="Amenity 2">
-                <input type="text" id="cms-amenity-2" class="admin-form-input" placeholder="Amenity 3">
-                <input type="text" id="cms-amenity-3" class="admin-form-input" placeholder="Amenity 4">
-              </div>
-            </div>
+            <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>🏟</span> Home Rink/s & Facilities
+            </h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0;">
+              Configure one or multiple home rinks, addresses, training amenities, and live game broadcast links.
+            </p>
           </div>
+          <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem; color: #fff; background: rgba(0,0,0,0.3); padding: 0.5rem 0.9rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+            <input type="checkbox" id="cms-arena-enabled" checked style="accent-color: var(--chiefs-gold); width: 18px; height: 18px;" onchange="window.syncSectionVisibilityToggles('cms-arena-enabled', this.checked)">
+            <span>Display Home Rink/s on Website</span>
+          </label>
+        </div>
 
-          <!-- Right: Live Broadcast Card -->
-          <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem;">
-            <div style="font-weight: 700; color: var(--chiefs-gold); font-size: 0.95rem; margin-bottom: 1rem;">
-              Live Stream Broadcast Card (Black Bear TV)
-            </div>
-            <div class="admin-form-group" style="margin-bottom: 0.75rem;">
-              <label>Broadcast Card Title</label>
-              <input type="text" id="cms-broadcast-title" class="admin-form-input" placeholder="Watch On Black Bear TV">
-            </div>
-            <div class="admin-form-group" style="margin-bottom: 0.75rem;">
-              <label>Description</label>
-              <textarea id="cms-broadcast-desc" class="admin-form-input" rows="3"></textarea>
+        <!-- Section Headline Inputs -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+          <div class="admin-form-group">
+            <label>Section Tag</label>
+            <input type="text" id="cms-arena-section-tag" class="admin-form-input" placeholder="Home Facilities" oninput="window.syncRinksLive()">
+          </div>
+          <div class="admin-form-group">
+            <label>Section Title</label>
+            <input type="text" id="cms-arena-section-title" class="admin-form-input" placeholder="Home Rinks & Facilities" oninput="window.syncRinksLive()">
+          </div>
+          <div class="admin-form-group">
+            <label>Section Subtitle</label>
+            <input type="text" id="cms-arena-section-subtitle" class="admin-form-input" placeholder="Official training & game venues..." oninput="window.syncRinksLive()">
+          </div>
+        </div>
+
+        <!-- Dynamic List of Multiple Home Rinks -->
+        <div style="margin-bottom: 0.75rem;">
+          <label style="font-size: 0.9rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <span>📍</span> Configured Home Rinks & Training Venues
+          </label>
+          <div id="cms-rinks-list" style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem;">
+            <!-- Rendered dynamically by admin.js -->
+          </div>
+          <button type="button" class="btn-secondary" onclick="window.addCmsRinkItem()" style="font-size: 0.82rem; display: inline-flex; align-items: center; gap: 0.4rem; margin-bottom: 1.5rem;">
+            <span>+</span> Add Another Home Rink
+          </button>
+        </div>
+
+        <!-- Live Broadcast Card (Black Bear TV) -->
+        <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem;">
+          <div style="font-weight: 700; color: var(--chiefs-gold); font-size: 0.95rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span>📺</span> Live Stream Broadcast Engine (Black Bear TV)
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 0.75rem;">
+            <div class="admin-form-group">
+              <label>Broadcast Tag</label>
+              <input type="text" id="cms-broadcast-tag" class="admin-form-input" placeholder="Live Broadcasts" oninput="window.syncRinksLive()">
             </div>
             <div class="admin-form-group">
-              <label>Live Stream / Black Bear TV Portal URL</label>
-              <input type="text" id="cms-broadcast-url" class="admin-form-input" placeholder="https://blackbearsports.tv/">
+              <label>Broadcast Card Title</label>
+              <input type="text" id="cms-broadcast-title" class="admin-form-input" placeholder="Watch On Black Bear TV" oninput="window.syncRinksLive()">
             </div>
+            <div class="admin-form-group">
+              <label>Live Stream Portal URL</label>
+              <input type="text" id="cms-broadcast-url" class="admin-form-input" placeholder="https://blackbearsports.tv/" oninput="window.syncRinksLive()">
+            </div>
+          </div>
+          <div class="admin-form-group">
+            <label>Description & Viewing Details</label>
+            <textarea id="cms-broadcast-desc" class="admin-form-input" rows="2" oninput="window.syncRinksLive()"></textarea>
           </div>
         </div>
       </div>
 
       <!-- CMS Section 4: Program Commercial Video & Pathway Showcase -->
       <div class="admin-card" style="margin-bottom: 1.5rem;">
-        <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem;">
-          <span>🎥</span> Program Commercial Video & Pillars
-        </h4>
-        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
-          Update the featured YouTube program commercial, video headlines, and the 4 developmental pillars.
-        </p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+          <div>
+            <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>🎥</span> Program Commercial Video & Pillars
+            </h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0;">
+              Update the featured YouTube program commercial, video headlines, and the 4 developmental pillars.
+            </p>
+          </div>
+          <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem; color: #fff; background: rgba(0,0,0,0.3); padding: 0.5rem 0.9rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+            <input type="checkbox" id="cms-video-enabled" checked style="accent-color: var(--chiefs-gold); width: 18px; height: 18px;" onchange="window.syncSectionVisibilityToggles('cms-video-enabled', this.checked)">
+            <span>Display Video Section on Website</span>
+          </label>
+        </div>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
           <div class="admin-form-group">
@@ -2140,24 +2245,45 @@
         </div>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <!-- Card 1: Export Complete Backup -->
           <div
-            style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.5rem;">
-            <h4 style="font-size: 1rem; color: #fff; margin-bottom: 0.5rem;">Export Active Data Payload</h4>
-            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
-              Download all active 2026/27 teams, rosters, game schedules, and news articles as a single clean JSON
-              bundle.
+            style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.5rem; display: flex; flex-direction: column;">
+            <h4 style="font-size: 1rem; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>📦</span> Export Full Organization Backup
+            </h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem; flex-grow: 1;">
+              Download a complete JSON snapshot containing all Website Content CMS (hero, tryouts, camps, arena, video, modals), Coaching Staff Directory, Club Branding & Colors, News Articles, Alumni & Commitments, and Season Configuration.
             </p>
-            <button type="button" class="btn-secondary" onclick="window.exportJsonBackup()"
-              style="width: 100%; font-size: 0.85rem;">
-              Download JSON Backup
+            <button type="button" class="btn-primary" onclick="window.exportJsonBackup()"
+              style="width: 100%; font-size: 0.85rem; background: var(--chiefs-gold); border-color: var(--chiefs-gold); color: #000; font-weight: 700;">
+              💾 Download JSON Backup
             </button>
           </div>
 
+          <!-- Card 2: Restore from Backup -->
           <div
-            style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.5rem;">
-            <h4 style="font-size: 1rem; color: #fff; margin-bottom: 0.5rem;">Reset All Admin Customizations</h4>
-            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
-              Clears browser storage overrides and resets the portal and live website to baseline compiled defaults.
+            style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.5rem; display: flex; flex-direction: column;">
+            <h4 style="font-size: 1rem; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>📥</span> Restore from JSON Backup
+            </h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem; flex-grow: 1;">
+              Restore your website content, coaching staff, branding colors, news, or alumni commitments from a previously saved JSON backup file.
+            </p>
+            <input type="file" id="backup-file-input" accept=".json,application/json" style="display: none;" onchange="window.importJsonBackup(this)">
+            <button type="button" class="btn-secondary" onclick="document.getElementById('backup-file-input').click()"
+              style="width: 100%; font-size: 0.85rem;">
+              📁 Upload & Restore Backup
+            </button>
+          </div>
+
+          <!-- Card 3: Reset Admin Customizations -->
+          <div
+            style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.5rem; display: flex; flex-direction: column;">
+            <h4 style="font-size: 1rem; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>⚠️</span> Reset All Customizations
+            </h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem; flex-grow: 1;">
+              Clears browser storage overrides and resets the portal and live website back to baseline repository defaults.
             </p>
             <button type="button" class="btn-secondary" onclick="window.clearAllOverrides()"
               style="width: 100%; font-size: 0.85rem; color: #f87171; border-color: rgba(239, 68, 68, 0.3);">
