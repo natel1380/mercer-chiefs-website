@@ -194,15 +194,31 @@ function checkAuth() {
   }
 }
 
-window.handleAuth = function (e) {
-  e.preventDefault();
+window.handleAuth = async function (e) {
+  if (e && e.preventDefault) e.preventDefault();
   const passkey = document.getElementById('auth-passkey')?.value.trim();
-  if (passkey && passkey === 'mercer.2026!') {
-    sessionStorage.setItem('mercer_admin_auth', 'true');
-    checkAuth();
-    showToast('Portal unlocked. Welcome, Mercer Chiefs Staff!');
-  } else {
-    alert('Invalid Passkey. Please enter the authorized staff passkey or contact organization administration.');
+  if (!passkey) return;
+
+  try {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(passkey);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    // Cryptographic SHA-256 hash of authorized staff passkey
+    const AUTH_HASH = '833bfed8e88daffe3a0c14414ab5a6a58ae7766dcc52e32e994da7a9c5dd5a5e';
+
+    if (hashHex === AUTH_HASH) {
+      sessionStorage.setItem('mercer_admin_auth', 'true');
+      checkAuth();
+      showToast('Portal unlocked. Welcome, Mercer Chiefs Staff!');
+    } else {
+      alert('Invalid Passkey. Please enter the authorized staff passkey or contact organization administration.');
+    }
+  } catch (err) {
+    console.error('Auth verification error:', err);
+    alert('Authentication error occurred. Please try again.');
   }
 };
 
