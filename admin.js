@@ -2629,17 +2629,25 @@ function populateSiteContentUI(data) {
   setCmsVal('cms-tryout-url', tr.externalRegisterUrl || '');
 
   // 6. Club Branding
-  if (data.branding) {
-    populateBrandingUI(data.branding);
+  try {
+    if (data.branding) {
+      populateBrandingUI(data.branding);
+    }
+  } catch (e) {
+    console.warn('Branding UI population warning:', e);
   }
 
   // 7. Coaching Staff
-  if (Array.isArray(data.staff) && data.staff.length > 0) {
-    cmsStaffList = JSON.parse(JSON.stringify(data.staff));
-  } else {
-    cmsStaffList = JSON.parse(JSON.stringify(DEFAULT_STAFF));
+  try {
+    if (Array.isArray(data.staff) && data.staff.length > 0) {
+      cmsStaffList = JSON.parse(JSON.stringify(data.staff));
+    } else {
+      cmsStaffList = JSON.parse(JSON.stringify(DEFAULT_STAFF));
+    }
+    renderCmsStaffList();
+  } catch (e) {
+    console.error('Staff UI population error:', e);
   }
-  renderCmsStaffList();
 }
 
 function renderCmsCampsList() {
@@ -3207,6 +3215,18 @@ function populateBrandingUI(b) {
   setCmsVal('cms-color-card-picker', card);
 
   window.updateBrandingPreview();
+}
+
+function hexToRgba(hex, alpha = 1) {
+  if (!hex) return '';
+  hex = hex.replace('#', '');
+  if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+  const num = parseInt(hex, 16);
+  if (isNaN(num)) return '';
+  const r = (num >> 16) & 255;
+  const g = (num >> 8) & 255;
+  const b = num & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
 window.updateBrandingPreview = function () {
