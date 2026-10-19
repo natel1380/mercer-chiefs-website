@@ -138,7 +138,7 @@
        ========================================================================== -->
   <section class="hero-section" id="hero-section">
     <div class="hero-backdrop">
-      <img src="assets/images/hero-action.jpg" alt="Mercer Chiefs Action" class="hero-backdrop-img">
+      <img id="hero-backdrop-img" src="assets/images/hero-action.jpg" alt="Mercer Chiefs Action" class="hero-backdrop-img">
       <div class="hero-gradient-overlay"></div>
     </div>
 
@@ -162,12 +162,12 @@
         </div>
       </div>
 
-      <h1 class="hero-headline">
-        CHAMPIONSHIP HOCKEY.
-        <span class="text-gradient">PROVEN ADVANCEMENT.</span>
+      <h1 class="hero-headline" id="hero-headline">
+        <span id="hero-headline-line1">CHAMPIONSHIP HOCKEY.</span>
+        <span class="text-gradient" id="hero-headline-gradient">PROVEN ADVANCEMENT.</span>
       </h1>
 
-      <p class="hero-description">
+      <p class="hero-description" id="hero-description">
         Home of the Mercer Chiefs — New Jersey's premier Tier II Junior (NCDC) and Tier I AAA youth hockey organization.
         We develop elite student-athletes with direct pathways to NCAA Division I & III college hockey.
       </p>
@@ -195,24 +195,24 @@
       <div class="hero-stats-grid">
         <a href="#ncdc-hub" onclick="if(window.switchJuniorTab) window.switchJuniorTab('commitments')" class="stat-item"
           style="cursor: pointer; text-decoration: none;">
-          <span class="stat-num accent-gold">30+</span>
-          <span class="stat-lbl">NCAA D1 Commitments</span>
+          <span class="stat-num accent-gold" id="hero-stat1-num">30+</span>
+          <span class="stat-lbl" id="hero-stat1-lbl">NCAA D1 Commitments</span>
         </a>
         <a href="#ncdc-hub"
           onclick="if(window.switchJuniorTab) { window.switchJuniorTab('commitments'); document.getElementById('commit-filter-pro')?.click(); }"
           class="stat-item" style="cursor: pointer; text-decoration: none;">
-          <span class="stat-num accent-red">19</span>
-          <span class="stat-lbl">NHL Draft & Pro Alumni</span>
+          <span class="stat-num accent-red" id="hero-stat2-num">19</span>
+          <span class="stat-lbl" id="hero-stat2-lbl">NHL Draft & Pro Alumni</span>
         </a>
         <a href="#ncdc-hub" onclick="if(window.switchJuniorTab) window.switchJuniorTab('commitments')" class="stat-item"
           style="cursor: pointer; text-decoration: none;">
-          <span class="stat-num accent-gold">1</span>
-          <span class="stat-lbl">Stanley Cup Champion</span>
+          <span class="stat-num accent-gold" id="hero-stat3-num">1</span>
+          <span class="stat-lbl" id="hero-stat3-lbl">Stanley Cup Champion</span>
         </a>
         <a href="#ncdc-hub" onclick="if(window.switchJuniorTab) window.switchJuniorTab('standings')" class="stat-item"
           style="cursor: pointer; text-decoration: none;">
-          <span class="stat-num accent-red">DINEEN</span>
-          <span class="stat-lbl">Cup Championship Finalist</span>
+          <span class="stat-num accent-red" id="hero-stat4-num">DINEEN</span>
+          <span class="stat-lbl" id="hero-stat4-lbl">Cup Championship Finalist</span>
         </a>
       </div>
     </div>

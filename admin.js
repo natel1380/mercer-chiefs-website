@@ -2442,6 +2442,27 @@ window.initSiteContentCMS = initSiteContentCMS;
 function populateSiteContentUI(data) {
   if (!data) return;
 
+  // 0. Hero Showcase
+  const h = data.hero || {};
+  setCmsVal('cms-hero-backdrop', h.backdropImage || 'assets/images/hero-action.jpg');
+  const heroPrev = document.getElementById('cms-hero-preview-img');
+  if (heroPrev) heroPrev.src = h.backdropImage || 'assets/images/hero-action.jpg';
+  setCmsVal('cms-hero-headline-1', h.headlineLine1 || 'CHAMPIONSHIP HOCKEY.');
+  setCmsVal('cms-hero-headline-grad', h.headlineGradient || 'PROVEN ADVANCEMENT.');
+  setCmsVal('cms-hero-desc', h.description || '');
+  setCmsVal('cms-hero-btn1-text', h.primaryBtnText || 'Explore Junior Teams');
+  setCmsVal('cms-hero-btn1-url', h.primaryBtnUrl || '#ncdc-hub');
+  setCmsVal('cms-hero-btn2-text', h.secondaryBtnText || 'Youth Hub');
+  setCmsVal('cms-hero-btn2-url', h.secondaryBtnUrl || '#youth-hub');
+  setCmsVal('cms-hero-stat1-num', h.stat1Num || '30+');
+  setCmsVal('cms-hero-stat1-lbl', h.stat1Label || 'NCAA D1 Commitments');
+  setCmsVal('cms-hero-stat2-num', h.stat2Num || '19');
+  setCmsVal('cms-hero-stat2-lbl', h.stat2Label || 'NHL Draft & Pro Alumni');
+  setCmsVal('cms-hero-stat3-num', h.stat3Num || '1');
+  setCmsVal('cms-hero-stat3-lbl', h.stat3Label || 'Stanley Cup Champion');
+  setCmsVal('cms-hero-stat4-num', h.stat4Num || 'DINEEN');
+  setCmsVal('cms-hero-stat4-lbl', h.stat4Label || 'Cup Championship Finalist');
+
   // 1. Tryouts
   const t = data.tryouts || {};
   setCmsVal('cms-tryouts-tag', t.sectionTag || '');
@@ -2631,6 +2652,24 @@ window.collectSiteContentFromUI = function () {
   }
 
   const content = {
+    hero: {
+      backdropImage: getCmsVal('cms-hero-backdrop') || 'assets/images/hero-action.jpg',
+      headlineLine1: getCmsVal('cms-hero-headline-1') || 'CHAMPIONSHIP HOCKEY.',
+      headlineGradient: getCmsVal('cms-hero-headline-grad') || 'PROVEN ADVANCEMENT.',
+      description: getCmsVal('cms-hero-desc'),
+      primaryBtnText: getCmsVal('cms-hero-btn1-text') || 'Explore Junior Teams',
+      primaryBtnUrl: getCmsVal('cms-hero-btn1-url') || '#ncdc-hub',
+      secondaryBtnText: getCmsVal('cms-hero-btn2-text') || 'Youth Hub',
+      secondaryBtnUrl: getCmsVal('cms-hero-btn2-url') || '#youth-hub',
+      stat1Num: getCmsVal('cms-hero-stat1-num') || '30+',
+      stat1Label: getCmsVal('cms-hero-stat1-lbl') || 'NCAA D1 Commitments',
+      stat2Num: getCmsVal('cms-hero-stat2-num') || '19',
+      stat2Label: getCmsVal('cms-hero-stat2-lbl') || 'NHL Draft & Pro Alumni',
+      stat3Num: getCmsVal('cms-hero-stat3-num') || '1',
+      stat3Label: getCmsVal('cms-hero-stat3-lbl') || 'Stanley Cup Champion',
+      stat4Num: getCmsVal('cms-hero-stat4-num') || 'DINEEN',
+      stat4Label: getCmsVal('cms-hero-stat4-lbl') || 'Cup Championship Finalist'
+    },
     tryouts: {
       sectionTag: getCmsVal('cms-tryouts-tag') || '2026 / 2027 Season Evaluations',
       title: getCmsVal('cms-tryouts-title') || 'Join The Chiefs Tradition',

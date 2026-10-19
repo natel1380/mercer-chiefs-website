@@ -1,4 +1,22 @@
 {
+  "hero": {
+    "backdropImage": "assets/images/hero-action.jpg",
+    "headlineLine1": "CHAMPIONSHIP HOCKEY.",
+    "headlineGradient": "PROVEN ADVANCEMENT.",
+    "description": "Home of the Mercer Chiefs — New Jersey's premier Tier II Junior (NCDC) and Tier I AAA youth hockey organization. We develop elite student-athletes with direct pathways to NCAA Division I & III college hockey.",
+    "primaryBtnText": "Explore Junior Teams",
+    "primaryBtnUrl": "#ncdc-hub",
+    "secondaryBtnText": "Youth Hub",
+    "secondaryBtnUrl": "#youth-hub",
+    "stat1Num": "30+",
+    "stat1Label": "NCAA D1 Commitments",
+    "stat2Num": "19",
+    "stat2Label": "NHL Draft & Pro Alumni",
+    "stat3Num": "1",
+    "stat3Label": "Stanley Cup Champion",
+    "stat4Num": "DINEEN",
+    "stat4Label": "Cup Championship Finalist"
+  },
   "tryouts": {
     "sectionTag": "2026 / 2027 Season Evaluations",
     "title": "Join The Chiefs Tradition",

@@ -991,6 +991,110 @@
         </div>
       </div>
 
+      <!-- CMS Section 0: Top Hero Showcase & Background Banner -->
+      <div class="admin-card" style="margin-bottom: 1.5rem;">
+        <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem;">
+          <span>⚡</span> Top Hero Showcase & Background Banner
+        </h4>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+          Configure the main homepage hero presentation, action photography backdrop, headline typography, and key achievement counters.
+        </p>
+
+        <!-- Backdrop Image URL & Live Preview -->
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; margin-bottom: 1rem; align-items: start;">
+          <div>
+            <div class="admin-form-group" style="margin-bottom: 0.85rem;">
+              <label>Hero Background Image URL / Path</label>
+              <input type="text" id="cms-hero-backdrop" class="admin-form-input" placeholder="assets/images/hero-action.jpg" oninput="document.getElementById('cms-hero-preview-img').src = this.value">
+            </div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button type="button" class="btn-secondary" style="font-size: 0.74rem; padding: 0.25rem 0.6rem;" onclick="document.getElementById('cms-hero-backdrop').value='assets/images/hero-action.jpg'; document.getElementById('cms-hero-preview-img').src='assets/images/hero-action.jpg';">
+                Chiefs Action Default
+              </button>
+              <button type="button" class="btn-secondary" style="font-size: 0.74rem; padding: 0.25rem 0.6rem;" onclick="document.getElementById('cms-hero-backdrop').value='assets/images/ncdc-game-hero.jpg'; document.getElementById('cms-hero-preview-img').src='assets/images/ncdc-game-hero.jpg';">
+                NCDC Game Hero
+              </button>
+            </div>
+          </div>
+
+          <div style="background: rgba(0,0,0,0.4); border: 1px dashed var(--border-subtle); border-radius: var(--radius-sm); padding: 0.5rem; text-align: center;">
+            <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.35rem; text-transform: uppercase;">Image Preview</div>
+            <img id="cms-hero-preview-img" src="assets/images/hero-action.jpg" alt="Hero Backdrop Preview" style="width: 100%; max-height: 80px; object-fit: cover; border-radius: 4px;">
+          </div>
+        </div>
+
+        <!-- Headline Lines -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div class="admin-form-group">
+            <label>Headline Line 1 (White Bold Text)</label>
+            <input type="text" id="cms-hero-headline-1" class="admin-form-input" placeholder="CHAMPIONSHIP HOCKEY.">
+          </div>
+          <div class="admin-form-group">
+            <label>Headline Line 2 (Gold Gradient Highlight)</label>
+            <input type="text" id="cms-hero-headline-grad" class="admin-form-input" placeholder="PROVEN ADVANCEMENT.">
+          </div>
+        </div>
+
+        <div class="admin-form-group" style="margin-bottom: 1rem;">
+          <label>Hero Description Paragraph</label>
+          <textarea id="cms-hero-desc" class="admin-form-input" rows="2" placeholder="Home of the Mercer Chiefs..."></textarea>
+        </div>
+
+        <!-- Buttons CTA -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div style="background: rgba(0,0,0,0.25); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.85rem;">
+            <div style="font-weight: 700; color: #fff; font-size: 0.82rem; margin-bottom: 0.5rem;">Primary CTA Button</div>
+            <div class="admin-form-group" style="margin-bottom: 0.5rem;">
+              <label>Button Label</label>
+              <input type="text" id="cms-hero-btn1-text" class="admin-form-input" placeholder="Explore Junior Teams">
+            </div>
+            <div class="admin-form-group">
+              <label>Target URL / Anchor</label>
+              <input type="text" id="cms-hero-btn1-url" class="admin-form-input" placeholder="#ncdc-hub">
+            </div>
+          </div>
+
+          <div style="background: rgba(0,0,0,0.25); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.85rem;">
+            <div style="font-weight: 700; color: var(--chiefs-gold); font-size: 0.82rem; margin-bottom: 0.5rem;">Secondary CTA Button</div>
+            <div class="admin-form-group" style="margin-bottom: 0.5rem;">
+              <label>Button Label</label>
+              <input type="text" id="cms-hero-btn2-text" class="admin-form-input" placeholder="Youth Hub">
+            </div>
+            <div class="admin-form-group">
+              <label>Target URL / Anchor</label>
+              <input type="text" id="cms-hero-btn2-url" class="admin-form-input" placeholder="#youth-hub">
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Key Stat Counters -->
+        <label style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 700; margin-bottom: 0.5rem; display: block;">
+          📊 4 Highlight Stat Counters:
+        </label>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem;">
+          <div class="admin-form-group">
+            <label>Stat 1 Value</label>
+            <input type="text" id="cms-hero-stat1-num" class="admin-form-input" placeholder="30+">
+            <input type="text" id="cms-hero-stat1-lbl" class="admin-form-input" placeholder="NCAA D1 Commitments" style="margin-top: 0.35rem; font-size: 0.75rem;">
+          </div>
+          <div class="admin-form-group">
+            <label>Stat 2 Value</label>
+            <input type="text" id="cms-hero-stat2-num" class="admin-form-input" placeholder="19">
+            <input type="text" id="cms-hero-stat2-lbl" class="admin-form-input" placeholder="NHL Draft & Pro Alumni" style="margin-top: 0.35rem; font-size: 0.75rem;">
+          </div>
+          <div class="admin-form-group">
+            <label>Stat 3 Value</label>
+            <input type="text" id="cms-hero-stat3-num" class="admin-form-input" placeholder="1">
+            <input type="text" id="cms-hero-stat3-lbl" class="admin-form-input" placeholder="Stanley Cup Champion" style="margin-top: 0.35rem; font-size: 0.75rem;">
+          </div>
+          <div class="admin-form-group">
+            <label>Stat 4 Value</label>
+            <input type="text" id="cms-hero-stat4-num" class="admin-form-input" placeholder="DINEEN">
+            <input type="text" id="cms-hero-stat4-lbl" class="admin-form-input" placeholder="Cup Championship Finalist" style="margin-top: 0.35rem; font-size: 0.75rem;">
+          </div>
+        </div>
+      </div>
+
       <!-- CMS Section 1: Tryouts & Evaluations -->
       <div class="admin-card" style="margin-bottom: 1.5rem;">
         <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem;">

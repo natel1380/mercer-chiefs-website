@@ -762,6 +762,58 @@ export async function initSiteContent() {
 export function applySiteContent(content) {
   if (!content) return;
 
+  // 0. Top Hero Showcase & Banner
+  if (content.hero) {
+    const h = content.hero;
+    const backdrop = document.getElementById('hero-backdrop-img');
+    if (backdrop && h.backdropImage) backdrop.src = h.backdropImage;
+
+    const line1 = document.getElementById('hero-headline-line1');
+    if (line1 && h.headlineLine1) line1.textContent = h.headlineLine1;
+
+    const grad = document.getElementById('hero-headline-gradient');
+    if (grad && h.headlineGradient) grad.textContent = h.headlineGradient;
+
+    const desc = document.getElementById('hero-description');
+    if (desc && h.description) desc.textContent = h.description;
+
+    const pBtn = document.getElementById('hero-explore-ncdc-btn');
+    if (pBtn) {
+      if (h.primaryBtnText) {
+        pBtn.innerHTML = `${h.primaryBtnText} <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6" /></svg>`;
+      }
+      if (h.primaryBtnUrl) pBtn.href = h.primaryBtnUrl;
+    }
+
+    const sBtn = document.getElementById('hero-gamesheet-btn');
+    if (sBtn) {
+      if (h.secondaryBtnText) {
+        sBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--chiefs-gold)" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg> ${h.secondaryBtnText}`;
+      }
+      if (h.secondaryBtnUrl) sBtn.href = h.secondaryBtnUrl;
+    }
+
+    const s1Num = document.getElementById('hero-stat1-num');
+    const s1Lbl = document.getElementById('hero-stat1-lbl');
+    if (s1Num && h.stat1Num) s1Num.textContent = h.stat1Num;
+    if (s1Lbl && h.stat1Label) s1Lbl.textContent = h.stat1Label;
+
+    const s2Num = document.getElementById('hero-stat2-num');
+    const s2Lbl = document.getElementById('hero-stat2-lbl');
+    if (s2Num && h.stat2Num) s2Num.textContent = h.stat2Num;
+    if (s2Lbl && h.stat2Label) s2Lbl.textContent = h.stat2Label;
+
+    const s3Num = document.getElementById('hero-stat3-num');
+    const s3Lbl = document.getElementById('hero-stat3-lbl');
+    if (s3Num && h.stat3Num) s3Num.textContent = h.stat3Num;
+    if (s3Lbl && h.stat3Label) s3Lbl.textContent = h.stat3Label;
+
+    const s4Num = document.getElementById('hero-stat4-num');
+    const s4Lbl = document.getElementById('hero-stat4-lbl');
+    if (s4Num && h.stat4Num) s4Num.textContent = h.stat4Num;
+    if (s4Lbl && h.stat4Label) s4Lbl.textContent = h.stat4Label;
+  }
+
   // 1. Program Video & Commercial
   if (content.program) {
     const p = content.program;
