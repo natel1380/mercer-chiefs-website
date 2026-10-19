@@ -181,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderSeasonTable();
   renderNewsList();
   renderAlumniTable();
+  initSiteContentCMS();
 });
 
 /* ==========================================================================
@@ -238,6 +239,10 @@ window.switchAdminTab = function (tabId) {
   document.querySelectorAll('.admin-tab-pane').forEach(pane => {
     pane.classList.toggle('active', pane.id === tabId);
   });
+
+  if (tabId === 'tab-content') {
+    window.initSiteContentCMS();
+  }
 };
 
 /* ==========================================================================
@@ -2378,3 +2383,432 @@ function showToast(msg) {
     toast.classList.remove('show');
   }, 3200);
 }
+
+/* ==========================================================================
+   10. WEBSITE CONTENT & PAGES CMS (TRYOUTS, CAMPS, RINK, MODALS)
+   ========================================================================== */
+
+let cmsContentState = null;
+let cmsCampsList = [];
+
+function escapeCmsHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function setCmsVal(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.value = val ?? '';
+}
+
+function getCmsVal(id) {
+  const el = document.getElementById(id);
+  return el ? el.value.trim() : '';
+}
+
+async function initSiteContentCMS() {
+  try {
+    let content = null;
+    try {
+      const cached = localStorage.getItem('mercer_site_content');
+      if (cached) content = JSON.parse(cached);
+    } catch (e) {}
+
+    if (!content) {
+      const res = await fetch(`data/site-content.json?t=${Date.now()}`);
+      if (res.ok) {
+        content = await res.json();
+      }
+    }
+
+    if (!content) return;
+    cmsContentState = content;
+    populateSiteContentUI(content);
+  } catch (err) {
+    console.warn('Failed to load site-content.json in admin:', err);
+  }
+}
+window.initSiteContentCMS = initSiteContentCMS;
+
+function populateSiteContentUI(data) {
+  if (!data) return;
+
+  // 1. Tryouts
+  const t = data.tryouts || {};
+  setCmsVal('cms-tryouts-tag', t.sectionTag || '');
+  setCmsVal('cms-tryouts-title', t.title || '');
+  setCmsVal('cms-tryouts-subtitle', t.subtitle || '');
+
+  const t1 = t.tier1 || {};
+  setCmsVal('cms-t1-badge', t1.badge || '');
+  setCmsVal('cms-t1-title', t1.title || '');
+  setCmsVal('cms-t1-desc', t1.desc || '');
+  setCmsVal('cms-t1-years', t1.birthYears || '');
+  setCmsVal('cms-t1-arena', t1.arena || '');
+  setCmsVal('cms-t1-showcase', t1.showcaseSchedule || '');
+  setCmsVal('cms-t1-equipment', t1.equipment || '');
+  setCmsVal('cms-t1-btn-text', t1.registerButtonText || '');
+  setCmsVal('cms-t1-url', t1.registerUrl || '');
+
+  const t2 = t.tier2 || {};
+  setCmsVal('cms-t2-badge', t2.badge || '');
+  setCmsVal('cms-t2-title', t2.title || '');
+  setCmsVal('cms-t2-desc', t2.desc || '');
+  setCmsVal('cms-t2-years', t2.birthYears || '');
+  setCmsVal('cms-t2-divisions', t2.divisions || '');
+  setCmsVal('cms-t2-goalies', t2.goaltending || '');
+  setCmsVal('cms-t2-tournaments', t2.tournaments || '');
+  setCmsVal('cms-t2-btn-text', t2.registerButtonText || '');
+  setCmsVal('cms-t2-url', t2.registerUrl || '');
+
+  // 2. Camps
+  const c = data.camps || {};
+  const enabledBox = document.getElementById('cms-camps-enabled');
+  if (enabledBox) enabledBox.checked = c.enabled !== false;
+  setCmsVal('cms-camps-tag', c.sectionTag || '');
+  setCmsVal('cms-camps-title', c.title || '');
+  setCmsVal('cms-camps-subtitle', c.subtitle || '');
+
+  cmsCampsList = Array.isArray(c.items) ? JSON.parse(JSON.stringify(c.items)) : [];
+  renderCmsCampsList();
+
+  // 3. Arena & Facility
+  const a = data.arena || {};
+  setCmsVal('cms-arena-title', a.title || '');
+  setCmsVal('cms-arena-desc', a.desc || '');
+  setCmsVal('cms-arena-address', a.address || '');
+  setCmsVal('cms-arena-phone', a.phone || '');
+  setCmsVal('cms-arena-mapurl', a.mapUrl || '');
+
+  const amenities = Array.isArray(a.amenities) ? a.amenities : [];
+  for (let i = 0; i < 4; i++) {
+    setCmsVal(`cms-amenity-${i}`, amenities[i] || '');
+  }
+
+  setCmsVal('cms-broadcast-title', a.broadcastTitle || '');
+  setCmsVal('cms-broadcast-desc', a.broadcastDesc || '');
+  setCmsVal('cms-broadcast-url', a.broadcastUrl || '');
+
+  // 4. Program Video
+  const p = data.program || {};
+  setCmsVal('cms-prog-tag', p.sectionTag || '');
+  setCmsVal('cms-prog-title', p.title || '');
+  setCmsVal('cms-prog-subtitle', p.subtitle || '');
+  setCmsVal('cms-prog-video', p.youtubeVideoId || '');
+  setCmsVal('cms-prog-callout', p.calloutText || '');
+
+  const pillars = Array.isArray(p.pillars) ? p.pillars : [];
+  for (let i = 0; i < 4; i++) {
+    setCmsVal(`cms-pillar-${i}-title`, pillars[i]?.title || '');
+    setCmsVal(`cms-pillar-${i}-desc`, pillars[i]?.desc || '');
+  }
+
+  // 5. Modals
+  const b = data.billetModal || {};
+  setCmsVal('cms-billet-title', b.title || '');
+  setCmsVal('cms-billet-desc', b.desc || '');
+  setCmsVal('cms-billet-stipend', b.stipend || '');
+  setCmsVal('cms-billet-perk1', b.perk1 || '');
+  setCmsVal('cms-billet-perk2', b.perk2 || '');
+  setCmsVal('cms-billet-coord-name', b.coordinatorName || '');
+  setCmsVal('cms-billet-coord-email', b.coordinatorEmail || '');
+
+  const tr = data.tryoutModal || {};
+  setCmsVal('cms-tryout-title', tr.title || '');
+  setCmsVal('cms-tryout-desc', tr.desc || '');
+  setCmsVal('cms-tryout-url', tr.externalRegisterUrl || '');
+}
+
+function renderCmsCampsList() {
+  const container = document.getElementById('cms-camps-list');
+  if (!container) return;
+
+  if (cmsCampsList.length === 0) {
+    container.innerHTML = `
+      <div style="padding: 1.5rem; text-align: center; color: var(--text-muted); background: rgba(0,0,0,0.2); border: 1px dashed var(--border-subtle); border-radius: var(--radius-sm);">
+        No active camps or clinics listed. Click "+ Add Another Camp / Clinic" below to create one.
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = cmsCampsList.map((item, idx) => `
+    <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem; position: relative;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <span style="font-weight: 700; color: var(--chiefs-gold); font-size: 0.9rem;">Camp #${idx + 1}</span>
+        <button type="button" onclick="window.removeCmsCampItem(${idx})" class="btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.6rem; color: #f87171; border-color: rgba(239,68,68,0.3);">
+          ✕ Remove
+        </button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+        <div class="admin-form-group">
+          <label>Camp Title</label>
+          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.title || '')}" oninput="cmsCampsList[${idx}].title = this.value">
+        </div>
+        <div class="admin-form-group">
+          <label>Badge Tag</label>
+          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.badge || 'Summer Camp')}" oninput="cmsCampsList[${idx}].badge = this.value">
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; margin-bottom: 0.75rem;">
+        <div class="admin-form-group">
+          <label>Dates</label>
+          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.dates || '')}" oninput="cmsCampsList[${idx}].dates = this.value">
+        </div>
+        <div class="admin-form-group">
+          <label>Eligible Ages</label>
+          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.ages || '')}" oninput="cmsCampsList[${idx}].ages = this.value">
+        </div>
+        <div class="admin-form-group">
+          <label>Location</label>
+          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.location || 'Ice Land Arena')}" oninput="cmsCampsList[${idx}].location = this.value">
+        </div>
+        <div class="admin-form-group">
+          <label>Price / Fee</label>
+          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.price || '')}" oninput="cmsCampsList[${idx}].price = this.value">
+        </div>
+      </div>
+
+      <div class="admin-form-group" style="margin-bottom: 0.75rem;">
+        <label>Registration / Info URL</label>
+        <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.registerUrl || '')}" oninput="cmsCampsList[${idx}].registerUrl = this.value" placeholder="https://...">
+      </div>
+
+      <div class="admin-form-group">
+        <label>Description & Program Highlights</label>
+        <textarea class="admin-form-input" rows="2" oninput="cmsCampsList[${idx}].desc = this.value">${escapeCmsHtml(item.desc || '')}</textarea>
+      </div>
+    </div>
+  `).join('');
+}
+
+window.addCmsCampItem = function () {
+  cmsCampsList.push({
+    id: `camp-${Date.now()}`,
+    title: 'New Elite Camp / Clinic',
+    badge: 'Camp',
+    dates: 'TBD',
+    ages: 'All Birth Years',
+    location: 'Ice Land Skating Center',
+    desc: 'On-ice instruction, power skating, and skill refinement with Chiefs coaching staff.',
+    price: '$450',
+    registerUrl: ''
+  });
+  renderCmsCampsList();
+};
+
+window.removeCmsCampItem = function (idx) {
+  if (confirm('Are you sure you want to remove this camp?')) {
+    cmsCampsList.splice(idx, 1);
+    renderCmsCampsList();
+  }
+};
+
+window.collectSiteContentFromUI = function () {
+  let yt = getCmsVal('cms-prog-video');
+  if (yt.includes('youtu.be/')) {
+    yt = yt.split('youtu.be/')[1].split('?')[0].split('&')[0];
+  } else if (yt.includes('watch?v=')) {
+    yt = yt.split('watch?v=')[1].split('&')[0];
+  } else if (yt.includes('embed/')) {
+    yt = yt.split('embed/')[1].split('?')[0];
+  }
+
+  const content = {
+    tryouts: {
+      sectionTag: getCmsVal('cms-tryouts-tag') || '2026 / 2027 Season Evaluations',
+      title: getCmsVal('cms-tryouts-title') || 'Join The Chiefs Tradition',
+      subtitle: getCmsVal('cms-tryouts-subtitle'),
+      tier1: {
+        badge: getCmsVal('cms-t1-badge') || 'Tier I AAA — THF',
+        title: getCmsVal('cms-t1-title') || 'Tier 1 National Bound & Youth',
+        desc: getCmsVal('cms-t1-desc'),
+        birthYears: getCmsVal('cms-t1-years'),
+        arena: getCmsVal('cms-t1-arena'),
+        showcaseSchedule: getCmsVal('cms-t1-showcase'),
+        equipment: getCmsVal('cms-t1-equipment'),
+        registerButtonText: getCmsVal('cms-t1-btn-text') || 'Register for Tier I Evaluations',
+        registerUrl: getCmsVal('cms-t1-url')
+      },
+      tier2: {
+        badge: getCmsVal('cms-t2-badge') || 'Tier II — AHF',
+        title: getCmsVal('cms-t2-title') || 'Tier II Competitive & Development',
+        desc: getCmsVal('cms-t2-desc'),
+        birthYears: getCmsVal('cms-t2-years'),
+        divisions: getCmsVal('cms-t2-divisions'),
+        goaltending: getCmsVal('cms-t2-goalies'),
+        tournaments: getCmsVal('cms-t2-tournaments'),
+        registerButtonText: getCmsVal('cms-t2-btn-text') || 'Register for Tier II Evaluations',
+        registerUrl: getCmsVal('cms-t2-url')
+      }
+    },
+    camps: {
+      enabled: document.getElementById('cms-camps-enabled')?.checked ?? true,
+      sectionTag: getCmsVal('cms-camps-tag') || 'Player Development & Skills',
+      title: getCmsVal('cms-camps-title') || 'Camps & Clinics',
+      subtitle: getCmsVal('cms-camps-subtitle'),
+      items: cmsCampsList
+    },
+    arena: {
+      sectionTag: 'Home Facility',
+      title: getCmsVal('cms-arena-title') || 'Ice Land Skating Center',
+      desc: getCmsVal('cms-arena-desc'),
+      address: getCmsVal('cms-arena-address') || '6 Tennis Court, Hamilton Township, NJ 08619',
+      mapUrl: getCmsVal('cms-arena-mapurl') || 'https://maps.google.com/?q=6+Tennis+Ct,+Hamilton+Township,+NJ+08619',
+      phone: getCmsVal('cms-arena-phone') || '(609) 588-6672',
+      amenities: [
+        getCmsVal('cms-amenity-0') || '2 NHL-Size Ice Sheets',
+        getCmsVal('cms-amenity-1') || 'Full-menu Concessions',
+        getCmsVal('cms-amenity-2') || 'Off-Ice Dryland Training',
+        getCmsVal('cms-amenity-3') || 'Blackbear TV Broadcast Rinks'
+      ],
+      broadcastTag: 'Live Broadcasts',
+      broadcastTitle: getCmsVal('cms-broadcast-title') || 'Watch On Black Bear TV',
+      broadcastDesc: getCmsVal('cms-broadcast-desc'),
+      broadcastUrl: getCmsVal('cms-broadcast-url') || 'https://blackbearsports.tv/'
+    },
+    program: {
+      sectionTag: getCmsVal('cms-prog-tag') || 'Inside The Mercer Chiefs Experience',
+      title: getCmsVal('cms-prog-title') || 'Junior Hockey Defined',
+      subtitle: getCmsVal('cms-prog-subtitle'),
+      youtubeVideoId: yt || 'E9HzPzEbpS8',
+      sourceTitle: 'Mercer Chiefs NCDC & Premier Hockey Club',
+      sourceLocation: 'Ice Land Skating Center • Hamilton Township, NJ',
+      pillars: [
+        { title: getCmsVal('cms-pillar-0-title'), desc: getCmsVal('cms-pillar-0-desc') },
+        { title: getCmsVal('cms-pillar-1-title'), desc: getCmsVal('cms-pillar-1-desc') },
+        { title: getCmsVal('cms-pillar-2-title'), desc: getCmsVal('cms-pillar-2-desc') },
+        { title: getCmsVal('cms-pillar-3-title'), desc: getCmsVal('cms-pillar-3-desc') }
+      ],
+      calloutText: getCmsVal('cms-prog-callout') || 'Ready to take the ice for the 2026/27 campaign?'
+    },
+    billetModal: {
+      goldTag: 'Support Junior Hockey in Hamilton',
+      title: getCmsVal('cms-billet-title') || 'Become a Mercer Chiefs Billet Family',
+      desc: getCmsVal('cms-billet-desc'),
+      stipend: getCmsVal('cms-billet-stipend') || '$675/mo food allowance',
+      perk1: getCmsVal('cms-billet-perk1') || 'VIP Passes to all Chiefs games',
+      perk2: getCmsVal('cms-billet-perk2') || 'Mentoring a future NCAA star',
+      coordinatorName: getCmsVal('cms-billet-coord-name') || 'Heather O\'Connell',
+      coordinatorEmail: getCmsVal('cms-billet-coord-email') || 'billet@mercerchiefshockey.com'
+    },
+    tryoutModal: {
+      goldTag: '2026/27 Mercer Chiefs Evaluations',
+      title: getCmsVal('cms-tryout-title') || 'Tryout Registration Portal',
+      desc: getCmsVal('cms-tryout-desc'),
+      externalRegisterUrl: getCmsVal('cms-tryout-url')
+    }
+  };
+
+  return content;
+};
+
+window.publishSiteContent = async function () {
+  const token = localStorage.getItem('mercer_github_token')?.trim();
+  const repoOwner = 'natel1380';
+  const repoName = 'mercer-chiefs-website';
+  const btn = document.getElementById('btn-publish-site-content');
+  const badge = document.getElementById('site-content-status-badge');
+  const originalHtml = btn ? btn.innerHTML : '💾 Publish to Live Site';
+
+  if (!token) {
+    window.switchAdminTab('tab-sync');
+    window.toggleGitHubSettings();
+    showToast('Please enter and save your GitHub Token in Data Sync Center first to publish content to the live site.');
+    return;
+  }
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '⏳ Publishing to Live Site...';
+  }
+  if (badge) {
+    badge.textContent = '○ Uploading...';
+    badge.style.color = 'var(--chiefs-gold)';
+  }
+
+  const content = window.collectSiteContentFromUI();
+  const jsonString = JSON.stringify(content, null, 2);
+
+  // Cache locally
+  localStorage.setItem('mercer_site_content', jsonString);
+  window.dispatchEvent(new Event('storage'));
+
+  try {
+    const contentUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/data/site-content.json`;
+    let sha = null;
+    try {
+      const getRes = await fetch(contentUrl, {
+        headers: {
+          'Accept': 'application/vnd.github+json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (getRes.ok) {
+        const fileData = await getRes.json();
+        sha = fileData.sha;
+      }
+    } catch (e) {}
+
+    const putRes = await fetch(contentUrl, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/vnd.github+json',
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: 'chore: update website content via CMS (tryouts, camps, rink, modals)',
+        content: btoa(unescape(encodeURIComponent(jsonString))),
+        sha: sha || undefined
+      })
+    });
+
+    if (putRes.ok) {
+      showToast('✓ Successfully published website content to live website!');
+      if (badge) {
+        badge.textContent = '● Published Live';
+        badge.style.color = '#4ade80';
+      }
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = '✓ Published!';
+        setTimeout(() => { btn.innerHTML = originalHtml; }, 2500);
+      }
+      return;
+    }
+
+    const errData = await putRes.json();
+    throw new Error(errData.message || 'GitHub API returned an error');
+  } catch (err) {
+    console.error('Publish site content error:', err);
+    showToast(`Publish failed: ${err.message || 'Check token permissions'}`);
+    if (badge) {
+      badge.textContent = '● Saved Locally Only';
+      badge.style.color = '#f87171';
+    }
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = originalHtml;
+    }
+  }
+};
+
+window.resetSiteContentDefaults = async function () {
+  if (!confirm('Reset all website content back to default values?')) return;
+  try {
+    const res = await fetch(`data/site-content.json?t=${Date.now()}`);
+    if (res.ok) {
+      const data = await res.json();
+      populateSiteContentUI(data);
+      showToast('Content reset to file defaults.');
+    }
+  } catch (e) {}
+};

@@ -1,0 +1,120 @@
+{
+  "tryouts": {
+    "sectionTag": "2026 / 2027 Season Evaluations",
+    "title": "Join The Chiefs Tradition",
+    "subtitle": "Evaluations for Tier I AAA and Tier II AA teams are held at Ice Land Arena in Hamilton, NJ. Experience elite coaching, high-tempo practices, and premier league competition.",
+    "tier1": {
+      "badge": "Tier I AAA — THF",
+      "title": "Tier 1 National Bound & Youth",
+      "desc": "Full-season Tier 1 AAA program competing in the Tier 1 Hockey Federation (THF). Includes 3+ ice sessions per week, professional skating coach Oktay Armgan, video analysis, and off-ice conditioning.",
+      "birthYears": "2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016",
+      "arena": "Ice Land Skating Center — Hamilton, NJ",
+      "showcaseSchedule": "5 Major THF & SuperSeries Showcases",
+      "equipment": "Custom CCM Chiefs gloves, pants, bag, jerseys",
+      "registerButtonText": "Register for Tier I Evaluations",
+      "registerUrl": ""
+    },
+    "tier2": {
+      "badge": "Tier II — AHF",
+      "title": "Tier II Competitive & Development",
+      "desc": "Competitive travel hockey competing in the Atlantic Hockey Federation (AHF). Focused on continuous player skill acquisition, positional awareness, team culture, and positive character building.",
+      "birthYears": "2008 through 2018 (8U Mites through 18U)",
+      "divisions": "Lemieux, McDavid, Gretzky & AA Conferences",
+      "goaltending": "Terry Jarkowsky Goalie Academy included",
+      "tournaments": "Regional District Playoffs & AHF Championships",
+      "registerButtonText": "Register for Tier II Evaluations",
+      "registerUrl": ""
+    }
+  },
+  "camps": {
+    "enabled": true,
+    "sectionTag": "Player Development & Skills",
+    "title": "Camps & Clinics",
+    "subtitle": "High-intensity development camps designed for elite skating, puck mastery, shooting mechanics, and game-situation awareness.",
+    "items": [
+      {
+        "id": "camp-summer-prep",
+        "title": "Chiefs Pre-Season Elite Camp",
+        "badge": "Summer Camp",
+        "dates": "August 10 - 14, 2026",
+        "ages": "2008 - 2018 Birth Years",
+        "location": "Ice Land Skating Center",
+        "desc": "Daily 3 hours on-ice instruction, dryland conditioning, tactical video review, and power skating with Chiefs coaching staff.",
+        "price": "$525",
+        "registerUrl": "https://mercerchiefshockey.com"
+      },
+      {
+        "id": "camp-goalie-academy",
+        "title": "Terry Jarkowsky Goaltender Intensive",
+        "badge": "Specialty Clinic",
+        "dates": "Weekly On Tuesdays & Thursdays",
+        "ages": "All Travel & Junior Goalies",
+        "location": "Ice Land Arena",
+        "desc": "Specialized goalie mechanics, edge control, rebound management, and high-tempo situational drills.",
+        "price": "Included for Chiefs Goalies / $75 Drop-in",
+        "registerUrl": "https://mercerchiefshockey.com"
+      }
+    ]
+  },
+  "arena": {
+    "sectionTag": "Home Facility",
+    "title": "Ice Land Skating Center",
+    "desc": "Located in Hamilton Township, NJ, Ice Land is the dedicated home ice of the Mercer Chiefs Junior and Youth hockey clubs. Featuring two NHL-regulation ice rinks, dedicated Chiefs team locker rooms, and comprehensive athlete training facilities.",
+    "address": "6 Tennis Court, Hamilton Township, NJ 08619",
+    "mapUrl": "https://maps.google.com/?q=6+Tennis+Ct,+Hamilton+Township,+NJ+08619",
+    "phone": "(609) 588-6672",
+    "amenities": [
+      "2 NHL-Size Ice Sheets",
+      "Full-menu Concessions",
+      "Off-Ice Dryland Training",
+      "Blackbear TV Broadcast Rinks"
+    ],
+    "broadcastTag": "Live Broadcasts",
+    "broadcastTitle": "Watch On Black Bear TV",
+    "broadcastDesc": "Never miss a moment of the action. Every Mercer Chiefs home and away game in the NCDC, USPHL Premier, and THF is broadcast in high-definition with live play-by-play, scoring overlays, and instant game replays.",
+    "broadcastUrl": "https://blackbearsports.tv/"
+  },
+  "program": {
+    "sectionTag": "Inside The Mercer Chiefs Experience",
+    "title": "Junior Hockey Defined",
+    "subtitle": "Watch the official Mercer Chiefs commercial highlighting our tuition-free NCDC Tier II program, USPHL Premier development, and daily pathway to NCAA college hockey commitments.",
+    "youtubeVideoId": "E9HzPzEbpS8",
+    "sourceTitle": "Mercer Chiefs NCDC & Premier Hockey Club",
+    "sourceLocation": "Ice Land Skating Center • Hamilton Township, NJ",
+    "pillars": [
+      {
+        "title": "Tuition-Free NCDC Junior Hockey",
+        "desc": "Top-tier junior hockey with zero player tuition fees, full equipment packages, dedicated coaching, and elite national showcase exposure."
+      },
+      {
+        "title": "Direct NCAA College Advancement",
+        "desc": "Extensive NCAA Division I & Division III commitment network with regular scout attendance and personal advocacy from Head Coach Rob Broderick."
+      },
+      {
+        "title": "Dedicated Home Ice & Club Facilities",
+        "desc": "Dedicated Junior team locker room suite, strength & dryland training area, video review room, and two regulation ice sheets at Ice Land in Hamilton, NJ."
+      },
+      {
+        "title": "Unified Ladder of Development",
+        "desc": "Seamless player progression from Mite 8U through Tier I AAA Youth to USPHL Premier and NCDC Junior Hockey under one unified culture."
+      }
+    ],
+    "calloutText": "Ready to take the ice for the 2026/27 campaign?"
+  },
+  "billetModal": {
+    "goldTag": "Support Junior Hockey in Hamilton",
+    "title": "Become a Mercer Chiefs Billet Family",
+    "desc": "Junior players travel from across North America and Europe to compete for the Chiefs NCDC and Premier squads. Billet families provide a welcoming home, supportive meals, and become lifelong members of our hockey family.",
+    "stipend": "$675/mo food allowance",
+    "perk1": "VIP Passes to all Chiefs games",
+    "perk2": "Mentoring a future NCAA star",
+    "coordinatorName": "Heather O'Connell",
+    "coordinatorEmail": "billet@mercerchiefshockey.com"
+  },
+  "tryoutModal": {
+    "goldTag": "2026/27 Mercer Chiefs Evaluations",
+    "title": "Tryout Registration Portal",
+    "desc": "Register your player for upcoming Tier I AAA (THF) and Tier II (AHF) evaluations at Ice Land Arena.",
+    "externalRegisterUrl": ""
+  }
+}

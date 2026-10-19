@@ -288,6 +288,7 @@ if (typeof document !== 'undefined') {
     initMobileNav();
     initNavbarScrollSpy();
     setupCountdown();
+    initSiteContent();
     initAutoBackgroundSync();
   });
 }
@@ -713,6 +714,13 @@ function initAutoBackgroundSync() {
         console.debug('Site config sync skipped:', cfgErr);
       }
 
+      // 5. Automated Site Content Sync (Tryouts, Camps, Rink, Program Commercial, Modals)
+      try {
+        await initSiteContent();
+      } catch (contentErr) {
+        console.debug('Site content sync skipped:', contentErr);
+      }
+
       localStorage.setItem('mercer_auto_sync_ts', new Date().toISOString());
     } catch (err) {
       console.debug('Background auto-sync error:', err);
@@ -724,6 +732,264 @@ function initAutoBackgroundSync() {
 
   // Check periodically every 5 minutes while page is active
   setInterval(checkAndSync, 5 * 60 * 1000);
+}
+
+/* ==========================================================================
+   DYNAMIC SITE CONTENT & CMS RENDERER
+   ========================================================================== */
+export async function initSiteContent() {
+  // 1. Try local cache first for instant 0ms render
+  try {
+    const cached = localStorage.getItem('mercer_site_content');
+    if (cached) {
+      applySiteContent(JSON.parse(cached));
+    }
+  } catch (e) {}
+
+  // 2. Fetch fresh content from server
+  try {
+    const res = await fetch('data/site-content.json?t=' + Date.now());
+    if (res.ok) {
+      const data = await res.json();
+      applySiteContent(data);
+      localStorage.setItem('mercer_site_content', JSON.stringify(data));
+    }
+  } catch (err) {
+    console.debug('Site content fetch skipped:', err);
+  }
+}
+
+export function applySiteContent(content) {
+  if (!content) return;
+
+  // 1. Program Video & Commercial
+  if (content.program) {
+    const p = content.program;
+    const tag = document.getElementById('prog-section-tag');
+    if (tag && p.sectionTag) tag.textContent = p.sectionTag;
+    const title = document.getElementById('prog-section-title');
+    if (title && p.title) title.innerHTML = p.title.replace('Defined', '<span>Defined</span>');
+    const sub = document.getElementById('prog-section-subtitle');
+    if (sub && p.subtitle) sub.textContent = p.subtitle;
+
+    if (p.youtubeVideoId) {
+      const iframe = document.getElementById('prog-video-iframe');
+      if (iframe) {
+        const currentSrc = iframe.getAttribute('src') || '';
+        const newSrc = `https://www.youtube-nocookie.com/embed/${p.youtubeVideoId}?rel=0&modestbranding=1`;
+        if (!currentSrc.includes(p.youtubeVideoId)) {
+          iframe.src = newSrc;
+        }
+      }
+      const ytLink = document.getElementById('prog-video-yt-link');
+      if (ytLink) ytLink.href = `https://www.youtube.com/watch?v=${p.youtubeVideoId}`;
+    }
+
+    const srcTitle = document.getElementById('prog-source-title');
+    if (srcTitle && p.sourceTitle) srcTitle.textContent = p.sourceTitle;
+    const srcSub = document.getElementById('prog-source-sub');
+    if (srcSub && p.sourceLocation) srcSub.textContent = p.sourceLocation;
+
+    if (Array.isArray(p.pillars) && p.pillars.length === 4) {
+      const pillarCards = document.querySelectorAll('#prog-pillars-grid .video-pillar-card');
+      p.pillars.forEach((pill, idx) => {
+        if (pillarCards[idx]) {
+          const h4 = pillarCards[idx].querySelector('h4');
+          const desc = pillarCards[idx].querySelector('p');
+          if (h4 && pill.title) h4.textContent = pill.title;
+          if (desc && pill.desc) desc.textContent = pill.desc;
+        }
+      });
+    }
+
+    const callout = document.getElementById('prog-callout-text');
+    if (callout && p.calloutText) callout.textContent = p.calloutText;
+  }
+
+  // 2. Tryouts Section
+  if (content.tryouts) {
+    const t = content.tryouts;
+    const tag = document.getElementById('tryouts-section-tag');
+    if (tag && t.sectionTag) tag.textContent = t.sectionTag;
+    const title = document.getElementById('tryouts-section-title');
+    if (title && t.title) title.innerHTML = t.title.replace('Chiefs Tradition', '<span>Chiefs Tradition</span>');
+    const sub = document.getElementById('tryouts-section-subtitle');
+    if (sub && t.subtitle) sub.textContent = t.subtitle;
+
+    // Tier 1
+    if (t.tier1) {
+      const t1 = t.tier1;
+      const badge = document.getElementById('tier1-badge');
+      if (badge && t1.badge) badge.textContent = t1.badge;
+      const cardTitle = document.getElementById('tier1-title');
+      if (cardTitle && t1.title) cardTitle.textContent = t1.title;
+      const cardDesc = document.getElementById('tier1-desc');
+      if (cardDesc && t1.desc) cardDesc.textContent = t1.desc;
+      const years = document.getElementById('tier1-years');
+      if (years && t1.birthYears) years.textContent = t1.birthYears;
+      const arena = document.getElementById('tier1-arena');
+      if (arena && t1.arena) arena.textContent = t1.arena;
+      const showcase = document.getElementById('tier1-showcases');
+      if (showcase && t1.showcaseSchedule) showcase.textContent = t1.showcaseSchedule;
+      const equip = document.getElementById('tier1-equipment');
+      if (equip && t1.equipment) equip.textContent = t1.equipment;
+
+      const regBtn = document.getElementById('tier1-reg-btn');
+      if (regBtn) {
+        if (t1.registerButtonText) regBtn.textContent = t1.registerButtonText;
+        if (t1.registerUrl && t1.registerUrl.trim()) {
+          regBtn.onclick = () => window.open(t1.registerUrl.trim(), '_blank');
+        } else {
+          regBtn.onclick = () => window.openTryoutModal();
+        }
+      }
+    }
+
+    // Tier 2
+    if (t.tier2) {
+      const t2 = t.tier2;
+      const badge = document.getElementById('tier2-badge');
+      if (badge && t2.badge) badge.textContent = t2.badge;
+      const cardTitle = document.getElementById('tier2-title');
+      if (cardTitle && t2.title) cardTitle.textContent = t2.title;
+      const cardDesc = document.getElementById('tier2-desc');
+      if (cardDesc && t2.desc) cardDesc.textContent = t2.desc;
+      const years = document.getElementById('tier2-years');
+      if (years && t2.birthYears) years.textContent = t2.birthYears;
+      const divisions = document.getElementById('tier2-divisions');
+      if (divisions && t2.divisions) divisions.textContent = t2.divisions;
+      const goalies = document.getElementById('tier2-goaltending');
+      if (goalies && t2.goaltending) goalies.textContent = t2.goaltending;
+      const tournaments = document.getElementById('tier2-tournaments');
+      if (tournaments && t2.tournaments) tournaments.textContent = t2.tournaments;
+
+      const regBtn = document.getElementById('tier2-reg-btn');
+      if (regBtn) {
+        if (t2.registerButtonText) regBtn.textContent = t2.registerButtonText;
+        if (t2.registerUrl && t2.registerUrl.trim()) {
+          regBtn.onclick = () => window.open(t2.registerUrl.trim(), '_blank');
+        } else {
+          regBtn.onclick = () => window.openTryoutModal();
+        }
+      }
+    }
+  }
+
+  // 3. Camps & Clinics
+  const campsContainer = document.getElementById('camps-container');
+  if (campsContainer) {
+    if (content.camps && content.camps.enabled && Array.isArray(content.camps.items) && content.camps.items.length > 0) {
+      const c = content.camps;
+      campsContainer.innerHTML = `
+        <div class="camps-showcase" style="margin-top: 3.5rem; padding-top: 3rem; border-top: 1px solid var(--border-subtle);">
+          <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
+            <div class="section-tag">${c.sectionTag || 'Player Development & Skills'}</div>
+            <h3 class="section-title" style="font-size: 2rem; color: #fff;">${c.title || 'Camps & Clinics'}</h3>
+            <p class="section-subtitle">${c.subtitle || ''}</p>
+          </div>
+          <div class="camps-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+            ${c.items.map(item => `
+              <div class="tryout-card" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(245, 166, 35, 0.25);">
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                    <span class="tryout-badge" style="background: rgba(245, 166, 35, 0.15); color: var(--chiefs-gold); border-color: rgba(245, 166, 35, 0.4);">${item.badge || 'Clinic'}</span>
+                    <span style="font-weight: 800; color: #fff; font-size: 1.1rem;">${item.price || ''}</span>
+                  </div>
+                  <h3 class="tryout-title" style="font-size: 1.25rem; margin-bottom: 0.5rem;">${item.title}</h3>
+                  <p class="tryout-desc" style="margin-bottom: 1rem; font-size: 0.88rem;">${item.desc || ''}</p>
+                  <ul class="tryout-details-list" style="margin-bottom: 1.5rem;">
+                    <li>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" /></svg>
+                      <strong>Dates:</strong> <span>${item.dates || 'TBD'}</span>
+                    </li>
+                    <li>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" /></svg>
+                      <strong>Ages:</strong> <span>${item.ages || 'All Ages'}</span>
+                    </li>
+                    <li>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" /></svg>
+                      <strong>Location:</strong> <span>${item.location || 'Ice Land Arena'}</span>
+                    </li>
+                  </ul>
+                </div>
+                <a href="${item.registerUrl || 'javascript:void(0)'}" ${item.registerUrl ? 'target="_blank"' : ''} class="btn-primary" style="text-align: center; justify-content: center; width: 100%;">
+                  Register for Camp ↗
+                </a>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    } else {
+      campsContainer.innerHTML = '';
+    }
+  }
+
+  // 4. Arena & Facilities
+  if (content.arena) {
+    const a = content.arena;
+    const tag = document.getElementById('arena-facility-tag');
+    if (tag && a.sectionTag) tag.textContent = a.sectionTag;
+    const name = document.getElementById('arena-facility-name');
+    if (name && a.title) name.textContent = a.title;
+    const desc = document.getElementById('arena-facility-desc');
+    if (desc && a.desc) desc.textContent = a.desc;
+
+    if (a.address) {
+      const parts = a.address.split(',');
+      const line1 = document.getElementById('arena-address-line1');
+      const line2 = document.getElementById('arena-address-line2');
+      if (line1) line1.textContent = parts[0]?.trim() || a.address;
+      if (line2) line2.textContent = parts.slice(1).join(',').trim() || '';
+    }
+
+    const dirBtn = document.getElementById('arena-directions-btn');
+    if (dirBtn && a.mapUrl) dirBtn.href = a.mapUrl;
+
+    if (Array.isArray(a.amenities)) {
+      const amenityItems = document.querySelectorAll('#arena-amenities-list .amenity-item span');
+      a.amenities.forEach((text, i) => {
+        if (amenityItems[i]) amenityItems[i].textContent = text;
+      });
+    }
+
+    const bTag = document.getElementById('arena-broadcast-tag');
+    if (bTag && a.broadcastTag) bTag.textContent = a.broadcastTag;
+    const bTitle = document.getElementById('arena-broadcast-title');
+    if (bTitle && a.broadcastTitle) bTitle.textContent = a.broadcastTitle;
+    const bDesc = document.getElementById('arena-broadcast-desc');
+    if (bDesc && a.broadcastDesc) bDesc.textContent = a.broadcastDesc;
+    const bLink = document.getElementById('arena-broadcast-link');
+    if (bLink && a.broadcastUrl) bLink.href = a.broadcastUrl;
+  }
+
+  // 5. Billet Modal
+  if (content.billetModal) {
+    const b = content.billetModal;
+    const gold = document.getElementById('billet-modal-gold-tag');
+    if (gold && b.goldTag) gold.textContent = b.goldTag;
+    const title = document.getElementById('billet-modal-title');
+    if (title && b.title) title.textContent = b.title;
+    const desc = document.getElementById('billet-modal-desc');
+    if (desc && b.desc) desc.textContent = b.desc;
+    const stipend = document.getElementById('billet-modal-stipend');
+    if (stipend && b.stipend) stipend.textContent = b.stipend;
+    const perk1 = document.getElementById('billet-modal-perk1');
+    if (perk1 && b.perk1) perk1.textContent = b.perk1;
+    const perk2 = document.getElementById('billet-modal-perk2');
+    if (perk2 && b.perk2) perk2.textContent = b.perk2;
+  }
+
+  // 6. Tryout Modal
+  if (content.tryoutModal) {
+    const tr = content.tryoutModal;
+    const gold = document.getElementById('tryout-modal-gold-tag');
+    if (gold && tr.goldTag) gold.textContent = tr.goldTag;
+    const title = document.getElementById('tryout-modal-title');
+    if (title && tr.title) title.textContent = tr.title;
+    const desc = document.getElementById('tryout-modal-desc');
+    if (desc && tr.desc) desc.textContent = tr.desc;
+  }
 }
 
 /* ==========================================================================
@@ -2550,6 +2816,7 @@ window.addEventListener('storage', () => {
   if (typeof renderCommitmentsCards === 'function') {
     renderCommitmentsCards();
   }
+  initSiteContent();
 });
 
 /* ==========================================================================
