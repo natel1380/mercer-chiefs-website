@@ -2416,22 +2416,101 @@ function getCmsVal(id) {
   return el ? el.value.trim() : '';
 }
 
+const DEFAULT_STAFF = [
+  {
+    id: "staff-1",
+    name: "Rob Broderick",
+    role: "General Manager & Head Coach (NCDC)",
+    badge: "GM / Head Coach",
+    photo: "assets/images/coach-broderick.jpg",
+    bio: "Coach Broderick brings decades of elite coaching, development, and junior hockey scouting leadership. Under his leadership, the Chiefs reached the Dineen Cup Championship and have graduated dozens of players into NCAA Division I and Division III hockey programs.",
+    email: "mercerjuniorhockey@gmail.com"
+  },
+  {
+    id: "staff-2",
+    name: "Sasha Firsov",
+    role: "Assistant Coach (NCDC) & Premier Head Coach",
+    badge: "Assistant Coach",
+    photo: "assets/images/coach-firsov.jpg",
+    bio: "Former professional forward with extensive European and North American playing experience. Specializes in forward skill development, tactical offensive systems, and individual video analysis.",
+    email: "sasha@ice-land.com"
+  },
+  {
+    id: "staff-3",
+    name: "Terry Jarkowsky",
+    role: "Director of Goaltending & Goalie Coach",
+    badge: "Goaltending Director",
+    photo: "assets/images/mercer-chiefs-crest.png",
+    bio: "Nationally recognized goaltending coach whose netminders consistently earn all-league honors and collegiate roster spots, including 2026 starting goaltenders Jack Scali and Louis-Charles Lapensee.",
+    email: "terry@ice-land.com"
+  },
+  {
+    id: "staff-4",
+    name: "Ryan Kosecki",
+    role: "Head Scout & Director of Player Personnel",
+    badge: "Head Scout",
+    photo: "assets/images/mercer-chiefs-crest.png",
+    bio: "Leads national scouting operations across North America, identifying premier junior and college-bound talent for both the NCDC and USPHL Premier rosters.",
+    email: "recruiting@mercerchiefs.com"
+  },
+  {
+    id: "staff-5",
+    name: "Heather O'Connell",
+    role: "Director of Hockey Operations & Administration",
+    badge: "Hockey Operations",
+    photo: "assets/images/mercer-chiefs-crest.png",
+    bio: "Oversees club logistics, league compliance, billeting coordinator programs, tournament operations, and community partnerships at Ice Land.",
+    email: "heather@ice-land.com"
+  },
+  {
+    id: "staff-6",
+    name: "Oktay Armgan",
+    role: "Director of Player Skills & Skating",
+    badge: "Skills Coach",
+    photo: "assets/images/mercer-chiefs-crest.png",
+    bio: "Renowned power-skating and stickhandling specialist working with both junior players and youth tier programs to accelerate edge control and high-speed execution.",
+    email: "skills@ice-land.com"
+  }
+];
+
 async function initSiteContentCMS() {
   try {
-    let content = null;
+    let serverContent = null;
     try {
-      const cached = localStorage.getItem('mercer_site_content');
-      if (cached) content = JSON.parse(cached);
-    } catch (e) {}
-
-    if (!content) {
       const res = await fetch(`data/site-content.json?t=${Date.now()}`);
       if (res.ok) {
-        content = await res.json();
+        serverContent = await res.json();
       }
+    } catch (e) {
+      console.warn('Failed to fetch data/site-content.json:', e);
     }
 
-    if (!content) return;
+    let localContent = null;
+    try {
+      const cached = localStorage.getItem('mercer_site_content');
+      if (cached) localContent = JSON.parse(cached);
+    } catch (e) {}
+
+    // Combine: use serverContent as baseline schema, overlay with any local cached changes.
+    // If local cache lacks staff or has 0 staff, fallback to server content or DEFAULT_STAFF.
+    let content = serverContent || localContent || {};
+    if (serverContent && localContent) {
+      content = {
+        ...serverContent,
+        ...localContent,
+        staff: (Array.isArray(localContent.staff) && localContent.staff.length > 0)
+          ? localContent.staff
+          : (Array.isArray(serverContent.staff) && serverContent.staff.length > 0 ? serverContent.staff : DEFAULT_STAFF),
+        branding: (localContent.branding && localContent.branding.clubName)
+          ? localContent.branding
+          : (serverContent.branding || {})
+      };
+    } else if (!content.staff || !content.staff.length) {
+      content.staff = (serverContent && Array.isArray(serverContent.staff) && serverContent.staff.length > 0)
+        ? serverContent.staff
+        : DEFAULT_STAFF;
+    }
+
     cmsContentState = content;
     populateSiteContentUI(content);
   } catch (err) {
@@ -2555,7 +2634,11 @@ function populateSiteContentUI(data) {
   }
 
   // 7. Coaching Staff
-  cmsStaffList = Array.isArray(data.staff) && data.staff.length > 0 ? JSON.parse(JSON.stringify(data.staff)) : [];
+  if (Array.isArray(data.staff) && data.staff.length > 0) {
+    cmsStaffList = JSON.parse(JSON.stringify(data.staff));
+  } else {
+    cmsStaffList = JSON.parse(JSON.stringify(DEFAULT_STAFF));
+  }
   renderCmsStaffList();
 }
 
@@ -3066,23 +3149,26 @@ window.resetSiteContentDefaults = async function () {
 
 async function initClubBrandingCMS() {
   try {
-    let content = cmsContentState;
-    if (!content) {
-      try {
-        const cached = localStorage.getItem('mercer_site_content');
-        if (cached) content = JSON.parse(cached);
-      } catch (e) {}
-    }
-
-    if (!content) {
+    let serverContent = null;
+    try {
       const res = await fetch(`data/site-content.json?t=${Date.now()}`);
       if (res.ok) {
-        content = await res.json();
+        serverContent = await res.json();
       }
-    }
+    } catch (e) {}
 
-    if (content && content.branding) {
-      populateBrandingUI(content.branding);
+    let localContent = null;
+    try {
+      const cached = localStorage.getItem('mercer_site_content');
+      if (cached) localContent = JSON.parse(cached);
+    } catch (e) {}
+
+    const branding = (localContent?.branding && localContent.branding.clubName)
+      ? localContent.branding
+      : (serverContent?.branding || cmsContentState?.branding || null);
+
+    if (branding) {
+      populateBrandingUI(branding);
     } else {
       window.resetBrandingDefaults(false);
     }
