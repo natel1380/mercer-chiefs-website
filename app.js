@@ -1047,6 +1047,11 @@ export function applySiteContent(content) {
   if (content.branding) {
     applyClubBranding(content.branding);
   }
+
+  // 8. Coaching Staff & Front Office Directory
+  if (Array.isArray(content.staff) && content.staff.length > 0) {
+    initStaff();
+  }
 }
 
 export function hexToRgba(hex, alpha) {
@@ -2298,29 +2303,45 @@ function initCommitments() {
 /* ==========================================================================
    8. COACHING STAFF DIRECTORY
    ========================================================================== */
-function initStaff() {
+export function getActiveStaffMembers() {
+  try {
+    const raw = localStorage.getItem('mercer_site_content');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed.staff) && parsed.staff.length > 0) {
+        return parsed.staff;
+      }
+    }
+  } catch (e) {}
+  return COACHING_STAFF;
+}
+
+export function initStaff() {
   const container = document.getElementById('staff-grid');
   if (!container) return;
 
-  container.innerHTML = COACHING_STAFF.map(staff => `
+  const staffList = getActiveStaffMembers();
+
+  container.innerHTML = staffList.map(staff => `
     <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 2rem; backdrop-filter: var(--glass-blur); display: flex; flex-direction: column;">
       <div style="display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.25rem;">
-        <img src="${staff.photo}" alt="${staff.name}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--chiefs-red); box-shadow: 0 0 14px var(--chiefs-red-glow);">
+        <img src="${staff.photo || 'assets/images/mercer-chiefs-crest.png'}" alt="${staff.name}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--chiefs-red); box-shadow: 0 0 14px var(--chiefs-red-glow);">
         <div>
-          <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--chiefs-gold);">${staff.badge}</span>
+          <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--chiefs-gold);">${staff.badge || 'Staff'}</span>
           <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: #fff;">${staff.name}</h3>
-          <p style="font-size: 0.85rem; color: var(--text-secondary);">${staff.role}</p>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">${staff.role || ''}</p>
         </div>
       </div>
 
-      <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1;">${staff.bio}</p>
+      <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1;">${staff.bio || ''}</p>
 
-      <a href="mailto:${staff.email}" class="btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1rem; width: 100%; text-align: center; justify-content: center;">
+      <a href="${staff.email ? 'mailto:' + staff.email : 'javascript:void(0)'}" class="btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1rem; width: 100%; text-align: center; justify-content: center;">
         Contact Coach
       </a>
     </div>
   `).join('');
 }
+window.initStaff = initStaff;
 
 /* ==========================================================================
    9. YOUTH TEAMS & GAMESHEET / TIMETOSCORE HUB

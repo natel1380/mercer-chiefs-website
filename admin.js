@@ -2394,6 +2394,7 @@ function showToast(msg) {
 
 let cmsContentState = null;
 let cmsCampsList = [];
+let cmsStaffList = [];
 
 function escapeCmsHtml(str) {
   if (!str) return '';
@@ -2552,6 +2553,10 @@ function populateSiteContentUI(data) {
   if (data.branding) {
     populateBrandingUI(data.branding);
   }
+
+  // 7. Coaching Staff
+  cmsStaffList = Array.isArray(data.staff) && data.staff.length > 0 ? JSON.parse(JSON.stringify(data.staff)) : [];
+  renderCmsStaffList();
 }
 
 function renderCmsCampsList() {
@@ -2638,6 +2643,176 @@ window.removeCmsCampItem = function (idx) {
   if (confirm('Are you sure you want to remove this camp?')) {
     cmsCampsList.splice(idx, 1);
     renderCmsCampsList();
+  }
+};
+
+/* --- Staff Directory CMS Handlers --- */
+function renderCmsStaffList() {
+  const container = document.getElementById('cms-staff-list');
+  if (!container) return;
+
+  if (cmsStaffList.length === 0) {
+    container.innerHTML = `
+      <div style="padding: 1.5rem; text-align: center; color: var(--text-muted); background: rgba(0,0,0,0.2); border: 1px dashed var(--border-subtle); border-radius: var(--radius-sm);">
+        No staff members configured. Click "+ Add Staff Member" above to create one.
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = cmsStaffList.map((item, idx) => `
+    <div style="background: rgba(0,0,0,0.35); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.65rem;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <img id="staff-preview-${idx}" src="${item.photo || 'assets/images/mercer-chiefs-crest.png'}" alt="Preview" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--chiefs-red); box-shadow: 0 0 8px rgba(189,50,59,0.3);">
+          <div>
+            <span style="font-weight: 700; color: #fff; font-size: 0.95rem;">${escapeCmsHtml(item.name || 'Unnamed Coach')}</span>
+            <div style="font-size: 0.75rem; color: var(--chiefs-gold);">${escapeCmsHtml(item.role || 'Staff')}</div>
+          </div>
+        </div>
+        <button type="button" onclick="window.removeCmsStaffItem(${idx})" class="btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.6rem; color: #f87171; border-color: rgba(239,68,68,0.3);">
+          ✕ Remove
+        </button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+        <div class="admin-form-group">
+          <label>Full Name *</label>
+          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.name || '')}" oninput="cmsStaffList[${idx}].name = this.value; renderCmsStaffHeader(${idx});">
+        </div>
+        <div class="admin-form-group">
+          <label>Role / Position Title</label>
+          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.role || '')}" placeholder="e.g. Assistant Coach" oninput="cmsStaffList[${idx}].role = this.value; renderCmsStaffHeader(${idx});">
+        </div>
+        <div class="admin-form-group">
+          <label>Badge Tag</label>
+          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.badge || 'Staff')}" placeholder="e.g. Head Coach" oninput="cmsStaffList[${idx}].badge = this.value;">
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; align-items: start;">
+        <div class="admin-form-group">
+          <label>Photo URL / Path</label>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <input type="text" id="staff-photo-input-${idx}" class="admin-form-input" value="${escapeCmsHtml(item.photo || '')}" placeholder="assets/images/..." oninput="cmsStaffList[${idx}].photo = this.value; document.getElementById('staff-preview-${idx}').src = this.value;" style="flex: 1;">
+            <input type="file" id="cms-staff-file-${idx}" accept="image/*" style="display:none;" onchange="window.uploadStaffPhotoFromInput(this, ${idx})">
+            <button type="button" class="btn-primary" onclick="document.getElementById('cms-staff-file-${idx}').click()" style="font-size: 0.76rem; padding: 0.45rem 0.75rem; white-space: nowrap; background: var(--chiefs-gold); border-color: var(--chiefs-gold); color: #000; font-weight: 700;">
+              📁 Upload Headshot
+            </button>
+          </div>
+        </div>
+        <div class="admin-form-group">
+          <label>Email Address</label>
+          <input type="email" class="admin-form-input" value="${escapeCmsHtml(item.email || '')}" placeholder="coach@domain.com" oninput="cmsStaffList[${idx}].email = this.value;">
+        </div>
+      </div>
+
+      <div class="admin-form-group">
+        <label>Coach Biography / Career Summary</label>
+        <textarea class="admin-form-input" rows="2" placeholder="Experience, achievements, background..." oninput="cmsStaffList[${idx}].bio = this.value;">${escapeCmsHtml(item.bio || '')}</textarea>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderCmsStaffHeader(idx) {
+  const item = cmsStaffList[idx];
+  if (!item) return;
+  const prev = document.getElementById(`staff-preview-${idx}`);
+  if (prev && item.photo) prev.src = item.photo;
+}
+
+window.addCmsStaffItem = function () {
+  cmsStaffList.push({
+    id: `staff-${Date.now()}`,
+    name: 'New Coach / Staff Member',
+    role: 'Assistant Coach',
+    badge: 'Coaching Staff',
+    photo: 'assets/images/mercer-chiefs-crest.png',
+    bio: 'Coach brings extensive experience in player development, high-tempo practice execution, and scouting.',
+    email: 'staff@mercerchiefshockey.com'
+  });
+  renderCmsStaffList();
+  showToast('New staff member added. Fill in details and click Publish.');
+};
+
+window.removeCmsStaffItem = function (idx) {
+  const item = cmsStaffList[idx];
+  const name = item ? item.name : 'this staff member';
+  if (!confirm(`Are you sure you want to remove ${name}?`)) return;
+  cmsStaffList.splice(idx, 1);
+  renderCmsStaffList();
+  showToast(`${name} removed.`);
+};
+
+window.uploadStaffPhotoFromInput = async function (fileInput, idx) {
+  const file = fileInput.files && fileInput.files[0];
+  if (!file) return;
+
+  const token = localStorage.getItem('mercer_github_token')?.trim();
+  const repoOwner = 'natel1380';
+  const repoName = 'mercer-chiefs-website';
+
+  showToast(`Preparing headshot for ${cmsStaffList[idx]?.name || 'coach'}...`);
+
+  try {
+    const dataUrl = await optimizeImageFile(file, 400, 400, 0.90);
+    const ext = file.type === 'image/png' ? 'png' : 'jpg';
+    const filename = `staff-${Date.now()}.${ext}`;
+    const repoPath = `assets/images/${filename}`;
+
+    // Update in-memory and UI immediately
+    if (cmsStaffList[idx]) cmsStaffList[idx].photo = repoPath;
+    const photoInput = document.getElementById(`staff-photo-input-${idx}`);
+    if (photoInput) photoInput.value = repoPath;
+    const prev = document.getElementById(`staff-preview-${idx}`);
+    if (prev) prev.src = dataUrl;
+
+    if (!token) {
+      showToast('Headshot loaded locally. Save GitHub Token in Data Sync Center to publish to live cloud.');
+      return;
+    }
+
+    showToast(`Uploading headshot to GitHub...`);
+    const base64Content = dataUrl.split(',')[1];
+    const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${repoPath}`;
+
+    let sha = null;
+    try {
+      const checkRes = await fetch(apiUrl, {
+        headers: { 'Accept': 'application/vnd.github+json', 'Authorization': `Bearer ${token}` }
+      });
+      if (checkRes.ok) {
+        const existing = await checkRes.json();
+        sha = existing.sha;
+      }
+    } catch (e) {}
+
+    const putRes = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/vnd.github+json',
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: `upload: add ${filename} staff headshot via CMS`,
+        content: base64Content,
+        sha: sha || undefined
+      })
+    });
+
+    if (putRes.ok) {
+      showToast(`✓ Headshot uploaded to ${repoPath}! Click Publish to deploy.`);
+    } else {
+      const err = await putRes.json();
+      showToast(`Upload warning: ${err.message || 'Saved locally only'}`);
+    }
+  } catch (err) {
+    console.error('Staff headshot upload error:', err);
+    showToast(`Upload error: ${err.message}`);
+  } finally {
+    fileInput.value = '';
   }
 };
 
@@ -2753,6 +2928,7 @@ window.collectSiteContentFromUI = function () {
       desc: getCmsVal('cms-tryout-desc'),
       externalRegisterUrl: getCmsVal('cms-tryout-url')
     },
+    staff: cmsStaffList,
     branding: {
       clubName: getCmsVal('cms-brand-club-name') || 'Mercer Chiefs Hockey Club',
       shortName: getCmsVal('cms-brand-club-short') || 'Mercer Chiefs',

@@ -1459,6 +1459,26 @@
             </div>
           </div>
         </div>
+      <!-- CMS Section 6: Coaching Staff & Front Office Directory -->
+      <div class="admin-card" style="margin-bottom: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.75rem;">
+          <div>
+            <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>👔</span> Coaching Staff & Front Office Directory
+            </h4>
+            <p style="font-size: 0.82rem; color: var(--text-secondary);">
+              Manage coaching staff profiles, roles, bios, and upload staff headshots directly to the website.
+            </p>
+          </div>
+          <button type="button" class="btn-primary" onclick="window.addCmsStaffItem()"
+            style="font-size: 0.82rem; padding: 0.45rem 0.9rem; background: var(--chiefs-gold); border-color: var(--chiefs-gold); color: #000; font-weight: 700;">
+            + Add Staff Member
+          </button>
+        </div>
+
+        <div id="cms-staff-list" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+          <!-- Rendered dynamically by admin.js -->
+        </div>
       </div>
 
     </div>
