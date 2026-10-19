@@ -3050,3 +3050,136 @@ window.resetBrandingDefaults = function (promptUser = true) {
 window.publishClubBranding = function () {
   window.publishSiteContent();
 };
+
+/* ==========================================================================
+   12. CMS MEDIA & IMAGE CLOUD UPLOADER
+   ========================================================================== */
+
+function optimizeImageFile(file, maxWidth = 1920, maxHeight = 1920, quality = 0.88) {
+  return new Promise((resolve) => {
+    // If SVG or gif (animations), don't process via canvas
+    if (file.type === 'image/svg+xml' || file.type === 'image/gif') {
+      const reader = new FileReader();
+      reader.onload = (e) => resolve(e.target.result);
+      reader.readAsDataURL(file);
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        let width = img.width;
+        let height = img.height;
+
+        if (width > maxWidth || height > maxHeight) {
+          if (width > height) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          } else {
+            width = Math.round((width * maxHeight) / height);
+            height = maxHeight;
+          }
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+
+        // Keep png if transparent or requested, else jpeg/webp
+        const outputType = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+        resolve(canvas.toDataURL(outputType, quality));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+window.uploadImageFromInput = async function (fileInput, targetInputId, previewImgId, imageType = 'general') {
+  const file = fileInput.files && fileInput.files[0];
+  if (!file) return;
+
+  const targetInput = document.getElementById(targetInputId);
+  const previewImg = previewImgId ? document.getElementById(previewImgId) : null;
+  const token = localStorage.getItem('mercer_github_token')?.trim();
+  const repoOwner = 'natel1380';
+  const repoName = 'mercer-chiefs-website';
+
+  showToast(`Preparing and optimizing ${file.name}...`);
+
+  try {
+    // Max dimension: 1920px for hero, 600px for crest/wordmark/logos
+    const maxDim = (imageType === 'hero') ? 1920 : 600;
+    const dataUrl = await optimizeImageFile(file, maxDim, maxDim, 0.90);
+
+    // Sanitize filename
+    const ext = file.type === 'image/png' ? 'png' : (file.name.split('.').pop().toLowerCase() || 'jpg');
+    const filename = `${imageType}-${Date.now()}.${ext}`;
+    const repoPath = `assets/images/${filename}`;
+
+    // Immediately update preview in browser
+    if (previewImg) previewImg.src = dataUrl;
+    if (targetInput) targetInput.value = repoPath;
+
+    // If branding preview exists, update mockup
+    if (typeof window.updateBrandingPreview === 'function') {
+      window.updateBrandingPreview();
+    }
+
+    if (!token) {
+      showToast('Image preview loaded locally. Enter GitHub Token in Data Sync Center to publish to live cloud repository.');
+      return;
+    }
+
+    showToast(`Uploading ${filename} to GitHub repository...`);
+
+    const base64Content = dataUrl.split(',')[1];
+    const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${repoPath}`;
+
+    // Check if file exists to get SHA
+    let sha = null;
+    try {
+      const checkRes = await fetch(apiUrl, {
+        headers: {
+          'Accept': 'application/vnd.github+json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (checkRes.ok) {
+        const existing = await checkRes.json();
+        sha = existing.sha;
+      }
+    } catch (e) {}
+
+    const putRes = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/vnd.github+json',
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: `upload: add ${filename} via Staff CMS`,
+        content: base64Content,
+        sha: sha || undefined
+      })
+    });
+
+    if (putRes.ok) {
+      showToast(`✓ Image uploaded successfully to repository (${repoPath})!`);
+      if (targetInput) targetInput.value = repoPath;
+    } else {
+      const err = await putRes.json();
+      showToast(`Upload warning: ${err.message || 'Saved locally only'}`);
+    }
+  } catch (err) {
+    console.error('Image upload failed:', err);
+    showToast(`Image processing error: ${err.message}`);
+  } finally {
+    // Reset file input so user can re-select same file if desired
+    fileInput.value = '';
+  }
+};

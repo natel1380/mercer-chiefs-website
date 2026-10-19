@@ -1003,9 +1003,15 @@
         <!-- Backdrop Image URL & Live Preview -->
         <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; margin-bottom: 1rem; align-items: start;">
           <div>
-            <div class="admin-form-group" style="margin-bottom: 0.85rem;">
+            <div class="admin-form-group" style="margin-bottom: 0.75rem;">
               <label>Hero Background Image URL / Path</label>
-              <input type="text" id="cms-hero-backdrop" class="admin-form-input" placeholder="assets/images/hero-action.jpg" oninput="document.getElementById('cms-hero-preview-img').src = this.value">
+              <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <input type="text" id="cms-hero-backdrop" class="admin-form-input" placeholder="assets/images/hero-action.jpg" oninput="document.getElementById('cms-hero-preview-img').src = this.value" style="flex: 1;">
+                <input type="file" id="cms-hero-file-input" accept="image/*" style="display:none;" onchange="window.uploadImageFromInput(this, 'cms-hero-backdrop', 'cms-hero-preview-img', 'hero')">
+                <button type="button" class="btn-primary" onclick="document.getElementById('cms-hero-file-input').click()" style="font-size: 0.78rem; padding: 0.45rem 0.85rem; white-space: nowrap; display: inline-flex; align-items: center; gap: 0.4rem; background: var(--chiefs-gold); border-color: var(--chiefs-gold); color: #000; font-weight: 700;">
+                  📁 Upload Photo
+                </button>
+              </div>
             </div>
             <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
               <button type="button" class="btn-secondary" style="font-size: 0.74rem; padding: 0.25rem 0.6rem;" onclick="document.getElementById('cms-hero-backdrop').value='assets/images/hero-action.jpg'; document.getElementById('cms-hero-preview-img').src='assets/images/hero-action.jpg';">
@@ -1555,17 +1561,35 @@
 
             <div class="admin-form-group" style="margin-bottom: 0.85rem;">
               <label>Primary Crest Logo URL / Path</label>
-              <input type="text" id="cms-brand-crest-url" class="admin-form-input" placeholder="assets/images/mercer-chiefs-crest.png" oninput="window.updateBrandingPreview()">
+              <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <input type="text" id="cms-brand-crest-url" class="admin-form-input" placeholder="assets/images/mercer-chiefs-crest.png" oninput="window.updateBrandingPreview()" style="flex: 1;">
+                <input type="file" id="cms-crest-file-input" accept="image/*" style="display:none;" onchange="window.uploadImageFromInput(this, 'cms-brand-crest-url', 'preview-crest-img', 'crest')">
+                <button type="button" class="btn-primary" onclick="document.getElementById('cms-crest-file-input').click()" style="font-size: 0.76rem; padding: 0.45rem 0.75rem; white-space: nowrap; background: var(--chiefs-gold); border-color: var(--chiefs-gold); color: #000; font-weight: 700;">
+                  📁 Upload Crest
+                </button>
+              </div>
             </div>
 
             <div class="admin-form-group" style="margin-bottom: 0.85rem;">
               <label>Wordmark / Header Banner Logo URL</label>
-              <input type="text" id="cms-brand-wordmark-url" class="admin-form-input" placeholder="assets/images/mercer-chiefs-logo.png" oninput="window.updateBrandingPreview()">
+              <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <input type="text" id="cms-brand-wordmark-url" class="admin-form-input" placeholder="assets/images/mercer-chiefs-logo.png" oninput="window.updateBrandingPreview()" style="flex: 1;">
+                <input type="file" id="cms-wordmark-file-input" accept="image/*" style="display:none;" onchange="window.uploadImageFromInput(this, 'cms-brand-wordmark-url', 'preview-wordmark-img', 'wordmark')">
+                <button type="button" class="btn-primary" onclick="document.getElementById('cms-wordmark-file-input').click()" style="font-size: 0.76rem; padding: 0.45rem 0.75rem; white-space: nowrap; background: var(--chiefs-gold); border-color: var(--chiefs-gold); color: #000; font-weight: 700;">
+                  📁 Upload Wordmark
+                </button>
+              </div>
             </div>
 
             <div class="admin-form-group" style="margin-bottom: 1.25rem;">
               <label>Browser Favicon URL</label>
-              <input type="text" id="cms-brand-favicon-url" class="admin-form-input" placeholder="assets/images/mercer-chiefs-crest.png">
+              <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <input type="text" id="cms-brand-favicon-url" class="admin-form-input" placeholder="assets/images/mercer-chiefs-crest.png" style="flex: 1;">
+                <input type="file" id="cms-favicon-file-input" accept="image/*" style="display:none;" onchange="window.uploadImageFromInput(this, 'cms-brand-favicon-url', null, 'favicon')">
+                <button type="button" class="btn-secondary" onclick="document.getElementById('cms-favicon-file-input').click()" style="font-size: 0.76rem; padding: 0.45rem 0.75rem; white-space: nowrap;">
+                  📁 Upload Favicon
+                </button>
+              </div>
             </div>
 
             <!-- Logo Live Visual Preview -->
