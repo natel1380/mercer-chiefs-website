@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-10-19T00:13:10.482Z",
+  "lastSynced": "2026-10-19T04:52:36.180Z",
   "seasonLabel": "2026-27",
   "ncdc": {
     "id": "ncdc",
@@ -1585,16 +1585,16 @@
         "team": "Wilkes-Barre Scranton Knights",
         "logo": "assets/images/logos/wbs-knights.png",
         "isChiefs": false,
-        "gp": 9,
-        "w": 7,
+        "gp": 10,
+        "w": 8,
         "l": 1,
         "otl": 0,
-        "pts": 15,
-        "gf": 35,
-        "ga": 26,
-        "diff": "+9",
-        "streak": "3W",
-        "pct": ".833"
+        "pts": 17,
+        "gf": 39,
+        "ga": 27,
+        "diff": "+12",
+        "streak": "4W",
+        "pct": ".850"
       },
       {
         "rank": 2,

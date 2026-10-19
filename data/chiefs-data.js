@@ -1670,16 +1670,16 @@ export const JUNIOR_TEAMS = {
         "team": "Wilkes-Barre Scranton Knights",
         "logo": "assets/images/logos/wbs-knights.png",
         "isChiefs": false,
-        "gp": 9,
-        "w": 7,
+        "gp": 10,
+        "w": 8,
         "l": 1,
         "otl": 0,
-        "pts": 15,
-        "gf": 35,
-        "ga": 26,
-        "diff": "+9",
-        "streak": "3W",
-        "pct": ".833"
+        "pts": 17,
+        "gf": 39,
+        "ga": 27,
+        "diff": "+12",
+        "streak": "4W",
+        "pct": ".850"
       },
       {
         "rank": 2,
@@ -7098,22 +7098,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Brett Aimone",
     "level": "15U Bantam Pure AAA",
-    "record": "5-4-1",
+    "record": "5-5-1",
     "pts": 15,
     "rank": "#5",
-    "standingSummary": "5-4-1 | 19 Active Players | 2026/27 Season",
+    "standingSummary": "5-5-1 | 15 PTS | #5 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10306&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "82484",
-        "date": "2026-10-18",
-        "time": "06:30 PM",
-        "opp": "Generals 15U",
-        "rink": "Red Bank Armory",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82484",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82484"
-      },
       {
         "id": "81910",
         "date": "2026-10-31",
@@ -7587,16 +7577,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "82484",
-        "date": "2026-10-18",
-        "time": "06:30 PM",
-        "opp": "Generals 15U",
-        "rink": "Red Bank Armory",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82484",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82484"
-      },
-      {
         "id": "81910",
         "date": "2026-10-31",
         "time": "02:30 PM",
@@ -7698,6 +7678,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "82484",
+        "date": "2026-10-18",
+        "time": "06:30 PM",
+        "opp": "Red Bank Generals 15U",
+        "rink": "Red Bank Armory",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "3-4",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82484",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82484"
+      },
       {
         "id": "82144",
         "date": "2026-10-11",
@@ -12816,10 +12809,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Michael Cook",
     "level": "18U Midget Major A",
-    "record": "5-9-1",
+    "record": "5-10-1",
     "pts": 16,
     "rank": "#12",
-    "standingSummary": "5-9-1 | 25 Active Players | 2026/27 Season",
+    "standingSummary": "5-10-1 | 16 PTS | #12 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9878&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -12831,16 +12824,6 @@ export const YOUTH_TEAMS = [
         "loc": "Away",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77048",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77048"
-      },
-      {
-        "id": "76676",
-        "date": "2026-10-18",
-        "time": "07:00 PM",
-        "opp": "Avalanche 18GRY",
-        "rink": "East Brunswick  Rink 2",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76676",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76676"
       },
       {
         "id": "76328",
@@ -13447,16 +13430,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77048"
       },
       {
-        "id": "76676",
-        "date": "2026-10-18",
-        "time": "07:00 PM",
-        "opp": "Avalanche 18GRY",
-        "rink": "East Brunswick  Rink 2",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76676",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76676"
-      },
-      {
         "id": "76328",
         "date": "2026-10-23",
         "time": "07:15 PM",
@@ -13608,6 +13581,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76676",
+        "date": "2026-10-18",
+        "time": "07:00 PM",
+        "opp": "North Jersey Avalanche 18GRY",
+        "rink": "East Brunswick  Rink 2",
+        "loc": "Home",
+        "outcome": "L",
+        "score": "1-6",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76676",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76676"
+      },
       {
         "id": "76675",
         "date": "2026-10-04",
