@@ -3194,8 +3194,8 @@ export const JUNIOR_TEAMS = {
         "otl": 0,
         "pts": 13,
         "gf": 41,
-        "ga": 25,
-        "diff": "+16",
+        "ga": 24,
+        "diff": "+17",
         "streak": "1W",
         "pct": ".722"
       },
@@ -3225,9 +3225,9 @@ export const JUNIOR_TEAMS = {
         "l": 2,
         "otl": 2,
         "pts": 10,
-        "gf": 24,
+        "gf": 23,
         "ga": 22,
-        "diff": "+2",
+        "diff": "+1",
         "streak": "1W",
         "pct": ".625"
       },
