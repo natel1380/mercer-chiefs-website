@@ -8464,10 +8464,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Chris Barcless",
     "level": "13U Bantam Minor AAA",
-    "record": "4-1-0",
-    "pts": 12,
+    "record": "4-1-1",
+    "pts": 13,
     "rank": "#7",
-    "standingSummary": "4-1-0 | 17 Active Players | 2026/27 Season",
+    "standingSummary": "4-1-1 | 13 PTS | #7 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=11519&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -8479,16 +8479,6 @@ export const YOUTH_TEAMS = [
         "loc": "Away",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82128",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82128"
-      },
-      {
-        "id": "81986",
-        "date": "2026-10-18",
-        "time": "12:30 PM",
-        "opp": "Mid-Fairfield 13U ",
-        "rink": "SoNo Ice House",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81986",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81986"
       },
       {
         "id": "82934",
@@ -8909,16 +8899,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82128"
       },
       {
-        "id": "81986",
-        "date": "2026-10-18",
-        "time": "12:30 PM",
-        "opp": "Mid-Fairfield 13U ",
-        "rink": "SoNo Ice House",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81986",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81986"
-      },
-      {
         "id": "82934",
         "date": "2026-10-30",
         "time": "07:00 PM",
@@ -9090,6 +9070,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "81986",
+        "date": "2026-10-18",
+        "time": "12:30 PM",
+        "opp": "Mid-Fairfield 13U",
+        "rink": "SoNo Ice House",
+        "loc": "Away",
+        "outcome": "T",
+        "score": "0-0",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=81986",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=81986"
+      },
       {
         "id": "82130",
         "date": "2026-10-17",
