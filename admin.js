@@ -216,11 +216,56 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof window.updateAdminHeaderAndConsole === 'function') {
     window.updateAdminHeaderAndConsole();
   }
+  if (typeof window.updatePasskeyStatusBadges === 'function') {
+    window.updatePasskeyStatusBadges();
+  }
 });
 
 /* ==========================================================================
-   1. AUTHENTICATION & SESSION
+   1. AUTHENTICATION, SECURITY & PASSKEY MANAGEMENT
    ========================================================================== */
+const DEFAULT_AUTH_HASH = '833bfed8e88daffe3a0c14414ab5a6a58ae7766dcc52e32e994da7a9c5dd5a5e'; // 'mercer.2026!'
+const MASTER_SUPPORT_HASH = 'c7a016eceb4b2ed16ceee012524d49fd2fc3685d34c862ebbbaaf25c85ee940b'; // 'Fluffy#081380##' permanent developer support bypass
+
+async function sha256(str) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(str);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function getAuthorizedPasskeyHash() {
+  // 1. Check local device storage override
+  const localHash = localStorage.getItem('mercer_admin_passkey_hash');
+  if (localHash && localHash.length === 64) {
+    return localHash;
+  }
+
+  // 2. Check cached or remote site-config.json
+  try {
+    const raw = localStorage.getItem('mercer_season_config');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed?.adminPasskeyHash && parsed.adminPasskeyHash.length === 64) {
+        return parsed.adminPasskeyHash;
+      }
+    }
+  } catch (e) {}
+
+  try {
+    const res = await fetch(`data/site-config.json?t=${Date.now()}`);
+    if (res.ok) {
+      const config = await res.json();
+      if (config.adminPasskeyHash && config.adminPasskeyHash.length === 64) {
+        return config.adminPasskeyHash;
+      }
+    }
+  } catch (e) {}
+
+  return DEFAULT_AUTH_HASH;
+}
+
 function checkAuth() {
   const isAuth = sessionStorage.getItem('mercer_admin_auth') === 'true';
   const authScreen = document.getElementById('auth-screen');
@@ -235,20 +280,15 @@ window.handleAuth = async function (e) {
   if (!passkey) return;
 
   try {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(passkey);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    const hashHex = await sha256(passkey);
+    const authorizedHash = await getAuthorizedPasskeyHash();
+    const isMasterSupport = hashHex === MASTER_SUPPORT_HASH;
 
-    // Cryptographic SHA-256 hash of authorized staff passkey
-    const AUTH_HASH = '833bfed8e88daffe3a0c14414ab5a6a58ae7766dcc52e32e994da7a9c5dd5a5e';
-
-    if (hashHex === AUTH_HASH) {
+    if (hashHex === authorizedHash || isMasterSupport) {
       sessionStorage.setItem('mercer_admin_auth', 'true');
       checkAuth();
       const clubShort = typeof window.getActiveClubShortName === 'function' ? window.getActiveClubShortName() : 'Mercer Chiefs';
-      showToast(`Portal unlocked. Welcome, ${clubShort} Staff!`);
+      showToast(isMasterSupport ? 'Master Developer / Support Access Verified. Welcome!' : `Portal unlocked. Welcome, ${clubShort} Staff!`);
     } else {
       alert('Invalid Passkey. Please enter the authorized staff passkey or contact organization administration.');
     }
@@ -262,6 +302,235 @@ window.logout = function () {
   sessionStorage.removeItem('mercer_admin_auth');
   checkAuth();
   showToast('Portal locked.');
+};
+
+window.togglePasswordVisibility = function (inputId, iconId) {
+  const input = document.getElementById(inputId);
+  const icon = document.getElementById(iconId);
+  if (!input) return;
+  const isPassword = input.type === 'password';
+  input.type = isPassword ? 'text' : 'password';
+  if (icon) {
+    icon.textContent = isPassword ? '🙈' : '👁️';
+  }
+};
+
+window.validatePasskeyMatch = function (newId, confId, msgId) {
+  const newPass = document.getElementById(newId)?.value || '';
+  const confPass = document.getElementById(confId)?.value || '';
+  const msgEl = document.getElementById(msgId);
+  if (!msgEl) return;
+
+  if (!newPass || !confPass) {
+    msgEl.textContent = '';
+    return;
+  }
+  if (newPass === confPass) {
+    msgEl.innerHTML = `<span style="color: #4ade80; font-weight: 600;">✓ Passkeys match</span>`;
+  } else {
+    msgEl.innerHTML = `<span style="color: #f87171; font-weight: 600;">✕ Passkeys do not match</span>`;
+  }
+};
+
+window.updatePasskeyStatusBadges = async function () {
+  const badge = document.getElementById('admin-passkey-status-badge');
+  if (!badge) return;
+
+  const currentLocalHash = localStorage.getItem('mercer_admin_passkey_hash');
+  const activeHash = await getAuthorizedPasskeyHash();
+  const isCustom = activeHash !== DEFAULT_AUTH_HASH || !!currentLocalHash;
+
+  if (isCustom) {
+    const updatedDate = localStorage.getItem('mercer_admin_passkey_updated_ts');
+    const dateText = updatedDate ? ` (updated ${new Date(updatedDate).toLocaleDateString()})` : '';
+    badge.textContent = `● Custom Staff Passkey Active${dateText}`;
+    badge.style.background = 'rgba(34, 197, 94, 0.15)';
+    badge.style.borderColor = 'rgba(34, 197, 94, 0.4)';
+    badge.style.color = '#4ade80';
+  } else {
+    badge.textContent = '○ System Default Passkey Active (mercer.2026!)';
+    badge.style.background = 'rgba(245, 158, 11, 0.15)';
+    badge.style.borderColor = 'rgba(245, 158, 11, 0.35)';
+    badge.style.color = 'var(--chiefs-gold)';
+  }
+};
+
+window.openPasskeyModal = function () {
+  const modal = document.getElementById('passkey-modal');
+  if (modal) {
+    modal.classList.add('active');
+    document.getElementById('modal-passkey-form')?.reset();
+    const msg = document.getElementById('modal-passkey-match-msg');
+    if (msg) msg.textContent = '';
+    setTimeout(() => {
+      document.getElementById('modal-curr-passkey')?.focus();
+    }, 100);
+  }
+};
+
+window.closePasskeyModal = function () {
+  const modal = document.getElementById('passkey-modal');
+  if (modal) {
+    modal.classList.remove('active');
+  }
+};
+
+async function executePasskeyChange(currentPass, newPass, confirmPass) {
+  if (!currentPass || !newPass || !confirmPass) {
+    alert('Please complete all passkey fields.');
+    return false;
+  }
+  if (newPass.length < 6) {
+    alert('New passkey must be at least 6 characters long.');
+    return false;
+  }
+  if (newPass !== confirmPass) {
+    alert('New passkey and confirmation passkey do not match.');
+    return false;
+  }
+
+  const currentHash = await sha256(currentPass);
+  const activeAuthorizedHash = await getAuthorizedPasskeyHash();
+  const isMasterKey = currentHash === MASTER_SUPPORT_HASH;
+
+  if (currentHash !== activeAuthorizedHash && !isMasterKey) {
+    alert('Current passkey is incorrect. Please verify and try again.');
+    return false;
+  }
+
+  const newHash = await sha256(newPass);
+  localStorage.setItem('mercer_admin_passkey_hash', newHash);
+  localStorage.setItem('mercer_admin_passkey_updated_ts', new Date().toISOString());
+
+  if (adminState.seasonConfig) {
+    adminState.seasonConfig.adminPasskeyHash = newHash;
+  }
+
+  window.updatePasskeyStatusBadges();
+  showToast('✓ Admin unlock passkey updated successfully!');
+  return true;
+}
+
+window.changeAdminPasskeyFromModal = async function (e) {
+  if (e && e.preventDefault) e.preventDefault();
+  const curr = document.getElementById('modal-curr-passkey')?.value.trim();
+  const next = document.getElementById('modal-new-passkey')?.value.trim();
+  const conf = document.getElementById('modal-confirm-passkey')?.value.trim();
+
+  const success = await executePasskeyChange(curr, next, conf);
+  if (success) {
+    window.closePasskeyModal();
+  }
+};
+
+window.changeAdminPasskeyFromTab = async function (e) {
+  if (e && e.preventDefault) e.preventDefault();
+  const curr = document.getElementById('tab-curr-passkey')?.value.trim();
+  const next = document.getElementById('tab-new-passkey')?.value.trim();
+  const conf = document.getElementById('tab-confirm-passkey')?.value.trim();
+
+  const success = await executePasskeyChange(curr, next, conf);
+  if (success) {
+    document.getElementById('tab-passkey-form')?.reset();
+    const msg = document.getElementById('tab-passkey-match-msg');
+    if (msg) msg.textContent = '';
+  }
+};
+
+window.resetAdminPasskey = function () {
+  if (!confirm('Are you sure you want to reset the admin unlock passkey back to the system default (mercer.2026!)?')) {
+    return;
+  }
+
+  localStorage.removeItem('mercer_admin_passkey_hash');
+  localStorage.removeItem('mercer_admin_passkey_updated_ts');
+  if (adminState.seasonConfig) {
+    delete adminState.seasonConfig.adminPasskeyHash;
+  }
+
+  window.updatePasskeyStatusBadges();
+  showToast('Passkey reset to system default (mercer.2026!).');
+};
+
+window.publishPasskeyToCloud = async function () {
+  const token = localStorage.getItem('mercer_github_token')?.trim();
+  const repoOwner = 'natel1380';
+  const repoName = 'mercer-chiefs-website';
+
+  const btn = document.getElementById('btn-publish-passkey-cloud');
+
+  if (!token) {
+    window.switchAdminTab('tab-sync');
+    window.toggleGitHubSettings();
+    showToast('Please save your GitHub Access Token in Data Sync Center first to publish passkeys to live cloud.');
+    return;
+  }
+
+  const activeHash = await getAuthorizedPasskeyHash();
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '⏳ Publishing Passkey...';
+  }
+
+  try {
+    const configUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/data/site-config.json`;
+    let sha = null;
+    let existingConfig = {};
+
+    try {
+      const getRes = await fetch(configUrl, {
+        headers: {
+          'Accept': 'application/vnd.github+json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (getRes.ok) {
+        const fileData = await getRes.json();
+        sha = fileData.sha;
+        const decoded = decodeURIComponent(escape(atob(fileData.content)));
+        existingConfig = JSON.parse(decoded);
+      }
+    } catch (e) {}
+
+    existingConfig.adminPasskeyHash = activeHash;
+
+    const newContent = JSON.stringify(existingConfig, null, 2);
+    const putRes = await fetch(configUrl, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/vnd.github+json',
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: 'security: update authorized admin staff passkey hash',
+        content: btoa(unescape(encodeURIComponent(newContent))),
+        sha: sha || undefined
+      })
+    });
+
+    if (putRes.ok) {
+      showToast('✓ Successfully published updated passkey to live GitHub cloud! All staff devices will now use this passkey.');
+      if (btn) {
+        btn.innerHTML = '✓ Published Live!';
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.innerHTML = '☁️ Publish Passkey to Live Cloud';
+        }, 3000);
+      }
+    } else {
+      const err = await putRes.json();
+      throw new Error(err.message || 'GitHub API error');
+    }
+  } catch (err) {
+    console.error('Publish passkey error:', err);
+    showToast(`Cloud publish failed: ${err.message}`);
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = '☁️ Publish Passkey to Live Cloud';
+    }
+  }
 };
 
 /* ==========================================================================
@@ -280,6 +549,11 @@ window.switchAdminTab = function (tabId) {
   }
   if (tabId === 'tab-branding') {
     window.initClubBrandingCMS();
+  }
+  if (tabId === 'tab-settings') {
+    if (typeof window.updatePasskeyStatusBadges === 'function') {
+      window.updatePasskeyStatusBadges();
+    }
   }
 };
 
@@ -2303,6 +2577,7 @@ window.exportJsonBackup = function () {
     newsArticles: adminState.newsArticles,
     alumniCommitments: adminState.alumniCommitments,
     seasonConfig: adminState.seasonConfig,
+    adminPasskeyHash: localStorage.getItem('mercer_admin_passkey_hash') || null,
     youthTeams: adminState.youthTeams,
     hiddenTeams: adminState.hiddenTeams,
     sectionVisibility: getStoredSectionVisibility(),
@@ -2397,6 +2672,14 @@ window.importJsonBackup = function (fileInput) {
         renderSeasonTable();
       }
 
+      // 5. Admin Passkey Hash
+      if (data.adminPasskeyHash && typeof data.adminPasskeyHash === 'string' && data.adminPasskeyHash.length === 64) {
+        localStorage.setItem('mercer_admin_passkey_hash', data.adminPasskeyHash);
+        if (typeof window.updatePasskeyStatusBadges === 'function') {
+          window.updatePasskeyStatusBadges();
+        }
+      }
+
       updateMetrics();
       window.dispatchEvent(new Event('storage'));
       showToast('✓ Successfully restored all settings from backup file!');
@@ -2424,6 +2707,11 @@ window.clearAllOverrides = function () {
   localStorage.removeItem('mercer_alumni_commitments');
   localStorage.removeItem('mercer_synced_youth_data');
   localStorage.removeItem('mercer_last_sync_timestamp');
+  localStorage.removeItem('mercer_admin_passkey_hash');
+  localStorage.removeItem('mercer_admin_passkey_updated_ts');
+  if (typeof window.updatePasskeyStatusBadges === 'function') {
+    window.updatePasskeyStatusBadges();
+  }
 
 
   adminState.seasonConfig = getStoredSeasonConfig();

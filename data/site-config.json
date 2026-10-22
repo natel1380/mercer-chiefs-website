@@ -2,6 +2,7 @@
   "seasonLabel": "2026/27",
   "juniorHubVisible": true,
   "youthHubVisible": true,
+  "adminPasskeyHash": "833bfed8e88daffe3a0c14414ab5a6a58ae7766dcc52e32e994da7a9c5dd5a5e",
   "hiddenTeams": [
     "18u-prep-aaa",
     "16u-premier-aaa"
