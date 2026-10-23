@@ -253,5 +253,25 @@
       "bgDeep": "#08090C",
       "bgCard": "#12151C"
     }
-  }
+  },
+  "instagramAccounts": [
+    {
+      "handle": "mercerchiefshockey",
+      "label": "Mercer Chiefs Club (Official)",
+      "category": "Club News",
+      "enabled": true
+    },
+    {
+      "handle": "mercerchiefsncdc",
+      "label": "Chiefs NCDC & Premier Junior",
+      "category": "NCDC Junior",
+      "enabled": true
+    },
+    {
+      "handle": "mercerchiefsyouth",
+      "label": "Chiefs Youth AAA Hockey",
+      "category": "Youth AAA",
+      "enabled": true
+    }
+  ]
 }

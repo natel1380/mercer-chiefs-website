@@ -2108,11 +2108,23 @@ window.addInstagramAccount = function () {
   });
 
   localStorage.setItem('mercer_instagram_config', JSON.stringify(adminState.igConfig));
+  if (typeof cmsContentState !== 'undefined' && cmsContentState) {
+    cmsContentState.instagramAccounts = adminState.igConfig.accounts;
+  }
+  try {
+    const raw = localStorage.getItem('mercer_site_content');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      parsed.instagramAccounts = adminState.igConfig.accounts;
+      localStorage.setItem('mercer_site_content', JSON.stringify(parsed));
+    }
+  } catch (e) {}
+
   if (handleInput) handleInput.value = '';
   if (labelInput) labelInput.value = '';
 
   initInstagramConfigUI();
-  showToast(`Added @${handle} to Instagram sync list!`);
+  showToast(`Added @${handle}. Click "Publish Accounts to Live Site" to share with all admins.`);
 };
 
 window.removeInstagramAccount = function (handle) {
@@ -2121,8 +2133,20 @@ window.removeInstagramAccount = function (handle) {
   
   adminState.igConfig.accounts = (adminState.igConfig.accounts || []).filter(a => a.handle.toLowerCase() !== handle.toLowerCase());
   localStorage.setItem('mercer_instagram_config', JSON.stringify(adminState.igConfig));
+  if (typeof cmsContentState !== 'undefined' && cmsContentState) {
+    cmsContentState.instagramAccounts = adminState.igConfig.accounts;
+  }
+  try {
+    const raw = localStorage.getItem('mercer_site_content');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      parsed.instagramAccounts = adminState.igConfig.accounts;
+      localStorage.setItem('mercer_site_content', JSON.stringify(parsed));
+    }
+  } catch (e) {}
+
   initInstagramConfigUI();
-  showToast(`Removed @${handle}.`);
+  showToast(`Removed @${handle}. Click "Publish Accounts to Live Site" to update all admins.`);
 };
 
 window.toggleInstagramAccount = function (handle) {
@@ -2131,8 +2155,20 @@ window.toggleInstagramAccount = function (handle) {
   if (acc) {
     acc.enabled = !acc.enabled;
     localStorage.setItem('mercer_instagram_config', JSON.stringify(adminState.igConfig));
+    if (typeof cmsContentState !== 'undefined' && cmsContentState) {
+      cmsContentState.instagramAccounts = adminState.igConfig.accounts;
+    }
+    try {
+      const raw = localStorage.getItem('mercer_site_content');
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        parsed.instagramAccounts = adminState.igConfig.accounts;
+        localStorage.setItem('mercer_site_content', JSON.stringify(parsed));
+      }
+    } catch (e) {}
+
     initInstagramConfigUI();
-    showToast(`@${handle} sync ${acc.enabled ? 'activated' : 'paused'}.`);
+    showToast(`@${handle} sync ${acc.enabled ? 'activated' : 'paused'}. Click "Publish Accounts to Live Site" to sync with all admins.`);
   }
 };
 
@@ -3984,12 +4020,20 @@ async function initSiteContentCMS() {
           : (Array.isArray(serverContent.staff) && serverContent.staff.length > 0 ? serverContent.staff : DEFAULT_STAFF),
         branding: (localContent.branding && localContent.branding.clubName)
           ? localContent.branding
-          : (serverContent.branding || {})
+          : (serverContent.branding || {}),
+        instagramAccounts: (Array.isArray(localContent.instagramAccounts) && localContent.instagramAccounts.length > 0)
+          ? localContent.instagramAccounts
+          : (Array.isArray(serverContent.instagramAccounts) && serverContent.instagramAccounts.length > 0 ? serverContent.instagramAccounts : undefined)
       };
     } else if (!content.staff || !content.staff.length) {
       content.staff = (serverContent && Array.isArray(serverContent.staff) && serverContent.staff.length > 0)
         ? serverContent.staff
         : DEFAULT_STAFF;
+    }
+    if (!content.instagramAccounts || !content.instagramAccounts.length) {
+      if (serverContent && Array.isArray(serverContent.instagramAccounts) && serverContent.instagramAccounts.length > 0) {
+        content.instagramAccounts = serverContent.instagramAccounts;
+      }
     }
 
     cmsContentState = content;
@@ -4219,6 +4263,18 @@ function populateSiteContentUI(data) {
     renderCmsStaffList();
   } catch (e) {
     console.error('Staff UI population error:', e);
+  }
+
+  // 8. Instagram Accounts Configuration (Multi-Admin Sync)
+  try {
+    if (Array.isArray(data.instagramAccounts) && data.instagramAccounts.length > 0) {
+      if (!adminState.igConfig) adminState.igConfig = getStoredInstagramConfig();
+      adminState.igConfig.accounts = JSON.parse(JSON.stringify(data.instagramAccounts));
+      localStorage.setItem('mercer_instagram_config', JSON.stringify(adminState.igConfig));
+      initInstagramConfigUI();
+    }
+  } catch (e) {
+    console.error('Instagram accounts UI population error:', e);
   }
 }
 
@@ -4815,6 +4871,9 @@ window.collectSiteContentFromUI = function () {
       externalRegisterUrl: getCmsVal('cms-tryout-url')
     },
     staff: cmsStaffList,
+    instagramAccounts: (adminState.igConfig && Array.isArray(adminState.igConfig.accounts) && adminState.igConfig.accounts.length > 0)
+      ? adminState.igConfig.accounts
+      : (getStoredInstagramConfig().accounts || []),
     branding: {
       clubName: getCmsVal('cms-brand-club-name') || 'Mercer Chiefs Hockey Club',
       shortName: getCmsVal('cms-brand-club-short') || 'Mercer Chiefs',

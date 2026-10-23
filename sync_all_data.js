@@ -584,8 +584,23 @@ async function syncFacebook(token = process.env.MERCER_FB_TOKEN, pageId = 'merce
 /* ==========================================================================
    4B. INSTAGRAM MULTI-ACCOUNT FEED SYNC
    ========================================================================== */
-async function syncInstagram(token = process.env.MERCER_IG_TOKEN || process.env.MERCER_FB_TOKEN, accounts = ['mercerchiefshockey', 'mercerchiefsncdc', 'mercerchiefsyouth']) {
-  console.log(`[IG SYNC] Checking Instagram multi-account feeds for: ${accounts.map(a => '@' + a).join(', ')}...`);
+async function syncInstagram(token = process.env.MERCER_IG_TOKEN || process.env.MERCER_FB_TOKEN, accounts) {
+  let targetAccounts = accounts;
+  if (!targetAccounts || !targetAccounts.length) {
+    try {
+      const scPath = path.join(__dirname, 'data', 'site-content.json');
+      if (fs.existsSync(scPath)) {
+        const sc = JSON.parse(fs.readFileSync(scPath, 'utf8'));
+        if (Array.isArray(sc.instagramAccounts) && sc.instagramAccounts.length > 0) {
+          targetAccounts = sc.instagramAccounts.filter(a => a.enabled !== false).map(a => a.handle);
+        }
+      }
+    } catch (e) {}
+  }
+  if (!targetAccounts || !targetAccounts.length) {
+    targetAccounts = ['mercerchiefshockey', 'mercerchiefsncdc', 'mercerchiefsyouth'];
+  }
+  console.log(`[IG SYNC] Checking Instagram multi-account feeds for: ${targetAccounts.map(a => '@' + a).join(', ')}...`);
 
   // If live token is provided, attempt to fetch posts from Meta Graph API
   if (token) {

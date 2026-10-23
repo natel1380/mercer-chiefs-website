@@ -88,12 +88,29 @@ export default defineConfig({
                 });
               }
 
+              let accounts = parsed.accounts || [];
+              try {
+                const scPath = path.resolve(__dirname, 'data', 'site-content.json');
+                if (fs.existsSync(scPath)) {
+                  const sc = JSON.parse(fs.readFileSync(scPath, 'utf-8'));
+                  if (Array.isArray(sc.instagramAccounts) && sc.instagramAccounts.length > 0) {
+                    accounts = sc.instagramAccounts.map(a => ({
+                      handle: a.handle,
+                      label: a.label,
+                      category: a.category,
+                      enabled: a.enabled,
+                      url: `https://www.instagram.com/${a.handle}/`
+                    }));
+                  }
+                }
+              } catch (e) {}
+
               res.statusCode = 200;
               res.end(JSON.stringify({
                 success: true,
                 message: 'Synced successfully from Mercer Chiefs Instagram feeds',
                 syncedAt: new Date().toISOString(),
-                accounts: parsed.accounts || [],
+                accounts,
                 count: posts.length,
                 posts
               }));
