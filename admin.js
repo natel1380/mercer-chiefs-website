@@ -3961,6 +3961,10 @@ let cmsContentState = null;
 let cmsCampsList = [];
 let cmsRinksList = [];
 let cmsStaffList = [];
+window.cmsContentState = cmsContentState;
+window.cmsCampsList = cmsCampsList;
+window.cmsRinksList = cmsRinksList;
+window.cmsStaffList = cmsStaffList;
 
 function escapeCmsHtml(str) {
   if (!str) return '';
@@ -3981,6 +3985,152 @@ function getCmsVal(id) {
   const el = document.getElementById(id);
   return el ? el.value.trim() : '';
 }
+
+/* --- Dynamic CMS Item Field Update Helpers (Global Window Scope) --- */
+window.updateCmsRinkField = function (idx, field, value) {
+  if (!cmsRinksList[idx]) return;
+  cmsRinksList[idx][field] = value;
+  if (field === 'name') {
+    const heading = document.getElementById(`rink-heading-label-${idx}`);
+    if (heading) heading.textContent = `📍 Rink #${idx + 1}: ${value || 'Unnamed Arena'}`;
+  }
+  window.syncRinksLive();
+};
+
+window.updateCmsRinkAmenity = function (rinkIdx, amenityIdx, value) {
+  if (!cmsRinksList[rinkIdx]) return;
+  if (!Array.isArray(cmsRinksList[rinkIdx].amenities)) {
+    cmsRinksList[rinkIdx].amenities = [];
+  }
+  cmsRinksList[rinkIdx].amenities[amenityIdx] = value;
+  window.syncRinksLive();
+};
+
+window.updateCmsCampField = function (idx, field, value) {
+  if (!cmsCampsList[idx]) return;
+  cmsCampsList[idx][field] = value;
+  if (field === 'title') {
+    const heading = document.getElementById(`camp-heading-label-${idx}`);
+    if (heading) heading.textContent = `Camp #${idx + 1}: ${value || 'Untitled'}`;
+  }
+};
+
+window.updateCmsStaffField = function (idx, field, value) {
+  if (!cmsStaffList[idx]) return;
+  cmsStaffList[idx][field] = value;
+};
+
+/* --- Bulletproof DOM Harvesters --- */
+function harvestCmsRinksFromDOM() {
+  const container = document.getElementById('cms-rinks-list');
+  if (!container) return cmsRinksList;
+  const cards = container.querySelectorAll('.cms-rink-card');
+  if (!cards || cards.length === 0) return cmsRinksList;
+
+  const harvested = [];
+  cards.forEach((card, idx) => {
+    const orig = cmsRinksList[idx] || {};
+    const nameInput = card.querySelector('.cms-rink-name');
+    const tagInput = card.querySelector('.cms-rink-tag');
+    const addressInput = card.querySelector('.cms-rink-address');
+    const phoneInput = card.querySelector('.cms-rink-phone');
+    const mapUrlInput = card.querySelector('.cms-rink-map-url');
+    const descInput = card.querySelector('.cms-rink-desc');
+    const amenityInputs = card.querySelectorAll('.cms-rink-amenity');
+
+    const amenities = [];
+    amenityInputs.forEach((inp) => {
+      const val = inp.value.trim();
+      if (val) amenities.push(val);
+    });
+
+    harvested.push({
+      id: orig.id || `rink-${idx + 1}`,
+      name: nameInput ? nameInput.value.trim() : (orig.name || ''),
+      tag: tagInput ? tagInput.value.trim() : (orig.tag || ''),
+      address: addressInput ? addressInput.value.trim() : (orig.address || ''),
+      phone: phoneInput ? phoneInput.value.trim() : (orig.phone || ''),
+      mapUrl: mapUrlInput ? mapUrlInput.value.trim() : (orig.mapUrl || ''),
+      desc: descInput ? descInput.value.trim() : (orig.desc || ''),
+      amenities: amenities.length > 0 ? amenities : (Array.isArray(orig.amenities) ? orig.amenities : [])
+    });
+  });
+
+  cmsRinksList = harvested;
+  window.cmsRinksList = cmsRinksList;
+  return cmsRinksList;
+}
+window.harvestCmsRinksFromDOM = harvestCmsRinksFromDOM;
+
+function harvestCmsCampsFromDOM() {
+  const container = document.getElementById('cms-camps-list');
+  if (!container) return cmsCampsList;
+  const cards = container.querySelectorAll('.cms-camp-card');
+  if (!cards || cards.length === 0) return cmsCampsList;
+
+  const harvested = [];
+  cards.forEach((card, idx) => {
+    const orig = cmsCampsList[idx] || {};
+    const title = card.querySelector('.cms-camp-title')?.value.trim();
+    const badge = card.querySelector('.cms-camp-badge')?.value.trim();
+    const dates = card.querySelector('.cms-camp-dates')?.value.trim();
+    const ages = card.querySelector('.cms-camp-ages')?.value.trim();
+    const location = card.querySelector('.cms-camp-location')?.value.trim();
+    const price = card.querySelector('.cms-camp-price')?.value.trim();
+    const registerUrl = card.querySelector('.cms-camp-register-url')?.value.trim();
+    const desc = card.querySelector('.cms-camp-desc')?.value.trim();
+
+    harvested.push({
+      id: orig.id || `camp-${idx + 1}`,
+      title: title !== undefined ? title : (orig.title || ''),
+      badge: badge !== undefined ? badge : (orig.badge || ''),
+      dates: dates !== undefined ? dates : (orig.dates || ''),
+      ages: ages !== undefined ? ages : (orig.ages || ''),
+      location: location !== undefined ? location : (orig.location || ''),
+      price: price !== undefined ? price : (orig.price || ''),
+      registerUrl: registerUrl !== undefined ? registerUrl : (orig.registerUrl || ''),
+      desc: desc !== undefined ? desc : (orig.desc || '')
+    });
+  });
+
+  cmsCampsList = harvested;
+  window.cmsCampsList = cmsCampsList;
+  return cmsCampsList;
+}
+window.harvestCmsCampsFromDOM = harvestCmsCampsFromDOM;
+
+function harvestCmsStaffFromDOM() {
+  const container = document.getElementById('cms-staff-list');
+  if (!container) return cmsStaffList;
+  const cards = container.querySelectorAll('.cms-staff-card');
+  if (!cards || cards.length === 0) return cmsStaffList;
+
+  const harvested = [];
+  cards.forEach((card, idx) => {
+    const orig = cmsStaffList[idx] || {};
+    const name = card.querySelector('.cms-staff-name')?.value.trim();
+    const role = card.querySelector('.cms-staff-role')?.value.trim();
+    const badge = card.querySelector('.cms-staff-badge')?.value.trim();
+    const photo = card.querySelector('.cms-staff-photo')?.value.trim();
+    const email = card.querySelector('.cms-staff-email')?.value.trim();
+    const bio = card.querySelector('.cms-staff-bio')?.value.trim();
+
+    harvested.push({
+      id: orig.id || `staff-${idx + 1}`,
+      name: name !== undefined ? name : (orig.name || ''),
+      role: role !== undefined ? role : (orig.role || ''),
+      badge: badge !== undefined ? badge : (orig.badge || ''),
+      photo: photo !== undefined ? photo : (orig.photo || 'assets/images/mercer-chiefs-crest.png'),
+      email: email !== undefined ? email : (orig.email || ''),
+      bio: bio !== undefined ? bio : (orig.bio || '')
+    });
+  });
+
+  cmsStaffList = harvested;
+  window.cmsStaffList = cmsStaffList;
+  return cmsStaffList;
+}
+window.harvestCmsStaffFromDOM = harvestCmsStaffFromDOM;
 
 const DEFAULT_STAFF = [
   {
@@ -4344,6 +4494,7 @@ function populateSiteContentUI(data) {
 function renderCmsCampsList() {
   const container = document.getElementById('cms-camps-list');
   if (!container) return;
+  window.cmsCampsList = cmsCampsList;
 
   if (cmsCampsList.length === 0) {
     container.innerHTML = `
@@ -4355,9 +4506,9 @@ function renderCmsCampsList() {
   }
 
   container.innerHTML = cmsCampsList.map((item, idx) => `
-    <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem; position: relative;">
+    <div class="cms-camp-card" data-camp-idx="${idx}" style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem; position: relative;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-        <span style="font-weight: 700; color: var(--chiefs-gold); font-size: 0.9rem;">Camp #${idx + 1}</span>
+        <span id="camp-heading-label-${idx}" style="font-weight: 700; color: var(--chiefs-gold); font-size: 0.9rem;">Camp #${idx + 1}: ${escapeCmsHtml(item.title || 'Untitled')}</span>
         <button type="button" onclick="window.removeCmsCampItem(${idx})" class="btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.6rem; color: #f87171; border-color: rgba(239,68,68,0.3);">
           ✕ Remove
         </button>
@@ -4366,41 +4517,41 @@ function renderCmsCampsList() {
       <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
         <div class="admin-form-group">
           <label>Camp Title</label>
-          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.title || '')}" oninput="cmsCampsList[${idx}].title = this.value">
+          <input type="text" class="admin-form-input cms-camp-title" value="${escapeCmsHtml(item.title || '')}" oninput="window.updateCmsCampField(${idx}, 'title', this.value)">
         </div>
         <div class="admin-form-group">
           <label>Badge Tag</label>
-          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.badge || 'Summer Camp')}" oninput="cmsCampsList[${idx}].badge = this.value">
+          <input type="text" class="admin-form-input cms-camp-badge" value="${escapeCmsHtml(item.badge || 'Summer Camp')}" oninput="window.updateCmsCampField(${idx}, 'badge', this.value)">
         </div>
       </div>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; margin-bottom: 0.75rem;">
         <div class="admin-form-group">
           <label>Dates</label>
-          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.dates || '')}" oninput="cmsCampsList[${idx}].dates = this.value">
+          <input type="text" class="admin-form-input cms-camp-dates" value="${escapeCmsHtml(item.dates || '')}" oninput="window.updateCmsCampField(${idx}, 'dates', this.value)">
         </div>
         <div class="admin-form-group">
           <label>Eligible Ages</label>
-          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.ages || '')}" oninput="cmsCampsList[${idx}].ages = this.value">
+          <input type="text" class="admin-form-input cms-camp-ages" value="${escapeCmsHtml(item.ages || '')}" oninput="window.updateCmsCampField(${idx}, 'ages', this.value)">
         </div>
         <div class="admin-form-group">
           <label>Location</label>
-          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.location || 'Ice Land Arena')}" oninput="cmsCampsList[${idx}].location = this.value">
+          <input type="text" class="admin-form-input cms-camp-location" value="${escapeCmsHtml(item.location || 'Ice Land Arena')}" oninput="window.updateCmsCampField(${idx}, 'location', this.value)">
         </div>
         <div class="admin-form-group">
           <label>Price / Fee</label>
-          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.price || '')}" oninput="cmsCampsList[${idx}].price = this.value">
+          <input type="text" class="admin-form-input cms-camp-price" value="${escapeCmsHtml(item.price || '')}" oninput="window.updateCmsCampField(${idx}, 'price', this.value)">
         </div>
       </div>
 
       <div class="admin-form-group" style="margin-bottom: 0.75rem;">
         <label>Registration / Info URL</label>
-        <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.registerUrl || '')}" oninput="cmsCampsList[${idx}].registerUrl = this.value" placeholder="https://...">
+        <input type="text" class="admin-form-input cms-camp-register-url" value="${escapeCmsHtml(item.registerUrl || '')}" oninput="window.updateCmsCampField(${idx}, 'registerUrl', this.value)" placeholder="https://...">
       </div>
 
       <div class="admin-form-group">
         <label>Description & Program Highlights</label>
-        <textarea class="admin-form-input" rows="2" oninput="cmsCampsList[${idx}].desc = this.value">${escapeCmsHtml(item.desc || '')}</textarea>
+        <textarea class="admin-form-input cms-camp-desc" rows="2" oninput="window.updateCmsCampField(${idx}, 'desc', this.value)">${escapeCmsHtml(item.desc || '')}</textarea>
       </div>
     </div>
   `).join('');
@@ -4418,12 +4569,14 @@ window.addCmsCampItem = function () {
     price: '$450',
     registerUrl: ''
   });
+  window.cmsCampsList = cmsCampsList;
   renderCmsCampsList();
 };
 
 window.removeCmsCampItem = function (idx) {
   if (confirm('Are you sure you want to remove this camp?')) {
     cmsCampsList.splice(idx, 1);
+    window.cmsCampsList = cmsCampsList;
     renderCmsCampsList();
   }
 };
@@ -4432,6 +4585,7 @@ window.removeCmsCampItem = function (idx) {
 function renderCmsRinksList() {
   const container = document.getElementById('cms-rinks-list');
   if (!container) return;
+  window.cmsRinksList = cmsRinksList;
 
   // Dynamic smart labels based on rink count
   const count = cmsRinksList.length;
@@ -4463,10 +4617,10 @@ function renderCmsRinksList() {
     const canRemove = cmsRinksList.length > 1;
 
     return `
-      <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem;">
+      <div class="cms-rink-card" data-rink-idx="${idx}" style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.6rem;">
           <div style="display: flex; align-items: center; gap: 0.6rem;">
-            <span style="font-weight: 700; color: var(--chiefs-gold); font-size: 0.95rem;">📍 Rink #${idx + 1}: ${escapeCmsHtml(item.name || 'Unnamed Arena')}</span>
+            <span id="rink-heading-label-${idx}" style="font-weight: 700; color: var(--chiefs-gold); font-size: 0.95rem;">📍 Rink #${idx + 1}: ${escapeCmsHtml(item.name || 'Unnamed Arena')}</span>
           </div>
           ${canRemove ? `
             <button type="button" onclick="window.removeCmsRinkItem(${idx})" class="btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.6rem; color: #f87171; border-color: rgba(239,68,68,0.3);">
@@ -4480,41 +4634,41 @@ function renderCmsRinksList() {
         <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
           <div class="admin-form-group">
             <label>Rink / Arena Name *</label>
-            <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.name || '')}" placeholder="e.g. Ice Land Skating Center" oninput="cmsRinksList[${idx}].name = this.value; window.syncRinksLive();">
+            <input type="text" class="admin-form-input cms-rink-name" value="${escapeCmsHtml(item.name || '')}" placeholder="e.g. Ice Land Skating Center" oninput="window.updateCmsRinkField(${idx}, 'name', this.value)">
           </div>
           <div class="admin-form-group">
             <label>Program / Division Tag</label>
-            <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.tag || '')}" placeholder="e.g. Junior & Tier 1 AAA Home" oninput="cmsRinksList[${idx}].tag = this.value; window.syncRinksLive();">
+            <input type="text" class="admin-form-input cms-rink-tag" value="${escapeCmsHtml(item.tag || '')}" placeholder="e.g. Junior & Tier 1 AAA Home" oninput="window.updateCmsRinkField(${idx}, 'tag', this.value)">
           </div>
         </div>
 
         <div style="display: grid; grid-template-columns: 2fr 1fr 2fr; gap: 0.75rem; margin-bottom: 0.75rem;">
           <div class="admin-form-group">
             <label>Street Address</label>
-            <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.address || '')}" placeholder="6 Tennis Court, Hamilton Township, NJ 08619" oninput="cmsRinksList[${idx}].address = this.value; window.syncRinksLive();">
+            <input type="text" class="admin-form-input cms-rink-address" value="${escapeCmsHtml(item.address || '')}" placeholder="6 Tennis Court, Hamilton Township, NJ 08619" oninput="window.updateCmsRinkField(${idx}, 'address', this.value)">
           </div>
           <div class="admin-form-group">
             <label>Phone Number</label>
-            <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.phone || '')}" placeholder="(609) 588-6672" oninput="cmsRinksList[${idx}].phone = this.value; window.syncRinksLive();">
+            <input type="text" class="admin-form-input cms-rink-phone" value="${escapeCmsHtml(item.phone || '')}" placeholder="(609) 588-6672" oninput="window.updateCmsRinkField(${idx}, 'phone', this.value)">
           </div>
           <div class="admin-form-group">
             <label>Google Maps Directions URL</label>
-            <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.mapUrl || '')}" placeholder="https://maps.google.com/..." oninput="cmsRinksList[${idx}].mapUrl = this.value; window.syncRinksLive();">
+            <input type="text" class="admin-form-input cms-rink-map-url" value="${escapeCmsHtml(item.mapUrl || '')}" placeholder="https://maps.google.com/..." oninput="window.updateCmsRinkField(${idx}, 'mapUrl', this.value)">
           </div>
         </div>
 
         <div class="admin-form-group" style="margin-bottom: 0.85rem;">
           <label>Facility Overview & Description</label>
-          <textarea class="admin-form-input" rows="2" placeholder="Description of rinks, locker rooms, training center..." oninput="cmsRinksList[${idx}].desc = this.value; window.syncRinksLive();">${escapeCmsHtml(item.desc || '')}</textarea>
+          <textarea class="admin-form-input cms-rink-desc" rows="2" placeholder="Description of rinks, locker rooms, training center..." oninput="window.updateCmsRinkField(${idx}, 'desc', this.value)">${escapeCmsHtml(item.desc || '')}</textarea>
         </div>
 
         <div>
           <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.4rem; display: block;">Facility Features & Amenities (Up to 4)</label>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.6rem;">
-            <input type="text" class="admin-form-input" value="${escapeCmsHtml(amenities[0] || '')}" placeholder="Feature 1 (e.g. 2 NHL-Size Ice Sheets)" oninput="if (!cmsRinksList[${idx}].amenities) cmsRinksList[${idx}].amenities = []; cmsRinksList[${idx}].amenities[0] = this.value; window.syncRinksLive();">
-            <input type="text" class="admin-form-input" value="${escapeCmsHtml(amenities[1] || '')}" placeholder="Feature 2 (e.g. Chiefs Locker Rooms)" oninput="if (!cmsRinksList[${idx}].amenities) cmsRinksList[${idx}].amenities = []; cmsRinksList[${idx}].amenities[1] = this.value; window.syncRinksLive();">
-            <input type="text" class="admin-form-input" value="${escapeCmsHtml(amenities[2] || '')}" placeholder="Feature 3 (e.g. Dryland Training)" oninput="if (!cmsRinksList[${idx}].amenities) cmsRinksList[${idx}].amenities = []; cmsRinksList[${idx}].amenities[2] = this.value; window.syncRinksLive();">
-            <input type="text" class="admin-form-input" value="${escapeCmsHtml(amenities[3] || '')}" placeholder="Feature 4 (e.g. Black Bear TV Rinks)" oninput="if (!cmsRinksList[${idx}].amenities) cmsRinksList[${idx}].amenities = []; cmsRinksList[${idx}].amenities[3] = this.value; window.syncRinksLive();">
+            <input type="text" class="admin-form-input cms-rink-amenity" data-amenity-idx="0" value="${escapeCmsHtml(amenities[0] || '')}" placeholder="Feature 1 (e.g. 2 NHL-Size Ice Sheets)" oninput="window.updateCmsRinkAmenity(${idx}, 0, this.value)">
+            <input type="text" class="admin-form-input cms-rink-amenity" data-amenity-idx="1" value="${escapeCmsHtml(amenities[1] || '')}" placeholder="Feature 2 (e.g. Chiefs Locker Rooms)" oninput="window.updateCmsRinkAmenity(${idx}, 1, this.value)">
+            <input type="text" class="admin-form-input cms-rink-amenity" data-amenity-idx="2" value="${escapeCmsHtml(amenities[2] || '')}" placeholder="Feature 3 (e.g. Dryland Training)" oninput="window.updateCmsRinkAmenity(${idx}, 2, this.value)">
+            <input type="text" class="admin-form-input cms-rink-amenity" data-amenity-idx="3" value="${escapeCmsHtml(amenities[3] || '')}" placeholder="Feature 4 (e.g. Black Bear TV Rinks)" oninput="window.updateCmsRinkAmenity(${idx}, 3, this.value)">
           </div>
         </div>
       </div>
@@ -4538,6 +4692,7 @@ window.addCmsRinkItem = function () {
       'Live Game Streaming'
     ]
   });
+  window.cmsRinksList = cmsRinksList;
   renderCmsRinksList();
   window.syncRinksLive();
   showToast('New home rink added. Configure details and click Publish.');
@@ -4552,6 +4707,7 @@ window.removeCmsRinkItem = function (idx) {
   const name = item ? item.name : 'this rink';
   if (!confirm(`Are you sure you want to remove ${name}?`)) return;
   cmsRinksList.splice(idx, 1);
+  window.cmsRinksList = cmsRinksList;
   renderCmsRinksList();
   window.syncRinksLive();
   showToast(`${name} removed.`);
@@ -4559,6 +4715,7 @@ window.removeCmsRinkItem = function (idx) {
 
 window.syncRinksLive = function () {
   try {
+    harvestCmsRinksFromDOM();
     let p = {};
     const raw = localStorage.getItem('mercer_site_content');
     if (raw) {
@@ -4606,6 +4763,7 @@ window.syncRinksLive = function () {
 function renderCmsStaffList() {
   const container = document.getElementById('cms-staff-list');
   if (!container) return;
+  window.cmsStaffList = cmsStaffList;
 
   if (cmsStaffList.length === 0) {
     container.innerHTML = `
@@ -4617,13 +4775,13 @@ function renderCmsStaffList() {
   }
 
   container.innerHTML = cmsStaffList.map((item, idx) => `
-    <div style="background: rgba(0,0,0,0.35); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem;">
+    <div class="cms-staff-card" data-staff-idx="${idx}" style="background: rgba(0,0,0,0.35); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.65rem;">
         <div style="display: flex; align-items: center; gap: 0.75rem;">
           <img id="staff-preview-${idx}" src="${item.photo || 'assets/images/mercer-chiefs-crest.png'}" alt="Preview" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--chiefs-red); box-shadow: 0 0 8px rgba(189,50,59,0.3);">
           <div>
-            <span style="font-weight: 700; color: #fff; font-size: 0.95rem;">${escapeCmsHtml(item.name || 'Unnamed Coach')}</span>
-            <div style="font-size: 0.75rem; color: var(--chiefs-gold);">${escapeCmsHtml(item.role || 'Staff')}</div>
+            <span id="staff-preview-name-${idx}" style="font-weight: 700; color: #fff; font-size: 0.95rem;">${escapeCmsHtml(item.name || 'Unnamed Coach')}</span>
+            <div id="staff-preview-role-${idx}" style="font-size: 0.75rem; color: var(--chiefs-gold);">${escapeCmsHtml(item.role || 'Staff')}</div>
           </div>
         </div>
         <button type="button" onclick="window.removeCmsStaffItem(${idx})" class="btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.6rem; color: #f87171; border-color: rgba(239,68,68,0.3);">
@@ -4634,15 +4792,15 @@ function renderCmsStaffList() {
       <div style="display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
         <div class="admin-form-group">
           <label>Full Name *</label>
-          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.name || '')}" oninput="cmsStaffList[${idx}].name = this.value; renderCmsStaffHeader(${idx});">
+          <input type="text" class="admin-form-input cms-staff-name" value="${escapeCmsHtml(item.name || '')}" oninput="window.updateCmsStaffField(${idx}, 'name', this.value); window.renderCmsStaffHeader(${idx});">
         </div>
         <div class="admin-form-group">
           <label>Role / Position Title</label>
-          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.role || '')}" placeholder="e.g. Assistant Coach" oninput="cmsStaffList[${idx}].role = this.value; renderCmsStaffHeader(${idx});">
+          <input type="text" class="admin-form-input cms-staff-role" value="${escapeCmsHtml(item.role || '')}" placeholder="e.g. Assistant Coach" oninput="window.updateCmsStaffField(${idx}, 'role', this.value); window.renderCmsStaffHeader(${idx});">
         </div>
         <div class="admin-form-group">
           <label>Badge Tag</label>
-          <input type="text" class="admin-form-input" value="${escapeCmsHtml(item.badge || 'Staff')}" placeholder="e.g. Head Coach" oninput="cmsStaffList[${idx}].badge = this.value;">
+          <input type="text" class="admin-form-input cms-staff-badge" value="${escapeCmsHtml(item.badge || 'Staff')}" placeholder="e.g. Head Coach" oninput="window.updateCmsStaffField(${idx}, 'badge', this.value)">
         </div>
       </div>
 
@@ -4650,7 +4808,7 @@ function renderCmsStaffList() {
         <div class="admin-form-group">
           <label>Photo URL / Path</label>
           <div style="display: flex; gap: 0.5rem; align-items: center;">
-            <input type="text" id="staff-photo-input-${idx}" class="admin-form-input" value="${escapeCmsHtml(item.photo || '')}" placeholder="assets/images/..." oninput="cmsStaffList[${idx}].photo = this.value; document.getElementById('staff-preview-${idx}').src = this.value;" style="flex: 1;">
+            <input type="text" id="staff-photo-input-${idx}" class="admin-form-input cms-staff-photo" value="${escapeCmsHtml(item.photo || '')}" placeholder="assets/images/..." oninput="window.updateCmsStaffField(${idx}, 'photo', this.value); window.renderCmsStaffHeader(${idx});" style="flex: 1;">
             <input type="file" id="cms-staff-file-${idx}" accept="image/*" style="display:none;" onchange="window.uploadStaffPhotoFromInput(this, ${idx})">
             <button type="button" class="btn-primary" onclick="document.getElementById('cms-staff-file-${idx}').click()" style="font-size: 0.76rem; padding: 0.45rem 0.75rem; white-space: nowrap; background: var(--chiefs-gold); border-color: var(--chiefs-gold); color: #000; font-weight: 700;">
               📁 Upload Headshot
@@ -4659,13 +4817,13 @@ function renderCmsStaffList() {
         </div>
         <div class="admin-form-group">
           <label>Email Address</label>
-          <input type="email" class="admin-form-input" value="${escapeCmsHtml(item.email || '')}" placeholder="coach@domain.com" oninput="cmsStaffList[${idx}].email = this.value;">
+          <input type="email" class="admin-form-input cms-staff-email" value="${escapeCmsHtml(item.email || '')}" placeholder="coach@domain.com" oninput="window.updateCmsStaffField(${idx}, 'email', this.value)">
         </div>
       </div>
 
       <div class="admin-form-group">
         <label>Coach Biography / Career Summary</label>
-        <textarea class="admin-form-input" rows="2" placeholder="Experience, achievements, background..." oninput="cmsStaffList[${idx}].bio = this.value;">${escapeCmsHtml(item.bio || '')}</textarea>
+        <textarea class="admin-form-input cms-staff-bio" rows="2" placeholder="Experience, achievements, background..." oninput="window.updateCmsStaffField(${idx}, 'bio', this.value)">${escapeCmsHtml(item.bio || '')}</textarea>
       </div>
     </div>
   `).join('');
@@ -4676,7 +4834,12 @@ function renderCmsStaffHeader(idx) {
   if (!item) return;
   const prev = document.getElementById(`staff-preview-${idx}`);
   if (prev && item.photo) prev.src = item.photo;
+  const nameEl = document.getElementById(`staff-preview-name-${idx}`);
+  if (nameEl) nameEl.textContent = item.name || 'Unnamed Coach';
+  const roleEl = document.getElementById(`staff-preview-role-${idx}`);
+  if (roleEl) roleEl.textContent = item.role || 'Staff';
 }
+window.renderCmsStaffHeader = renderCmsStaffHeader;
 
 window.addCmsStaffItem = function () {
   cmsStaffList.push({
@@ -4688,6 +4851,7 @@ window.addCmsStaffItem = function () {
     bio: 'Coach brings extensive experience in player development, high-tempo practice execution, and scouting.',
     email: 'staff@mercerchiefshockey.com'
   });
+  window.cmsStaffList = cmsStaffList;
   renderCmsStaffList();
   showToast('New staff member added. Fill in details and click Publish.');
 };
@@ -4697,6 +4861,7 @@ window.removeCmsStaffItem = function (idx) {
   const name = item ? item.name : 'this staff member';
   if (!confirm(`Are you sure you want to remove ${name}?`)) return;
   cmsStaffList.splice(idx, 1);
+  window.cmsStaffList = cmsStaffList;
   renderCmsStaffList();
   showToast(`${name} removed.`);
 };
@@ -4779,6 +4944,10 @@ window.uploadStaffPhotoFromInput = async function (fileInput, idx) {
 };
 
 window.collectSiteContentFromUI = function () {
+  harvestCmsRinksFromDOM();
+  harvestCmsCampsFromDOM();
+  harvestCmsStaffFromDOM();
+
   let yt = getCmsVal('cms-prog-video');
   if (yt.includes('youtu.be/')) {
     yt = yt.split('youtu.be/')[1].split('?')[0].split('&')[0];
