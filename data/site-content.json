@@ -89,6 +89,7 @@
   },
   "arena": {
     "enabled": true,
+    "navLabel": "Home Rink",
     "sectionTag": "Home Facilities",
     "sectionTitle": "Home Rink & Facilities",
     "sectionSubtitle": "The Mercer Chiefs train and compete at Ice Land Skating Center in Hamilton, NJ.",
@@ -238,6 +239,20 @@
       "email": "skills@ice-land.com"
     }
   ],
+  "instagramAccounts": [
+    {
+      "handle": "mercerchiefsncdc",
+      "label": "Mercer Chiefs NCDC",
+      "category": "NCDC Junior",
+      "enabled": true
+    },
+    {
+      "handle": "mercerchiefsusphl",
+      "label": "Mercer Chiefs Premier",
+      "category": "USPHL Premier",
+      "enabled": true
+    }
+  ],
   "branding": {
     "clubName": "Mercer Chiefs Hockey Club",
     "shortName": "Mercer Chiefs",
@@ -253,25 +268,5 @@
       "bgDeep": "#08090C",
       "bgCard": "#12151C"
     }
-  },
-  "instagramAccounts": [
-    {
-      "handle": "mercerchiefshockey",
-      "label": "Mercer Chiefs Club (Official)",
-      "category": "Club News",
-      "enabled": true
-    },
-    {
-      "handle": "mercerchiefsncdc",
-      "label": "Chiefs NCDC & Premier Junior",
-      "category": "NCDC Junior",
-      "enabled": true
-    },
-    {
-      "handle": "mercerchiefsyouth",
-      "label": "Chiefs Youth AAA Hockey",
-      "category": "Youth AAA",
-      "enabled": true
-    }
-  ]
+  }
 }
