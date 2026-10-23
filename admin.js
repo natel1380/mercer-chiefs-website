@@ -4454,6 +4454,7 @@ function populateSiteContentUI(data) {
 
   const tr = data.tryoutModal || {};
   setCmsVal('cms-tryout-title', tr.title || '');
+  setCmsVal('cms-tryout-btn-text', tr.buttonText || '');
   setCmsVal('cms-tryout-desc', tr.desc || '');
   setCmsVal('cms-tryout-url', tr.externalRegisterUrl || '');
 
@@ -5099,6 +5100,7 @@ window.collectSiteContentFromUI = function () {
     tryoutModal: {
       goldTag: '2026/27 Mercer Chiefs Evaluations',
       title: getCmsVal('cms-tryout-title') || 'Tryout Registration Portal',
+      buttonText: getCmsVal('cms-tryout-btn-text') || '',
       desc: getCmsVal('cms-tryout-desc'),
       externalRegisterUrl: getCmsVal('cms-tryout-url')
     },

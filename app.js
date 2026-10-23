@@ -1264,7 +1264,7 @@ export function applySiteContent(content) {
     if (perk2 && b.perk2) perk2.textContent = b.perk2;
   }
 
-  // 6. Tryout Modal
+  // 6. Tryout Modal & Dynamic Evaluation / Camp Buttons
   if (content.tryoutModal) {
     const tr = content.tryoutModal;
     const gold = document.getElementById('tryout-modal-gold-tag');
@@ -1272,7 +1272,56 @@ export function applySiteContent(content) {
     const title = document.getElementById('tryout-modal-title');
     if (title && tr.title) title.textContent = tr.title;
     const desc = document.getElementById('tryout-modal-desc');
-    if (desc && tr.desc) desc.textContent = tr.desc;
+    if (desc && tr.desc) {
+      desc.textContent = tr.desc;
+      desc.style.whiteSpace = 'pre-line';
+    }
+
+    // Dynamic Button Label across Website (Video Section callout, Navbar, Mobile Nav)
+    const buttonLabel = (tr.buttonText || tr.title || '').trim();
+    if (buttonLabel) {
+      const progBtn = document.getElementById('prog-tryout-btn');
+      if (progBtn) progBtn.textContent = buttonLabel;
+
+      const navBtn = document.getElementById('nav-tryout-btn');
+      if (navBtn) navBtn.textContent = buttonLabel;
+
+      const mobBtn = document.getElementById('mobile-tryout-btn');
+      if (mobBtn) {
+        mobBtn.innerHTML = `
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          ${buttonLabel}
+        `;
+      }
+    }
+
+    // Modal Display: External Registration Link vs. Built-in Internal Form
+    const extContainer = document.getElementById('tryout-modal-external-container');
+    const extLink = document.getElementById('tryout-modal-external-link');
+    const form = document.getElementById('tryout-register-form');
+    const submitBtn = document.getElementById('tryout-submit-btn');
+
+    const extUrl = (tr.externalRegisterUrl || '').trim();
+    if (extUrl) {
+      if (extContainer) extContainer.style.display = 'block';
+      if (form) form.style.display = 'none';
+      if (extLink) {
+        extLink.href = extUrl;
+        const targetTitle = tr.title || 'Registration';
+        const linkText = targetTitle.toLowerCase().includes('register')
+          ? targetTitle
+          : `Register for ${targetTitle}`;
+        extLink.innerHTML = `${linkText} &nearr;`;
+      }
+    } else {
+      if (extContainer) extContainer.style.display = 'none';
+      if (form) form.style.display = 'block';
+      if (submitBtn && tr.title) {
+        submitBtn.textContent = `Complete ${tr.title} Registration`;
+      }
+    }
   }
 
   // 7. Club Branding & Theme (Colors, Logos, Names)

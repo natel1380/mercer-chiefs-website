@@ -622,7 +622,7 @@
             Ready to take the ice for the 2026/27 campaign?
           </div>
           <div class="action-buttons-group">
-            <button class="btn-primary" onclick="openTryoutModal()">
+            <button class="btn-primary" id="prog-tryout-btn" onclick="openTryoutModal()">
               Register for 2026/27 Tryouts
             </button>
             <button class="btn-secondary" onclick="openBilletModal()">
@@ -1209,9 +1209,30 @@
           <h3 id="tryout-modal-title"
             style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: #fff; margin-top: 0.2rem;">
             Tryout Registration Portal</h3>
-          <p id="tryout-modal-desc" style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.5;">
+          <p id="tryout-modal-desc" style="font-size: 0.92rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.6; white-space: pre-line;">
             Register your player for upcoming Tier I AAA (THF) and Tier II (AHF) evaluations at Ice Land Arena.
           </p>
+        </div>
+
+        <!-- External Registration Action Container (Shown when externalRegisterUrl is set) -->
+        <div id="tryout-modal-external-container" style="display: none; padding: 0.5rem 0 0.5rem 0;">
+          <div style="background: rgba(189, 50, 59, 0.12); border: 1px solid rgba(189, 50, 59, 0.4); border-radius: var(--radius-md); padding: 1.5rem; text-align: center; margin-bottom: 1.25rem;">
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--chiefs-gold); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+              Official Online Registration
+            </div>
+            <p style="font-size: 0.92rem; color: #fff; margin-bottom: 1.25rem; line-height: 1.5;">
+              Online registration and checkout is hosted through the secure Bond Sports portal.
+            </p>
+            <a id="tryout-modal-external-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary"
+              style="font-size: 1.05rem; padding: 0.85rem 2rem; justify-content: center; width: 100%; text-decoration: none; font-weight: 700; box-shadow: 0 4px 18px rgba(189, 50, 59, 0.45); display: inline-flex; align-items: center; gap: 0.5rem;">
+              Register for 2026 Main Camp &nearr;
+            </a>
+          </div>
+          <div style="display: flex; justify-content: flex-end;">
+            <button type="button" class="btn-secondary" onclick="document.getElementById('tryout-modal').classList.remove('open')">
+              Close
+            </button>
+          </div>
         </div>
 
         <form class="chiefs-form" id="tryout-register-form">
@@ -1277,7 +1298,7 @@
           <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1rem;">
             <button type="button" class="btn-secondary"
               onclick="document.getElementById('tryout-modal').classList.remove('open')">Cancel</button>
-            <button type="submit" class="btn-primary">Complete Evaluation Registration</button>
+            <button type="submit" class="btn-primary" id="tryout-submit-btn">Complete Evaluation Registration</button>
           </div>
         </form>
       </div>
