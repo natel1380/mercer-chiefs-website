@@ -2,10 +2,10 @@
   "sections": {
     "hero": true,
     "juniorHub": true,
-    "youthHub": true,
+    "youthHub": false,
     "video": true,
-    "tryouts": true,
-    "camps": true,
+    "tryouts": false,
+    "camps": false,
     "arena": true,
     "news": true,
     "ticker": true
@@ -30,7 +30,7 @@
     "stat4Label": "Cup Championship Finalist"
   },
   "tryouts": {
-    "enabled": true,
+    "enabled": false,
     "sectionTag": "2026 / 2027 Season Evaluations",
     "title": "Join The Chiefs Tradition",
     "subtitle": "Evaluations for Tier I AAA and Tier II AA teams are held at Ice Land Arena in Hamilton, NJ. Experience elite coaching, high-tempo practices, and premier league competition.",
@@ -58,7 +58,7 @@
     }
   },
   "camps": {
-    "enabled": true,
+    "enabled": false,
     "sectionTag": "Player Development & Skills",
     "title": "Camps & Clinics",
     "subtitle": "High-intensity development camps designed for elite skating, puck mastery, shooting mechanics, and game-situation awareness.",
@@ -93,7 +93,8 @@
     "sectionTitle": "Home Rinks & Facilities",
     "sectionSubtitle": "The Mercer Chiefs train and compete across premier twin-sheet regional ice complexes in Central New Jersey.",
     "title": "Ice Land Skating Center",
-    "desc": "Located in Hamilton Township, NJ, Ice Land is the flagship home ice of the Mercer Chiefs Tuition-Free NCDC Tier II Junior team, USPHL Premier, and Tier 1 AAA youth hockey teams. Featuring two NHL-regulation ice sheets, dedicated Junior player locker rooms, and comprehensive athletic training facilities.",
+    "tag": "Junior (NCDC/Premier) & Tier 1 AAA Home",
+    "desc": "Flagship home ice of the Mercer Chiefs Tuition-Free NCDC Tier II Junior team, USPHL Premier, and Tier 1 AAA youth hockey teams. Featuring two NHL-regulation ice sheets, dedicated Junior team locker rooms, video theater, and comprehensive athlete training facilities.",
     "address": "6 Tennis Court, Hamilton Township, NJ 08619",
     "mapUrl": "https://maps.google.com/?q=6+Tennis+Ct,+Hamilton+Township,+NJ+08619",
     "phone": "(609) 588-6672",
@@ -167,6 +168,18 @@
       }
     ],
     "calloutText": "Ready to take the ice for the 2026/27 campaign?"
+  },
+  "juniorHub": {
+    "enabled": true
+  },
+  "youthHub": {
+    "enabled": false
+  },
+  "news": {
+    "enabled": true
+  },
+  "ticker": {
+    "enabled": true
   },
   "billetModal": {
     "goldTag": "Support Junior Hockey in Hamilton",
