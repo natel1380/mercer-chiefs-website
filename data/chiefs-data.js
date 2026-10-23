@@ -1734,16 +1734,16 @@ export const JUNIOR_TEAMS = {
         "team": "West Chester Wolves",
         "logo": "assets/images/logos/west-chester-wolves.png",
         "isChiefs": false,
-        "gp": 9,
+        "gp": 10,
         "w": 3,
-        "l": 5,
+        "l": 6,
         "otl": 0,
         "pts": 7,
         "gf": 29,
-        "ga": 32,
-        "diff": "-3",
-        "streak": "3L",
-        "pct": ".389"
+        "ga": 33,
+        "diff": "-4",
+        "streak": "4L",
+        "pct": ".350"
       },
       {
         "rank": 6,
@@ -3268,16 +3268,16 @@ export const JUNIOR_TEAMS = {
         "team": "Connecticut Junior Rangers",
         "logo": "assets/images/logos/ct-jr-rangers.png",
         "isChiefs": false,
-        "gp": 9,
+        "gp": 10,
         "w": 1,
-        "l": 7,
+        "l": 8,
         "otl": 1,
         "pts": 3,
-        "gf": 23,
-        "ga": 68,
-        "diff": "-45",
-        "streak": "5L",
-        "pct": ".167"
+        "gf": 26,
+        "ga": 72,
+        "diff": "-46",
+        "streak": "6L",
+        "pct": ".150"
       }
     ]
   }
