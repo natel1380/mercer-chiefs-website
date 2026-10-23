@@ -447,6 +447,11 @@ button {
   height: 80px;
 }
 
+.header-container nav {
+  margin-left: auto;
+  margin-right: 1.5rem;
+}
+
 .brand-wrapper {
   display: flex;
   align-items: center;
@@ -487,11 +492,12 @@ button {
   margin-top: 3px;
 }
 
-/* Nav Links */
+/* Nav Links - Right-justified next to Billet Families */
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  justify-content: flex-end;
+  gap: 1.35rem;
   list-style: none;
 }
 
@@ -3102,6 +3108,11 @@ button {
   }
 
   /* Mobile menu dropdown */
+  .header-container nav {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .nav-menu {
     display: none;
     position: absolute;

@@ -1444,7 +1444,7 @@ window.syncSectionVisibilityToggles = function (sourceId, isChecked) {
   else if (sourceId.includes('tryouts')) { sectionKey = 'tryouts'; labelName = 'Tryouts / Evaluations'; }
   else if (sourceId.includes('camps')) { sectionKey = 'camps'; labelName = 'Camps & Clinics'; }
   else if (sourceId.includes('video')) { sectionKey = 'video'; labelName = 'Program Video'; }
-  else if (sourceId.includes('arena')) { sectionKey = 'arena'; labelName = 'Home Rink/s'; }
+  else if (sourceId.includes('arena')) { sectionKey = 'arena'; labelName = (typeof cmsRinksList !== 'undefined' && cmsRinksList.length > 1 ? 'Home Rinks' : 'Home Rink'); }
   else if (sourceId.includes('news')) { sectionKey = 'news'; labelName = 'News & Updates'; }
 
   if (sectionKey) {
@@ -3750,6 +3750,22 @@ function renderCmsRinksList() {
   const container = document.getElementById('cms-rinks-list');
   if (!container) return;
 
+  // Dynamic smart labels based on rink count
+  const count = cmsRinksList.length;
+  const isSingle = count <= 1;
+  const dynamicNavLabel = isSingle ? 'Home Rink' : 'Home Rinks';
+  const dynamicHeading = isSingle ? 'Home Rink & Facility' : 'Home Rinks & Facilities';
+  const dynamicToggleText = isSingle ? 'Display Home Rink on Website' : 'Display Home Rinks on Website';
+
+  const quickLabel = document.getElementById('cms-quick-arena-label');
+  if (quickLabel) quickLabel.textContent = dynamicNavLabel;
+
+  const cardHeading = document.getElementById('cms-arena-card-heading');
+  if (cardHeading) cardHeading.textContent = dynamicHeading;
+
+  const toggleLabel = document.getElementById('cms-arena-toggle-label');
+  if (toggleLabel) toggleLabel.textContent = dynamicToggleText;
+
   if (cmsRinksList.length === 0) {
     container.innerHTML = `
       <div style="padding: 1.5rem; text-align: center; color: var(--text-muted); background: rgba(0,0,0,0.2); border: 1px dashed var(--border-subtle); border-radius: var(--radius-sm);">
@@ -3866,8 +3882,14 @@ window.syncRinksLive = function () {
       p = JSON.parse(raw);
     }
     if (!p.arena) p.arena = {};
-    p.arena.sectionTag = getCmsVal('cms-arena-section-tag') || 'Home Facilities';
-    p.arena.sectionTitle = getCmsVal('cms-arena-section-title') || 'Home Rinks & Facilities';
+    const count = cmsRinksList.length;
+    const dynamicNavLabel = count > 1 ? 'Home Rinks' : 'Home Rink';
+    const dynamicTag = count > 1 ? 'Home Facilities' : 'Home Facility';
+    const dynamicTitle = count > 1 ? 'Home Rinks & Facilities' : 'Home Rink & Facility';
+
+    p.arena.navLabel = dynamicNavLabel;
+    p.arena.sectionTag = getCmsVal('cms-arena-section-tag') || dynamicTag;
+    p.arena.sectionTitle = getCmsVal('cms-arena-section-title') || dynamicTitle;
     p.arena.sectionSubtitle = getCmsVal('cms-arena-section-subtitle');
     p.arena.rinks = cmsRinksList;
 
@@ -4162,8 +4184,9 @@ window.collectSiteContentFromUI = function () {
     },
     arena: {
       enabled: isArenaEnabled,
-      sectionTag: getCmsVal('cms-arena-section-tag') || 'Home Facilities',
-      sectionTitle: getCmsVal('cms-arena-section-title') || 'Home Rinks & Facilities',
+      navLabel: cmsRinksList.length > 1 ? 'Home Rinks' : 'Home Rink',
+      sectionTag: getCmsVal('cms-arena-section-tag') || (cmsRinksList.length > 1 ? 'Home Facilities' : 'Home Facility'),
+      sectionTitle: getCmsVal('cms-arena-section-title') || (cmsRinksList.length > 1 ? 'Home Rinks & Facilities' : 'Home Rink & Facility'),
       sectionSubtitle: getCmsVal('cms-arena-section-subtitle') || 'The Mercer Chiefs train and compete across premier twin-sheet regional ice complexes in Central New Jersey.',
       title: cmsRinksList[0]?.name || 'Ice Land Skating Center',
       tag: cmsRinksList[0]?.tag || 'Home Facility',

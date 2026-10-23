@@ -89,6 +89,7 @@
   },
   "arena": {
     "enabled": true,
+    "navLabel": "Home Rinks",
     "sectionTag": "Home Facilities",
     "sectionTitle": "Home Rinks & Facilities",
     "sectionSubtitle": "The Mercer Chiefs train and compete across premier twin-sheet regional ice complexes in Central New Jersey.",

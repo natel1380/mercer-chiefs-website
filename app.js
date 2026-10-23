@@ -1137,20 +1137,9 @@ export function applySiteContent(content) {
     }
   }
 
-  // 4. Arena & Facilities (Multi-Rink Support)
+  // 4. Arena & Facilities (Smart Multi-Rink Support)
   if (content.arena) {
     const a = content.arena;
-    const tag = document.getElementById('arena-facility-tag');
-    if (tag && a.sectionTag) tag.textContent = a.sectionTag;
-    const title = document.getElementById('arena-section-title');
-    if (title && a.sectionTitle) title.textContent = a.sectionTitle;
-    const subtitle = document.getElementById('arena-section-subtitle');
-    if (subtitle && a.sectionSubtitle) subtitle.textContent = a.sectionSubtitle;
-
-    const navLink = document.getElementById('nav-link-arena');
-    if (navLink) {
-      navLink.textContent = a.navLabel || 'Home Rink/s';
-    }
 
     // Determine rinks list (support both array of rinks or fallback legacy single object)
     let rinks = [];
@@ -1166,6 +1155,34 @@ export function applySiteContent(content) {
         mapUrl: a.mapUrl || '',
         amenities: Array.isArray(a.amenities) ? a.amenities : []
       }];
+    }
+
+    const isSingleRink = rinks.length <= 1;
+    const dynamicNavLabel = isSingleRink ? 'Home Rink' : 'Home Rinks';
+    const dynamicTag = isSingleRink ? 'Home Facility' : 'Home Facilities';
+    const dynamicSectionTitle = isSingleRink ? 'Home Rink & Facility' : 'Home Rinks & Facilities';
+
+    const tag = document.getElementById('arena-facility-tag');
+    if (tag) {
+      tag.textContent = (a.sectionTag && a.sectionTag !== 'Home Facilities' && a.sectionTag !== 'Home Facility') ? a.sectionTag : dynamicTag;
+    }
+
+    const title = document.getElementById('arena-section-title');
+    if (title) {
+      title.textContent = (a.sectionTitle && a.sectionTitle !== 'Home Rinks & Facilities' && a.sectionTitle !== 'Home Rink & Facility' && a.sectionTitle !== 'Home Rink/s & Facilities') ? a.sectionTitle : dynamicSectionTitle;
+    }
+
+    const subtitle = document.getElementById('arena-section-subtitle');
+    if (subtitle && a.sectionSubtitle) subtitle.textContent = a.sectionSubtitle;
+
+    const navLink = document.getElementById('nav-link-arena');
+    if (navLink) {
+      // Dynamic smart labeling: 1 rink => "Home Rink", multiple => "Home Rinks"
+      if (!a.navLabel || a.navLabel === 'Home Rink/s' || a.navLabel === 'Home Rink' || a.navLabel === 'Home Rinks') {
+        navLink.textContent = dynamicNavLabel;
+      } else {
+        navLink.textContent = a.navLabel;
+      }
     }
 
     const rinksContainer = document.getElementById('arena-rinks-container');
