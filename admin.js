@@ -1934,6 +1934,24 @@ window.saveArticle = function (e) {
 
   // Broadcast cross-tab update
   window.dispatchEvent(new Event('storage'));
+
+  // Sync to CMS state and publish live to GitHub
+  if (typeof cmsContentState !== 'undefined' && cmsContentState) {
+    cmsContentState.newsArticles = adminState.newsArticles;
+  }
+  try {
+    const scRaw = localStorage.getItem('mercer_site_content');
+    if (scRaw) {
+      const sc = JSON.parse(scRaw);
+      sc.newsArticles = adminState.newsArticles;
+      localStorage.setItem('mercer_site_content', JSON.stringify(sc));
+    }
+  } catch (err) {}
+
+  showToast("Article saved! Publishing live to website...");
+  if (typeof window.publishSiteContent === 'function') {
+    window.publishSiteContent();
+  }
 };
 
 window.deleteArticle = function (articleId) {
@@ -1941,8 +1959,24 @@ window.deleteArticle = function (articleId) {
   adminState.newsArticles = adminState.newsArticles.filter(a => a.id !== articleId);
   localStorage.setItem('mercer_club_news', JSON.stringify(adminState.newsArticles));
   renderNewsList();
-  showToast("Article removed.");
   window.dispatchEvent(new Event('storage'));
+
+  if (typeof cmsContentState !== 'undefined' && cmsContentState) {
+    cmsContentState.newsArticles = adminState.newsArticles;
+  }
+  try {
+    const scRaw = localStorage.getItem('mercer_site_content');
+    if (scRaw) {
+      const sc = JSON.parse(scRaw);
+      sc.newsArticles = adminState.newsArticles;
+      localStorage.setItem('mercer_site_content', JSON.stringify(sc));
+    }
+  } catch (err) {}
+
+  showToast("Article removed. Publishing live updates...");
+  if (typeof window.publishSiteContent === 'function') {
+    window.publishSiteContent();
+  }
 };
 
 window.resetNewsArticles = function () {
@@ -2498,7 +2532,22 @@ window.saveImportedInstagramPost = function (e) {
   const form = document.getElementById('ig-import-form');
   if (form) form.reset();
 
-  showToast(`Imported Instagram post from ${account} directly to news feed!`);
+  if (typeof cmsContentState !== 'undefined' && cmsContentState) {
+    cmsContentState.newsArticles = adminState.newsArticles;
+  }
+  try {
+    const scRaw = localStorage.getItem('mercer_site_content');
+    if (scRaw) {
+      const sc = JSON.parse(scRaw);
+      sc.newsArticles = adminState.newsArticles;
+      localStorage.setItem('mercer_site_content', JSON.stringify(sc));
+    }
+  } catch (err) {}
+
+  showToast(`Imported post from ${account}! Publishing live to website...`);
+  if (typeof window.publishSiteContent === 'function') {
+    window.publishSiteContent();
+  }
 };
 
 // Facebook API Configuration & Live Sync
@@ -4023,7 +4072,10 @@ async function initSiteContentCMS() {
           : (serverContent.branding || {}),
         instagramAccounts: (Array.isArray(localContent.instagramAccounts) && localContent.instagramAccounts.length > 0)
           ? localContent.instagramAccounts
-          : (Array.isArray(serverContent.instagramAccounts) && serverContent.instagramAccounts.length > 0 ? serverContent.instagramAccounts : undefined)
+          : (Array.isArray(serverContent.instagramAccounts) && serverContent.instagramAccounts.length > 0 ? serverContent.instagramAccounts : undefined),
+        newsArticles: (Array.isArray(localContent.newsArticles) && localContent.newsArticles.length > 0)
+          ? localContent.newsArticles
+          : (Array.isArray(serverContent.newsArticles) && serverContent.newsArticles.length > 0 ? serverContent.newsArticles : undefined)
       };
     } else if (!content.staff || !content.staff.length) {
       content.staff = (serverContent && Array.isArray(serverContent.staff) && serverContent.staff.length > 0)
@@ -4034,6 +4086,17 @@ async function initSiteContentCMS() {
       if (serverContent && Array.isArray(serverContent.instagramAccounts) && serverContent.instagramAccounts.length > 0) {
         content.instagramAccounts = serverContent.instagramAccounts;
       }
+    }
+    if (!content.newsArticles || !content.newsArticles.length) {
+      if (serverContent && Array.isArray(serverContent.newsArticles) && serverContent.newsArticles.length > 0) {
+        content.newsArticles = serverContent.newsArticles;
+      }
+    }
+
+    if (Array.isArray(content.newsArticles) && content.newsArticles.length > 0) {
+      adminState.newsArticles = JSON.parse(JSON.stringify(content.newsArticles));
+      localStorage.setItem('mercer_club_news', JSON.stringify(adminState.newsArticles));
+      renderNewsList();
     }
 
     cmsContentState = content;
@@ -4874,6 +4937,9 @@ window.collectSiteContentFromUI = function () {
     instagramAccounts: (adminState.igConfig && Array.isArray(adminState.igConfig.accounts) && adminState.igConfig.accounts.length > 0)
       ? adminState.igConfig.accounts
       : (getStoredInstagramConfig().accounts || []),
+    newsArticles: (adminState.newsArticles && Array.isArray(adminState.newsArticles) && adminState.newsArticles.length > 0)
+      ? adminState.newsArticles
+      : (getStoredNews() || []),
     branding: {
       clubName: getCmsVal('cms-brand-club-name') || 'Mercer Chiefs Hockey Club',
       shortName: getCmsVal('cms-brand-club-short') || 'Mercer Chiefs',
@@ -4904,9 +4970,11 @@ window.publishSiteContent = async function () {
   const badgeContent = document.getElementById('site-content-status-badge');
   const btnBranding = document.getElementById('btn-publish-branding');
   const badgeBranding = document.getElementById('site-branding-status-badge');
+  const btnNews = document.getElementById('btn-publish-news');
+  const badgeNews = document.getElementById('news-publish-status-badge');
 
-  const btns = [btnContent, btnBranding].filter(Boolean);
-  const badges = [badgeContent, badgeBranding].filter(Boolean);
+  const btns = [btnContent, btnBranding, btnNews].filter(Boolean);
+  const badges = [badgeContent, badgeBranding, badgeNews].filter(Boolean);
 
   if (!token) {
     window.switchAdminTab('tab-sync');
@@ -4973,7 +5041,9 @@ window.publishSiteContent = async function () {
         b.disabled = false;
         b.innerHTML = '✓ Published!';
         setTimeout(() => {
-          b.innerHTML = b.id === 'btn-publish-branding' ? '💾 Publish Branding to Live Site' : '💾 Publish to Live Site';
+          if (b.id === 'btn-publish-branding') b.innerHTML = '💾 Publish Branding to Live Site';
+          else if (b.id === 'btn-publish-news') b.innerHTML = '💾 Publish News to Live Site';
+          else b.innerHTML = '💾 Publish to Live Site';
         }, 2500);
       });
       return;

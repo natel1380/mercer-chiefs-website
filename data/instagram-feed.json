@@ -19,6 +19,12 @@
       "name": "Mercer Chiefs Youth AAA Hockey",
       "url": "https://www.instagram.com/mercerchiefsyouth/",
       "category": "Youth AAA"
+    },
+    {
+      "handle": "mercerchiefsusphl",
+      "name": "Mercer Chiefs Premier Hockey",
+      "url": "https://www.instagram.com/mercerchiefsusphl/",
+      "category": "USPHL Premier"
     }
   ],
   "posts": [
@@ -59,7 +65,7 @@
       "summary": "Six points on the weekend! Coach Firsov's Premier squad delivered a pair of disciplined, high-tempo victories at Ice Land to push their win streak to four games. Catch the boys back on home ice this Friday! #MercerChiefs #USPHLPremier",
       "image": "assets/images/news/fb_premier_hitmen_banner.jpg",
       "source": "instagram",
-      "account": "@mercerchiefsncdc",
+      "account": "@mercerchiefsusphl",
       "sourceUrl": "https://www.instagram.com/p/DBd2w-NPO03/",
       "link": "https://www.instagram.com/p/DBd2w-NPO03/",
       "credit": "Heather O'Connell Photography"

@@ -1284,6 +1284,14 @@ export function applySiteContent(content) {
   if (Array.isArray(content.staff) && content.staff.length > 0) {
     initStaff();
   }
+
+  // 9. Published News Articles (Shared Across All Visitors)
+  if (Array.isArray(content.newsArticles) && content.newsArticles.length > 0) {
+    try {
+      localStorage.setItem('mercer_club_news', JSON.stringify(content.newsArticles));
+      initNews();
+    } catch (e) {}
+  }
 }
 
 export function hexToRgba(hex, alpha) {

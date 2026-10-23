@@ -2093,6 +2093,13 @@
           </div>
 
           <div style="display: flex; gap: 0.65rem; flex-wrap: wrap; align-items: center;">
+            <button type="button" class="btn-primary" id="btn-publish-news" onclick="window.publishSiteContent()"
+              style="font-size: 0.85rem; padding: 0.5rem 1.1rem; background: var(--chiefs-gold); border-color: var(--chiefs-gold); color: #000; font-weight: 700; display: inline-flex; align-items: center; gap: 0.45rem; box-shadow: 0 0 14px rgba(245, 166, 35, 0.35);">
+              💾 Publish News to Live Site
+            </button>
+            <span id="news-publish-status-badge" style="font-size: 0.75rem; color: #4ade80; font-weight: 600; padding: 0.2rem 0.55rem; background: rgba(74, 222, 128, 0.12); border-radius: 999px; border: 1px solid rgba(74, 222, 128, 0.25);">
+              ● Live Cloud Synced
+            </span>
             <button type="button" class="btn-primary"
               style="background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border: none; display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.85rem; box-shadow: 0 4px 14px rgba(220, 39, 67, 0.35);"
               onclick="window.syncInstagramPosts()" id="btn-sync-instagram">
