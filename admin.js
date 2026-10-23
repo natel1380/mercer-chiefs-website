@@ -128,9 +128,12 @@ function getStoredHiddenTeams() {
 }
 
 function getStoredJuniorHubVisible() {
-  const v = localStorage.getItem('mercer_junior_hub_visible');
-  if (v !== null) return v === 'true';
   try {
+    const rawVis = localStorage.getItem('mercer_section_visibility');
+    if (rawVis) {
+      const vis = JSON.parse(rawVis);
+      if (vis.juniorHub !== undefined) return vis.juniorHub !== false;
+    }
     const raw = localStorage.getItem('mercer_site_content');
     if (raw) {
       const p = JSON.parse(raw);
@@ -138,13 +141,18 @@ function getStoredJuniorHubVisible() {
       if (p.sections?.juniorHub !== undefined) return p.sections.juniorHub !== false;
     }
   } catch (e) {}
+  const v = localStorage.getItem('mercer_junior_hub_visible');
+  if (v !== null) return v === 'true';
   return true;
 }
 
 function getStoredYouthHubVisible() {
-  const v = localStorage.getItem('mercer_youth_hub_visible');
-  if (v !== null) return v === 'true';
   try {
+    const rawVis = localStorage.getItem('mercer_section_visibility');
+    if (rawVis) {
+      const vis = JSON.parse(rawVis);
+      if (vis.youthHub !== undefined) return vis.youthHub !== false;
+    }
     const raw = localStorage.getItem('mercer_site_content');
     if (raw) {
       const p = JSON.parse(raw);
@@ -152,6 +160,8 @@ function getStoredYouthHubVisible() {
       if (p.sections?.youthHub !== undefined) return p.sections.youthHub !== false;
     }
   } catch (e) {}
+  const v = localStorage.getItem('mercer_youth_hub_visible');
+  if (v !== null) return v === 'true';
   return true;
 }
 
@@ -1576,7 +1586,54 @@ window.handleTeamVisibilityChange = function (teamId, isVisible) {
   renderTeamToggles();
   showToast(`Updated! ${teamId.toUpperCase()} is now ${isVisible ? 'visible' : 'hidden'} on the website.`);
 
+  try {
+    const bc = new BroadcastChannel('mercer_visibility_channel');
+    bc.postMessage({ type: 'visibility_change' });
+  } catch (e) {}
+
   // Cross-tab broadcast
+  window.dispatchEvent(new Event('storage'));
+};
+
+window.toggleTierTeams = function (tierType, isVisible) {
+  const isChecked = !!isVisible;
+  let targetIds = [];
+  let tierLabel = '';
+
+  if (tierType === 'thf') {
+    targetIds = adminState.youthTeams
+      .filter(t => t.leagueId === 5 || (t.league && t.league.includes('THF')) || (t.tier && /\bTier (I|1)\b/i.test(t.tier) && !t.tier.includes('Tier II')))
+      .map(t => t.id);
+    tierLabel = 'Tier I AAA (THF)';
+  } else if (tierType === 'ahf') {
+    targetIds = adminState.youthTeams
+      .filter(t => t.leagueId === 4 || (t.league && t.league.includes('AHF')) || (t.tier && t.tier.includes('Tier II')))
+      .map(t => t.id);
+    tierLabel = 'Tier II (AHF)';
+  } else if (tierType === 'junior') {
+    targetIds = ['ncdc', 'premier'];
+    tierLabel = 'Junior';
+  }
+
+  if (isChecked) {
+    adminState.hiddenTeams = adminState.hiddenTeams.filter(id => !targetIds.includes(id));
+  } else {
+    targetIds.forEach(id => {
+      if (!adminState.hiddenTeams.includes(id)) {
+        adminState.hiddenTeams.push(id);
+      }
+    });
+  }
+
+  localStorage.setItem('mercer_hidden_teams', JSON.stringify(adminState.hiddenTeams));
+  renderTeamToggles();
+  showToast(`${tierLabel} teams are now ${isChecked ? 'visible' : 'hidden'} on the website.`);
+
+  try {
+    const bc = new BroadcastChannel('mercer_visibility_channel');
+    bc.postMessage({ type: 'visibility_change' });
+  } catch (e) {}
+
   window.dispatchEvent(new Event('storage'));
 };
 
@@ -1594,6 +1651,12 @@ window.toggleAllTeams = function (showAll) {
   localStorage.setItem('mercer_hidden_teams', JSON.stringify(adminState.hiddenTeams));
   renderTeamToggles();
   showToast(showAll ? 'All 31 teams are now visible.' : 'All teams hidden.');
+
+  try {
+    const bc = new BroadcastChannel('mercer_visibility_channel');
+    bc.postMessage({ type: 'visibility_change' });
+  } catch (e) {}
+
   window.dispatchEvent(new Event('storage'));
 };
 
@@ -1602,6 +1665,12 @@ window.resetTeamVisibility = function () {
   localStorage.removeItem('mercer_hidden_teams');
   renderTeamToggles();
   showToast('Team visibility reset to defaults (all teams visible).');
+
+  try {
+    const bc = new BroadcastChannel('mercer_visibility_channel');
+    bc.postMessage({ type: 'visibility_change' });
+  } catch (e) {}
+
   window.dispatchEvent(new Event('storage'));
 };
 
@@ -4271,16 +4340,34 @@ function populateSiteContentUI(data) {
   setCheck('cms-hero-enabled', heroVal);
   setCheck('cms-quick-hero', heroVal);
 
-  let juniorVal = storedVis.juniorHub !== undefined ? storedVis.juniorHub : (data.juniorHub?.enabled ?? sec.juniorHub ?? (data.juniorHubVisible ?? adminState.juniorHubVisible ?? true));
-  const storedJr = localStorage.getItem('mercer_junior_hub_visible');
-  if (storedJr !== null && storedVis.juniorHub === undefined) juniorVal = storedJr === 'true';
+  let juniorVal = true;
+  if (storedVis.juniorHub !== undefined) {
+    juniorVal = !!storedVis.juniorHub;
+  } else if (data.juniorHub?.enabled !== undefined) {
+    juniorVal = !!data.juniorHub.enabled;
+  } else if (sec.juniorHub !== undefined) {
+    juniorVal = !!sec.juniorHub;
+  } else {
+    const storedJr = localStorage.getItem('mercer_junior_hub_visible');
+    if (storedJr !== null) juniorVal = storedJr === 'true';
+    else juniorVal = data.juniorHubVisible ?? adminState.juniorHubVisible ?? true;
+  }
   setCheck('toggle-hub-junior', juniorVal);
   setCheck('cms-quick-junior', juniorVal);
   adminState.juniorHubVisible = juniorVal !== false;
 
-  let youthVal = storedVis.youthHub !== undefined ? storedVis.youthHub : (data.youthHub?.enabled ?? sec.youthHub ?? (data.youthHubVisible ?? adminState.youthHubVisible ?? true));
-  const storedYth = localStorage.getItem('mercer_youth_hub_visible');
-  if (storedYth !== null && storedVis.youthHub === undefined) youthVal = storedYth === 'true';
+  let youthVal = true;
+  if (storedVis.youthHub !== undefined) {
+    youthVal = !!storedVis.youthHub;
+  } else if (data.youthHub?.enabled !== undefined) {
+    youthVal = !!data.youthHub.enabled;
+  } else if (sec.youthHub !== undefined) {
+    youthVal = !!sec.youthHub;
+  } else {
+    const storedYth = localStorage.getItem('mercer_youth_hub_visible');
+    if (storedYth !== null) youthVal = storedYth === 'true';
+    else youthVal = data.youthHubVisible ?? adminState.youthHubVisible ?? true;
+  }
   setCheck('toggle-hub-youth', youthVal);
   setCheck('cms-quick-youth', youthVal);
   adminState.youthHubVisible = youthVal !== false;

@@ -176,8 +176,10 @@ export function getAllYouthTeams() {
 export function getActiveYouthTeams() {
   const all = getAllYouthTeams();
   const hidden = getStoredHiddenTeams();
-  const active = all.filter(t => !hidden.includes(t.id));
-  return active.length > 0 ? active : all;
+  if (Array.isArray(hidden) && hidden.length > 0) {
+    return all.filter(t => !hidden.includes(t.id));
+  }
+  return all;
 }
 
 // Application State
@@ -249,8 +251,11 @@ if (typeof window !== 'undefined' && typeof window.addEventListener === 'functio
     if (!e.key || e.key.includes('mercer_synced_junior') || e.key.includes('mercer_synced_ticker') || e.key.includes('mercer_last_sync')) {
       refreshJuniorDataUI();
     }
-    if (!e.key || e.key.includes('mercer_site_content') || e.key.includes('mercer_section_visibility') || e.key.includes('mercer_junior_hub') || e.key.includes('mercer_youth_hub') || e.key.includes('mercer_visibility_updated')) {
+    if (!e.key || e.key.includes('mercer_site_content') || e.key.includes('mercer_section_visibility') || e.key.includes('mercer_junior_hub') || e.key.includes('mercer_youth_hub') || e.key.includes('mercer_hidden_teams') || e.key.includes('mercer_visibility_updated')) {
       initSiteContent();
+      if (typeof updateHeroLeagueBadgesVisibility === 'function') {
+        updateHeroLeagueBadgesVisibility();
+      }
     }
   });
 
@@ -258,12 +263,18 @@ if (typeof window !== 'undefined' && typeof window.addEventListener === 'functio
     const bc = new BroadcastChannel('mercer_visibility_channel');
     bc.onmessage = () => {
       initSiteContent();
+      if (typeof updateHeroLeagueBadgesVisibility === 'function') {
+        updateHeroLeagueBadgesVisibility();
+      }
     };
   } catch (e) {}
 
   window.addEventListener('mercer:datasync', () => {
     refreshJuniorDataUI();
     initSiteContent();
+    if (typeof updateHeroLeagueBadgesVisibility === 'function') {
+      updateHeroLeagueBadgesVisibility();
+    }
   });
 }
 
@@ -803,6 +814,98 @@ export async function initSiteContent() {
   }
 }
 
+/* ==========================================================================
+   DYNAMIC HERO LEAGUE BADGES VISIBILITY
+   ========================================================================== */
+export function updateHeroLeagueBadgesVisibility(content) {
+  let activeContent = content;
+  if (!activeContent) {
+    try {
+      const raw = localStorage.getItem('mercer_site_content');
+      if (raw) activeContent = JSON.parse(raw);
+    } catch (e) {}
+  }
+
+  const storedVis = getStoredSectionVisibility();
+  const sec = activeContent?.sections || {};
+
+  // 1. Junior Hub visibility
+  let isJuniorVisible = true;
+  if (storedVis.juniorHub !== undefined) {
+    isJuniorVisible = !!storedVis.juniorHub;
+  } else if (activeContent?.juniorHub?.enabled !== undefined) {
+    isJuniorVisible = !!activeContent.juniorHub.enabled;
+  } else if (sec.juniorHub !== undefined) {
+    isJuniorVisible = !!sec.juniorHub;
+  } else {
+    try {
+      const storedJunior = localStorage.getItem('mercer_junior_hub_visible');
+      if (storedJunior !== null) isJuniorVisible = storedJunior === 'true';
+      else if (activeContent?.juniorHubVisible !== undefined) isJuniorVisible = !!activeContent.juniorHubVisible;
+    } catch (e) {}
+  }
+
+  // 2. Youth Hub visibility
+  let isYouthVisible = true;
+  if (storedVis.youthHub !== undefined) {
+    isYouthVisible = !!storedVis.youthHub;
+  } else if (activeContent?.youthHub?.enabled !== undefined) {
+    isYouthVisible = !!activeContent.youthHub.enabled;
+  } else if (sec.youthHub !== undefined) {
+    isYouthVisible = !!sec.youthHub;
+  } else {
+    try {
+      const storedYouth = localStorage.getItem('mercer_youth_hub_visible');
+      if (storedYouth !== null) isYouthVisible = storedYouth === 'true';
+      else if (activeContent?.youthHubVisible !== undefined) isYouthVisible = !!activeContent.youthHubVisible;
+    } catch (e) {}
+  }
+
+  // 3. Hidden teams preferences
+  const hiddenTeams = getStoredHiddenTeams();
+
+  // 4. Junior individual teams visibility
+  const isNcdcVisible = isJuniorVisible && !hiddenTeams.includes('ncdc');
+  const isPremierVisible = isJuniorVisible && !hiddenTeams.includes('premier');
+
+  // 5. Youth Tier 1 (THF) and Tier 2 (AHF) visibility
+  const allYouth = getAllYouthTeams();
+  const thfTeams = allYouth.filter(t => t.leagueId === 5 || (t.league && t.league.includes('THF')));
+  const ahfTeams = allYouth.filter(t => t.leagueId === 4 || (t.league && t.league.includes('AHF')));
+
+  const hasVisibleThf = thfTeams.some(t => !hiddenTeams.includes(t.id));
+  const hasVisibleAhf = ahfTeams.some(t => !hiddenTeams.includes(t.id));
+
+  // If Youth Hub is hidden, both Youth league labels are hidden.
+  // If Youth Hub is visible, THF shows if any THF team is visible; AHF shows if any AHF team is visible.
+  const isThfBadgeVisible = isYouthVisible && hasVisibleThf;
+  const isAhfBadgeVisible = isYouthVisible && hasVisibleAhf;
+
+  // 6. DOM elements
+  const bNcdc = document.getElementById('hero-badge-ncdc');
+  const bPremier = document.getElementById('hero-badge-premier');
+  const bAhf = document.getElementById('hero-badge-ahf');
+  const bThf = document.getElementById('hero-badge-thf');
+  const badgesContainer = document.getElementById('hero-league-badges');
+
+  if (bNcdc) bNcdc.style.display = isNcdcVisible ? '' : 'none';
+  if (bPremier) bPremier.style.display = isPremierVisible ? '' : 'none';
+  if (bAhf) bAhf.style.display = isAhfBadgeVisible ? '' : 'none';
+  if (bThf) bThf.style.display = isThfBadgeVisible ? '' : 'none';
+
+  if (badgesContainer) {
+    const anyBadgeVisible = isNcdcVisible || isPremierVisible || isAhfBadgeVisible || isThfBadgeVisible;
+    badgesContainer.style.display = anyBadgeVisible ? '' : 'none';
+  }
+
+  // Also dynamically update Youth Hub tier pills if rendered
+  const pillThf = document.querySelector('.tier-pill[data-tier="thf"]');
+  const pillAhf = document.querySelector('.tier-pill[data-tier="ahf"]');
+  if (pillThf) pillThf.style.display = hasVisibleThf ? '' : 'none';
+  if (pillAhf) pillAhf.style.display = hasVisibleAhf ? '' : 'none';
+}
+window.updateHeroLeagueBadgesVisibility = updateHeroLeagueBadgesVisibility;
+
 export function applySiteContent(content) {
   if (!content) return;
 
@@ -815,22 +918,40 @@ export function applySiteContent(content) {
   if (heroEl) heroEl.style.display = isHeroVisible ? '' : 'none';
 
   // Junior Hub Visibility
-  let isJuniorVisible = storedVis.juniorHub !== undefined ? storedVis.juniorHub : (content.juniorHub?.enabled ?? sec.juniorHub ?? (content.juniorHubVisible ?? true));
-  try {
-    const storedJunior = localStorage.getItem('mercer_junior_hub_visible');
-    if (storedJunior !== null && storedVis.juniorHub === undefined) isJuniorVisible = storedJunior === 'true';
-  } catch (e) {}
+  let isJuniorVisible = true;
+  if (storedVis.juniorHub !== undefined) {
+    isJuniorVisible = !!storedVis.juniorHub;
+  } else if (content.juniorHub?.enabled !== undefined) {
+    isJuniorVisible = !!content.juniorHub.enabled;
+  } else if (sec.juniorHub !== undefined) {
+    isJuniorVisible = !!sec.juniorHub;
+  } else {
+    try {
+      const storedJunior = localStorage.getItem('mercer_junior_hub_visible');
+      if (storedJunior !== null) isJuniorVisible = storedJunior === 'true';
+      else if (content.juniorHubVisible !== undefined) isJuniorVisible = !!content.juniorHubVisible;
+    } catch (e) {}
+  }
   const juniorHubEl = document.getElementById('ncdc-hub');
   if (juniorHubEl) juniorHubEl.style.display = isJuniorVisible ? '' : 'none';
   const juniorNav = document.getElementById('nav-link-ncdc')?.closest('li');
   if (juniorNav) juniorNav.style.display = isJuniorVisible ? '' : 'none';
 
   // Youth Hub Visibility
-  let isYouthVisible = storedVis.youthHub !== undefined ? storedVis.youthHub : (content.youthHub?.enabled ?? sec.youthHub ?? (content.youthHubVisible ?? true));
-  try {
-    const storedYouth = localStorage.getItem('mercer_youth_hub_visible');
-    if (storedYouth !== null && storedVis.youthHub === undefined) isYouthVisible = storedYouth === 'true';
-  } catch (e) {}
+  let isYouthVisible = true;
+  if (storedVis.youthHub !== undefined) {
+    isYouthVisible = !!storedVis.youthHub;
+  } else if (content.youthHub?.enabled !== undefined) {
+    isYouthVisible = !!content.youthHub.enabled;
+  } else if (sec.youthHub !== undefined) {
+    isYouthVisible = !!sec.youthHub;
+  } else {
+    try {
+      const storedYouth = localStorage.getItem('mercer_youth_hub_visible');
+      if (storedYouth !== null) isYouthVisible = storedYouth === 'true';
+      else if (content.youthHubVisible !== undefined) isYouthVisible = !!content.youthHubVisible;
+    } catch (e) {}
+  }
   const youthHubEl = document.getElementById('youth-hub');
   if (youthHubEl) youthHubEl.style.display = isYouthVisible ? '' : 'none';
   const youthNav = document.getElementById('nav-link-youth')?.closest('li');
@@ -972,6 +1093,9 @@ export function applySiteContent(content) {
     if (s4Num && h.stat4Num) s4Num.textContent = h.stat4Num;
     if (s4Lbl && h.stat4Label) s4Lbl.textContent = h.stat4Label;
   }
+
+  // Update Hero League Badges
+  updateHeroLeagueBadgesVisibility(content);
 
   // 1. Program Video & Commercial
   if (content.program) {
@@ -1341,6 +1465,9 @@ export function applySiteContent(content) {
       initNews();
     } catch (e) {}
   }
+
+  // 10. Hero League Badges Visibility
+  updateHeroLeagueBadgesVisibility(content);
 }
 
 export function hexToRgba(hex, alpha) {
@@ -2642,8 +2769,14 @@ function initYouthHub() {
   function populateYouthDropdown() {
     const activeTeams = getActiveYouthTeams();
     const filter = state.youthTierFilter; // 'all' | 'ahf' | 'thf'
-    const ahfTeams = activeTeams.filter(t => t.tier.includes('AHF') || (t.league && t.league.includes('AHF')));
-    const thfTeams = activeTeams.filter(t => t.tier.includes('THF') || (t.league && t.league.includes('THF')));
+    const ahfTeams = activeTeams.filter(t => t.leagueId === 4 || (t.league && t.league.includes('AHF')) || (t.tier && t.tier.includes('Tier II')));
+    const thfTeams = activeTeams.filter(t => t.leagueId === 5 || (t.league && t.league.includes('THF')) || (t.tier && /\bTier (I|1)\b/i.test(t.tier) && !t.tier.includes('Tier II')));
+
+    // Dynamically show/hide youth hub tier filter pills
+    const pillThf = document.querySelector('.tier-pill[data-tier="thf"]');
+    const pillAhf = document.querySelector('.tier-pill[data-tier="ahf"]');
+    if (pillThf) pillThf.style.display = thfTeams.length > 0 ? '' : 'none';
+    if (pillAhf) pillAhf.style.display = ahfTeams.length > 0 ? '' : 'none';
 
     let html = '';
     if (filter === 'all' || filter === 'ahf') {
@@ -3330,6 +3463,9 @@ window.addEventListener('storage', () => {
     renderCommitmentsCards();
   }
   initSiteContent();
+  if (typeof updateHeroLeagueBadgesVisibility === 'function') {
+    updateHeroLeagueBadgesVisibility();
+  }
 });
 
 /* ==========================================================================

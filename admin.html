@@ -976,8 +976,12 @@
         <!-- Section: Junior Teams -->
         <div style="margin-bottom: 2rem;">
           <div
-            style="font-size: 0.85rem; font-weight: 800; color: var(--chiefs-red); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+            style="font-size: 0.85rem; font-weight: 800; color: var(--chiefs-red); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.85rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
             <span>Junior Squads (USPHL)</span>
+            <div style="display: flex; gap: 0.5rem;">
+              <button type="button" class="admin-btn admin-btn-sm" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.08); color: #e2e8f0;" onclick="window.toggleTierTeams('junior', true)">Show All</button>
+              <button type="button" class="admin-btn admin-btn-sm" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3);" onclick="window.toggleTierTeams('junior', false)">Hide All</button>
+            </div>
           </div>
           <div class="team-toggle-grid" id="grid-junior-teams">
             <!-- Injected by admin.js -->
@@ -987,8 +991,12 @@
         <!-- Section: Tier I AAA (THF) -->
         <div style="margin-bottom: 2rem;">
           <div
-            style="font-size: 0.85rem; font-weight: 800; color: var(--chiefs-gold); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+            style="font-size: 0.85rem; font-weight: 800; color: var(--chiefs-gold); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.85rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
             <span>Tier I AAA Teams (Tier 1 Hockey Federation)</span>
+            <div style="display: flex; gap: 0.5rem;">
+              <button type="button" class="admin-btn admin-btn-sm" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.08); color: #e2e8f0;" onclick="window.toggleTierTeams('thf', true)">Show All Tier I</button>
+              <button type="button" class="admin-btn admin-btn-sm" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3);" onclick="window.toggleTierTeams('thf', false)">Hide All Tier I</button>
+            </div>
           </div>
           <div class="team-toggle-grid" id="grid-thf-teams">
             <!-- Injected by admin.js -->
@@ -998,8 +1006,12 @@
         <!-- Section: Tier II (AHF) -->
         <div>
           <div
-            style="font-size: 0.85rem; font-weight: 800; color: var(--chiefs-gold); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+            style="font-size: 0.85rem; font-weight: 800; color: var(--chiefs-gold); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.85rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
             <span>Tier II Teams (Atlantic Hockey Federation)</span>
+            <div style="display: flex; gap: 0.5rem;">
+              <button type="button" class="admin-btn admin-btn-sm" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.08); color: #e2e8f0;" onclick="window.toggleTierTeams('ahf', true)">Show All Tier II</button>
+              <button type="button" class="admin-btn admin-btn-sm" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3);" onclick="window.toggleTierTeams('ahf', false)">Hide All Tier II</button>
+            </div>
           </div>
           <div class="team-toggle-grid" id="grid-ahf-teams">
             <!-- Injected by admin.js -->
