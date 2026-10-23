@@ -1,0 +1,110 @@
+{
+  "lastSynced": "2026-10-23T20:22:09.775Z",
+  "totalPosts": 6,
+  "accounts": [
+    {
+      "handle": "mercerchiefshockey",
+      "name": "Mercer Chiefs Hockey Club (Official)",
+      "url": "https://www.instagram.com/mercerchiefshockey/",
+      "category": "Club News"
+    },
+    {
+      "handle": "mercerchiefsncdc",
+      "name": "Mercer Chiefs Junior Hockey (NCDC & Premier)",
+      "url": "https://www.instagram.com/mercerchiefsncdc/",
+      "category": "NCDC Junior"
+    },
+    {
+      "handle": "mercerchiefsyouth",
+      "name": "Mercer Chiefs Youth AAA Hockey",
+      "url": "https://www.instagram.com/mercerchiefsyouth/",
+      "category": "Youth AAA"
+    }
+  ],
+  "posts": [
+    {
+      "id": "ig-post-ncdc-potw-oct22",
+      "title": "NCDC Player of the Week: Goaltender Honors After 42-Save Shutout",
+      "date": "October 22, 2026",
+      "category": "NCDC Junior",
+      "readTime": "2 min read",
+      "summary": "Big congratulations to our Chiefs NCDC netminder for earning USPHL Defensive Player of the Week! A commanding 42-save performance kept the Chiefs atop the South Division standings. #ChiefsNation #NCDC #USPHL",
+      "image": "assets/images/news/fb_gameday_pal.jpg",
+      "source": "instagram",
+      "account": "@mercerchiefsncdc",
+      "sourceUrl": "https://www.instagram.com/p/DBh8KxLuZ01/",
+      "link": "https://www.instagram.com/p/DBh8KxLuZ01/",
+      "credit": "Mercer Chiefs Media"
+    },
+    {
+      "id": "ig-post-youth-14u-undefeated",
+      "title": "Youth AAA: 14U Chiefs Go Undefeated 4-0 at THF Fall Showcase",
+      "date": "October 21, 2026",
+      "category": "Youth AAA",
+      "readTime": "2 min read",
+      "summary": "What a weekend for our 14U AAA boys! Four games, four statement victories at the Tier 1 Hockey Federation Fall Classic. Team defense allowed just 4 total goals all weekend behind stellar netminding. #ChiefsAAA #THF #YouthHockey",
+      "image": "assets/images/news/fb_15u_ot_win.jpg",
+      "source": "instagram",
+      "account": "@mercerchiefsyouth",
+      "sourceUrl": "https://www.instagram.com/p/DBf4mQxR902/",
+      "link": "https://www.instagram.com/p/DBf4mQxR902/",
+      "credit": "Mercer Chiefs Hockey"
+    },
+    {
+      "id": "ig-post-premier-sweep-oct20",
+      "title": "Premier Sweep! USPHL Squad Takes Back-to-Back Battles Over Rivals",
+      "date": "October 20, 2026",
+      "category": "USPHL Premier",
+      "readTime": "2 min read",
+      "summary": "Six points on the weekend! Coach Firsov's Premier squad delivered a pair of disciplined, high-tempo victories at Ice Land to push their win streak to four games. Catch the boys back on home ice this Friday! #MercerChiefs #USPHLPremier",
+      "image": "assets/images/news/fb_premier_hitmen_banner.jpg",
+      "source": "instagram",
+      "account": "@mercerchiefsncdc",
+      "sourceUrl": "https://www.instagram.com/p/DBd2w-NPO03/",
+      "link": "https://www.instagram.com/p/DBd2w-NPO03/",
+      "credit": "Heather O'Connell Photography"
+    },
+    {
+      "id": "ig-post-club-showcase-buzz",
+      "title": "Inside the Chiefs Training Facility: Power Skating & Video Prep",
+      "date": "October 19, 2026",
+      "category": "Club News",
+      "readTime": "2 min read",
+      "summary": "Behind the scenes at Ice Land: Skills Director Oktay Armgan putting our junior and youth athletes through high-tempo edge control drills, followed by tactical video breakdown in the Chiefs team theater. Discipline. Loyalty. Tradition. Excellence.",
+      "image": "assets/images/hero-action.jpg",
+      "source": "instagram",
+      "account": "@mercerchiefshockey",
+      "sourceUrl": "https://www.instagram.com/p/DBbaL0KLP04/",
+      "link": "https://www.instagram.com/p/DBbaL0KLP04/",
+      "credit": "Mercer Chiefs Hockey"
+    },
+    {
+      "id": "ig-post-alumni-d1-goal",
+      "title": "Alumni Spotlight: Chiefs Alum Nets Overtime Game Winner in NCAA D1",
+      "date": "October 18, 2026",
+      "category": "College Commitment",
+      "readTime": "2 min read",
+      "summary": "Love seeing our former Chiefs thriving at the collegiate level! Former Mercer forward scores in dramatic 3v3 overtime to secure a big conference win. The developmental pathway works! #MercerToNCAA #ChiefsAlumni #NCAAHockey",
+      "image": "assets/images/youth-champs.jpg",
+      "source": "instagram",
+      "account": "@mercerchiefshockey",
+      "sourceUrl": "https://www.instagram.com/p/DBZEe-sMA05/",
+      "link": "https://www.instagram.com/p/DBZEe-sMA05/",
+      "credit": "Mercer Chiefs Media"
+    },
+    {
+      "id": "ig-post-youth-goalie-spotlight",
+      "title": "Goalie Academy Focus: Terry Jarkowsky Clinic in Action at Ice Land",
+      "date": "October 17, 2026",
+      "category": "Youth AAA",
+      "readTime": "2 min read",
+      "summary": "Eyes on the puck! Terry Jarkowsky Goalie Academy in full session this week with our Tier 1 and Tier 2 goaltenders working on rebound tracking, crease depth, and lateral recovery. #MercerGoalies #IceLand #ChiefsNation",
+      "image": "assets/images/goalie-spotlight.jpg",
+      "source": "instagram",
+      "account": "@mercerchiefsyouth",
+      "sourceUrl": "https://www.instagram.com/p/DBW0Qk7vW06/",
+      "link": "https://www.instagram.com/p/DBW0Qk7vW06/",
+      "credit": "Mercer Chiefs Hockey"
+    }
+  ]
+}

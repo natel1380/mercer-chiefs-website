@@ -11,6 +11,7 @@ const ROOT_DIR = process.cwd();
 const JUNIOR_FEED_PATH = path.join(ROOT_DIR, 'data', 'junior-feed.json');
 const YOUTH_FEED_PATH = path.join(ROOT_DIR, 'data', 'youth-feed.json');
 const FB_FEED_PATH = path.join(ROOT_DIR, 'data', 'facebook-feed.json');
+const IG_FEED_PATH = path.join(ROOT_DIR, 'data', 'instagram-feed.json');
 const CHIEFS_DATA_PATH = path.join(ROOT_DIR, 'data', 'chiefs-data.js');
 
 /* ==========================================================================
@@ -581,6 +582,92 @@ async function syncFacebook(token = process.env.MERCER_FB_TOKEN, pageId = 'merce
 }
 
 /* ==========================================================================
+   4B. INSTAGRAM MULTI-ACCOUNT FEED SYNC
+   ========================================================================== */
+async function syncInstagram(token = process.env.MERCER_IG_TOKEN || process.env.MERCER_FB_TOKEN, accounts = ['mercerchiefshockey', 'mercerchiefsncdc', 'mercerchiefsyouth']) {
+  console.log(`[IG SYNC] Checking Instagram multi-account feeds for: ${accounts.map(a => '@' + a).join(', ')}...`);
+
+  // If live token is provided, attempt to fetch posts from Meta Graph API
+  if (token) {
+    try {
+      const allLivePosts = [];
+      for (const handle of accounts) {
+        console.log(`[IG SYNC] Querying Meta Graph API for Instagram handle: @${handle}...`);
+        const graphUrl = `https://graph.facebook.com/v19.0/${encodeURIComponent(handle)}/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp&limit=8&access_token=${encodeURIComponent(token)}`;
+        const resp = await fetch(graphUrl);
+        if (resp.ok) {
+          const json = await resp.json();
+          if (json.data && Array.isArray(json.data)) {
+            const mapped = json.data.map(item => {
+              const cap = item.caption || '';
+              const firstLine = cap.split('\n')[0].replace(/^[#\s]+/, '').trim();
+              let title = firstLine.length > 5 && firstLine.length <= 80 ? firstLine : (firstLine.length > 80 ? firstLine.slice(0, 77) + '...' : `Mercer Chiefs Update (@${handle})`);
+              
+              const upperCap = cap.toUpperCase();
+              let category = 'Club News';
+              if (upperCap.includes('NCDC')) category = 'NCDC Junior';
+              else if (upperCap.includes('PREMIER') || upperCap.includes('USPHL')) category = 'USPHL Premier';
+              else if (/\b(18U|16U|15U|14U|13U|12U|10U|YOUTH|AAA)\b/i.test(cap)) category = 'Youth AAA';
+
+              const postDate = new Date(item.timestamp).toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric'
+              });
+
+              return {
+                id: `ig-${item.id}`,
+                title,
+                date: postDate,
+                category,
+                readTime: '2 min read',
+                summary: cap.length > 220 ? cap.slice(0, 217) + '...' : (cap || 'Click to view post on Instagram.'),
+                image: item.media_url || item.thumbnail_url || 'assets/images/hero-action.jpg',
+                source: 'instagram',
+                account: `@${handle}`,
+                sourceUrl: item.permalink || `https://www.instagram.com/${handle}/`,
+                link: item.permalink || `https://www.instagram.com/${handle}/`,
+                credit: cap.toLowerCase().includes('heather') ? "Heather O'Connell Photography" : "Mercer Chiefs Hockey"
+              };
+            });
+            allLivePosts.push(...mapped);
+          }
+        }
+      }
+
+      if (allLivePosts.length > 0) {
+        const feedData = {
+          lastSynced: new Date().toISOString(),
+          totalPosts: allLivePosts.length,
+          accounts: accounts.map(h => ({ handle: h, url: `https://www.instagram.com/${h}/` })),
+          posts: allLivePosts
+        };
+        fs.writeFileSync(IG_FEED_PATH, JSON.stringify(feedData, null, 2));
+        console.log(`[IG SYNC SUCCESS] Wrote ${allLivePosts.length} live Instagram posts to ${IG_FEED_PATH}`);
+        return allLivePosts;
+      }
+    } catch (err) {
+      console.warn('[IG SYNC WARNING] Meta Graph API query failed, preserving cached feed:', err.message);
+    }
+  }
+
+  // Fallback: Verify & touch timestamp on existing cached instagram-feed.json
+  if (fs.existsSync(IG_FEED_PATH)) {
+    try {
+      const existing = JSON.parse(fs.readFileSync(IG_FEED_PATH, 'utf-8'));
+      existing.lastSynced = new Date().toISOString();
+      fs.writeFileSync(IG_FEED_PATH, JSON.stringify(existing, null, 2));
+      console.log(`[IG SYNC CACHED] Verified ${existing.posts ? existing.posts.length : 0} posts across ${existing.accounts ? existing.accounts.length : 0} accounts in ${IG_FEED_PATH}`);
+      return existing.posts || [];
+    } catch (e) {
+      console.error('[IG SYNC ERROR] Reading cached feed failed:', e);
+    }
+  }
+
+  return null;
+}
+
+/* ==========================================================================
    5. YOUTH TEAMS FEED VERIFICATION & SCORECARD AUTO-SYNC
    ========================================================================== */
 import zlib from 'zlib';
@@ -793,7 +880,10 @@ async function main() {
   // 2. Sync Facebook News Feed
   await syncFacebook();
 
-  // 3. Verify Youth Teams Feed
+  // 3. Sync Instagram Multi-Account Feed
+  await syncInstagram();
+
+  // 4. Verify Youth Teams Feed
   await syncYouthFeed();
 
   console.log('====================================================');

@@ -17,6 +17,7 @@ const adminState = {
   juniorTeams: getStoredJuniorTeams(),
   seasonConfig: getStoredSeasonConfig(),
   fbConfig: getStoredFacebookConfig(),
+  igConfig: getStoredInstagramConfig(),
   seasonFilter: 'all',
   seasonSearchQuery: '',
   alumniFilter: 'all',
@@ -41,6 +42,33 @@ function getStoredJuniorTeams() {
   const { junior } = applyVerifiedResults(data, LIVE_TICKER_GAMES);
   return junior;
 }
+
+function getStoredInstagramConfig() {
+  const defaultAccounts = [
+    { handle: "mercerchiefshockey", label: "Mercer Chiefs Club (Official)", category: "Club News", enabled: true },
+    { handle: "mercerchiefsncdc", label: "Chiefs NCDC & Premier Junior", category: "NCDC Junior", enabled: true },
+    { handle: "mercerchiefsyouth", label: "Chiefs Youth AAA Hockey", category: "Youth AAA", enabled: true }
+  ];
+
+  try {
+    const raw = localStorage.getItem('mercer_instagram_config');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') {
+        return {
+          accessToken: parsed.accessToken || '',
+          accounts: Array.isArray(parsed.accounts) && parsed.accounts.length > 0 ? parsed.accounts : defaultAccounts
+        };
+      }
+    }
+  } catch (e) {}
+
+  return {
+    accessToken: '',
+    accounts: defaultAccounts
+  };
+}
+
 function getStoredFacebookConfig() {
   try {
     const raw = localStorage.getItem('mercer_fb_config');
@@ -205,6 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
   checkAuth();
   updateMetrics();
   initSeasonParameters();
+  initInstagramConfigUI();
   initFacebookConfigUI();
   initGitHubConfigUI();
   renderTeamToggles();
@@ -1717,6 +1746,7 @@ function renderNewsList() {
   }
 
   container.innerHTML = adminState.newsArticles.map((art, idx) => {
+    const isInstagram = art.source === 'instagram';
     const isFacebook = art.source === 'facebook';
 
     return `
@@ -1727,7 +1757,12 @@ function renderNewsList() {
           <span class="pill-badge" style="background: rgba(189, 50, 59, 0.85); border-color: rgba(189, 50, 59, 0.35); color: #fff; font-size: 0.7rem; font-weight: 700;">
             ${art.category}
           </span>
-          ${isFacebook ? `
+          ${isInstagram ? `
+            <span class="pill-badge" style="background: linear-gradient(135deg, #f09433, #dc2743, #bc1888); border: none; color: #fff; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.25rem;">
+              <svg width="10" height="10" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              ${art.account || 'Instagram Post'}
+            </span>
+          ` : isFacebook ? `
             <span class="pill-badge" style="background: rgba(24, 119, 242, 0.9); border-color: #1877F2; color: #fff; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.25rem;">
               <svg width="10" height="10" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
               Facebook Post
@@ -1756,8 +1791,8 @@ function renderNewsList() {
             ✏️ Edit
           </button>
           ${art.link ? `
-            <a href="${art.link}" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size: 0.78rem; padding: 0.4rem 0.6rem; color: #93c5fd;" title="Open Link">
-              🔗
+            <a href="${art.link}" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size: 0.78rem; padding: 0.4rem 0.6rem; color: ${isInstagram ? '#f472b6' : '#93c5fd'}; border-color: ${isInstagram ? 'rgba(220, 39, 67, 0.4)' : 'rgba(24, 119, 242, 0.4)'};" title="${isInstagram ? 'Open on Instagram' : 'Open Link'}">
+              ${isInstagram ? '📸' : '🔗'}
             </a>
           ` : ''}
           <button type="button" class="btn-secondary" style="font-size: 0.78rem; padding: 0.4rem 0.8rem; color: #f87171; border-color: rgba(239, 68, 68, 0.3);" onclick="window.deleteArticle('${art.id}')">
@@ -1769,6 +1804,13 @@ function renderNewsList() {
     `;
   }).join('');
 }
+
+window.handleArticleSourceChange = function (val) {
+  const accountGroup = document.getElementById('group-article-account');
+  if (accountGroup) {
+    accountGroup.style.display = (val === 'instagram') ? 'block' : 'none';
+  }
+};
 
 window.openArticleModal = function (articleId = null) {
   const modal = document.getElementById('article-modal');
@@ -1783,6 +1825,8 @@ window.openArticleModal = function (articleId = null) {
   const linkField = document.getElementById('form-article-link');
   const creditField = document.getElementById('form-article-credit');
   const sourceField = document.getElementById('form-article-source');
+  const accountGroup = document.getElementById('group-article-account');
+  const accountField = document.getElementById('form-article-account');
 
   if (articleId) {
     const art = adminState.newsArticles.find(a => a.id === articleId);
@@ -1798,6 +1842,8 @@ window.openArticleModal = function (articleId = null) {
       if (linkField) linkField.value = art.link || art.sourceUrl || '';
       if (creditField) creditField.value = art.credit || '';
       if (sourceField) sourceField.value = art.source || 'manual';
+      if (accountField) accountField.value = art.account || '@mercerchiefshockey';
+      if (accountGroup) accountGroup.style.display = (art.source === 'instagram') ? 'block' : 'none';
     }
   } else {
     titleHeader.textContent = "Write News Article";
@@ -1811,6 +1857,8 @@ window.openArticleModal = function (articleId = null) {
     if (linkField) linkField.value = "";
     if (creditField) creditField.value = "";
     if (sourceField) sourceField.value = "manual";
+    if (accountField) accountField.value = "@mercerchiefshockey";
+    if (accountGroup) accountGroup.style.display = "none";
   }
 
   if (modal) modal.classList.add('active');
@@ -1833,11 +1881,14 @@ window.saveArticle = function (e) {
   const link = document.getElementById('form-article-link')?.value.trim();
   const credit = document.getElementById('form-article-credit')?.value.trim();
   const source = document.getElementById('form-article-source')?.value.trim() || 'manual';
+  const account = document.getElementById('form-article-account')?.value.trim();
 
   if (!title || !summary) {
     alert("Please fill in all required fields.");
     return;
   }
+
+  const postAccount = source === 'instagram' ? (account || '@mercerchiefshockey') : undefined;
 
   if (idField) {
     // Edit existing
@@ -1853,7 +1904,8 @@ window.saveArticle = function (e) {
         summary,
         link: link || undefined,
         credit: credit || undefined,
-        source: source || adminState.newsArticles[idx].source || 'manual'
+        source: source || adminState.newsArticles[idx].source || 'manual',
+        account: postAccount || adminState.newsArticles[idx].account
       };
       showToast("Article updated and published to homepage!");
     }
@@ -1869,7 +1921,8 @@ window.saveArticle = function (e) {
       summary,
       link: link || undefined,
       credit: credit || undefined,
-      source: source || 'manual'
+      source: source || 'manual',
+      account: postAccount
     };
     adminState.newsArticles.unshift(newArt);
     showToast("New article published to homepage!");
@@ -1893,12 +1946,523 @@ window.deleteArticle = function (articleId) {
 };
 
 window.resetNewsArticles = function () {
-  if (!confirm("Reset all news articles to default club Facebook releases?")) return;
+  if (!confirm("Reset all news articles to default club releases?")) return;
   adminState.newsArticles = [...CLUB_NEWS];
   localStorage.setItem('mercer_club_news', JSON.stringify(adminState.newsArticles));
   renderNewsList();
-  showToast("News reset to default club Facebook releases.");
+  showToast("News reset to default club releases.");
   window.dispatchEvent(new Event('storage'));
+};
+
+/* ==========================================================================
+   INSTAGRAM MULTI-ACCOUNT CONFIGURATION & SYNC
+   ========================================================================== */
+function initInstagramConfigUI() {
+  const cfg = adminState.igConfig || getStoredInstagramConfig();
+  const summaryEl = document.getElementById('ig-linked-accounts-summary');
+  const badgeEl = document.getElementById('ig-token-badge');
+  const tokenInput = document.getElementById('cfg-ig-access-token');
+
+  if (tokenInput) tokenInput.value = cfg.accessToken || '';
+
+  const activeAccounts = (cfg.accounts || []).filter(a => a.enabled !== false);
+
+  if (summaryEl) {
+    if (activeAccounts.length === 0) {
+      summaryEl.textContent = "No accounts enabled (0 active)";
+    } else if (activeAccounts.length === 1) {
+      summaryEl.textContent = `@${activeAccounts[0].handle} (${activeAccounts[0].label})`;
+    } else {
+      const handles = activeAccounts.map(a => '@' + a.handle).join(', ');
+      summaryEl.textContent = `${activeAccounts.length} Accounts (${handles})`;
+    }
+  }
+
+  if (badgeEl) {
+    if (cfg.accessToken && cfg.accessToken.trim()) {
+      badgeEl.textContent = "Live Meta Graph API Active";
+      badgeEl.style.background = "rgba(34, 197, 94, 0.15)";
+      badgeEl.style.color = "#4ade80";
+      badgeEl.style.borderColor = "rgba(34, 197, 94, 0.35)";
+    } else {
+      badgeEl.textContent = `Multi-Account Sync Active (${activeAccounts.length})`;
+      badgeEl.style.background = "rgba(220, 39, 67, 0.15)";
+      badgeEl.style.color = "#fca5a5";
+      badgeEl.style.borderColor = "rgba(220, 39, 67, 0.35)";
+    }
+  }
+
+  renderInstagramAccountsList();
+  populateInstagramAccountDropdown();
+}
+
+function renderInstagramAccountsList() {
+  const container = document.getElementById('ig-accounts-list');
+  if (!container) return;
+
+  const cfg = adminState.igConfig || getStoredInstagramConfig();
+  const accounts = cfg.accounts || [];
+
+  if (accounts.length === 0) {
+    container.innerHTML = `
+      <div style="font-size: 0.8rem; color: var(--text-muted); padding: 0.5rem; text-align: center; border: 1px dashed var(--border-subtle); border-radius: var(--radius-sm);">
+        No Instagram accounts configured. Add one below to start syncing.
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = accounts.map((acc, idx) => {
+    const isEnabled = acc.enabled !== false;
+    return `
+      <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid ${isEnabled ? 'rgba(220, 39, 67, 0.3)' : 'var(--border-subtle)'}; border-radius: var(--radius-sm); padding: 0.5rem 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+        <div style="display: flex; align-items: center; gap: 0.65rem;">
+          <div style="width: 28px; height: 28px; border-radius: 50%; background: ${isEnabled ? 'linear-gradient(135deg, #f09433, #dc2743, #bc1888)' : 'rgba(255,255,255,0.1)'}; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800; color: #fff;">
+            @
+          </div>
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+              <strong style="font-size: 0.82rem; color: #fff;">@${acc.handle}</strong>
+              <span class="pill-badge" style="font-size: 0.66rem; padding: 0.1rem 0.45rem; background: rgba(189, 50, 59, 0.3); border-color: rgba(189, 50, 59, 0.5); color: #fca5a5;">
+                ${acc.category || 'Club News'}
+              </span>
+            </div>
+            <div style="font-size: 0.72rem; color: var(--text-muted);">${acc.label || 'Instagram Profile'}</div>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <label style="display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.74rem; cursor: pointer; color: ${isEnabled ? '#4ade80' : 'var(--text-muted)'};">
+            <input type="checkbox" ${isEnabled ? 'checked' : ''} onchange="window.toggleInstagramAccount('${acc.handle}')">
+            <span>${isEnabled ? 'Sync Active' : 'Paused'}</span>
+          </label>
+          <a href="https://www.instagram.com/${acc.handle}/" target="_blank" rel="noopener noreferrer"
+            class="btn-secondary" style="font-size: 0.72rem; padding: 0.25rem 0.5rem; color: #f472b6;" title="Open Profile">
+            ↗
+          </a>
+          <button type="button" class="btn-secondary" style="font-size: 0.72rem; padding: 0.25rem 0.5rem; color: #f87171;"
+            onclick="window.removeInstagramAccount('${acc.handle}')" title="Remove Account">
+            ✕
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function populateInstagramAccountDropdown() {
+  const select = document.getElementById('ig-import-account');
+  if (!select) return;
+
+  const cfg = adminState.igConfig || getStoredInstagramConfig();
+  const accounts = cfg.accounts || [];
+
+  if (accounts.length === 0) {
+    select.innerHTML = `<option value="@mercerchiefshockey">@mercerchiefshockey (Official Club)</option>`;
+    return;
+  }
+
+  select.innerHTML = accounts.map(a => `
+    <option value="@${a.handle}">@${a.handle} (${a.label || a.category || 'Feed'})</option>
+  `).join('');
+}
+
+window.toggleInstagramSettings = function () {
+  const panel = document.getElementById('ig-api-settings-panel');
+  if (!panel) return;
+  const isHidden = panel.style.display === 'none' || !panel.style.display;
+  panel.style.display = isHidden ? 'block' : 'none';
+  if (isHidden) {
+    initInstagramConfigUI();
+  }
+};
+
+window.addInstagramAccount = function () {
+  const handleInput = document.getElementById('new-ig-handle');
+  const labelInput = document.getElementById('new-ig-label');
+  const catInput = document.getElementById('new-ig-category');
+
+  let handle = (handleInput ? handleInput.value : '').trim().replace(/^@+/, '').replace(/\s+/g, '').toLowerCase();
+  const label = (labelInput ? labelInput.value : '').trim();
+  const category = (catInput ? catInput.value : 'Club News');
+
+  if (!handle) {
+    showToast("Please enter an Instagram handle.", "error");
+    return;
+  }
+
+  if (!adminState.igConfig) adminState.igConfig = getStoredInstagramConfig();
+  if (!Array.isArray(adminState.igConfig.accounts)) adminState.igConfig.accounts = [];
+
+  const exists = adminState.igConfig.accounts.some(a => a.handle.toLowerCase() === handle);
+  if (exists) {
+    showToast(`@${handle} is already linked.`, "info");
+    return;
+  }
+
+  adminState.igConfig.accounts.push({
+    handle,
+    label: label || `Mercer Chiefs (@${handle})`,
+    category,
+    enabled: true
+  });
+
+  localStorage.setItem('mercer_instagram_config', JSON.stringify(adminState.igConfig));
+  if (handleInput) handleInput.value = '';
+  if (labelInput) labelInput.value = '';
+
+  initInstagramConfigUI();
+  showToast(`Added @${handle} to Instagram sync list!`);
+};
+
+window.removeInstagramAccount = function (handle) {
+  if (!confirm(`Are you sure you want to unlink @${handle} from website sync?`)) return;
+  if (!adminState.igConfig) adminState.igConfig = getStoredInstagramConfig();
+  
+  adminState.igConfig.accounts = (adminState.igConfig.accounts || []).filter(a => a.handle.toLowerCase() !== handle.toLowerCase());
+  localStorage.setItem('mercer_instagram_config', JSON.stringify(adminState.igConfig));
+  initInstagramConfigUI();
+  showToast(`Removed @${handle}.`);
+};
+
+window.toggleInstagramAccount = function (handle) {
+  if (!adminState.igConfig) adminState.igConfig = getStoredInstagramConfig();
+  const acc = (adminState.igConfig.accounts || []).find(a => a.handle.toLowerCase() === handle.toLowerCase());
+  if (acc) {
+    acc.enabled = !acc.enabled;
+    localStorage.setItem('mercer_instagram_config', JSON.stringify(adminState.igConfig));
+    initInstagramConfigUI();
+    showToast(`@${handle} sync ${acc.enabled ? 'activated' : 'paused'}.`);
+  }
+};
+
+window.saveInstagramApiConfig = async function () {
+  const tokenInput = document.getElementById('cfg-ig-access-token');
+  const feedback = document.getElementById('ig-token-test-feedback');
+  const token = (tokenInput ? tokenInput.value : '').trim();
+
+  if (!token) {
+    showToast("Please enter a Meta / Instagram Token or click Clear.", "error");
+    return;
+  }
+
+  if (feedback) {
+    feedback.style.display = 'block';
+    feedback.style.color = '#fbcfe8';
+    feedback.textContent = 'Verifying token with Meta Graph API...';
+  }
+
+  try {
+    const testUrl = `https://graph.facebook.com/v19.0/me?fields=id,name&access_token=${encodeURIComponent(token)}`;
+    const resp = await fetch(testUrl);
+    const data = await resp.json();
+
+    if (resp.ok && data.id) {
+      if (!adminState.igConfig) adminState.igConfig = getStoredInstagramConfig();
+      adminState.igConfig.accessToken = token;
+      localStorage.setItem('mercer_instagram_config', JSON.stringify(adminState.igConfig));
+      initInstagramConfigUI();
+      if (feedback) {
+        feedback.style.color = '#4ade80';
+        feedback.innerHTML = `✓ Verified! Connected to Meta Account: <strong>${data.name || 'User'}</strong> (ID: ${data.id}). Token saved.`;
+      }
+      showToast("Instagram Meta API token saved successfully!");
+    } else {
+      const errMsg = data.error?.message || "Token verification failed. Please check permissions.";
+      if (feedback) {
+        feedback.style.color = '#f87171';
+        feedback.textContent = `Error: ${errMsg}`;
+      }
+      showToast("Meta API Error: " + errMsg, "error");
+    }
+  } catch (err) {
+    if (feedback) {
+      feedback.style.color = '#f87171';
+      feedback.textContent = `Connection error: ${err.message}`;
+    }
+    showToast("Network error verifying token: " + err.message, "error");
+  }
+};
+
+window.clearInstagramApiConfig = function () {
+  if (!adminState.igConfig) adminState.igConfig = getStoredInstagramConfig();
+  adminState.igConfig.accessToken = '';
+  localStorage.setItem('mercer_instagram_config', JSON.stringify(adminState.igConfig));
+  initInstagramConfigUI();
+  const feedback = document.getElementById('ig-token-test-feedback');
+  if (feedback) {
+    feedback.style.display = 'block';
+    feedback.style.color = '#94a3b8';
+    feedback.textContent = 'API token cleared. Portal returned to multi-account cached feed mode.';
+  }
+  showToast("Instagram API token cleared. Returned to cached feed mode.");
+};
+
+window.syncInstagramPosts = async function () {
+  const btn = document.getElementById('btn-sync-instagram');
+  const statusText = document.getElementById('ig-sync-status-text');
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = `<span class="loading-spinner" style="width: 14px; height: 14px; border-width: 2px; display: inline-block;"></span> <span>Pulling Instagram Posts...</span>`;
+  }
+  if (statusText) statusText.textContent = "Connecting to Instagram accounts...";
+
+  try {
+    const igConfig = adminState.igConfig || getStoredInstagramConfig();
+    const enabledAccounts = (igConfig.accounts || []).filter(a => a.enabled !== false);
+
+    if (enabledAccounts.length === 0) {
+      showToast("No Instagram accounts are currently enabled. Enable at least one account in Settings.", "error");
+      if (statusText) statusText.textContent = "Status: No accounts enabled";
+      return;
+    }
+
+    let igPosts = [];
+    let isLiveApi = false;
+
+    // 0. Live Meta Graph API if access token configured
+    if (igConfig.accessToken && igConfig.accessToken.trim()) {
+      if (statusText) statusText.textContent = "Querying live Meta Graph API...";
+      try {
+        const token = igConfig.accessToken.trim();
+        for (const acc of enabledAccounts) {
+          const graphUrl = `https://graph.facebook.com/v19.0/${encodeURIComponent(acc.handle)}/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp&limit=8&access_token=${encodeURIComponent(token)}`;
+          const resp = await fetch(graphUrl);
+          if (resp.ok) {
+            const json = await resp.json();
+            if (json.data && Array.isArray(json.data)) {
+              const mapped = json.data.map(item => {
+                const cap = item.caption || '';
+                const firstLine = cap.split('\n')[0].replace(/^[#\s]+/, '').trim();
+                let title = firstLine.length > 5 && firstLine.length <= 80 ? firstLine : (firstLine.length > 80 ? firstLine.slice(0, 77) + '...' : `Mercer Chiefs Update (@${acc.handle})`);
+                
+                const upperCap = cap.toUpperCase();
+                let category = acc.category || 'Club News';
+                if (upperCap.includes('NCDC')) category = 'NCDC Junior';
+                else if (upperCap.includes('PREMIER') || upperCap.includes('USPHL')) category = 'USPHL Premier';
+                else if (/\b(18U|16U|15U|14U|13U|12U|10U|YOUTH|AAA)\b/i.test(cap)) category = 'Youth AAA';
+
+                const postDate = new Date(item.timestamp).toLocaleDateString('en-US', {
+                  month: 'long',
+                  day: 'numeric',
+                  year: 'numeric'
+                });
+
+                return {
+                  id: `ig-${item.id}`,
+                  title,
+                  date: postDate,
+                  category,
+                  readTime: '2 min read',
+                  summary: cap.length > 220 ? cap.slice(0, 217) + '...' : (cap || 'Click to view post on Instagram.'),
+                  image: item.media_url || item.thumbnail_url || 'assets/images/hero-action.jpg',
+                  source: 'instagram',
+                  account: `@${acc.handle}`,
+                  sourceUrl: item.permalink || `https://www.instagram.com/${acc.handle}/`,
+                  link: item.permalink || `https://www.instagram.com/${acc.handle}/`,
+                  credit: cap.toLowerCase().includes('heather') ? "Heather O'Connell Photography" : "Mercer Chiefs Media"
+                };
+              });
+              igPosts.push(...mapped);
+              isLiveApi = true;
+            }
+          }
+        }
+      } catch (graphErr) {
+        console.warn("Meta Graph API network call failed for Instagram:", graphErr);
+      }
+    }
+
+    // 1. Fallback to Vite dev server endpoint
+    if (igPosts.length === 0) {
+      try {
+        const resp = await fetch('/api/sync-instagram');
+        if (resp.ok) {
+          const json = await resp.json();
+          if (json.success && Array.isArray(json.posts) && json.posts.length > 0) {
+            igPosts = json.posts;
+          }
+        }
+      } catch (err) {
+        console.warn("/api/sync-instagram call failed, trying direct file:", err);
+      }
+    }
+
+    // 2. Fallback to static instagram-feed.json file
+    if (igPosts.length === 0) {
+      try {
+        const resp2 = await fetch('data/instagram-feed.json?t=' + Date.now());
+        if (resp2.ok) {
+          const json2 = await resp2.json();
+          if (json2.posts && Array.isArray(json2.posts) && json2.posts.length > 0) {
+            igPosts = json2.posts;
+          }
+        }
+      } catch (err2) {
+        console.warn("Static json fetch for instagram feed failed:", err2);
+      }
+    }
+
+    if (igPosts.length === 0) {
+      showToast("No Instagram posts available to sync.", "error");
+      if (statusText) statusText.textContent = "Status: No posts found";
+      return;
+    }
+
+    // Filter posts for accounts that are enabled
+    const activeHandleSet = new Set(enabledAccounts.map(a => a.handle.toLowerCase()));
+    const filteredPosts = igPosts.filter(p => {
+      if (!p.account) return true;
+      const cleanAcc = p.account.replace(/^@/, '').toLowerCase();
+      return activeHandleSet.has(cleanAcc);
+    });
+
+    const postsToMerge = filteredPosts.length > 0 ? filteredPosts : igPosts;
+
+    let addedCount = 0;
+    let updatedCount = 0;
+
+    for (let i = postsToMerge.length - 1; i >= 0; i--) {
+      const post = postsToMerge[i];
+      const normTitle = (post.title || '').toLowerCase().trim();
+      const existingIdx = adminState.newsArticles.findIndex(a =>
+        a.id === post.id || (a.title && a.title.toLowerCase().trim() === normTitle)
+      );
+
+      if (existingIdx !== -1) {
+        adminState.newsArticles[existingIdx] = {
+          ...adminState.newsArticles[existingIdx],
+          ...post
+        };
+        updatedCount++;
+      } else {
+        adminState.newsArticles.unshift(post);
+        addedCount++;
+      }
+    }
+
+    // Sort descending by date
+    adminState.newsArticles.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+
+    localStorage.setItem('mercer_club_news', JSON.stringify(adminState.newsArticles));
+    renderNewsList();
+    window.dispatchEvent(new Event('storage'));
+
+    const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    if (statusText) {
+      statusText.textContent = isLiveApi ?
+        `Status: Live Meta API Synced (${postsToMerge.length} posts at ${timeStr})` :
+        `Status: Synced ${postsToMerge.length} posts across ${enabledAccounts.length} accounts (${timeStr})`;
+    }
+
+    if (isLiveApi) {
+      showToast(`Live Instagram Sync: Pulled ${postsToMerge.length} posts across official channels!`);
+    } else if (addedCount > 0) {
+      showToast(`Successfully pulled ${addedCount} new Instagram post${addedCount > 1 ? 's' : ''}!`);
+    } else if (updatedCount > 0) {
+      showToast(`Refreshed ${updatedCount} Instagram posts across active accounts.`);
+    } else {
+      showToast(`Instagram feed is up to date (${postsToMerge.length} posts verified).`);
+    }
+  } catch (err) {
+    console.error("Instagram sync error:", err);
+    showToast("Failed to sync Instagram: " + err.message, "error");
+    if (statusText) statusText.textContent = "Status: Sync error";
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = `
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <span>Pull Latest Instagram Posts</span>
+      `;
+    }
+  }
+};
+
+/* ==========================================================================
+   QUICK IMPORT INSTAGRAM POST BY URL
+   ========================================================================== */
+window.openInstagramImportModal = function () {
+  const modal = document.getElementById('ig-import-modal');
+  populateInstagramAccountDropdown();
+  const dateInput = document.getElementById('ig-import-date');
+  if (dateInput && !dateInput.value) {
+    dateInput.value = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  }
+  if (modal) modal.classList.add('active');
+};
+
+window.closeInstagramImportModal = function () {
+  const modal = document.getElementById('ig-import-modal');
+  if (modal) modal.classList.remove('active');
+};
+
+window.handleInstagramUrlChange = function (url) {
+  if (!url) return;
+  const titleInput = document.getElementById('ig-import-title');
+  if (titleInput && !titleInput.value) {
+    // Attempt to extract shortcode or default title
+    const match = url.match(/\/p\/([a-zA-Z0-9_-]+)/);
+    if (match) {
+      titleInput.placeholder = "e.g. Mercer Chiefs Gameday Spotlight";
+    }
+  }
+};
+
+window.handleInstagramAccountSelect = function (accountHandle) {
+  const catSelect = document.getElementById('ig-import-category');
+  if (!catSelect) return;
+  const cfg = adminState.igConfig || getStoredInstagramConfig();
+  const clean = accountHandle.replace(/^@/, '').toLowerCase();
+  const found = (cfg.accounts || []).find(a => a.handle.toLowerCase() === clean);
+  if (found && found.category) {
+    catSelect.value = found.category;
+  }
+};
+
+window.saveImportedInstagramPost = function (e) {
+  e.preventDefault();
+  const url = document.getElementById('ig-import-url')?.value.trim();
+  const account = document.getElementById('ig-import-account')?.value.trim() || '@mercerchiefshockey';
+  const category = document.getElementById('ig-import-category')?.value || 'Club News';
+  const title = document.getElementById('ig-import-title')?.value.trim();
+  const date = document.getElementById('ig-import-date')?.value.trim() || new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  const credit = document.getElementById('ig-import-credit')?.value.trim() || 'Mercer Chiefs Media';
+  const image = document.getElementById('ig-import-img')?.value.trim() || 'assets/images/news/fb_gameday_pal.jpg';
+  const caption = document.getElementById('ig-import-caption')?.value.trim();
+
+  if (!url || !title || !caption) {
+    alert("Please fill in the Instagram URL, Title, and Caption.");
+    return;
+  }
+
+  const newPost = {
+    id: 'ig-' + Date.now(),
+    title,
+    category,
+    date,
+    readTime: '2 min read',
+    summary: caption,
+    image,
+    source: 'instagram',
+    account,
+    sourceUrl: url,
+    link: url,
+    credit
+  };
+
+  adminState.newsArticles.unshift(newPost);
+  localStorage.setItem('mercer_club_news', JSON.stringify(adminState.newsArticles));
+  window.closeInstagramImportModal();
+  renderNewsList();
+  window.dispatchEvent(new Event('storage'));
+
+  // Reset form
+  const form = document.getElementById('ig-import-form');
+  if (form) form.reset();
+
+  showToast(`Imported Instagram post from ${account} directly to news feed!`);
 };
 
 // Facebook API Configuration & Live Sync
