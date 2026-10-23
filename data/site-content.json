@@ -89,10 +89,9 @@
   },
   "arena": {
     "enabled": true,
-    "navLabel": "Home Rinks",
     "sectionTag": "Home Facilities",
-    "sectionTitle": "Home Rinks & Facilities",
-    "sectionSubtitle": "The Mercer Chiefs train and compete across premier twin-sheet regional ice complexes in Central New Jersey.",
+    "sectionTitle": "Home Rink & Facilities",
+    "sectionSubtitle": "The Mercer Chiefs train and compete at Ice Land Skating Center in Hamilton, NJ..",
     "title": "Ice Land Skating Center",
     "tag": "Junior (NCDC/Premier) & Tier 1 AAA Home",
     "desc": "Flagship home ice of the Mercer Chiefs Tuition-Free NCDC Tier II Junior team, USPHL Premier, and Tier 1 AAA youth hockey teams. Featuring two NHL-regulation ice sheets, dedicated Junior team locker rooms, video theater, and comprehensive athlete training facilities.",
@@ -119,21 +118,6 @@
           "Dedicated Chiefs Team Locker Rooms",
           "Off-Ice Dryland Training Center",
           "Black Bear TV Broadcast Rinks"
-        ]
-      },
-      {
-        "id": "rink-proskate",
-        "name": "Pro Skate Ice Arena",
-        "tag": "Tier 2 AA/A Youth Hockey Home",
-        "desc": "Dedicated home venue for Mercer Chiefs Tier 2 AA and A youth hockey teams competing in the Atlantic Hockey Federation (AHF). Features two regulation ice surfaces, full-service pro shop, and athlete development skill clinics.",
-        "address": "1000 Cornwall Rd, Monmouth Junction, NJ 08852",
-        "phone": "(732) 940-6400",
-        "mapUrl": "https://maps.google.com/?q=1000+Cornwall+Rd,+Monmouth+Junction,+NJ+08852",
-        "amenities": [
-          "2 Regulation Ice Surfaces",
-          "Full-Service Pro Shop & Sharpening",
-          "Shooting & Stickhandling Stations",
-          "High-Definition Game Streaming"
         ]
       }
     ],
