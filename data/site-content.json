@@ -70,9 +70,9 @@
         "dates": "August 10 - 14, 2026",
         "ages": "2008 - 2018 Birth Years",
         "location": "Ice Land Skating Center",
-        "desc": "Daily 3 hours on-ice instruction, dryland conditioning, tactical video review, and power skating with Chiefs coaching staff.",
         "price": "$525",
-        "registerUrl": "https://mercerchiefshockey.com"
+        "registerUrl": "https://mercerchiefshockey.com",
+        "desc": "Daily 3 hours on-ice instruction, dryland conditioning, tactical video review, and power skating with Chiefs coaching staff."
       },
       {
         "id": "camp-goalie-academy",
@@ -81,9 +81,9 @@
         "dates": "Weekly On Tuesdays & Thursdays",
         "ages": "All Travel & Junior Goalies",
         "location": "Ice Land Arena",
-        "desc": "Specialized goalie mechanics, edge control, rebound management, and high-tempo situational drills.",
         "price": "Included for Chiefs Goalies / $75 Drop-in",
-        "registerUrl": "https://mercerchiefshockey.com"
+        "registerUrl": "https://mercerchiefshockey.com",
+        "desc": "Specialized goalie mechanics, edge control, rebound management, and high-tempo situational drills."
       }
     ]
   },
@@ -94,8 +94,8 @@
     "sectionTitle": "Home Rink & Facilities",
     "sectionSubtitle": "The Mercer Chiefs train and compete at Ice Land Skating Center in Hamilton, NJ.",
     "title": "Ice Land Skating Center",
-    "tag": "Junior (NCDC/Premier) & Tier 1 AAA Home",
-    "desc": "Flagship home ice of the Mercer Chiefs Tuition-Free NCDC Tier II Junior team, USPHL Premier, and Tier 1 AAA youth hockey teams. Featuring two NHL-regulation ice sheets, dedicated Junior team locker rooms, video theater, and comprehensive athlete training facilities.",
+    "tag": "Junior NCDC & Premier",
+    "desc": "Flagship home ice of the Mercer Chiefs Tuition-Free NCDC Tier II Junior and USPHL Premier hockey teams. Featuring two NHL-regulation ice sheets, dedicated team locker rooms, video theater, and comprehensive athlete training facilities.",
     "address": "6 Tennis Court, Hamilton Township, NJ 08619",
     "mapUrl": "https://maps.google.com/?q=6+Tennis+Ct,+Hamilton+Township,+NJ+08619",
     "phone": "(609) 588-6672",
@@ -103,22 +103,22 @@
       "2 NHL-Size Ice Sheets",
       "Dedicated Chiefs Team Locker Rooms",
       "Off-Ice Dryland Training Center",
-      "Black Bear TV Broadcast Rinks"
+      "Black Bear TV Broadcast Rink"
     ],
     "rinks": [
       {
         "id": "rink-iceland",
         "name": "Ice Land Skating Center",
-        "tag": "Junior (NCDC/Premier) & Tier 1 AAA Home",
-        "desc": "Flagship home ice of the Mercer Chiefs Tuition-Free NCDC Tier II Junior team, USPHL Premier, and Tier 1 AAA youth hockey teams. Featuring two NHL-regulation ice sheets, dedicated Junior team locker rooms, video theater, and comprehensive athlete training facilities.",
+        "tag": "Junior NCDC & Premier",
         "address": "6 Tennis Court, Hamilton Township, NJ 08619",
         "phone": "(609) 588-6672",
         "mapUrl": "https://maps.google.com/?q=6+Tennis+Ct,+Hamilton+Township,+NJ+08619",
+        "desc": "Flagship home ice of the Mercer Chiefs Tuition-Free NCDC Tier II Junior and USPHL Premier hockey teams. Featuring two NHL-regulation ice sheets, dedicated team locker rooms, video theater, and comprehensive athlete training facilities.",
         "amenities": [
           "2 NHL-Size Ice Sheets",
           "Dedicated Chiefs Team Locker Rooms",
           "Off-Ice Dryland Training Center",
-          "Black Bear TV Broadcast Rinks"
+          "Black Bear TV Broadcast Rink"
         ]
       }
     ],
@@ -179,9 +179,9 @@
   },
   "tryoutModal": {
     "goldTag": "2026/27 Mercer Chiefs Evaluations",
-    "title": "Tryout Registration Portal",
-    "desc": "Register your player for upcoming Tier I AAA (THF) and Tier II (AHF) evaluations at Ice Land Arena.",
-    "externalRegisterUrl": ""
+    "title": "2026 Main Camp",
+    "desc": "June 22-26, 2026\nBirth Years 2011-2006\nInvite Only: E-Mail Rob Broderick, rbroderick9912@gmail.com",
+    "externalRegisterUrl": "https://bondsports.co/activity/programs/MALE-adult-HOCKEY/5832/season/2026%20Mercer%20NCDC%20Main%20Camp/109588"
   },
   "staff": [
     {
@@ -190,8 +190,8 @@
       "role": "General Manager & Head Coach (NCDC)",
       "badge": "GM / Head Coach",
       "photo": "assets/images/coach-broderick.jpg",
-      "bio": "Coach Broderick brings decades of elite coaching, development, and junior hockey scouting leadership. Under his leadership, the Chiefs reached the Dineen Cup Championship and have graduated dozens of players into NCAA Division I and Division III hockey programs.",
-      "email": "mercerjuniorhockey@gmail.com"
+      "email": "mercerjuniorhockey@gmail.com",
+      "bio": "Coach Broderick brings decades of elite coaching, development, and junior hockey scouting leadership. Under his leadership, the Chiefs reached the Dineen Cup Championship and have graduated dozens of players into NCAA Division I and Division III hockey programs."
     },
     {
       "id": "staff-2",
@@ -199,8 +199,8 @@
       "role": "Assistant Coach (NCDC) & Premier Head Coach",
       "badge": "Assistant Coach",
       "photo": "assets/images/coach-firsov.jpg",
-      "bio": "Former professional forward with extensive European and North American playing experience. Specializes in forward skill development, tactical offensive systems, and individual video analysis.",
-      "email": "sasha@ice-land.com"
+      "email": "sasha@ice-land.com",
+      "bio": "Former professional forward with extensive European and North American playing experience. Specializes in forward skill development, tactical offensive systems, and individual video analysis."
     },
     {
       "id": "staff-3",
@@ -208,8 +208,8 @@
       "role": "Director of Goaltending & Goalie Coach",
       "badge": "Goaltending Director",
       "photo": "assets/images/mercer-chiefs-crest.png",
-      "bio": "Nationally recognized goaltending coach whose netminders consistently earn all-league honors and collegiate roster spots, including 2026 starting goaltenders Jack Scali and Louis-Charles Lapensee.",
-      "email": "terry@ice-land.com"
+      "email": "terry@ice-land.com",
+      "bio": "Nationally recognized goaltending coach whose netminders consistently earn all-league honors and collegiate roster spots, including 2026 starting goaltenders Jack Scali and Louis-Charles Lapensee."
     },
     {
       "id": "staff-4",
@@ -217,8 +217,8 @@
       "role": "Head Scout & Director of Player Personnel",
       "badge": "Head Scout",
       "photo": "assets/images/mercer-chiefs-crest.png",
-      "bio": "Leads national scouting operations across North America, identifying premier junior and college-bound talent for both the NCDC and USPHL Premier rosters.",
-      "email": "recruiting@mercerchiefs.com"
+      "email": "recruiting@mercerchiefs.com",
+      "bio": "Leads national scouting operations across North America, identifying premier junior and college-bound talent for both the NCDC and USPHL Premier rosters."
     },
     {
       "id": "staff-5",
@@ -226,8 +226,8 @@
       "role": "Director of Hockey Operations & Administration",
       "badge": "Hockey Operations",
       "photo": "assets/images/mercer-chiefs-crest.png",
-      "bio": "Oversees club logistics, league compliance, billeting coordinator programs, tournament operations, and community partnerships at Ice Land.",
-      "email": "heather@ice-land.com"
+      "email": "heather@ice-land.com",
+      "bio": "Oversees club logistics, league compliance, billeting coordinator programs, tournament operations, and community partnerships at Ice Land."
     },
     {
       "id": "staff-6",
@@ -235,8 +235,8 @@
       "role": "Director of Player Skills & Skating",
       "badge": "Skills Coach",
       "photo": "assets/images/mercer-chiefs-crest.png",
-      "bio": "Renowned power-skating and stickhandling specialist working with both junior players and youth tier programs to accelerate edge control and high-speed execution.",
-      "email": "skills@ice-land.com"
+      "email": "skills@ice-land.com",
+      "bio": "Renowned power-skating and stickhandling specialist working with both junior players and youth tier programs to accelerate edge control and high-speed execution."
     }
   ],
   "instagramAccounts": [
@@ -253,22 +253,6 @@
       "enabled": true
     }
   ],
-  "branding": {
-    "clubName": "Mercer Chiefs Hockey Club",
-    "shortName": "Mercer Chiefs",
-    "tagline": "Junior & Elite Youth Hockey",
-    "description": "Dedicated to developing student-athletes through competitive Tier II tuition-free junior hockey and premier Tier 1 AAA youth competition in Hamilton, New Jersey.",
-    "founded": "1990",
-    "crestLogo": "assets/images/mercer-chiefs-crest.png",
-    "wordmarkLogo": "assets/images/mercer-chiefs-logo.png",
-    "favicon": "assets/images/mercer-chiefs-crest.png",
-    "colors": {
-      "primary": "#BD323B",
-      "accent": "#F5A623",
-      "bgDeep": "#08090C",
-      "bgCard": "#12151C"
-    }
-  },
   "newsArticles": [
     {
       "id": "ig-post-ncdc-potw-oct22",
@@ -454,5 +438,21 @@
       "sourceUrl": "https://www.facebook.com/mercerchiefshockey",
       "link": "https://www.facebook.com/mercerchiefshockey"
     }
-  ]
+  ],
+  "branding": {
+    "clubName": "Mercer Chiefs Hockey Club",
+    "shortName": "Mercer Chiefs",
+    "tagline": "Junior & Elite Youth Hockey",
+    "description": "Dedicated to developing student-athletes through competitive Tier II tuition-free junior hockey and premier Tier 1 AAA youth competition in Hamilton, New Jersey.",
+    "founded": "1990",
+    "crestLogo": "assets/images/mercer-chiefs-crest.png",
+    "wordmarkLogo": "assets/images/mercer-chiefs-logo.png",
+    "favicon": "assets/images/mercer-chiefs-crest.png",
+    "colors": {
+      "primary": "#BD323B",
+      "accent": "#F5A623",
+      "bgDeep": "#08090C",
+      "bgCard": "#12151C"
+    }
+  }
 }
