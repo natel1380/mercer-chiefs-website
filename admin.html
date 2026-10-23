@@ -792,7 +792,7 @@
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
               <div style="display: flex; align-items: center; gap: 0.6rem;">
                 <span style="font-size: 1.1rem;">🔑</span>
-                <strong style="color: #fff; font-size: 0.92rem;">Website Publishing & Live Cloud Sync Authorization:</strong>
+                <strong style="color: #fff; font-size: 0.92rem;">Website Publishing &amp; Live Cloud Sync Authorization:</strong>
               </div>
               <span id="github-token-status-badge" class="pill-badge"
                 style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.35); color: var(--chiefs-gold); font-size: 0.75rem;">
@@ -800,16 +800,43 @@
               </span>
             </div>
             <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.5; margin-bottom: 0.85rem;">
-              To publish updates to the live website from this admin portal &mdash; including updating website content, uploading staff photos or club logos, and running live game syncs &mdash; enter your club's GitHub Access Token below. <strong>It only needs to be entered once per device and is saved securely in your browser.</strong>
+              To publish updates to the live website from this admin portal &mdash; including website content &amp; section visibility, staff headshots, club logos, and triggering automated cloud schedule scrapers &mdash; enter your club's GitHub Access Token below. <strong>It only needs to be saved once per device and is stored securely in your browser's private local storage.</strong>
             </p>
+
+            <!-- Permissions Checklist Box -->
+            <div style="margin-bottom: 0.85rem; padding: 0.75rem 0.9rem; background: rgba(0, 0, 0, 0.4); border-radius: var(--radius-sm); border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.78rem; line-height: 1.55;">
+              <div style="font-weight: 700; color: #fff; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.4rem;">
+                <span style="color: var(--chiefs-gold);">⚡</span> Required GitHub Token Permissions:
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.55rem; color: #cbd5e1;">
+                <div style="background: rgba(255,255,255,0.03); padding: 0.45rem 0.65rem; border-radius: 4px; border-left: 3px solid #22c55e;">
+                  <strong style="color: #4ade80;">1. Contents: Read &amp; write</strong>
+                  <div style="color: #94a3b8; font-size: 0.73rem;">Mandatory for publishing website content, toggling section visibility, uploading coach photos, and saving passkeys. Without this, GitHub rejects saves with <em>"Resource not accessible by personal access token"</em>.</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); padding: 0.45rem 0.65rem; border-radius: 4px; border-left: 3px solid var(--chiefs-gold);">
+                  <strong style="color: var(--chiefs-gold);">2. Actions / Workflows: Read &amp; write</strong>
+                  <div style="color: #94a3b8; font-size: 0.73rem;">Required to trigger the automated 1-click cloud schedule scraper Ubuntu runner from this portal.</div>
+                </div>
+              </div>
+              <div style="margin-top: 0.55rem; display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.75rem;">
+                <a href="https://github.com/settings/tokens/new?description=Mercer+Chiefs+Portal+Admin&amp;scopes=repo,workflow" target="_blank"
+                  style="color: var(--chiefs-gold); font-weight: 700; text-decoration: underline;">
+                  🔑 Generate Classic Token (Recommended — pre-checks repo &amp; workflow scopes) ↗
+                </a>
+                <a href="https://github.com/settings/tokens?type=beta" target="_blank"
+                  style="color: #38bdf8; text-decoration: underline;">
+                  ⚙️ Configure Fine-Grained Token on GitHub ↗
+                </a>
+              </div>
+            </div>
+
             <div
               style="display: grid; grid-template-columns: minmax(280px, 3fr) auto; gap: 0.75rem; align-items: end;">
               <div class="admin-form-group" style="margin-bottom: 0;">
                 <label for="cfg-github-token"
                   style="font-size: 0.75rem; color: var(--text-secondary); display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
                   <span>GitHub Personal Access Token</span>
-                  <a href="https://github.com/settings/tokens/new?description=Mercer+Chiefs+Portal+Cloud+Sync&amp;scopes=repo" target="_blank"
-                    style="color: var(--chiefs-gold); text-decoration: none;">🔑 Generate Token on GitHub ↗</a>
+                  <span style="font-size: 0.7rem; color: #94a3b8;">Repository: natel1380/mercer-chiefs-website</span>
                 </label>
                 <div style="position: relative;">
                   <input type="password" id="cfg-github-token" class="admin-form-input"
@@ -821,10 +848,15 @@
                   </button>
                 </div>
               </div>
-              <div style="display: flex; gap: 0.5rem;">
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                 <button type="button" class="btn-primary" onclick="window.saveGitHubConfig()"
                   style="font-size: 0.82rem; padding: 0.55rem 1rem; background: var(--chiefs-gold); border-color: var(--chiefs-gold); color: #000; font-weight: 700;">
                   Save Token
+                </button>
+                <button type="button" class="btn-secondary" id="btn-test-github-token" onclick="window.testGitHubToken()"
+                  style="font-size: 0.82rem; padding: 0.55rem 0.85rem; color: #fff; border-color: rgba(245, 158, 11, 0.4);"
+                  title="Test token permissions against GitHub API">
+                  🧪 Test Permissions
                 </button>
                 <button type="button" class="btn-secondary" onclick="window.clearGitHubConfig()"
                   style="font-size: 0.82rem; padding: 0.55rem 0.85rem; color: var(--text-muted);"
@@ -838,7 +870,7 @@
                 </a>
               </div>
             </div>
-            <div id="github-token-feedback" style="margin-top: 0.5rem; font-size: 0.78rem; display: none;"></div>
+            <div id="github-token-feedback" style="margin-top: 0.75rem; font-size: 0.78rem; display: none;"></div>
           </div>
         </div>
 
@@ -1007,6 +1039,10 @@
               style="font-size: 0.82rem; padding: 0.45rem 1rem; background: var(--chiefs-gold); border-color: var(--chiefs-gold); color: #000; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">
               💾 Publish to Live Site
             </button>
+            <button type="button" class="btn-secondary" onclick="window.exportSiteContentJson()"
+              style="font-size: 0.8rem; padding: 0.45rem 0.85rem;" title="Download local backup of site-content.json">
+              📥 Export JSON
+            </button>
             <a href="index.html" target="_blank" class="btn-secondary"
               style="font-size: 0.8rem; padding: 0.45rem 0.85rem; text-decoration: none;">
               Preview Site ↗
@@ -1018,6 +1054,9 @@
           </div>
         </div>
       </div>
+
+      <!-- CMS Permission Alert Banner (Shown if token lacks Contents write) -->
+      <div id="cms-permission-alert" style="display: none; margin-bottom: 1.5rem;"></div>
 
       <!-- CMS Global Section Visibility Master Strip -->
       <div class="admin-card" style="margin-bottom: 1.5rem; background: rgba(0,0,0,0.35); border-color: rgba(245, 166, 35, 0.3);">
@@ -2843,6 +2882,73 @@
           </button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       GITHUB TOKEN PERMISSION DIAGNOSTIC MODAL
+       ========================================================================== -->
+  <div id="token-permission-modal" class="admin-modal-overlay">
+    <div class="admin-modal" style="max-width: 580px; width: 100%;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.75rem;">
+        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: #fff; margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+          <span>🔑</span> GitHub Token Permission Required
+        </h3>
+        <button type="button" onclick="window.closeTokenPermissionModal()"
+          style="background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; line-height: 1;">&times;</button>
+      </div>
+
+      <div style="background: rgba(239, 68, 68, 0.12); border-left: 4px solid #ef4444; border-radius: 4px; padding: 0.85rem 1rem; margin-bottom: 1.25rem; color: #fca5a5; font-size: 0.85rem; line-height: 1.5;">
+        <strong style="color: #fff; display: block; margin-bottom: 0.25rem;">Publishing Blocked: "Resource not accessible by personal access token"</strong>
+        GitHub rejected saving to the live website because your Personal Access Token does not have permission to modify files in <code>natel1380/mercer-chiefs-website</code>.
+      </div>
+
+      <div style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 1.25rem;">
+        <p style="margin-bottom: 0.75rem; font-weight: 700; color: #fff;">How to fix this in 30 seconds:</p>
+
+        <div style="background: rgba(255, 255, 255, 0.04); border-radius: var(--radius-sm); padding: 0.85rem; border: 1px solid var(--border-subtle); margin-bottom: 0.75rem;">
+          <div style="color: #4ade80; font-weight: 700; margin-bottom: 0.25rem;">Option 1: Generate Classic Token (Easiest — 1 Click)</div>
+          <div style="color: #94a3b8; font-size: 0.78rem; margin-bottom: 0.5rem;">Pre-selects all required permissions (<code>repo</code> &amp; <code>workflow</code>). Just click generate, copy, and paste below.</div>
+          <a href="https://github.com/settings/tokens/new?description=Mercer+Chiefs+Portal+Admin&amp;scopes=repo,workflow" target="_blank" class="btn-primary"
+            style="font-size: 0.8rem; padding: 0.45rem 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; background: var(--chiefs-gold); color: #000; font-weight: 700;">
+            🔑 Generate Pre-Configured Token on GitHub ↗
+          </a>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.04); border-radius: var(--radius-sm); padding: 0.85rem; border: 1px solid var(--border-subtle);">
+          <div style="color: #38bdf8; font-weight: 700; margin-bottom: 0.25rem;">Option 2: Update Your Existing Fine-Grained Token</div>
+          <ol style="margin: 0.35rem 0 0.5rem 1.25rem; padding: 0; color: #94a3b8; font-size: 0.78rem; line-height: 1.6;">
+            <li>Go to <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="color: #38bdf8; text-decoration: underline;">GitHub Fine-grained Tokens ↗</a> and click your token.</li>
+            <li>Under <strong>Repository access</strong>, verify <code>natel1380/mercer-chiefs-website</code> is selected.</li>
+            <li>Under <strong>Repository permissions</strong>, expand <strong>Contents</strong> and change to <strong style="color: #4ade80;">Read and write</strong>.</li>
+            <li>Click <strong>Save changes</strong>.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div style="background: rgba(0, 0, 0, 0.35); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid rgba(245, 158, 11, 0.3); margin-bottom: 1.25rem;">
+        <label for="modal-input-github-token" style="font-size: 0.78rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem;">
+          Paste Updated Personal Access Token:
+        </label>
+        <div style="display: flex; gap: 0.5rem;">
+          <input type="password" id="modal-input-github-token" class="admin-form-input" placeholder="Paste updated token (ghp_... or github_pat_...)"
+            style="font-size: 0.85rem; font-family: monospace;">
+          <button type="button" class="btn-primary" onclick="window.saveAndRetryPublishFromModal()"
+            style="font-size: 0.82rem; padding: 0.5rem 1.1rem; background: var(--chiefs-gold); border-color: var(--chiefs-gold); color: #000; font-weight: 700; white-space: nowrap;">
+            Save &amp; Publish Now
+          </button>
+        </div>
+        <div id="modal-token-feedback" style="margin-top: 0.5rem; font-size: 0.78rem; display: none;"></div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;">
+        <button type="button" class="btn-secondary" onclick="window.exportSiteContentJson()" style="font-size: 0.8rem; padding: 0.45rem 0.85rem;" title="Download local file backup">
+          📥 Backup Draft to Disk (.json)
+        </button>
+        <button type="button" class="btn-secondary" onclick="window.closeTokenPermissionModal()" style="font-size: 0.85rem;">
+          Close
+        </button>
+      </div>
     </div>
   </div>
 

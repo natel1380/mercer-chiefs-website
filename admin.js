@@ -520,8 +520,13 @@ window.publishPasskeyToCloud = async function () {
         }, 3000);
       }
     } else {
-      const err = await putRes.json();
-      throw new Error(err.message || 'GitHub API error');
+      const err = await putRes.json().catch(() => ({}));
+      const msg = err.message || '';
+      if (msg.includes('Resource not accessible') || putRes.status === 403) {
+        showToast('Passkey cloud publish failed: Token lacks "Contents: Read & write" permission', 'error');
+        if (typeof window.openTokenPermissionModal === 'function') window.openTokenPermissionModal();
+      }
+      throw new Error(msg || 'GitHub API error');
     }
   } catch (err) {
     console.error('Publish passkey error:', err);
@@ -613,7 +618,7 @@ function initGitHubConfigUI() {
 
   if (badge) {
     if (token) {
-      badge.textContent = "● GitHub Connected";
+      badge.textContent = "● Token Saved (Click Test to Verify)";
       badge.style.background = "rgba(34, 197, 94, 0.15)";
       badge.style.color = "#4ade80";
       badge.style.borderColor = "rgba(34, 197, 94, 0.35)";
@@ -643,12 +648,190 @@ window.toggleGitHubTokenVisibility = function () {
   }
 };
 
-window.saveGitHubConfig = function () {
+window.testGitHubToken = async function (explicitToken) {
   const input = document.getElementById('cfg-github-token');
+  const token = (explicitToken || (input ? input.value : '') || localStorage.getItem('mercer_github_token') || '').trim();
   const feedback = document.getElementById('github-token-feedback');
+  const badge = document.getElementById('github-token-status-badge');
+  const testBtn = document.getElementById('btn-test-github-token');
+  const repoOwner = 'natel1380';
+  const repoName = 'mercer-chiefs-website';
+
+  if (!token) {
+    if (feedback) {
+      feedback.style.display = 'block';
+      feedback.innerHTML = '<span style="color:#f87171">⚠️ Please enter or paste a GitHub token first.</span>';
+    }
+    showToast("Please enter a GitHub Personal Access Token first.", "error");
+    return { ok: false, error: 'No token' };
+  }
+
+  if (testBtn) {
+    testBtn.disabled = true;
+    testBtn.textContent = '⏳ Testing...';
+  }
+
+  if (feedback) {
+    feedback.style.display = 'block';
+    feedback.innerHTML = '<span style="color:var(--chiefs-gold);">⏳ Querying GitHub REST API for permissions...</span>';
+  }
+
+  try {
+    // 1. Verify Authentication & Repo Access
+    const repoRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}`, {
+      headers: {
+        'Accept': 'application/vnd.github+json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (repoRes.status === 401) {
+      const err = '❌ Authentication Failed (401): Token is invalid, revoked, or expired. Please generate a new token.';
+      if (feedback) {
+        feedback.innerHTML = `<div style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.4); border-radius:6px; padding:0.75rem; color:#fca5a5; line-height:1.5;">${err}</div>`;
+      }
+      if (badge) {
+        badge.textContent = '❌ Invalid / Expired';
+        badge.style.color = '#f87171';
+        badge.style.background = 'rgba(239, 68, 68, 0.15)';
+        badge.style.borderColor = 'rgba(239, 68, 68, 0.35)';
+      }
+      return { ok: false, error: err };
+    }
+
+    if (!repoRes.ok) {
+      const errData = await repoRes.json().catch(() => ({}));
+      const err = `❌ Repository Access Failed (${repoRes.status}): ${errData.message || 'Cannot access natel1380/mercer-chiefs-website'}. If using a Fine-Grained token, ensure this repository is selected under "Repository access".`;
+      if (feedback) {
+        feedback.innerHTML = `<div style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.4); border-radius:6px; padding:0.75rem; color:#fca5a5; line-height:1.5;">${err}</div>`;
+      }
+      return { ok: false, error: err };
+    }
+
+    const repoData = await repoRes.json();
+    const canPush = repoData.permissions ? repoData.permissions.push : null;
+
+    // 2. Test Contents Write Permission via Probe
+    let contentsStatus = 'unknown';
+    let contentsError = '';
+    try {
+      const contentProbeRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/data/site-content.json`, {
+        headers: {
+          'Accept': 'application/vnd.github+json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (contentProbeRes.ok) {
+        contentsStatus = 'ok';
+      } else if (contentProbeRes.status === 403) {
+        const cErr = await contentProbeRes.json().catch(() => ({}));
+        contentsStatus = 'forbidden';
+        contentsError = cErr.message || 'Resource not accessible by personal access token';
+      }
+    } catch (e) {
+      contentsStatus = 'error';
+    }
+
+    // 3. Test Actions / Workflows Permission
+    let workflowStatus = 'unknown';
+    try {
+      const wfRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/actions/workflows`, {
+        headers: {
+          'Accept': 'application/vnd.github+json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      workflowStatus = wfRes.ok ? 'ok' : 'forbidden';
+    } catch (e) {}
+
+    const isFineGrained = token.startsWith('github_pat_');
+    const isClassic = token.startsWith('ghp_');
+    const tokenType = isFineGrained ? 'Fine-grained Token' : (isClassic ? 'Classic Token' : 'Personal Access Token');
+
+    const contentsOk = (contentsStatus === 'ok') && (canPush !== false);
+
+    let html = `<div style="background: rgba(0,0,0,0.45); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 0.85rem; font-size: 0.82rem; line-height: 1.6;">`;
+    html += `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:0.4rem;">
+      <strong style="color:#fff;">Token Diagnostic Report (${tokenType}):</strong>
+      <span style="color:${contentsOk ? '#4ade80' : '#f87171'}; font-weight:700;">${contentsOk ? '● Ready to Publish Live' : '⚠️ Missing Contents Permission'}</span>
+    </div>`;
+
+    html += `<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:0.5rem; margin-bottom:0.6rem;">`;
+    html += `<div>• Repository: <span style="color:#4ade80;">✓ natel1380/mercer-chiefs-website</span></div>`;
+    html += `<div>• Authentication: <span style="color:#4ade80;">✓ Valid &amp; Active</span></div>`;
+
+    if (contentsOk) {
+      html += `<div>• Contents (CMS &amp; Media): <span style="color:#4ade80;">✓ Read &amp; Write Access</span></div>`;
+    } else {
+      html += `<div>• Contents (CMS &amp; Media): <span style="color:#f87171; font-weight:700;">❌ Missing Write Access</span></div>`;
+    }
+
+    if (workflowStatus === 'ok') {
+      html += `<div>• Actions (Cloud Scraper): <span style="color:#4ade80;">✓ Authorized</span></div>`;
+    } else {
+      html += `<div>• Actions (Cloud Scraper): <span style="color:var(--chiefs-gold);">○ Optional (No Actions Scope)</span></div>`;
+    }
+    html += `</div>`;
+
+    if (!contentsOk) {
+      html += `<div style="margin-top:0.6rem; padding:0.65rem 0.75rem; background:rgba(239,68,68,0.12); border-left:3px solid #ef4444; border-radius:4px; color:#fca5a5;">
+        <strong style="color:#fff; display:block; margin-bottom:0.25rem;">⚠️ Why Publishing Fails with "Resource not accessible":</strong>
+        This token does not have <strong>Contents: Read and write</strong> permission. Live publishing and image uploading are blocked until this permission is granted.
+        <div style="margin-top:0.4rem; color:#e2e8f0;">
+          ${isFineGrained ?
+            '<strong>Fix for Fine-Grained Token:</strong> On GitHub &rarr; Developer Settings &rarr; Personal access tokens, edit your token &rarr; <strong>Repository permissions</strong> &rarr; set <strong>Contents</strong> to <strong>Read and write</strong>.' :
+            '<strong>Fix for Classic Token:</strong> Make sure the master <strong>repo</strong> checkbox is checked in your GitHub token scopes.'
+          }
+        </div>
+        <div style="margin-top:0.5rem;">
+          <a href="https://github.com/settings/tokens/new?description=Mercer+Chiefs+Portal+Admin&scopes=repo,workflow" target="_blank" style="color:var(--chiefs-gold); font-weight:700; text-decoration:underline;">
+            Click here to generate a pre-configured Classic Token (1-click) &rarr;
+          </a>
+        </div>
+      </div>`;
+    } else {
+      html += `<div style="margin-top:0.5rem; color:#4ade80;">
+        ✓ Token verified! You have full permissions to publish website content, section visibility, photos, and club logos to the live site.
+      </div>`;
+    }
+    html += `</div>`;
+
+    if (feedback) feedback.innerHTML = html;
+
+    if (badge) {
+      if (contentsOk) {
+        badge.textContent = '● Verified & Active';
+        badge.style.color = '#4ade80';
+        badge.style.background = 'rgba(34, 197, 94, 0.15)';
+        badge.style.borderColor = 'rgba(34, 197, 94, 0.35)';
+      } else {
+        badge.textContent = '⚠️ Missing Contents Permission';
+        badge.style.color = '#f87171';
+        badge.style.background = 'rgba(239, 68, 68, 0.15)';
+        badge.style.borderColor = 'rgba(239, 68, 68, 0.35)';
+      }
+    }
+
+    return { ok: contentsOk, contentsOk, workflowOk: workflowStatus === 'ok' };
+  } catch (err) {
+    if (feedback) {
+      feedback.innerHTML = `<span style="color:#f87171">Network error verifying token: ${err.message}</span>`;
+    }
+    return { ok: false, error: err.message };
+  } finally {
+    if (testBtn) {
+      testBtn.disabled = false;
+      testBtn.textContent = '🧪 Test Permissions';
+    }
+  }
+};
+
+window.saveGitHubConfig = async function () {
+  const input = document.getElementById('cfg-github-token');
   const token = (input ? input.value : '').trim();
 
   if (!token) {
+    const feedback = document.getElementById('github-token-feedback');
     if (feedback) {
       feedback.style.display = 'block';
       feedback.style.color = '#f87171';
@@ -659,14 +842,8 @@ window.saveGitHubConfig = function () {
   }
 
   localStorage.setItem('mercer_github_token', token);
-  initGitHubConfigUI();
-
-  if (feedback) {
-    feedback.style.display = 'block';
-    feedback.style.color = '#4ade80';
-    feedback.innerHTML = '✓ Access token saved securely in browser. Live publishing & 1-click cloud sync enabled!';
-  }
-  showToast("Access token saved successfully!");
+  showToast("Token saved! Running diagnostic check...");
+  await window.testGitHubToken(token);
 };
 
 window.clearGitHubConfig = function () {
@@ -681,6 +858,91 @@ window.clearGitHubConfig = function () {
     feedback.textContent = 'GitHub token removed from this browser.';
   }
   showToast("GitHub token cleared.");
+};
+
+window.openTokenPermissionModal = function () {
+  const modal = document.getElementById('token-permission-modal');
+  if (modal) {
+    modal.classList.add('active');
+    const input = document.getElementById('modal-input-github-token');
+    const existing = localStorage.getItem('mercer_github_token') || '';
+    if (input && existing) input.value = existing;
+    const fb = document.getElementById('modal-token-feedback');
+    if (fb) fb.style.display = 'none';
+  }
+};
+
+window.closeTokenPermissionModal = function () {
+  const modal = document.getElementById('token-permission-modal');
+  if (modal) {
+    modal.classList.remove('active');
+  }
+};
+
+window.saveAndRetryPublishFromModal = async function () {
+  const input = document.getElementById('modal-input-github-token');
+  const token = (input ? input.value : '').trim();
+  const fb = document.getElementById('modal-token-feedback');
+
+  if (!token) {
+    if (fb) {
+      fb.style.display = 'block';
+      fb.innerHTML = '<span style="color:#f87171">⚠️ Please paste your updated token.</span>';
+    }
+    return;
+  }
+
+  if (fb) {
+    fb.style.display = 'block';
+    fb.innerHTML = '<span style="color:var(--chiefs-gold)">⏳ Verifying token permissions on GitHub...</span>';
+  }
+
+  const result = await window.testGitHubToken(token);
+  if (!result.contentsOk) {
+    if (fb) {
+      fb.style.display = 'block';
+      fb.innerHTML = '<span style="color:#f87171">❌ This token is still missing "Contents: Read & write" permission. Please verify GitHub settings.</span>';
+    }
+    return;
+  }
+
+  localStorage.setItem('mercer_github_token', token);
+  const cfgInput = document.getElementById('cfg-github-token');
+  if (cfgInput) cfgInput.value = token;
+  initGitHubConfigUI();
+
+  if (fb) {
+    fb.innerHTML = '<span style="color:#4ade80">✓ Token verified! Publishing to live site now...</span>';
+  }
+
+  setTimeout(async () => {
+    window.closeTokenPermissionModal();
+    await window.publishSiteContent();
+  }, 600);
+};
+
+window.exportSiteContentJson = function () {
+  try {
+    const content = (typeof window.collectSiteContentFromUI === 'function') ? window.collectSiteContentFromUI() : null;
+    let jsonString = '';
+    if (content) {
+      jsonString = JSON.stringify(content, null, 2);
+    } else {
+      jsonString = localStorage.getItem('mercer_site_content') || '{}';
+    }
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `site-content-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('✓ Downloaded local backup of site-content.json');
+  } catch (e) {
+    showToast(`Export failed: ${e.message}`, 'error');
+  }
 };
 
 // 4B. 1-Click Cloud Scraper Trigger (Dispatches GitHub Actions Ubuntu Runner)
@@ -3794,8 +4056,14 @@ window.uploadStaffPhotoFromInput = async function (fileInput, idx) {
     if (putRes.ok) {
       showToast(`✓ Headshot uploaded to ${repoPath}! Click Publish to deploy.`);
     } else {
-      const err = await putRes.json();
-      showToast(`Upload warning: ${err.message || 'Saved locally only'}`);
+      const err = await putRes.json().catch(() => ({}));
+      const msg = err.message || '';
+      if (msg.includes('Resource not accessible') || putRes.status === 403) {
+        showToast('Upload failed: Token lacks "Contents: Read & write" permission', 'error');
+        if (typeof window.openTokenPermissionModal === 'function') window.openTokenPermissionModal();
+      } else {
+        showToast(`Upload warning: ${msg || 'Saved locally only'}`);
+      }
     }
   } catch (err) {
     console.error('Staff headshot upload error:', err);
@@ -4049,6 +4317,8 @@ window.publishSiteContent = async function () {
 
     if (putRes.ok) {
       showToast('✓ Successfully published updates to live website!');
+      const alertBanner = document.getElementById('cms-permission-alert');
+      if (alertBanner) alertBanner.style.display = 'none';
       badges.forEach(b => {
         b.textContent = '● Published Live';
         b.style.color = '#4ade80';
@@ -4063,8 +4333,39 @@ window.publishSiteContent = async function () {
       return;
     }
 
-    const errData = await putRes.json();
-    throw new Error(errData.message || 'GitHub API returned an error');
+    const errData = await putRes.json().catch(() => ({}));
+    const rawMsg = errData.message || '';
+    if (rawMsg.includes('Resource not accessible') || putRes.status === 403) {
+      const alertBanner = document.getElementById('cms-permission-alert');
+      if (alertBanner) {
+        alertBanner.style.display = 'block';
+        alertBanner.innerHTML = `
+          <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: var(--radius-md); padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+            <div>
+              <strong style="color: #fff; font-size: 0.95rem; display: flex; align-items: center; gap: 0.4rem;">
+                <span>⚠️</span> Live Publish Blocked: Token Missing "Contents: Read &amp; Write"
+              </strong>
+              <p style="font-size: 0.82rem; color: #fca5a5; margin: 0.35rem 0 0 0; line-height: 1.5;">
+                Your visibility &amp; content updates are safely cached in this browser, but GitHub blocked live deployment because your Personal Access Token lacks file writing permissions.
+              </p>
+            </div>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <button type="button" class="btn-primary" onclick="window.openTokenPermissionModal()"
+                style="font-size: 0.8rem; padding: 0.45rem 0.95rem; background: var(--chiefs-gold); border-color: var(--chiefs-gold); color: #000; font-weight: 700;">
+                🔑 Fix Token &amp; Publish
+              </button>
+              <button type="button" class="btn-secondary" onclick="window.exportSiteContentJson()"
+                style="font-size: 0.8rem; padding: 0.45rem 0.85rem;" title="Download local file backup">
+                📥 Export JSON
+              </button>
+            </div>
+          </div>
+        `;
+      }
+      window.openTokenPermissionModal();
+      throw new Error('Resource not accessible by personal access token (Missing Contents: Read & Write permission)');
+    }
+    throw new Error(rawMsg || 'GitHub API returned an error');
   } catch (err) {
     console.error('Publish error:', err);
     showToast(`Publish failed: ${err.message || 'Check token permissions'}`);
@@ -4465,8 +4766,14 @@ window.uploadImageFromInput = async function (fileInput, targetInputId, previewI
       showToast(`✓ Image uploaded successfully to repository (${repoPath})!`);
       if (targetInput) targetInput.value = repoPath;
     } else {
-      const err = await putRes.json();
-      showToast(`Upload warning: ${err.message || 'Saved locally only'}`);
+      const err = await putRes.json().catch(() => ({}));
+      const msg = err.message || '';
+      if (msg.includes('Resource not accessible') || putRes.status === 403) {
+        showToast('Upload failed: Token lacks "Contents: Read & write" permission', 'error');
+        if (typeof window.openTokenPermissionModal === 'function') window.openTokenPermissionModal();
+      } else {
+        showToast(`Upload warning: ${msg || 'Saved locally only'}`);
+      }
     }
   } catch (err) {
     console.error('Image upload failed:', err);
