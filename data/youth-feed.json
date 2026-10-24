@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-10-24T16:16:00.010Z",
+  "lastSynced": "2026-10-24T19:02:33.949Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -9870,22 +9870,12 @@
       "season": "2026/27",
       "headCoach": "Joseph Maslott",
       "level": "16U Midget Minor A",
-      "record": "14-3-0",
-      "pts": 39,
+      "record": "15-3-0",
+      "pts": 41,
       "rank": "#4",
-      "standingSummary": "14-3-0 | 39 PTS | #4 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "15-3-0 | 41 PTS | #4 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9881&season=190&stat_class=1",
       "featuredSchedule": [
-        {
-          "id": "76102",
-          "date": "2026-10-24",
-          "time": "12:00 PM",
-          "opp": "Wildcats 16L",
-          "rink": "Jersey Shore Arena Red Rink",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76102",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76102"
-        },
         {
           "id": "76664",
           "date": "2026-10-25",
@@ -10315,16 +10305,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "76102",
-          "date": "2026-10-24",
-          "time": "12:00 PM",
-          "opp": "Wildcats 16L",
-          "rink": "Jersey Shore Arena Red Rink",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76102",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76102"
-        },
-        {
           "id": "76664",
           "date": "2026-10-25",
           "time": "06:00 PM",
@@ -10466,6 +10446,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "76102",
+          "date": "2026-10-24",
+          "time": "12:00 PM",
+          "opp": "Jersey Shore Wildcats 16L",
+          "rink": "Jersey Shore Arena Red Rink",
+          "loc": "Away",
+          "outcome": "W",
+          "score": "6-2",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76102",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76102"
+        },
         {
           "id": "76663",
           "date": "2026-10-18",

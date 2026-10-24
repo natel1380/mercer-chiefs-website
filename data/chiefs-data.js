@@ -3204,16 +3204,16 @@ export const JUNIOR_TEAMS = {
         "team": "Red Bank Generals",
         "logo": "assets/images/logos/red-bank-generals.png",
         "isChiefs": false,
-        "gp": 9,
-        "w": 6,
+        "gp": 10,
+        "w": 7,
         "l": 3,
         "otl": 0,
-        "pts": 12,
-        "gf": 42,
-        "ga": 18,
-        "diff": "+24",
-        "streak": "1L",
-        "pct": ".667"
+        "pts": 14,
+        "gf": 46,
+        "ga": 20,
+        "diff": "+26",
+        "streak": "1W",
+        "pct": ".700"
       },
       {
         "rank": 6,
@@ -13791,22 +13791,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Joseph Maslott",
     "level": "16U Midget Minor A",
-    "record": "14-3-0",
-    "pts": 39,
+    "record": "15-3-0",
+    "pts": 41,
     "rank": "#4",
-    "standingSummary": "14-3-0 | 39 PTS | #4 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "15-3-0 | 41 PTS | #4 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9881&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "76102",
-        "date": "2026-10-24",
-        "time": "12:00 PM",
-        "opp": "Wildcats 16L",
-        "rink": "Jersey Shore Arena Red Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76102",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76102"
-      },
       {
         "id": "76664",
         "date": "2026-10-25",
@@ -14236,16 +14226,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "76102",
-        "date": "2026-10-24",
-        "time": "12:00 PM",
-        "opp": "Wildcats 16L",
-        "rink": "Jersey Shore Arena Red Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76102",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76102"
-      },
-      {
         "id": "76664",
         "date": "2026-10-25",
         "time": "06:00 PM",
@@ -14387,6 +14367,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76102",
+        "date": "2026-10-24",
+        "time": "12:00 PM",
+        "opp": "Jersey Shore Wildcats 16L",
+        "rink": "Jersey Shore Arena Red Rink",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "6-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76102",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76102"
+      },
       {
         "id": "76663",
         "date": "2026-10-18",

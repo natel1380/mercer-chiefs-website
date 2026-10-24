@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-10-24T16:15:57.076Z",
+  "lastSynced": "2026-10-24T19:02:32.344Z",
   "seasonLabel": "2026-27",
   "ncdc": {
     "id": "ncdc",
@@ -3119,16 +3119,16 @@
         "team": "Red Bank Generals",
         "logo": "assets/images/logos/red-bank-generals.png",
         "isChiefs": false,
-        "gp": 9,
-        "w": 6,
+        "gp": 10,
+        "w": 7,
         "l": 3,
         "otl": 0,
-        "pts": 12,
-        "gf": 42,
-        "ga": 18,
-        "diff": "+24",
-        "streak": "1L",
-        "pct": ".667"
+        "pts": 14,
+        "gf": 46,
+        "ga": 20,
+        "diff": "+26",
+        "streak": "1W",
+        "pct": ".700"
       },
       {
         "rank": 6,
