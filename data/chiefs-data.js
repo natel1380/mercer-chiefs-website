@@ -11925,10 +11925,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Vincent Caruso",
     "level": "18U Midget Major AA",
-    "record": "12-7-3",
+    "record": "12-8-3",
     "pts": 35,
     "rank": "#2",
-    "standingSummary": "12-7-3 | 35 PTS | #2 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "12-8-3 | 35 PTS | #2 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15401&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -12362,16 +12362,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=90567"
       },
       {
-        "id": "75391",
-        "date": "2026-10-24",
-        "time": "09:50 AM",
-        "opp": "Hockey Club 18AA",
-        "rink": "RSG Arena at Dunellen",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75391",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75391"
-      },
-      {
         "id": "77544",
         "date": "2026-10-24",
         "time": "02:15 PM",
@@ -12503,6 +12493,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "75391",
+        "date": "2026-10-24",
+        "time": "09:50 AM",
+        "opp": "Rockets Hockey Club 18AA",
+        "rink": "RSG Arena at Dunellen",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "4-7",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75391",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75391"
+      },
       {
         "id": "92790",
         "date": "2026-10-18",
@@ -18542,10 +18545,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Chris Corrigan",
     "level": "12U Peewee B",
-    "record": "1-9-2",
+    "record": "1-10-2",
     "pts": 5,
     "rank": "#26",
-    "standingSummary": "1-9-2 | 5 PTS | #26 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "1-10-2 | 5 PTS | #26 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9874&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -18557,16 +18560,6 @@ export const YOUTH_TEAMS = [
         "loc": "Home",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76602",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76602"
-      },
-      {
-        "id": "76402",
-        "date": "2026-10-24",
-        "time": "09:35 AM",
-        "opp": "Jets 12M",
-        "rink": "Sportscare Arena Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76402",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76402"
       },
       {
         "id": "76977",
@@ -18917,16 +18910,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76602"
       },
       {
-        "id": "76402",
-        "date": "2026-10-24",
-        "time": "09:35 AM",
-        "opp": "Jets 12M",
-        "rink": "Sportscare Arena Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76402",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76402"
-      },
-      {
         "id": "76977",
         "date": "2026-10-24",
         "time": "01:50 PM",
@@ -19118,6 +19101,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76402",
+        "date": "2026-10-24",
+        "time": "09:35 AM",
+        "opp": "NJ Jets 12M",
+        "rink": "Sportscare Arena Rink 1",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "0-5",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76402",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76402"
+      },
       {
         "id": "76819",
         "date": "2026-10-17",
