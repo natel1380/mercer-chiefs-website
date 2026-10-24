@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-10-24T19:02:32.344Z",
+  "lastSynced": "2026-10-24T21:37:23.238Z",
   "seasonLabel": "2026-27",
   "ncdc": {
     "id": "ncdc",
@@ -1598,6 +1598,22 @@
       },
       {
         "rank": 2,
+        "team": "Jersey Hitmen",
+        "logo": "assets/images/logos/jersey-hitmen.png",
+        "isChiefs": false,
+        "gp": 11,
+        "w": 7,
+        "l": 2,
+        "otl": 1,
+        "pts": 16,
+        "gf": 44,
+        "ga": 29,
+        "diff": "+15",
+        "streak": "1W",
+        "pct": ".727"
+      },
+      {
+        "rank": 3,
         "team": "P.A.L. Junior Islanders",
         "logo": "assets/images/logos/pal-jr-islanders.png",
         "isChiefs": false,
@@ -1611,22 +1627,6 @@
         "diff": "+9",
         "streak": "3W",
         "pct": ".800"
-      },
-      {
-        "rank": 3,
-        "team": "Jersey Hitmen",
-        "logo": "assets/images/logos/jersey-hitmen.png",
-        "isChiefs": false,
-        "gp": 10,
-        "w": 6,
-        "l": 2,
-        "otl": 1,
-        "pts": 14,
-        "gf": 38,
-        "ga": 28,
-        "diff": "+10",
-        "streak": "1L",
-        "pct": ".700"
       },
       {
         "rank": 4,
