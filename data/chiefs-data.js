@@ -12802,10 +12802,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Michael Cook",
     "level": "18U Midget Major A",
-    "record": "5-10-1",
+    "record": "5-11-1",
     "pts": 16,
     "rank": "#12",
-    "standingSummary": "5-10-1 | 16 PTS | #12 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "5-11-1 | 16 PTS | #12 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9878&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -12817,16 +12817,6 @@ export const YOUTH_TEAMS = [
         "loc": "Away",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77048",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77048"
-      },
-      {
-        "id": "76328",
-        "date": "2026-10-23",
-        "time": "07:15 PM",
-        "opp": "Jets 18GRY",
-        "rink": "Sportscare Arena Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76328",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76328"
       },
       {
         "id": "77338",
@@ -13423,16 +13413,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77048"
       },
       {
-        "id": "76328",
-        "date": "2026-10-23",
-        "time": "07:15 PM",
-        "opp": "Jets 18GRY",
-        "rink": "Sportscare Arena Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76328",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76328"
-      },
-      {
         "id": "77338",
         "date": "2026-10-25",
         "time": "01:15 PM",
@@ -13574,6 +13554,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76328",
+        "date": "2026-10-23",
+        "time": "07:15 PM",
+        "opp": "NJ Jets 18GRY",
+        "rink": "Sportscare Arena Rink 1",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "2-3",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76328",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76328"
+      },
       {
         "id": "76676",
         "date": "2026-10-18",
