@@ -1594,15 +1594,21 @@ export function applyClubBranding(b) {
     if (sty.textTransform) navTitle.style.textTransform = sty.textTransform;
     if (sty.color) navTitle.style.color = sty.color;
 
-    const shadowMap = {
-      'subtle': '0 2px 8px rgba(0,0,0,0.6)',
-      'glow-red': '0 0 12px rgba(189,50,59,0.75)',
-      'glow-gold': '0 0 12px rgba(245,166,35,0.75)',
-      'deep': '0 3px 12px rgba(0,0,0,0.9)',
-      'none': 'none'
-    };
-    if (sty.shadowType) {
-      navTitle.style.textShadow = shadowMap[sty.shadowType] || 'none';
+    const shadowType = sty.shadowType || 'subtle';
+    const glowCol = sty.glowColor || (b.colors && b.colors.primary) || '#BD323B';
+    if (shadowType === 'none') {
+      navTitle.style.textShadow = 'none';
+    } else if (shadowType === 'subtle') {
+      navTitle.style.textShadow = '0 2px 8px rgba(0, 0, 0, 0.6)';
+    } else if (shadowType === 'deep') {
+      navTitle.style.textShadow = '0 3px 12px rgba(0, 0, 0, 0.9)';
+    } else if (shadowType === 'glow' || shadowType === 'glow-red' || shadowType === 'glow-gold') {
+      const activeGlow = (shadowType === 'glow-red') ? '#BD323B' : ((shadowType === 'glow-gold') ? '#F5A623' : glowCol);
+      try {
+        navTitle.style.textShadow = `0 0 12px ${hexToRgba(activeGlow, 0.8)}`;
+      } catch (e) {
+        navTitle.style.textShadow = `0 0 12px ${activeGlow}`;
+      }
     }
 
     const tt = sty.textTransform || 'uppercase';

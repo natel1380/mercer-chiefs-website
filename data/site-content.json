@@ -456,7 +456,8 @@
       "fontStyle": "italic",
       "textTransform": "none",
       "verticalOffset": 2.5,
-      "shadowType": "glow-red",
+      "shadowType": "glow",
+      "glowColor": "#BD323B",
       "color": "#d6d6d6"
     },
     "colors": {

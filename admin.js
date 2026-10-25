@@ -5215,6 +5215,7 @@ window.collectSiteContentFromUI = function () {
         textTransform: getCmsVal('cms-brand-text-transform') || 'uppercase',
         verticalOffset: parseFloat(getCmsVal('cms-brand-nudge') || '2.5'),
         shadowType: getCmsVal('cms-brand-shadow') || 'subtle',
+        glowColor: getCmsVal('cms-brand-glow-color') || '#BD323B',
         color: getCmsVal('cms-brand-title-color') || '#FFFFFF'
       },
       colors: {
@@ -5441,10 +5442,29 @@ function populateBrandingUI(b) {
   const badgeNudge = document.getElementById('badge-nudge');
   if (badgeNudge) badgeNudge.textContent = (nudge > 0 ? '+' : '') + nudge + 'px';
 
-  setCmsVal('cms-brand-shadow', sty.shadowType || 'subtle');
+  const shadowVal = sty.shadowType || 'subtle';
+  if (shadowVal === 'glow-red') {
+    setCmsVal('cms-brand-shadow', 'glow');
+    setCmsVal('cms-brand-glow-color', '#BD323B');
+    setCmsVal('cms-brand-glow-color-picker', '#bd323b');
+  } else if (shadowVal === 'glow-gold') {
+    setCmsVal('cms-brand-shadow', 'glow');
+    setCmsVal('cms-brand-glow-color', '#F5A623');
+    setCmsVal('cms-brand-glow-color-picker', '#f5a623');
+  } else {
+    setCmsVal('cms-brand-shadow', shadowVal);
+    const gCol = sty.glowColor || '#BD323B';
+    setCmsVal('cms-brand-glow-color', gCol);
+    setCmsVal('cms-brand-glow-color-picker', gCol);
+  }
+
   const col = sty.color || '#FFFFFF';
   setCmsVal('cms-brand-title-color', col);
   setCmsVal('cms-brand-title-color-picker', col);
+
+  if (typeof window.onShadowTypeChange === 'function') {
+    window.onShadowTypeChange();
+  }
 
   const colors = b.colors || {};
   const primary = colors.primary || '#BD323B';
@@ -5505,6 +5525,7 @@ window.updateBrandingPreview = function () {
   const textTransformVal = getCmsVal('cms-brand-text-transform') || 'uppercase';
   const nudgeVal = parseFloat(getCmsVal('cms-brand-nudge') || '2.5');
   const shadowVal = getCmsVal('cms-brand-shadow') || 'subtle';
+  const glowColVal = getCmsVal('cms-brand-glow-color') || '#BD323B';
   const titleColorVal = getCmsVal('cms-brand-title-color') || '#FFFFFF';
 
   const ffMap = {
@@ -5516,13 +5537,19 @@ window.updateBrandingPreview = function () {
     'Impact': "Impact, 'Arial Black', sans-serif"
   };
 
-  const shadowMap = {
-    'subtle': '0 2px 8px rgba(0,0,0,0.6)',
-    'glow-red': '0 0 12px rgba(189,50,59,0.75)',
-    'glow-gold': '0 0 12px rgba(245,166,35,0.75)',
-    'deep': '0 3px 12px rgba(0,0,0,0.9)',
-    'none': 'none'
-  };
+  let computedShadow = 'none';
+  if (shadowVal === 'subtle') {
+    computedShadow = '0 2px 8px rgba(0,0,0,0.6)';
+  } else if (shadowVal === 'deep') {
+    computedShadow = '0 3px 12px rgba(0,0,0,0.9)';
+  } else if (shadowVal === 'glow' || shadowVal === 'glow-red' || shadowVal === 'glow-gold') {
+    const activeGlow = (shadowVal === 'glow-red') ? '#BD323B' : ((shadowVal === 'glow-gold') ? '#F5A623' : glowColVal);
+    try {
+      computedShadow = `0 0 12px ${hexToRgba(activeGlow, 0.8)}`;
+    } catch (e) {
+      computedShadow = `0 0 12px ${activeGlow}`;
+    }
+  }
 
   const mockWordmark = document.getElementById('mockup-wordmark');
   const mockTitle = document.getElementById('mockup-title');
@@ -5533,7 +5560,7 @@ window.updateBrandingPreview = function () {
     mockTitle.style.fontStyle = fontStyleVal;
     mockTitle.style.textTransform = textTransformVal;
     mockTitle.style.color = titleColorVal;
-    mockTitle.style.textShadow = shadowMap[shadowVal] || 'none';
+    mockTitle.style.textShadow = computedShadow;
   }
 
   if (mockWordmark && mockTitle) {
@@ -5640,13 +5667,45 @@ window.resetBrandTypography = function () {
   if (badgeNudge) badgeNudge.textContent = '+2.5px';
 
   setCmsVal('cms-brand-shadow', 'subtle');
+  setCmsVal('cms-brand-glow-color', '#BD323B');
+  setCmsVal('cms-brand-glow-color-picker', '#bd323b');
   setCmsVal('cms-brand-title-color', '#FFFFFF');
   setCmsVal('cms-brand-title-color-picker', '#ffffff');
+
+  if (typeof window.onShadowTypeChange === 'function') {
+    window.onShadowTypeChange();
+  }
 
   if (typeof window.updateBrandingPreview === 'function') {
     window.updateBrandingPreview();
   }
   showToast('Typography reset to default settings.');
+};
+
+window.onShadowTypeChange = function () {
+  const shadowVal = getCmsVal('cms-brand-shadow');
+  const glowWrap = document.getElementById('wrap-brand-glow-color');
+  if (glowWrap) {
+    const isGlow = shadowVal === 'glow' || shadowVal === 'glow-red' || shadowVal === 'glow-gold';
+    glowWrap.style.opacity = isGlow ? '1' : '0.45';
+    glowWrap.style.pointerEvents = isGlow ? 'auto' : 'none';
+  }
+};
+
+window.setGlowFromColor = function (type) {
+  let col = '#BD323B';
+  if (type === 'primary') {
+    col = getCmsVal('cms-color-primary') || '#BD323B';
+  } else if (type === 'accent') {
+    col = getCmsVal('cms-color-accent') || '#F5A623';
+  }
+  setCmsVal('cms-brand-glow-color', col);
+  setCmsVal('cms-brand-glow-color-picker', col);
+  setCmsVal('cms-brand-shadow', 'glow');
+  if (typeof window.onShadowTypeChange === 'function') {
+    window.onShadowTypeChange();
+  }
+  window.updateBrandingPreview();
 };
 
 window.resetBrandingDefaults = function (promptUser = true) {
