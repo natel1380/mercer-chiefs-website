@@ -431,7 +431,7 @@ export const JUNIOR_TEAMS = {
         "plusMinus": "0",
         "ppg": 0,
         "shg": 0,
-        "gwg": 1
+        "gwg": 0
       },
       {
         "number": 20,
