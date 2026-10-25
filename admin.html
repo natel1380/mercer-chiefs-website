@@ -573,6 +573,9 @@
       width: 100%;
       max-width: 440px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       backdrop-filter: var(--glass-blur);
       box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
     }
@@ -587,7 +590,7 @@
   <div id="auth-screen" class="auth-overlay">
     <div class="auth-card">
       <img id="admin-auth-crest" src="assets/images/mercer-chiefs-crest.png" alt="Club Crest"
-        style="height: 72px; width: auto; margin-bottom: 1rem;">
+        style="height: 72px; width: auto; display: block; margin: 0 auto 1.25rem auto;">
       <h2
         style="font-family: var(--font-heading); font-size: 1.45rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem;">
         Staff & Coach Portal
@@ -596,7 +599,7 @@
         Enter your team administrator passkey to access roster sync, team display controls, and news updates.
       </p>
 
-      <form id="auth-form" onsubmit="window.handleAuth(event)">
+      <form id="auth-form" onsubmit="window.handleAuth(event)" style="width: 100%;">
         <div class="admin-form-group" style="position: relative;">
           <input type="password" id="auth-passkey" class="admin-form-input" placeholder="Enter Staff Passkey" required
             autofocus style="text-align: center; font-size: 1.1rem; letter-spacing: 0.1em; padding-right: 2.75rem;">
