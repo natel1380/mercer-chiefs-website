@@ -1573,11 +1573,44 @@ export function applyClubBranding(b) {
   }
 
   // 3. Club Names & Typography
-  if (b.shortName) {
-    const navTitle = document.getElementById('site-brand-title');
-    if (navTitle) navTitle.textContent = b.shortName.toUpperCase();
-    const footerTitle = document.getElementById('footer-brand-title');
-    if (footerTitle) footerTitle.textContent = b.shortName.toUpperCase();
+  const brandWordmark = document.getElementById('site-brand-wordmark');
+  const navTitle = document.getElementById('site-brand-title');
+  const headerMode = b.headerLogoMode || 'text';
+
+  if (brandWordmark && navTitle) {
+    if (headerMode === 'wordmark_text' && b.wordmarkLogo) {
+      brandWordmark.src = b.wordmarkLogo;
+      brandWordmark.style.display = 'inline-block';
+      brandWordmark.style.height = '32px';
+      brandWordmark.style.maxWidth = '150px';
+      if (b.shortName && b.shortName.trim()) {
+        navTitle.style.display = 'inline-block';
+        navTitle.textContent = b.shortName.toUpperCase();
+      } else {
+        navTitle.style.display = 'none';
+      }
+    } else if (headerMode === 'wordmark_only' && b.wordmarkLogo) {
+      brandWordmark.src = b.wordmarkLogo;
+      brandWordmark.style.display = 'inline-block';
+      brandWordmark.style.height = '38px';
+      brandWordmark.style.maxWidth = '180px';
+      navTitle.style.display = 'none';
+    } else {
+      // 'text' mode: clean standard typography
+      brandWordmark.style.display = 'none';
+      navTitle.style.display = 'inline-block';
+      if (b.shortName) navTitle.textContent = b.shortName.toUpperCase();
+    }
+  } else if (navTitle && b.shortName) {
+    navTitle.textContent = b.shortName.toUpperCase();
+  }
+
+  const footerTitle = document.getElementById('footer-brand-title');
+  if (footerTitle) {
+    const fullClub = (b.clubName && b.clubName.toLowerCase().includes('chiefs')) 
+      ? b.clubName 
+      : ((b.shortName && b.shortName.toLowerCase() !== 'chiefs') ? b.shortName : 'MERCER CHIEFS');
+    footerTitle.textContent = fullClub.toUpperCase();
   }
 
   if (b.tagline) {

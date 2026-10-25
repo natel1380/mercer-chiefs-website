@@ -1771,6 +1771,18 @@
               </div>
             </div>
 
+            <div class="admin-form-group" style="margin-bottom: 0.85rem;">
+              <label>Header Brand Title Display</label>
+              <select id="cms-brand-header-mode" class="admin-form-input" onchange="window.updateBrandingPreview()">
+                <option value="text">Standard Text Only (e.g. "MERCER CHIEFS")</option>
+                <option value="wordmark_text">Wordmark Image + Short Name (e.g. [Mercer script] + "CHIEFS")</option>
+                <option value="wordmark_only">Wordmark Image Only (e.g. [Mercer script])</option>
+              </select>
+              <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 0.35rem; line-height: 1.4;">
+                Tip: When choosing <strong>Wordmark Image + Short Name</strong>, set the <em>Short Brand Name</em> field above to <code>Chiefs</code> so the script logo reads alongside "CHIEFS". The image is auto-scaled to match the typography.
+              </div>
+            </div>
+
             <div class="admin-form-group" style="margin-bottom: 1.25rem;">
               <label>Browser Favicon URL</label>
               <div style="display: flex; gap: 0.5rem; align-items: center;">
@@ -1886,9 +1898,12 @@
               <!-- Mini Header Mockup -->
               <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.85rem; margin-bottom: 1.25rem;">
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
-                  <img id="mockup-crest" src="assets/images/mercer-chiefs-crest.png" alt="Crest" style="height: 38px; width: auto;">
+                  <img id="mockup-crest" src="assets/images/mercer-chiefs-crest.png" alt="Crest" style="height: 38px; width: auto; object-fit: contain;">
                   <div>
-                    <div id="mockup-title" style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: #fff; letter-spacing: 0.03em;">MERCER CHIEFS</div>
+                    <div style="display: flex; align-items: center; gap: 0.4rem;">
+                      <img id="mockup-wordmark" src="assets/images/mercer-chiefs-logo.png" alt="Wordmark" style="height: 24px; width: auto; object-fit: contain; display: none;">
+                      <div id="mockup-title" style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: #fff; letter-spacing: 0.03em;">MERCER CHIEFS</div>
+                    </div>
                     <div id="mockup-sub" style="font-size: 0.68rem; color: #F5A623; font-weight: 700;">JUNIOR & ELITE YOUTH HOCKEY</div>
                   </div>
                 </div>

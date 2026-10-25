@@ -5207,6 +5207,7 @@ window.collectSiteContentFromUI = function () {
       crestLogo: getCmsVal('cms-brand-crest-url') || 'assets/images/mercer-chiefs-crest.png',
       wordmarkLogo: getCmsVal('cms-brand-wordmark-url') || 'assets/images/mercer-chiefs-logo.png',
       favicon: getCmsVal('cms-brand-favicon-url') || 'assets/images/mercer-chiefs-crest.png',
+      headerLogoMode: getCmsVal('cms-brand-header-mode') || 'text',
       colors: {
         primary: getCmsVal('cms-color-primary') || '#BD323B',
         accent: getCmsVal('cms-color-accent') || '#F5A623',
@@ -5413,6 +5414,7 @@ function populateBrandingUI(b) {
   setCmsVal('cms-brand-crest-url', b.crestLogo || 'assets/images/mercer-chiefs-crest.png');
   setCmsVal('cms-brand-wordmark-url', b.wordmarkLogo || 'assets/images/mercer-chiefs-logo.png');
   setCmsVal('cms-brand-favicon-url', b.favicon || 'assets/images/mercer-chiefs-crest.png');
+  setCmsVal('cms-brand-header-mode', b.headerLogoMode || 'text');
 
   const colors = b.colors || {};
   const primary = colors.primary || '#BD323B';
@@ -5462,10 +5464,39 @@ window.updateBrandingPreview = function () {
   if (previewWordmark) previewWordmark.src = wordmarkUrl;
 
   // Update Mockup Elements
+  const headerMode = getCmsVal('cms-brand-header-mode') || 'text';
   const mockCrest = document.getElementById('mockup-crest');
   if (mockCrest) mockCrest.src = crestUrl;
+  
+  const mockWordmark = document.getElementById('mockup-wordmark');
   const mockTitle = document.getElementById('mockup-title');
-  if (mockTitle) mockTitle.textContent = shortName.toUpperCase();
+  if (mockWordmark && mockTitle) {
+    if (headerMode === 'wordmark_text' && wordmarkUrl) {
+      mockWordmark.src = wordmarkUrl;
+      mockWordmark.style.display = 'inline-block';
+      mockWordmark.style.height = '24px';
+      mockWordmark.style.width = 'auto';
+      if (shortName && shortName.trim()) {
+        mockTitle.style.display = 'inline-block';
+        mockTitle.textContent = shortName.toUpperCase();
+      } else {
+        mockTitle.style.display = 'none';
+      }
+    } else if (headerMode === 'wordmark_only' && wordmarkUrl) {
+      mockWordmark.src = wordmarkUrl;
+      mockWordmark.style.display = 'inline-block';
+      mockWordmark.style.height = '28px';
+      mockWordmark.style.width = 'auto';
+      mockTitle.style.display = 'none';
+    } else {
+      mockWordmark.style.display = 'none';
+      mockTitle.style.display = 'inline-block';
+      mockTitle.textContent = shortName.toUpperCase();
+    }
+  } else if (mockTitle) {
+    mockTitle.textContent = shortName.toUpperCase();
+  }
+
   const mockSub = document.getElementById('mockup-sub');
   if (mockSub) {
     mockSub.textContent = tagline.toUpperCase();

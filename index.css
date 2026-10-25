@@ -474,6 +474,25 @@ button {
   flex-direction: column;
 }
 
+.brand-title-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-wordmark-img {
+  height: 32px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45));
+  transition: transform var(--transition-fast);
+}
+
+.brand-wrapper:hover .brand-wordmark-img {
+  transform: scale(1.02);
+}
+
 .brand-title {
   font-family: var(--font-heading);
   font-weight: 800;
@@ -3043,8 +3062,12 @@ button {
 
 @media (max-width: 880px) {
   /* Brand title responsive scaling on phones/tablets */
+  .brand-wordmark-img {
+    height: 24px;
+    max-width: 105px;
+  }
   .brand-title {
-    font-size: clamp(1.1rem, 4.2vw, 1.35rem);
+    font-size: clamp(1rem, 3.8vw, 1.35rem);
   }
   .brand-sub {
     font-size: clamp(0.6rem, 2.2vw, 0.72rem);
