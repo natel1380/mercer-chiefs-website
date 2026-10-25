@@ -1777,16 +1777,16 @@ export const JUNIOR_TEAMS = {
         "team": "Jersey Hitmen",
         "logo": "assets/images/logos/jersey-hitmen.png",
         "isChiefs": false,
-        "gp": 11,
+        "gp": 12,
         "w": 7,
-        "l": 2,
+        "l": 3,
         "otl": 1,
         "pts": 16,
         "gf": 44,
-        "ga": 29,
-        "diff": "+15",
-        "streak": "1W",
-        "pct": ".727"
+        "ga": 32,
+        "diff": "+12",
+        "streak": "1L",
+        "pct": ".667"
       },
       {
         "rank": 4,
@@ -1806,6 +1806,22 @@ export const JUNIOR_TEAMS = {
       },
       {
         "rank": 5,
+        "team": "West Chester Wolves",
+        "logo": "assets/images/logos/west-chester-wolves.png",
+        "isChiefs": false,
+        "gp": 10,
+        "w": 4,
+        "l": 5,
+        "otl": 0,
+        "pts": 9,
+        "gf": 34,
+        "ga": 34,
+        "diff": "0",
+        "streak": "1W",
+        "pct": ".450"
+      },
+      {
+        "rank": 6,
         "team": "Mercer Chiefs",
         "logo": "assets/images/logos/mercer-chiefs-junior.png",
         "isChiefs": true,
@@ -1821,7 +1837,7 @@ export const JUNIOR_TEAMS = {
         "pct": ".375"
       },
       {
-        "rank": 6,
+        "rank": 7,
         "team": "Connecticut Junior Rangers",
         "logo": "assets/images/logos/ct-jr-rangers.png",
         "isChiefs": false,
@@ -1835,22 +1851,6 @@ export const JUNIOR_TEAMS = {
         "diff": "-10",
         "streak": "2L",
         "pct": ".364"
-      },
-      {
-        "rank": 7,
-        "team": "West Chester Wolves",
-        "logo": "assets/images/logos/west-chester-wolves.png",
-        "isChiefs": false,
-        "gp": 9,
-        "w": 3,
-        "l": 5,
-        "otl": 0,
-        "pts": 7,
-        "gf": 29,
-        "ga": 32,
-        "diff": "-3",
-        "streak": "3L",
-        "pct": ".389"
       }
     ]
   },
@@ -12900,10 +12900,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Michael Cook",
     "level": "18U Midget Major A",
-    "record": "5-11-1",
-    "pts": 16,
+    "record": "6-11-1",
+    "pts": 18,
     "rank": "#12",
-    "standingSummary": "5-11-1 | 16 PTS | #12 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "6-11-1 | 18 PTS | #12 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9878&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -12915,16 +12915,6 @@ export const YOUTH_TEAMS = [
         "loc": "Away",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77048",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77048"
-      },
-      {
-        "id": "77338",
-        "date": "2026-10-25",
-        "time": "01:15 PM",
-        "opp": "Colts 18GRY",
-        "rink": "Twin Oaks",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77338",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77338"
       },
       {
         "id": "77051",
@@ -13511,16 +13501,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77048"
       },
       {
-        "id": "77338",
-        "date": "2026-10-25",
-        "time": "01:15 PM",
-        "opp": "Colts 18GRY",
-        "rink": "Twin Oaks",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77338",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77338"
-      },
-      {
         "id": "77051",
         "date": "2026-10-25",
         "time": "05:40 PM",
@@ -13652,6 +13632,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "77338",
+        "date": "2026-10-25",
+        "time": "01:15 PM",
+        "opp": "Jersey Colts 18GRY",
+        "rink": "Twin Oaks",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "8-3",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=77338",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=77338"
+      },
       {
         "id": "76328",
         "date": "2026-10-23",

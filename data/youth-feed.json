@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-10-25T17:40:07.148Z",
+  "lastSynced": "2026-10-25T19:58:39.456Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -8880,10 +8880,10 @@
       "season": "2026/27",
       "headCoach": "Michael Cook",
       "level": "18U Midget Major A",
-      "record": "5-11-1",
-      "pts": 16,
+      "record": "6-11-1",
+      "pts": 18,
       "rank": "#12",
-      "standingSummary": "5-11-1 | 16 PTS | #12 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "6-11-1 | 18 PTS | #12 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9878&season=190&stat_class=1",
       "featuredSchedule": [
         {
@@ -8895,16 +8895,6 @@
           "loc": "Away",
           "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77048",
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77048"
-        },
-        {
-          "id": "77338",
-          "date": "2026-10-25",
-          "time": "01:15 PM",
-          "opp": "Colts 18GRY",
-          "rink": "Twin Oaks",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77338",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77338"
         },
         {
           "id": "77051",
@@ -9491,16 +9481,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77048"
         },
         {
-          "id": "77338",
-          "date": "2026-10-25",
-          "time": "01:15 PM",
-          "opp": "Colts 18GRY",
-          "rink": "Twin Oaks",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77338",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77338"
-        },
-        {
           "id": "77051",
           "date": "2026-10-25",
           "time": "05:40 PM",
@@ -9632,6 +9612,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "77338",
+          "date": "2026-10-25",
+          "time": "01:15 PM",
+          "opp": "Jersey Colts 18GRY",
+          "rink": "Twin Oaks",
+          "loc": "Away",
+          "outcome": "W",
+          "score": "8-3",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=77338",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=77338"
+        },
         {
           "id": "76328",
           "date": "2026-10-23",
