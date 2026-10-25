@@ -450,6 +450,15 @@
     "wordmarkLogo": "assets/images/wordmark-1792941698006.png",
     "favicon": "assets/images/favicon-1792941701402.png",
     "headerLogoMode": "wordmark_text",
+    "shortNameStyle": {
+      "fontFamily": "Outfit",
+      "fontSize": "1.35rem",
+      "fontStyle": "normal",
+      "textTransform": "uppercase",
+      "verticalOffset": 2.5,
+      "shadowType": "subtle",
+      "color": "#FFFFFF"
+    },
     "colors": {
       "primary": "#BD323B",
       "accent": "#F5A623",

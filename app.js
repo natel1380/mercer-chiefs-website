@@ -1576,33 +1576,71 @@ export function applyClubBranding(b) {
   const brandWordmark = document.getElementById('site-brand-wordmark');
   const navTitle = document.getElementById('site-brand-title');
   const headerMode = b.headerLogoMode || 'text';
+  const sty = b.shortNameStyle || {};
 
-  if (brandWordmark && navTitle) {
-    if (headerMode === 'wordmark_text' && b.wordmarkLogo) {
-      brandWordmark.src = b.wordmarkLogo;
-      brandWordmark.style.display = 'inline-block';
-      brandWordmark.style.height = '32px';
-      brandWordmark.style.maxWidth = '150px';
-      if (b.shortName && b.shortName.trim()) {
-        navTitle.style.display = 'inline-block';
-        navTitle.textContent = b.shortName.toUpperCase();
-      } else {
-        navTitle.style.display = 'none';
-      }
-    } else if (headerMode === 'wordmark_only' && b.wordmarkLogo) {
-      brandWordmark.src = b.wordmarkLogo;
-      brandWordmark.style.display = 'inline-block';
-      brandWordmark.style.height = '38px';
-      brandWordmark.style.maxWidth = '180px';
-      navTitle.style.display = 'none';
-    } else {
-      // 'text' mode: clean standard typography
-      brandWordmark.style.display = 'none';
-      navTitle.style.display = 'inline-block';
-      if (b.shortName) navTitle.textContent = b.shortName.toUpperCase();
+  if (navTitle) {
+    const ffMap = {
+      'Outfit': "'Outfit', sans-serif",
+      'Teko': "'Teko', sans-serif",
+      'Bebas Neue': "'Bebas Neue', sans-serif",
+      'Montserrat': "'Montserrat', sans-serif",
+      'Inter': "'Inter', sans-serif",
+      'Impact': "Impact, 'Arial Black', sans-serif"
+    };
+
+    if (sty.fontFamily) navTitle.style.fontFamily = ffMap[sty.fontFamily] || sty.fontFamily;
+    if (sty.fontSize) navTitle.style.fontSize = sty.fontSize;
+    if (sty.fontStyle) navTitle.style.fontStyle = sty.fontStyle;
+    if (sty.textTransform) navTitle.style.textTransform = sty.textTransform;
+    if (sty.color) navTitle.style.color = sty.color;
+
+    const shadowMap = {
+      'subtle': '0 2px 8px rgba(0,0,0,0.6)',
+      'glow-red': '0 0 12px rgba(189,50,59,0.75)',
+      'glow-gold': '0 0 12px rgba(245,166,35,0.75)',
+      'deep': '0 3px 12px rgba(0,0,0,0.9)',
+      'none': 'none'
+    };
+    if (sty.shadowType) {
+      navTitle.style.textShadow = shadowMap[sty.shadowType] || 'none';
     }
-  } else if (navTitle && b.shortName) {
-    navTitle.textContent = b.shortName.toUpperCase();
+
+    const tt = sty.textTransform || 'uppercase';
+    const rawShort = b.shortName || 'CHIEFS';
+    const formattedShort = (tt === 'none') ? rawShort : ((tt === 'uppercase') ? rawShort.toUpperCase() : rawShort);
+
+    if (brandWordmark) {
+      if (headerMode === 'wordmark_text' && b.wordmarkLogo) {
+        brandWordmark.src = b.wordmarkLogo;
+        brandWordmark.style.display = 'inline-block';
+        brandWordmark.style.height = '32px';
+        brandWordmark.style.maxWidth = '150px';
+        if (b.shortName && b.shortName.trim()) {
+          navTitle.style.display = 'inline-block';
+          navTitle.textContent = formattedShort;
+          const nudge = sty.verticalOffset !== undefined ? sty.verticalOffset : 2.5;
+          navTitle.style.transform = `translateY(${nudge}px)`;
+        } else {
+          navTitle.style.display = 'none';
+          navTitle.style.transform = 'none';
+        }
+      } else if (headerMode === 'wordmark_only' && b.wordmarkLogo) {
+        brandWordmark.src = b.wordmarkLogo;
+        brandWordmark.style.display = 'inline-block';
+        brandWordmark.style.height = '38px';
+        brandWordmark.style.maxWidth = '180px';
+        navTitle.style.display = 'none';
+        navTitle.style.transform = 'none';
+      } else {
+        // 'text' mode: clean standard typography
+        brandWordmark.style.display = 'none';
+        navTitle.style.display = 'inline-block';
+        navTitle.textContent = formattedShort;
+        navTitle.style.transform = 'none';
+      }
+    } else {
+      navTitle.textContent = formattedShort;
+    }
   }
 
   const footerTitle = document.getElementById('footer-brand-title');

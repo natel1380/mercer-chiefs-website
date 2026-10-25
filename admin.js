@@ -5208,6 +5208,15 @@ window.collectSiteContentFromUI = function () {
       wordmarkLogo: getCmsVal('cms-brand-wordmark-url') || 'assets/images/mercer-chiefs-logo.png',
       favicon: getCmsVal('cms-brand-favicon-url') || 'assets/images/mercer-chiefs-crest.png',
       headerLogoMode: getCmsVal('cms-brand-header-mode') || 'text',
+      shortNameStyle: {
+        fontFamily: getCmsVal('cms-brand-font-family') || 'Outfit',
+        fontSize: (getCmsVal('cms-brand-font-size') || '1.35') + 'rem',
+        fontStyle: getCmsVal('cms-brand-font-style') || 'normal',
+        textTransform: getCmsVal('cms-brand-text-transform') || 'uppercase',
+        verticalOffset: parseFloat(getCmsVal('cms-brand-nudge') || '2.5'),
+        shadowType: getCmsVal('cms-brand-shadow') || 'subtle',
+        color: getCmsVal('cms-brand-title-color') || '#FFFFFF'
+      },
       colors: {
         primary: getCmsVal('cms-color-primary') || '#BD323B',
         accent: getCmsVal('cms-color-accent') || '#F5A623',
@@ -5416,6 +5425,27 @@ function populateBrandingUI(b) {
   setCmsVal('cms-brand-favicon-url', b.favicon || 'assets/images/mercer-chiefs-crest.png');
   setCmsVal('cms-brand-header-mode', b.headerLogoMode || 'text');
 
+  const sty = b.shortNameStyle || {};
+  setCmsVal('cms-brand-font-family', sty.fontFamily || 'Outfit');
+  const fSize = sty.fontSize ? parseFloat(sty.fontSize) : 1.35;
+  const validFSize = isNaN(fSize) ? 1.35 : fSize;
+  setCmsVal('cms-brand-font-size', validFSize);
+  const badgeSize = document.getElementById('badge-font-size');
+  if (badgeSize) badgeSize.textContent = validFSize + 'rem';
+
+  setCmsVal('cms-brand-font-style', sty.fontStyle || 'normal');
+  setCmsVal('cms-brand-text-transform', sty.textTransform || 'uppercase');
+
+  const nudge = sty.verticalOffset !== undefined ? sty.verticalOffset : 2.5;
+  setCmsVal('cms-brand-nudge', nudge);
+  const badgeNudge = document.getElementById('badge-nudge');
+  if (badgeNudge) badgeNudge.textContent = (nudge > 0 ? '+' : '') + nudge + 'px';
+
+  setCmsVal('cms-brand-shadow', sty.shadowType || 'subtle');
+  const col = sty.color || '#FFFFFF';
+  setCmsVal('cms-brand-title-color', col);
+  setCmsVal('cms-brand-title-color-picker', col);
+
   const colors = b.colors || {};
   const primary = colors.primary || '#BD323B';
   const accent = colors.accent || '#F5A623';
@@ -5467,9 +5497,45 @@ window.updateBrandingPreview = function () {
   const headerMode = getCmsVal('cms-brand-header-mode') || 'text';
   const mockCrest = document.getElementById('mockup-crest');
   if (mockCrest) mockCrest.src = crestUrl;
-  
+
+  // Read Typography controls
+  const fontFamilyVal = getCmsVal('cms-brand-font-family') || 'Outfit';
+  const fontSizeVal = parseFloat(getCmsVal('cms-brand-font-size') || '1.35');
+  const fontStyleVal = getCmsVal('cms-brand-font-style') || 'normal';
+  const textTransformVal = getCmsVal('cms-brand-text-transform') || 'uppercase';
+  const nudgeVal = parseFloat(getCmsVal('cms-brand-nudge') || '2.5');
+  const shadowVal = getCmsVal('cms-brand-shadow') || 'subtle';
+  const titleColorVal = getCmsVal('cms-brand-title-color') || '#FFFFFF';
+
+  const ffMap = {
+    'Outfit': "'Outfit', sans-serif",
+    'Teko': "'Teko', sans-serif",
+    'Bebas Neue': "'Bebas Neue', sans-serif",
+    'Montserrat': "'Montserrat', sans-serif",
+    'Inter': "'Inter', sans-serif",
+    'Impact': "Impact, 'Arial Black', sans-serif"
+  };
+
+  const shadowMap = {
+    'subtle': '0 2px 8px rgba(0,0,0,0.6)',
+    'glow-red': '0 0 12px rgba(189,50,59,0.75)',
+    'glow-gold': '0 0 12px rgba(245,166,35,0.75)',
+    'deep': '0 3px 12px rgba(0,0,0,0.9)',
+    'none': 'none'
+  };
+
   const mockWordmark = document.getElementById('mockup-wordmark');
   const mockTitle = document.getElementById('mockup-title');
+
+  if (mockTitle) {
+    mockTitle.style.fontFamily = ffMap[fontFamilyVal] || fontFamilyVal;
+    mockTitle.style.fontSize = (fontSizeVal * 0.82).toFixed(2) + 'rem';
+    mockTitle.style.fontStyle = fontStyleVal;
+    mockTitle.style.textTransform = textTransformVal;
+    mockTitle.style.color = titleColorVal;
+    mockTitle.style.textShadow = shadowMap[shadowVal] || 'none';
+  }
+
   if (mockWordmark && mockTitle) {
     if (headerMode === 'wordmark_text' && wordmarkUrl) {
       mockWordmark.src = wordmarkUrl;
@@ -5478,8 +5544,8 @@ window.updateBrandingPreview = function () {
       mockWordmark.style.width = 'auto';
       if (shortName && shortName.trim()) {
         mockTitle.style.display = 'inline-block';
-        mockTitle.textContent = shortName.toUpperCase();
-        mockTitle.style.transform = 'translateY(2px)';
+        mockTitle.textContent = (textTransformVal === 'none') ? shortName : ((textTransformVal === 'uppercase') ? shortName.toUpperCase() : shortName);
+        mockTitle.style.transform = `translateY(${nudgeVal * 0.8}px)`;
       } else {
         mockTitle.style.display = 'none';
         mockTitle.style.transform = 'none';
@@ -5494,11 +5560,11 @@ window.updateBrandingPreview = function () {
     } else {
       mockWordmark.style.display = 'none';
       mockTitle.style.display = 'inline-block';
-      mockTitle.textContent = shortName.toUpperCase();
+      mockTitle.textContent = (textTransformVal === 'none') ? shortName : ((textTransformVal === 'uppercase') ? shortName.toUpperCase() : shortName);
       mockTitle.style.transform = 'none';
     }
   } else if (mockTitle) {
-    mockTitle.textContent = shortName.toUpperCase();
+    mockTitle.textContent = (textTransformVal === 'none') ? shortName : ((textTransformVal === 'uppercase') ? shortName.toUpperCase() : shortName);
   }
 
   const mockSub = document.getElementById('mockup-sub');
@@ -5559,6 +5625,28 @@ window.applyColorPreset = function (primary, accent, bgDeep, bgCard) {
 
   window.updateBrandingPreview();
   showToast('Color preset applied. See preview below.');
+};
+
+window.resetBrandTypography = function () {
+  setCmsVal('cms-brand-font-family', 'Outfit');
+  setCmsVal('cms-brand-font-size', 1.35);
+  const badgeSize = document.getElementById('badge-font-size');
+  if (badgeSize) badgeSize.textContent = '1.35rem';
+
+  setCmsVal('cms-brand-font-style', 'normal');
+  setCmsVal('cms-brand-text-transform', 'uppercase');
+  setCmsVal('cms-brand-nudge', 2.5);
+  const badgeNudge = document.getElementById('badge-nudge');
+  if (badgeNudge) badgeNudge.textContent = '+2.5px';
+
+  setCmsVal('cms-brand-shadow', 'subtle');
+  setCmsVal('cms-brand-title-color', '#FFFFFF');
+  setCmsVal('cms-brand-title-color-picker', '#ffffff');
+
+  if (typeof window.updateBrandingPreview === 'function') {
+    window.updateBrandingPreview();
+  }
+  showToast('Typography reset to default settings.');
 };
 
 window.resetBrandingDefaults = function (promptUser = true) {
