@@ -451,13 +451,13 @@
     "favicon": "assets/images/favicon-1792941701402.png",
     "headerLogoMode": "wordmark_text",
     "shortNameStyle": {
-      "fontFamily": "Outfit",
-      "fontSize": "1.35rem",
-      "fontStyle": "normal",
-      "textTransform": "uppercase",
+      "fontFamily": "Teko",
+      "fontSize": "2.15rem",
+      "fontStyle": "italic",
+      "textTransform": "none",
       "verticalOffset": 2.5,
-      "shadowType": "subtle",
-      "color": "#FFFFFF"
+      "shadowType": "glow-red",
+      "color": "#d6d6d6"
     },
     "colors": {
       "primary": "#BD323B",
