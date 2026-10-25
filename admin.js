@@ -5479,8 +5479,10 @@ window.updateBrandingPreview = function () {
       if (shortName && shortName.trim()) {
         mockTitle.style.display = 'inline-block';
         mockTitle.textContent = shortName.toUpperCase();
+        mockTitle.style.transform = 'translateY(2px)';
       } else {
         mockTitle.style.display = 'none';
+        mockTitle.style.transform = 'none';
       }
     } else if (headerMode === 'wordmark_only' && wordmarkUrl) {
       mockWordmark.src = wordmarkUrl;
@@ -5488,10 +5490,12 @@ window.updateBrandingPreview = function () {
       mockWordmark.style.height = '28px';
       mockWordmark.style.width = 'auto';
       mockTitle.style.display = 'none';
+      mockTitle.style.transform = 'none';
     } else {
       mockWordmark.style.display = 'none';
       mockTitle.style.display = 'inline-block';
       mockTitle.textContent = shortName.toUpperCase();
+      mockTitle.style.transform = 'none';
     }
   } else if (mockTitle) {
     mockTitle.textContent = shortName.toUpperCase();

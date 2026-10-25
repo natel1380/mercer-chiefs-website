@@ -477,7 +477,7 @@ button {
 .brand-title-wrap {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
 }
 
 .brand-wordmark-img {
@@ -500,6 +500,12 @@ button {
   letter-spacing: 0.03em;
   color: #fff;
   line-height: 1;
+  transition: transform var(--transition-fast);
+}
+
+/* Align block text baseline with the optical flow of the script wordmark */
+.brand-wordmark-img:not([style*="display: none"]) ~ .brand-title {
+  transform: translateY(2.5px);
 }
 
 .brand-sub {
@@ -3065,6 +3071,9 @@ button {
   .brand-wordmark-img {
     height: 24px;
     max-width: 105px;
+  }
+  .brand-wordmark-img:not([style*="display: none"]) ~ .brand-title {
+    transform: translateY(1.5px);
   }
   .brand-title {
     font-size: clamp(1rem, 3.8vw, 1.35rem);
