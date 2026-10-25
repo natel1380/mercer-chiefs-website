@@ -1841,16 +1841,16 @@ export const JUNIOR_TEAMS = {
         "team": "West Chester Wolves",
         "logo": "assets/images/logos/west-chester-wolves.png",
         "isChiefs": false,
-        "gp": 10,
+        "gp": 9,
         "w": 3,
-        "l": 6,
+        "l": 5,
         "otl": 0,
         "pts": 7,
         "gf": 29,
-        "ga": 33,
-        "diff": "-4",
-        "streak": "4L",
-        "pct": ".350"
+        "ga": 32,
+        "diff": "-3",
+        "streak": "3L",
+        "pct": ".389"
       }
     ]
   },
@@ -11407,22 +11407,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Oktay Armagan",
     "level": "9U Squirt Minor AAA",
-    "record": "0-8-2",
+    "record": "0-9-2",
     "pts": 2,
     "rank": "#17",
-    "standingSummary": "0-8-2 | 2 PTS | #17 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "0-9-2 | 2 PTS | #17 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10307&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "81035",
-        "date": "2026-10-25",
-        "time": "12:10 PM",
-        "opp": "Pirates 9U",
-        "rink": "Ice World Rink B",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81035",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81035"
-      },
       {
         "id": "81036",
         "date": "2026-10-25",
@@ -11750,16 +11740,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "81035",
-        "date": "2026-10-25",
-        "time": "12:10 PM",
-        "opp": "Pirates 9U",
-        "rink": "Ice World Rink B",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81035",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81035"
-      },
-      {
         "id": "81036",
         "date": "2026-10-25",
         "time": "03:10 PM",
@@ -11881,6 +11861,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "81035",
+        "date": "2026-10-25",
+        "time": "12:10 PM",
+        "opp": "Piney Pirates 9U",
+        "rink": "Ice World Rink B",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "0-13",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=81035",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=81035"
+      },
       {
         "id": "82165",
         "date": "2026-10-17",
@@ -15480,10 +15473,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Don Migliorisi",
     "level": "14U Bantam Minor B",
-    "record": "4-6-3",
+    "record": "4-7-3",
     "pts": 14,
     "rank": "#7",
-    "standingSummary": "4-6-3 | 15 Active Players | 2026/27 Season",
+    "standingSummary": "4-7-3 | 14 PTS | #7 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15078&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -15505,16 +15498,6 @@ export const YOUTH_TEAMS = [
         "loc": "Away",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75922",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75922"
-      },
-      {
-        "id": "77860",
-        "date": "2026-10-25",
-        "time": "09:50 AM",
-        "opp": "Hockey Club 14M",
-        "rink": "Hatfield Ice Arena Gray",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77860",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77860"
       },
       {
         "id": "76634",
@@ -15905,16 +15888,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75922"
       },
       {
-        "id": "77860",
-        "date": "2026-10-25",
-        "time": "09:50 AM",
-        "opp": "Hockey Club 14M",
-        "rink": "Hatfield Ice Arena Gray",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77860",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77860"
-      },
-      {
         "id": "76634",
         "date": "2026-10-31",
         "time": "01:40 PM",
@@ -16076,6 +16049,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "77860",
+        "date": "2026-10-25",
+        "time": "09:50 AM",
+        "opp": "Genesis Hockey Club 14M",
+        "rink": "Hatfield Ice Arena Gray",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "1-4",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=77860",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=77860"
+      },
       {
         "id": "74422",
         "date": "2026-10-04",

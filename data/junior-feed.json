@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-10-25T15:16:48.775Z",
+  "lastSynced": "2026-10-25T17:40:02.905Z",
   "seasonLabel": "2026-27",
   "ncdc": {
     "id": "ncdc",
@@ -1756,16 +1756,16 @@
         "team": "West Chester Wolves",
         "logo": "assets/images/logos/west-chester-wolves.png",
         "isChiefs": false,
-        "gp": 10,
+        "gp": 9,
         "w": 3,
-        "l": 6,
+        "l": 5,
         "otl": 0,
         "pts": 7,
         "gf": 29,
-        "ga": 33,
-        "diff": "-4",
-        "streak": "4L",
-        "pct": ".350"
+        "ga": 32,
+        "diff": "-3",
+        "streak": "3L",
+        "pct": ".389"
       }
     ]
   },
