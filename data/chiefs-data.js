@@ -18533,10 +18533,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Chris Corrigan",
     "level": "12U Peewee B",
-    "record": "1-11-2",
+    "record": "1-12-2",
     "pts": 5,
     "rank": "#26",
-    "standingSummary": "1-11-2 | 5 PTS | #26 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "1-12-2 | 5 PTS | #26 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9874&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -18548,16 +18548,6 @@ export const YOUTH_TEAMS = [
         "loc": "Home",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76602",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76602"
-      },
-      {
-        "id": "76403",
-        "date": "2026-10-25",
-        "time": "08:30 AM",
-        "opp": "Jets 12M",
-        "rink": "Sportscare Arena Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76403",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76403"
       }
     ],
     "roster": [
@@ -18888,16 +18878,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76602"
       },
       {
-        "id": "76403",
-        "date": "2026-10-25",
-        "time": "08:30 AM",
-        "opp": "Jets 12M",
-        "rink": "Sportscare Arena Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76403",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76403"
-      },
-      {
         "id": "76606",
         "date": "2026-10-31",
         "time": "11:05 AM",
@@ -19069,6 +19049,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76403",
+        "date": "2026-10-25",
+        "time": "08:30 AM",
+        "opp": "NJ Jets 12M",
+        "rink": "Sportscare Arena Rink 1",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "2-7",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76403",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76403"
+      },
       {
         "id": "76977",
         "date": "2026-10-24",
