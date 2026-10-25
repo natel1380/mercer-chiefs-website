@@ -13,9 +13,9 @@
   "hero": {
     "enabled": true,
     "backdropImage": "assets/images/hero-action.jpg",
-    "headlineLine1": "CHAMPIONSHIP HOCKEY.",
+    "headlineLine1": "ELITE HOCKEY.",
     "headlineGradient": "PROVEN ADVANCEMENT.",
-    "description": "Home of the Mercer Chiefs — New Jersey's premier Tier II Junior (NCDC) and Tier I AAA youth hockey organization. We develop elite student-athletes with direct pathways to NCAA Division I & III college hockey.",
+    "description": "Home of the Mercer Chiefs — New Jersey's elite Tier II (NCDC) and Tier III (PREMIER) junior hockey organization. We develop student-athletes with direct pathways to NCAA Division III college hockey.",
     "primaryBtnText": "Explore Junior Teams",
     "primaryBtnUrl": "#ncdc-hub",
     "secondaryBtnText": "Youth Hub",
@@ -443,8 +443,8 @@
   "branding": {
     "clubName": "Mercer Chiefs Hockey Club",
     "shortName": "Mercer Chiefs",
-    "tagline": "Junior & Elite Youth Hockey",
-    "description": "Dedicated to developing student-athletes through competitive Tier II tuition-free junior hockey and premier Tier 1 AAA youth competition in Hamilton, New Jersey.",
+    "tagline": "Tier II and Tier III Junior Hockey",
+    "description": "Dedicated to developing student-athletes through competitive Tier II tuition-free and Tier III junior hockey in Hamilton, New Jersey.",
     "founded": "1990",
     "crestLogo": "assets/images/mercer-chiefs-crest.png",
     "wordmarkLogo": "assets/images/mercer-chiefs-logo.png",

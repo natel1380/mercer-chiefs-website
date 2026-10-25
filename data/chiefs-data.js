@@ -399,11 +399,11 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/ncdc_18_sarkar_conall.png",
         "fullPhoto": "assets/images/players/full/ncdc_18_sarkar_conall.jpg",
-        "gp": 8,
+        "gp": 1,
         "g": 0,
-        "a": 0,
-        "pts": 0,
-        "pim": 17,
+        "a": 1,
+        "pts": 1,
+        "pim": 0,
         "plusMinus": "+2",
         "ppg": 0,
         "shg": 0,
@@ -431,7 +431,7 @@ export const JUNIOR_TEAMS = {
         "plusMinus": "0",
         "ppg": 0,
         "shg": 0,
-        "gwg": 0
+        "gwg": 1
       },
       {
         "number": 20,
