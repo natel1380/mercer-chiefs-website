@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-10-25T19:58:36.448Z",
+  "lastSynced": "2026-10-25T22:34:15.099Z",
   "seasonLabel": "2026-27",
   "ncdc": {
     "id": "ncdc",
@@ -656,11 +656,11 @@
         "otl": 0,
         "sol": 1,
         "ga": 3,
-        "sv": 18,
-        "sa": 21,
+        "sv": 45,
+        "sa": 48,
         "so": 0,
         "gaa": "1.00",
-        "svPct": ".857",
+        "svPct": ".938",
         "pim": 0
       },
       {
@@ -681,12 +681,12 @@
         "l": 0,
         "otl": 0,
         "gaa": "0.33",
-        "svPct": ".964",
+        "svPct": ".929",
         "so": 0,
         "sol": 0,
         "ga": 2,
-        "sv": 53,
-        "sa": 55,
+        "sv": 26,
+        "sa": 28,
         "pim": 0
       },
       {
@@ -1660,16 +1660,16 @@
         "team": "Wilkes-Barre Scranton Knights",
         "logo": "assets/images/logos/wbs-knights.png",
         "isChiefs": false,
-        "gp": 11,
+        "gp": 12,
         "w": 9,
-        "l": 1,
+        "l": 2,
         "otl": 0,
         "pts": 19,
-        "gf": 43,
-        "ga": 30,
-        "diff": "+13",
-        "streak": "5W",
-        "pct": ".864"
+        "gf": 45,
+        "ga": 35,
+        "diff": "+10",
+        "streak": "1L",
+        "pct": ".792"
       },
       {
         "rank": 2,
@@ -1708,16 +1708,16 @@
         "team": "Rockets Hockey Club",
         "logo": "assets/images/logos/rockets-hc.png",
         "isChiefs": false,
-        "gp": 11,
-        "w": 4,
+        "gp": 12,
+        "w": 5,
         "l": 5,
         "otl": 2,
-        "pts": 10,
-        "gf": 31,
-        "ga": 37,
-        "diff": "-6",
-        "streak": "4L",
-        "pct": ".455"
+        "pts": 12,
+        "gf": 36,
+        "ga": 39,
+        "diff": "-3",
+        "streak": "1W",
+        "pct": ".500"
       },
       {
         "rank": 5,

@@ -741,11 +741,11 @@ export const JUNIOR_TEAMS = {
         "otl": 0,
         "sol": 1,
         "ga": 3,
-        "sv": 18,
-        "sa": 21,
+        "sv": 45,
+        "sa": 48,
         "so": 0,
         "gaa": "1.00",
-        "svPct": ".857",
+        "svPct": ".938",
         "pim": 0
       },
       {
@@ -766,12 +766,12 @@ export const JUNIOR_TEAMS = {
         "l": 0,
         "otl": 0,
         "gaa": "0.33",
-        "svPct": ".964",
+        "svPct": ".929",
         "so": 0,
         "sol": 0,
         "ga": 2,
-        "sv": 53,
-        "sa": 55,
+        "sv": 26,
+        "sa": 28,
         "pim": 0
       },
       {
@@ -1745,16 +1745,16 @@ export const JUNIOR_TEAMS = {
         "team": "Wilkes-Barre Scranton Knights",
         "logo": "assets/images/logos/wbs-knights.png",
         "isChiefs": false,
-        "gp": 11,
+        "gp": 12,
         "w": 9,
-        "l": 1,
+        "l": 2,
         "otl": 0,
         "pts": 19,
-        "gf": 43,
-        "ga": 30,
-        "diff": "+13",
-        "streak": "5W",
-        "pct": ".864"
+        "gf": 45,
+        "ga": 35,
+        "diff": "+10",
+        "streak": "1L",
+        "pct": ".792"
       },
       {
         "rank": 2,
@@ -1793,16 +1793,16 @@ export const JUNIOR_TEAMS = {
         "team": "Rockets Hockey Club",
         "logo": "assets/images/logos/rockets-hc.png",
         "isChiefs": false,
-        "gp": 11,
-        "w": 4,
+        "gp": 12,
+        "w": 5,
         "l": 5,
         "otl": 2,
-        "pts": 10,
-        "gf": 31,
-        "ga": 37,
-        "diff": "-6",
-        "streak": "4L",
-        "pct": ".455"
+        "pts": 12,
+        "gf": 36,
+        "ga": 39,
+        "diff": "-3",
+        "streak": "1W",
+        "pct": ".500"
       },
       {
         "rank": 5,
@@ -11407,22 +11407,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Oktay Armagan",
     "level": "9U Squirt Minor AAA",
-    "record": "0-9-2",
+    "record": "0-10-2",
     "pts": 2,
     "rank": "#17",
-    "standingSummary": "0-9-2 | 2 PTS | #17 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "0-10-2 | 2 PTS | #17 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10307&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "81036",
-        "date": "2026-10-25",
-        "time": "03:10 PM",
-        "opp": "Pirates 9U",
-        "rink": "Ice World Rink A",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81036",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81036"
-      },
       {
         "id": "82443",
         "date": "2026-12-05",
@@ -11740,16 +11730,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "81036",
-        "date": "2026-10-25",
-        "time": "03:10 PM",
-        "opp": "Pirates 9U",
-        "rink": "Ice World Rink A",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81036",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81036"
-      },
-      {
         "id": "82443",
         "date": "2026-12-05",
         "time": "08:30 AM",
@@ -11861,6 +11841,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "81036",
+        "date": "2026-10-25",
+        "time": "03:10 PM",
+        "opp": "Piney Pirates 9U",
+        "rink": "Ice World Rink A",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "1-8",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=81036",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=81036"
+      },
       {
         "id": "81035",
         "date": "2026-10-25",
@@ -16237,10 +16230,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Don Migliorisi",
     "level": "13U Bantam Minor AA",
-    "record": "13-5-0",
+    "record": "13-6-0",
     "pts": 34,
     "rank": "#8",
-    "standingSummary": "13-5-0 | 34 PTS | #8 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "13-6-0 | 34 PTS | #8 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15033&season=190&stat_class=1",
     "featuredSchedule": [],
     "roster": [
@@ -16653,16 +16646,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "75847",
-        "date": "2026-10-25",
-        "time": "02:30 PM",
-        "opp": "Philadelphia 13AA Orange",
-        "rink": "Ice Line Rink 4",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75847",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75847"
-      },
-      {
         "id": "76390",
         "date": "2026-10-31",
         "time": "09:50 AM",
@@ -16844,6 +16827,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "75847",
+        "date": "2026-10-25",
+        "time": "02:30 PM",
+        "opp": "Team Philadelphia 13AA Orange",
+        "rink": "Ice Line Rink 4",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "2-5",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75847",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75847"
+      },
       {
         "id": "75286",
         "date": "2026-10-24",
