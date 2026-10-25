@@ -1546,16 +1546,25 @@ export function applyClubBranding(b) {
 
   // 2. Logos & Icons
   if (b.crestLogo) {
+    const brandLogo = document.getElementById('site-brand-logo');
+    if (brandLogo) brandLogo.src = b.crestLogo;
     const progCrest = document.getElementById('prog-crest-logo');
     if (progCrest) progCrest.src = b.crestLogo;
     const footerCrest = document.getElementById('footer-crest-logo');
     if (footerCrest) footerCrest.src = b.crestLogo;
     document.querySelectorAll('.modal-crest-logo').forEach(img => img.src = b.crestLogo);
-  }
-
-  if (b.wordmarkLogo) {
+  } else if (b.wordmarkLogo) {
     const brandLogo = document.getElementById('site-brand-logo');
     if (brandLogo) brandLogo.src = b.wordmarkLogo;
+  }
+
+  // Wordmark banner support (hero / secondary brand elements)
+  if (b.wordmarkLogo) {
+    const heroWordmark = document.getElementById('hero-wordmark-logo');
+    if (heroWordmark) {
+      heroWordmark.src = b.wordmarkLogo;
+      heroWordmark.style.display = 'inline-block';
+    }
   }
 
   if (b.favicon) {
