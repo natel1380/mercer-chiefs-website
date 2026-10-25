@@ -685,7 +685,17 @@ function initAutoBackgroundSync() {
             const feedTs = jrFeed.lastSynced ? new Date(jrFeed.lastSynced).getTime() : 0;
             const storedTs = localStorage.getItem('mercer_last_sync_timestamp') ? new Date(localStorage.getItem('mercer_last_sync_timestamp')).getTime() : 0;
 
-            if (feedTs !== storedTs || !localStorage.getItem('mercer_synced_junior_data')) {
+            let storedData = null;
+            try {
+              const raw = localStorage.getItem('mercer_synced_junior_data');
+              if (raw) storedData = JSON.parse(raw);
+            } catch (e) {}
+
+            const rosterChanged = !storedData ||
+              jrFeed.ncdc?.roster?.length !== storedData.ncdc?.roster?.length ||
+              jrFeed.premier?.roster?.length !== storedData.premier?.roster?.length;
+
+            if (feedTs !== storedTs || rosterChanged || !localStorage.getItem('mercer_synced_junior_data')) {
               const updatedJunior = {
                 ncdc: jrFeed.ncdc,
                 premier: jrFeed.premier

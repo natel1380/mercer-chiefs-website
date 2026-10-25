@@ -205,85 +205,272 @@ async function syncJuniorData() {
   const chiefsDataModule = await import('./data/chiefs-data.js');
   const baseJuniorTeams = JSON.parse(JSON.stringify(chiefsDataModule.JUNIOR_TEAMS));
 
-  // Merge Premier Roster stats
-  if (premRosterRaw?.players && Array.isArray(premRosterRaw.players)) {
-    const liveMap = new Map();
-    premRosterRaw.players.forEach(p => {
-      if (p.jersey) liveMap.set(String(p.jersey), p);
-      if (p.player_name) liveMap.set(p.player_name.toLowerCase().trim(), p);
-    });
-
-    baseJuniorTeams.premier.roster.forEach(p => {
-      const match = liveMap.get(String(p.number)) || liveMap.get((p.name || '').toLowerCase().trim());
-      if (match) {
-        const isGoalie = p.position === 'G' || parseInt(match.goalie_games_played) > 0;
-        if (isGoalie) {
-          const gp = parseInt(match.goalie_games_played) || parseInt(match.games_played) || p.gp || 0;
-          const ga = parseInt(match.goals_against) || 0;
-          const sv = parseInt(match.saves) || 0;
-          const sa = parseInt(match.shots_against) || 0;
-          const so = parseInt(match.shutouts) || 0;
-          p.gp = gp;
-          if (ga > 0) p.ga = ga;
-          if (sv > 0) p.sv = sv;
-          if (sa > 0) p.sa = sa;
-          if (so > 0) p.so = so;
-          if (sa > 0) p.svPct = (sv / sa).toFixed(3).replace(/^0+/, '');
-          if (gp > 0 && ga > 0) p.gaa = (ga / gp).toFixed(2);
-        } else {
-          p.gp = parseInt(match.games_played) || p.gp || 0;
-          p.g = parseInt(match.goals) || 0;
-          p.a = parseInt(match.assists) || 0;
-          p.pts = parseInt(match.points) || 0;
-          p.pim = parseInt(match.pims) || 0;
-          if (match.ppg !== undefined) p.ppg = parseInt(match.ppg) || 0;
-          if (match.shg !== undefined) p.shg = parseInt(match.shg) || 0;
-          if (match.gwg !== undefined) p.gwg = parseInt(match.gwg) || 0;
-        }
-      }
-    });
-    console.log('  -> Updated Mercer Premier roster stats from live TimeToScore API.');
+  // Helper: Normalize name for matching
+  function normalizePlayerName(str) {
+    return (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
   }
 
-  // Merge NCDC Roster stats
-  if (ncdcRosterRaw?.players && Array.isArray(ncdcRosterRaw.players)) {
-    const liveMap = new Map();
-    ncdcRosterRaw.players.forEach(p => {
-      if (p.jersey) liveMap.set(String(p.jersey), p);
-      if (p.player_name) liveMap.set(p.player_name.toLowerCase().trim(), p);
-    });
+  // Helper: Find matching player in official TimeToScore raw players
+  function findRawPlayerMatch(p, rawPlayers, matchedPlayerIds) {
+    const pName = (p.name || '').toLowerCase().trim();
+    const pNorm = normalizePlayerName(pName);
+    const pNum = String(p.number || '').trim();
+    const pLastName = normalizePlayerName(pName.split(/\s+/).pop());
 
-    baseJuniorTeams.ncdc.roster.forEach(p => {
-      const match = liveMap.get(String(p.number)) || liveMap.get((p.name || '').toLowerCase().trim());
-      if (match) {
-        const isGoalie = p.position === 'G' || parseInt(match.goalie_games_played) > 0;
-        if (isGoalie) {
-          const gp = parseInt(match.goalie_games_played) || parseInt(match.games_played) || p.gp || 0;
-          const ga = parseInt(match.goals_against) || 0;
-          const sv = parseInt(match.saves) || 0;
-          const sa = parseInt(match.shots_against) || 0;
-          const so = parseInt(match.shutouts) || 0;
-          p.gp = gp;
-          if (ga > 0) p.ga = ga;
-          if (sv > 0) p.sv = sv;
-          if (sa > 0) p.sa = sa;
-          if (so > 0) p.so = so;
-          if (sa > 0) p.svPct = (sv / sa).toFixed(3).replace(/^0+/, '');
-          if (gp > 0 && ga > 0) p.gaa = (ga / gp).toFixed(2);
+    // Priority 1: Exact or normalized name match (handles "First Last", "Last First", or raw.player_name)
+    let match = rawPlayers.find(raw => {
+      if (matchedPlayerIds.has(raw.player_id) || raw.coach === '1') return false;
+      const rawFullName = ((raw.fname || '') + ' ' + (raw.lname || '')).trim();
+      const rawPName = (raw.player_name || '').trim();
+      const rawRevName = ((raw.lname || '') + ' ' + (raw.fname || '')).trim();
+
+      return pNorm && (
+        pNorm === normalizePlayerName(rawFullName) ||
+        pNorm === normalizePlayerName(rawPName) ||
+        pNorm === normalizePlayerName(rawRevName)
+      );
+    });
+    if (match) return match;
+
+    // Priority 2: Jersey number match WITH last name similarity (to ensure it's the same person)
+    if (pNum) {
+      match = rawPlayers.find(raw => {
+        if (matchedPlayerIds.has(raw.player_id) || raw.coach === '1') return false;
+        const rawNum = String(raw.jersey || '').trim();
+        if (rawNum !== pNum) return false;
+        const rawLastName = normalizePlayerName(raw.lname || (raw.player_name || '').split(/\s+/).pop());
+        return !pLastName || !rawLastName || pLastName === rawLastName || rawLastName.includes(pLastName) || pLastName.includes(rawLastName);
+      });
+    }
+
+    return match || null;
+  }
+
+  // Synchronize team roster: updates existing players AND auto-adds new active/game-playing players
+  function syncTeamRoster(teamRoster, rawPlayers, teamName) {
+    if (!rawPlayers || !Array.isArray(rawPlayers)) return;
+
+    const matchedPlayerIds = new Set();
+    let updatedCount = 0;
+
+    // 1. Update existing players
+    teamRoster.forEach(p => {
+      const match = findRawPlayerMatch(p, rawPlayers, matchedPlayerIds);
+      if (!match) return;
+
+      matchedPlayerIds.add(match.player_id);
+      updatedCount++;
+
+      // Update jersey number if valid and updated in official API
+      const liveNum = parseInt(match.jersey, 10);
+      if (!isNaN(liveNum) && liveNum > 0 && liveNum !== p.number) {
+        console.log(`  [${teamName}] Updated #${p.number} ${p.name} jersey number to #${liveNum}`);
+        p.number = liveNum;
+      }
+
+      const isGoalie = p.position === 'G' || parseInt(match.goalie_games_played) > 0 || match.position === 'G' || match.plays === 'G';
+      if (isGoalie) {
+        const gp = parseInt(match.goalie_games_played) || parseInt(match.games_played) || p.gp || 0;
+        const ga = parseInt(match.goals_against) || 0;
+        const sv = parseInt(match.saves) || 0;
+        const sa = parseInt(match.shots_against) || 0;
+        const so = parseInt(match.shutouts) || 0;
+        p.gp = gp;
+        p.ga = ga;
+        p.sv = sv;
+        p.sa = sa;
+        p.so = so;
+        p.w = parseInt(match.wins) || 0;
+        p.l = parseInt(match.losses) || 0;
+        p.otl = parseInt(match.ot_losses || match.otlosses) || 0;
+        p.sol = parseInt(match.so_losses) || 0;
+        p.pim = parseInt(match.pims) || 0;
+
+        if (match.goals_against_ave && parseFloat(match.goals_against_ave) > 0) {
+          p.gaa = parseFloat(match.goals_against_ave).toFixed(2);
+        } else if (gp > 0) {
+          p.gaa = (ga / gp).toFixed(2);
         } else {
-          p.gp = parseInt(match.games_played) || p.gp || 0;
-          p.g = parseInt(match.goals) || 0;
-          p.a = parseInt(match.assists) || 0;
-          p.pts = parseInt(match.points) || 0;
-          p.pim = parseInt(match.pims) || 0;
-          if (match.ppg !== undefined) p.ppg = parseInt(match.ppg) || 0;
-          if (match.shg !== undefined) p.shg = parseInt(match.shg) || 0;
-          if (match.gwg !== undefined) p.gwg = parseInt(match.gwg) || 0;
+          p.gaa = '0.00';
+        }
+
+        if (match.save_pct && parseFloat(match.save_pct) > 0) {
+          p.svPct = parseFloat(match.save_pct).toFixed(3).replace(/^0+/, '');
+        } else if (sa > 0) {
+          p.svPct = (sv / sa).toFixed(3).replace(/^0+/, '');
+        } else {
+          p.svPct = '.000';
+        }
+      } else {
+        p.gp = parseInt(match.games_played) || p.gp || 0;
+        p.g = parseInt(match.goals) || 0;
+        p.a = parseInt(match.assists) || 0;
+        p.pts = parseInt(match.points) || 0;
+        p.pim = parseInt(match.pims) || 0;
+        if (match.ppg !== undefined) p.ppg = parseInt(match.ppg) || 0;
+        if (match.shg !== undefined) p.shg = parseInt(match.shg) || 0;
+        if (match.gwg !== undefined) p.gwg = parseInt(match.gwg) || 0;
+        if (match.plusminus !== undefined && match.plusminus !== null && match.plusminus !== '') {
+          const pm = parseInt(match.plusminus) || 0;
+          p.plusMinus = pm > 0 ? '+' + pm : String(pm);
         }
       }
+
+      // Enrich headshots from CDN if not already set or placeholder
+      if ((!p.headshot || p.headshot.includes('placeholder') || p.headshot.includes('default-')) && match.player_image) {
+        p.headshot = match.player_image;
+        p.fullPhoto = match.player_image;
+      }
     });
-    console.log('  -> Updated Mercer NCDC roster stats from live TimeToScore API.');
+
+    // 2. Add new players who have played or are active on the official roster
+    let addedCount = 0;
+    rawPlayers.forEach(raw => {
+      if (matchedPlayerIds.has(raw.player_id)) return;
+      if (raw.coach === '1') return; // Skip staff/coaches
+
+      const gp = parseInt(raw.games_played) || 0;
+      const ggp = parseInt(raw.goalie_games_played) || 0;
+      const isActive = raw.active === '1';
+
+      // Only add if active or has played games
+      if (!isActive && gp === 0 && ggp === 0) return;
+
+      const isGoalie = ggp > 0 || raw.position === 'G' || raw.plays === 'G';
+      const rawNum = parseInt(raw.jersey, 10);
+      const number = !isNaN(rawNum) && rawNum > 0 ? rawNum : 0;
+      const name = (raw.fname && raw.lname) ? (raw.fname.trim() + ' ' + raw.lname.trim()) : (raw.player_name || '').trim();
+      const rawShoots = (raw.shoots || raw.catches || '').toUpperCase();
+      const shoots = rawShoots.startsWith('R') ? 'R' : 'L';
+
+      let height = '—';
+      if (raw.height && raw.height.trim() && raw.height !== "'\"" && raw.height !== '-') {
+        height = raw.height.trim();
+      } else if (raw.heightft && raw.heightin) {
+        height = `${raw.heightft}'${raw.heightin}"`;
+      }
+
+      let weight = '—';
+      if (raw.weight && String(raw.weight).trim() && String(raw.weight).trim() !== '0') {
+        const wStr = String(raw.weight).trim();
+        weight = wStr.includes('lbs') ? wStr : `${wStr} lbs`;
+      }
+
+      const birthYear = parseInt(raw.birth_year, 10) || (raw.birthdate ? parseInt(raw.birthdate.split('-')[0], 10) : null);
+      const dob = raw.birthdate || null;
+
+      let hometown = (raw.display_hometown || raw.town || '').trim();
+      if (!hometown && raw.state) hometown = raw.state.trim();
+      if (hometown && raw.country_code && raw.country_code !== 'US' && raw.country_name && !hometown.includes(raw.country_name)) {
+        hometown = `${hometown}, ${raw.country_name}`;
+      }
+      if (!hometown) hometown = '—';
+
+      const defaultHeadshot = isGoalie ? 'assets/images/players/default-goalie.png' : 'assets/images/players/default-skater.png';
+      const headshot = (raw.player_image && !raw.player_image.includes('placeholder')) ? raw.player_image : defaultHeadshot;
+
+      if (isGoalie) {
+        const ga = parseInt(raw.goals_against) || 0;
+        const sv = parseInt(raw.saves) || 0;
+        const sa = parseInt(raw.shots_against) || 0;
+        const goalieGp = ggp || gp;
+
+        let gaa = '0.00';
+        if (raw.goals_against_ave && parseFloat(raw.goals_against_ave) > 0) {
+          gaa = parseFloat(raw.goals_against_ave).toFixed(2);
+        } else if (goalieGp > 0) {
+          gaa = (ga / goalieGp).toFixed(2);
+        }
+
+        let svPct = '.000';
+        if (raw.save_pct && parseFloat(raw.save_pct) > 0) {
+          svPct = parseFloat(raw.save_pct).toFixed(3).replace(/^0+/, '');
+        } else if (sa > 0) {
+          svPct = (sv / sa).toFixed(3).replace(/^0+/, '');
+        }
+
+        teamRoster.push({
+          number,
+          name,
+          position: 'G',
+          shoots,
+          height,
+          weight,
+          birthYear,
+          dob,
+          hometown,
+          commitment: null,
+          featured: false,
+          headshot,
+          fullPhoto: headshot,
+          gp: goalieGp,
+          w: parseInt(raw.wins) || 0,
+          l: parseInt(raw.losses) || 0,
+          otl: parseInt(raw.ot_losses || raw.otlosses) || 0,
+          sol: parseInt(raw.so_losses) || 0,
+          ga,
+          sv,
+          sa,
+          so: parseInt(raw.shutouts) || 0,
+          gaa,
+          svPct,
+          pim: parseInt(raw.pims) || 0
+        });
+      } else {
+        let pos = 'F';
+        if (raw.position === 'D' || raw.plays === 'D') {
+          pos = 'D';
+        }
+        const pm = parseInt(raw.plusminus) || 0;
+
+        teamRoster.push({
+          number,
+          name,
+          position: pos,
+          shoots,
+          height,
+          weight,
+          birthYear,
+          dob,
+          hometown,
+          commitment: null,
+          featured: false,
+          headshot,
+          fullPhoto: headshot,
+          gp,
+          g: parseInt(raw.goals) || 0,
+          a: parseInt(raw.assists) || 0,
+          pts: parseInt(raw.points) || 0,
+          pim: parseInt(raw.pims) || 0,
+          plusMinus: pm > 0 ? '+' + pm : String(pm),
+          ppg: parseInt(raw.ppg) || 0,
+          shg: parseInt(raw.shg) || 0,
+          gwg: parseInt(raw.gwg) || 0
+        });
+      }
+
+      addedCount++;
+      console.log(`  [${teamName}] + Added new player: #${number} ${name} (${isGoalie ? 'G' : 'Skater'}, ${gp || ggp} GP)`);
+    });
+
+    // 3. Sort: Skaters first sorted by number, then Goalies sorted by number
+    teamRoster.sort((a, b) => {
+      const aIsG = a.position === 'G';
+      const bIsG = b.position === 'G';
+      if (aIsG && !bIsG) return 1;
+      if (!aIsG && bIsG) return -1;
+      return (a.number || 999) - (b.number || 999);
+    });
+
+    console.log(`  -> [${teamName}] Roster synchronized: ${teamRoster.length} players total (${updatedCount} updated, ${addedCount} newly added).`);
   }
+
+  // Merge Premier Roster stats & auto-add new players
+  syncTeamRoster(baseJuniorTeams.premier.roster, premRosterRaw?.players, 'Premier');
+
+  // Merge NCDC Roster stats & auto-add new players
+  syncTeamRoster(baseJuniorTeams.ncdc.roster, ncdcRosterRaw?.players, 'NCDC');
+
 
   // 3. Fetch live schedules for Premier (league 2) and NCDC (league 1)
   console.log('  -> Fetching live schedules & scoresheets...');
@@ -477,13 +664,13 @@ async function syncJuniorData() {
     let source = fs.readFileSync(CHIEFS_DATA_PATH, 'utf-8');
     
     // Replace LIVE_TICKER_GAMES block
-    const tickerRegex = /export const LIVE_TICKER_GAMES = \[[\s\S]*?\n\];/;
+    const tickerRegex = /export const LIVE_TICKER_GAMES = \[[\s\S]*?\r?\n\];/;
     if (tickerRegex.test(source)) {
       source = source.replace(tickerRegex, `export const LIVE_TICKER_GAMES = ${JSON.stringify(tickerGames, null, 2)};`);
     }
 
     // Replace JUNIOR_TEAMS block
-    const jtRegex = /export const JUNIOR_TEAMS = \{[\s\S]*?\n\};\n\n\/\/ Backwards compatibility/;
+    const jtRegex = /export const JUNIOR_TEAMS = \{[\s\S]*?\r?\n\};\r?\n\r?\n\/\/ Backwards compatibility/;
     if (jtRegex.test(source)) {
       const newJtStr = `export const JUNIOR_TEAMS = ${JSON.stringify(baseJuniorTeams, null, 2)};\n\n// Backwards compatibility`;
       source = source.replace(jtRegex, newJtStr);
@@ -906,7 +1093,17 @@ async function main() {
   console.log('====================================================\n');
 }
 
-main().catch(err => {
-  console.error('[FATAL ERROR IN SYNC RUNNER]', err);
-  process.exit(1);
-});
+const isMain = process.argv[1] && (
+  process.argv[1].endsWith('sync_all_data.js') ||
+  process.argv[1].replace(/\\/g, '/').endsWith('sync_all_data.js')
+);
+
+if (isMain) {
+  main().catch(err => {
+    console.error('[FATAL ERROR IN SYNC RUNNER]', err);
+    process.exit(1);
+  });
+}
+
+export { syncJuniorData, main };
+
