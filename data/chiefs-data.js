@@ -1761,16 +1761,16 @@ export const JUNIOR_TEAMS = {
         "team": "P.A.L. Junior Islanders",
         "logo": "assets/images/logos/pal-jr-islanders.png",
         "isChiefs": false,
-        "gp": 11,
+        "gp": 12,
         "w": 9,
-        "l": 2,
+        "l": 3,
         "otl": 0,
         "pts": 18,
-        "gf": 40,
-        "ga": 29,
-        "diff": "+11",
-        "streak": "4W",
-        "pct": ".818"
+        "gf": 41,
+        "ga": 32,
+        "diff": "+9",
+        "streak": "1L",
+        "pct": ".750"
       },
       {
         "rank": 3,
@@ -1806,6 +1806,22 @@ export const JUNIOR_TEAMS = {
       },
       {
         "rank": 5,
+        "team": "Connecticut Junior Rangers",
+        "logo": "assets/images/logos/ct-jr-rangers.png",
+        "isChiefs": false,
+        "gp": 12,
+        "w": 4,
+        "l": 6,
+        "otl": 2,
+        "pts": 10,
+        "gf": 35,
+        "ga": 43,
+        "diff": "-8",
+        "streak": "1W",
+        "pct": ".417"
+      },
+      {
+        "rank": 6,
         "team": "West Chester Wolves",
         "logo": "assets/images/logos/west-chester-wolves.png",
         "isChiefs": false,
@@ -1821,7 +1837,7 @@ export const JUNIOR_TEAMS = {
         "pct": ".450"
       },
       {
-        "rank": 6,
+        "rank": 7,
         "team": "Mercer Chiefs",
         "logo": "assets/images/logos/mercer-chiefs-junior.png",
         "isChiefs": true,
@@ -1835,22 +1851,6 @@ export const JUNIOR_TEAMS = {
         "diff": "-14",
         "streak": "1W",
         "pct": ".375"
-      },
-      {
-        "rank": 7,
-        "team": "Connecticut Junior Rangers",
-        "logo": "assets/images/logos/ct-jr-rangers.png",
-        "isChiefs": false,
-        "gp": 11,
-        "w": 3,
-        "l": 6,
-        "otl": 2,
-        "pts": 8,
-        "gf": 32,
-        "ga": 42,
-        "diff": "-10",
-        "streak": "2L",
-        "pct": ".364"
       }
     ]
   },
@@ -3268,6 +3268,22 @@ export const JUNIOR_TEAMS = {
       },
       {
         "rank": 3,
+        "team": "West Chester Wolves",
+        "logo": "assets/images/logos/west-chester-wolves.png",
+        "isChiefs": false,
+        "gp": 12,
+        "w": 8,
+        "l": 3,
+        "otl": 0,
+        "pts": 17,
+        "gf": 58,
+        "ga": 34,
+        "diff": "+24",
+        "streak": "2W",
+        "pct": ".708"
+      },
+      {
+        "rank": 4,
         "team": "Mercer Chiefs (Premier)",
         "logo": "assets/images/logos/mercer-chiefs-junior.png",
         "isChiefs": true,
@@ -3281,22 +3297,6 @@ export const JUNIOR_TEAMS = {
         "diff": "+24",
         "streak": "1W",
         "pct": ".727"
-      },
-      {
-        "rank": 4,
-        "team": "West Chester Wolves",
-        "logo": "assets/images/logos/west-chester-wolves.png",
-        "isChiefs": false,
-        "gp": 11,
-        "w": 7,
-        "l": 3,
-        "otl": 0,
-        "pts": 15,
-        "gf": 53,
-        "ga": 30,
-        "diff": "+23",
-        "streak": "1W",
-        "pct": ".682"
       },
       {
         "rank": 5,
@@ -12010,10 +12010,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Vincent Caruso",
     "level": "18U Midget Major AA",
-    "record": "13-8-3",
-    "pts": 37,
+    "record": "14-8-3",
+    "pts": 39,
     "rank": "#2",
-    "standingSummary": "13-8-3 | 37 PTS | #2 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "14-8-3 | 39 PTS | #2 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15401&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -12447,16 +12447,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=90567"
       },
       {
-        "id": "75049",
-        "date": "2026-10-25",
-        "time": "06:30 PM",
-        "opp": "Generals 18AA Black",
-        "rink": "Red Bank Armory",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75049",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75049"
-      },
-      {
         "id": "77546",
         "date": "2026-10-31",
         "time": "11:00 AM",
@@ -12568,6 +12558,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "75049",
+        "date": "2026-10-25",
+        "time": "06:30 PM",
+        "opp": "Red Bank Generals 18AA Black",
+        "rink": "Red Bank Armory",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "2-1",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75049",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75049"
+      },
       {
         "id": "75391",
         "date": "2026-10-24",
@@ -12893,10 +12896,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Michael Cook",
     "level": "18U Midget Major A",
-    "record": "6-11-1",
-    "pts": 18,
+    "record": "7-11-1",
+    "pts": 20,
     "rank": "#12",
-    "standingSummary": "6-11-1 | 18 PTS | #12 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "7-11-1 | 20 PTS | #12 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9878&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -12908,16 +12911,6 @@ export const YOUTH_TEAMS = [
         "loc": "Away",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77048",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77048"
-      },
-      {
-        "id": "77051",
-        "date": "2026-10-25",
-        "time": "05:40 PM",
-        "opp": "Kings 18GRY",
-        "rink": "Skylands Ice World Coliseum",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77051",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77051"
       }
     ],
     "roster": [
@@ -13494,16 +13487,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77048"
       },
       {
-        "id": "77051",
-        "date": "2026-10-25",
-        "time": "05:40 PM",
-        "opp": "Kings 18GRY",
-        "rink": "Skylands Ice World Coliseum",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77051",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77051"
-      },
-      {
         "id": "76677",
         "date": "2026-10-30",
         "time": "08:15 PM",
@@ -13625,6 +13608,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "77051",
+        "date": "2026-10-25",
+        "time": "05:40 PM",
+        "opp": "Skylands Kings 18GRY",
+        "rink": "Skylands Ice World Coliseum",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "3-0",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=77051",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=77051"
+      },
       {
         "id": "77338",
         "date": "2026-10-25",
@@ -14682,10 +14678,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Jason Bracco",
     "level": "14U Bantam Major AA",
-    "record": "1-15-0",
+    "record": "1-16-0",
     "pts": 3,
     "rank": "#33",
-    "standingSummary": "1-15-0 | 3 PTS | #33 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "1-16-0 | 3 PTS | #33 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9875&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -15063,16 +15059,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=74994"
       },
       {
-        "id": "75327",
-        "date": "2026-10-25",
-        "time": "06:00 PM",
-        "opp": "Rockets HC 14AA ",
-        "rink": "RSG Arena at Dunellen",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75327",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75327"
-      },
-      {
         "id": "73860",
         "date": "2026-10-31",
         "time": "12:20 PM",
@@ -15264,6 +15250,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "75327",
+        "date": "2026-10-25",
+        "time": "06:00 PM",
+        "opp": "Rockets HC 14AA",
+        "rink": "RSG Arena at Dunellen",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "1-8",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75327",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75327"
+      },
       {
         "id": "92633",
         "date": "2026-10-18",
@@ -17854,22 +17853,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Fritz Brown",
     "level": "12U Peewee A",
-    "record": "13-3-0",
-    "pts": 38,
+    "record": "14-3-0",
+    "pts": 40,
     "rank": "#3",
-    "standingSummary": "13-3-0 | 38 PTS | #3 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "14-3-0 | 40 PTS | #3 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15027&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "76217",
-        "date": "2026-10-25",
-        "time": "05:50 PM",
-        "opp": "Wildcats 12L",
-        "rink": "Jersey Shore Arena Red Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76217",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76217"
-      },
       {
         "id": "76419",
         "date": "2026-10-31",
@@ -18235,16 +18224,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "76217",
-        "date": "2026-10-25",
-        "time": "05:50 PM",
-        "opp": "Wildcats 12L",
-        "rink": "Jersey Shore Arena Red Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76217",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76217"
-      },
-      {
         "id": "76419",
         "date": "2026-10-31",
         "time": "08:25 AM",
@@ -18386,6 +18365,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76217",
+        "date": "2026-10-25",
+        "time": "05:50 PM",
+        "opp": "Jersey Shore Wildcats 12L",
+        "rink": "Jersey Shore Arena Red Rink",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "10-1",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76217",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76217"
+      },
       {
         "id": "75261",
         "date": "2026-10-18",
