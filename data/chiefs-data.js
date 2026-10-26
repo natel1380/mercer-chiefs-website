@@ -13868,23 +13868,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Joseph Maslott",
     "level": "16U Midget Minor A",
-    "record": "15-3-0",
-    "pts": 41,
+    "record": "16-3-0",
+    "pts": 43,
     "rank": "#4",
-    "standingSummary": "15-3-0 | 41 PTS | #4 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "16-3-0 | 43 PTS | #4 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9881&season=190&stat_class=1",
-    "featuredSchedule": [
-      {
-        "id": "76664",
-        "date": "2026-10-25",
-        "time": "06:00 PM",
-        "opp": "Saints 16L",
-        "rink": "East Brunswick  Rink 1",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76664",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76664"
-      }
-    ],
+    "featuredSchedule": [],
     "roster": [
       {
         "no": 30,
@@ -14303,16 +14292,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "76664",
-        "date": "2026-10-25",
-        "time": "06:00 PM",
-        "opp": "Saints 16L",
-        "rink": "East Brunswick  Rink 1",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76664",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76664"
-      },
-      {
         "id": "76104",
         "date": "2026-10-30",
         "time": "06:00 PM",
@@ -14444,6 +14423,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76664",
+        "date": "2026-10-25",
+        "time": "06:00 PM",
+        "opp": "Ramapo Saints 16L",
+        "rink": "East Brunswick  Rink 1",
+        "loc": "Home",
+        "outcome": "W",
+        "score": "5-1",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76664",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76664"
+      },
       {
         "id": "76102",
         "date": "2026-10-24",
