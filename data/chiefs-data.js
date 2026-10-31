@@ -8568,10 +8568,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Chris Barcless",
     "level": "13U Bantam Minor AAA",
-    "record": "4-1-1",
-    "pts": 13,
+    "record": "5-1-1",
+    "pts": 15,
     "rank": "#7",
-    "standingSummary": "4-1-1 | 13 PTS | #7 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "5-1-1 | 15 PTS | #7 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=11519&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -8583,16 +8583,6 @@ export const YOUTH_TEAMS = [
         "loc": "Away",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82128",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82128"
-      },
-      {
-        "id": "82934",
-        "date": "2026-10-30",
-        "time": "07:00 PM",
-        "opp": "Hitmen 13U",
-        "rink": "Ice Vault Rink 3",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82934",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82934"
       },
       {
         "id": "81888",
@@ -9003,16 +8993,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82128"
       },
       {
-        "id": "82934",
-        "date": "2026-10-30",
-        "time": "07:00 PM",
-        "opp": "Hitmen 13U",
-        "rink": "Ice Vault Rink 3",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82934",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82934"
-      },
-      {
         "id": "81888",
         "date": "2026-10-31",
         "time": "11:15 AM",
@@ -9174,6 +9154,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "82934",
+        "date": "2026-10-30",
+        "time": "07:00 PM",
+        "opp": "Jersey Hitmen 13U",
+        "rink": "Ice Vault Rink 3",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "6-3",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82934",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82934"
+      },
       {
         "id": "81986",
         "date": "2026-10-18",
@@ -13873,10 +13866,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Joseph Maslott",
     "level": "16U Midget Minor A",
-    "record": "16-3-0",
-    "pts": 43,
+    "record": "17-3-0",
+    "pts": 45,
     "rank": "#4",
-    "standingSummary": "16-3-0 | 43 PTS | #4 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "17-3-0 | 45 PTS | #4 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9881&season=190&stat_class=1",
     "featuredSchedule": [],
     "roster": [
@@ -14297,16 +14290,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "76104",
-        "date": "2026-10-30",
-        "time": "06:00 PM",
-        "opp": "Wildcats Red 16L Franklin",
-        "rink": "Howell Ice Arena Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76104",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76104"
-      },
-      {
         "id": "77037",
         "date": "2026-10-31",
         "time": "05:30 PM",
@@ -14428,6 +14411,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76104",
+        "date": "2026-10-30",
+        "time": "06:00 PM",
+        "opp": "Jersey Shore Wildcats Red 16L Franklin",
+        "rink": "Howell Ice Arena Rink 1",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "6-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76104",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76104"
+      },
       {
         "id": "76664",
         "date": "2026-10-25",
