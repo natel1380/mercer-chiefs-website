@@ -12894,10 +12894,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Michael Cook",
     "level": "18U Midget Major A",
-    "record": "7-11-1",
+    "record": "7-12-1",
     "pts": 20,
     "rank": "#12",
-    "standingSummary": "7-11-1 | 20 PTS | #12 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "7-12-1 | 20 PTS | #12 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9878&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -13485,16 +13485,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77048"
       },
       {
-        "id": "76677",
-        "date": "2026-10-30",
-        "time": "08:15 PM",
-        "opp": "Wildcats 18GRY Lepore",
-        "rink": "Pro Skate NHL",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76677",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76677"
-      },
-      {
         "id": "76678",
         "date": "2026-10-31",
         "time": "05:30 PM",
@@ -13606,6 +13596,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76677",
+        "date": "2026-10-30",
+        "time": "08:15 PM",
+        "opp": "Jersey Shore Wildcats 18GRY Lepore",
+        "rink": "Pro Skate NHL",
+        "loc": "Home",
+        "outcome": "L",
+        "score": "1-5",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76677",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76677"
+      },
       {
         "id": "77051",
         "date": "2026-10-25",
