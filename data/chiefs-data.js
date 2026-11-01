@@ -9268,22 +9268,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Chris Barcless",
     "level": "12U Peewee Major AAA",
-    "record": "8-5-1",
-    "pts": 24,
+    "record": "9-5-1",
+    "pts": 26,
     "rank": "#2",
-    "standingSummary": "8-5-1 | 24 PTS | #2 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "9-5-1 | 26 PTS | #2 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10303&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "81875",
-        "date": "2026-11-01",
-        "time": "09:45 AM",
-        "opp": "Hitmen 12U",
-        "rink": "Ice Land Black Bear Rink",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81875",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81875"
-      },
       {
         "id": "82731",
         "date": "2026-11-14",
@@ -9635,16 +9625,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "81875",
-        "date": "2026-11-01",
-        "time": "09:45 AM",
-        "opp": "Hitmen 12U",
-        "rink": "Ice Land Black Bear Rink",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81875",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81875"
-      },
-      {
         "id": "82731",
         "date": "2026-11-14",
         "time": "12:40 PM",
@@ -9746,6 +9726,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "81875",
+        "date": "2026-11-01",
+        "time": "09:45 AM",
+        "opp": "Jersey Hitmen 12U",
+        "rink": "Ice Land Black Bear Rink",
+        "loc": "Home",
+        "outcome": "W",
+        "score": "3-1",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=81875",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=81875"
+      },
       {
         "id": "81873",
         "date": "2026-10-31",
@@ -12004,10 +11997,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Vincent Caruso",
     "level": "18U Midget Major AA",
-    "record": "14-8-4",
+    "record": "14-9-4",
     "pts": 40,
     "rank": "#2",
-    "standingSummary": "14-8-4 | 40 PTS | #2 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "14-9-4 | 40 PTS | #2 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15401&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -12451,16 +12444,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75615"
       },
       {
-        "id": "75395",
-        "date": "2026-11-01",
-        "time": "10:15 AM",
-        "opp": "Hockey Club 18AA",
-        "rink": "East Brunswick  Rink 2",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75395",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75395"
-      },
-      {
         "id": "76694",
         "date": "2026-11-01",
         "time": "06:40 PM",
@@ -12542,6 +12525,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "75395",
+        "date": "2026-11-01",
+        "time": "10:15 AM",
+        "opp": "Rockets Hockey Club 18AA",
+        "rink": "East Brunswick  Rink 2",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "0-4",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75395",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75395"
+      },
       {
         "id": "77546",
         "date": "2026-10-31",
@@ -20001,10 +19997,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Xan Doetsch",
     "level": "10U Squirt Major AA",
-    "record": "7-10-1",
+    "record": "7-11-1",
     "pts": 15,
     "rank": "#4",
-    "standingSummary": "7-10-1 | 15 PTS | #4 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "7-11-1 | 15 PTS | #4 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9870&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -20016,16 +20012,6 @@ export const YOUTH_TEAMS = [
         "loc": "Home",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76531",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76531"
-      },
-      {
-        "id": "76539",
-        "date": "2026-11-01",
-        "time": "08:45 AM",
-        "opp": "Generals 10AA",
-        "rink": "East Brunswick  Rink 2",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76539",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76539"
       }
     ],
     "roster": [
@@ -20378,16 +20364,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76531"
       },
       {
-        "id": "76539",
-        "date": "2026-11-01",
-        "time": "08:45 AM",
-        "opp": "Generals 10AA",
-        "rink": "East Brunswick  Rink 2",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76539",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76539"
-      },
-      {
         "id": "75176",
         "date": "2026-11-07",
         "time": "08:25 AM",
@@ -20529,6 +20505,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76539",
+        "date": "2026-11-01",
+        "time": "08:45 AM",
+        "opp": "Red Bank Generals 10AA",
+        "rink": "East Brunswick  Rink 2",
+        "loc": "Home",
+        "outcome": "L",
+        "score": "4-5",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76539",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76539"
+      },
       {
         "id": "76538",
         "date": "2026-10-31",
@@ -21440,10 +21429,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Ivan Chavez",
     "level": "10U Squirt B",
-    "record": "10-4-2",
-    "pts": 30,
+    "record": "11-4-2",
+    "pts": 32,
     "rank": "#3",
-    "standingSummary": "10-4-2 | 30 PTS | #3 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "11-4-2 | 32 PTS | #3 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=14950&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -21465,16 +21454,6 @@ export const YOUTH_TEAMS = [
         "loc": "Away",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77511",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77511"
-      },
-      {
-        "id": "76553",
-        "date": "2026-11-01",
-        "time": "07:30 AM",
-        "opp": "Hockey Club 10M",
-        "rink": "East Brunswick  Rink 1",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76553",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76553"
       }
     ],
     "roster": [
@@ -21881,16 +21860,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77511"
       },
       {
-        "id": "76553",
-        "date": "2026-11-01",
-        "time": "07:30 AM",
-        "opp": "Hockey Club 10M",
-        "rink": "East Brunswick  Rink 1",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76553",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76553"
-      },
-      {
         "id": "74944",
         "date": "2026-11-14",
         "time": "07:00 AM",
@@ -22022,6 +21991,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76553",
+        "date": "2026-11-01",
+        "time": "07:30 AM",
+        "opp": "Rockets Hockey Club 10M",
+        "rink": "East Brunswick  Rink 1",
+        "loc": "Home",
+        "outcome": "W",
+        "score": "10-3",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76553",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76553"
+      },
       {
         "id": "76552",
         "date": "2026-10-31",
@@ -22230,22 +22212,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Nick Dimino",
     "level": "9U Squirt Minor AA",
-    "record": "9-4-1",
-    "pts": 26,
+    "record": "10-4-1",
+    "pts": 28,
     "rank": "#6",
-    "standingSummary": "9-4-1 | 26 PTS | #6 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "10-4-1 | 28 PTS | #6 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9879&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "76707",
-        "date": "2026-11-01",
-        "time": "05:00 PM",
-        "opp": "Blazers 9AA ",
-        "rink": "Pro Skate NHL",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76707",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76707"
-      },
       {
         "id": "76493",
         "date": "2026-11-08",
@@ -22589,16 +22561,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "76707",
-        "date": "2026-11-01",
-        "time": "05:00 PM",
-        "opp": "Blazers 9AA ",
-        "rink": "Pro Skate NHL",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76707",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76707"
-      },
-      {
         "id": "76493",
         "date": "2026-11-08",
         "time": "07:00 AM",
@@ -22770,6 +22732,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76707",
+        "date": "2026-11-01",
+        "time": "05:00 PM",
+        "opp": "Blazers 9AA",
+        "rink": "Pro Skate NHL",
+        "loc": "Home",
+        "outcome": "W",
+        "score": "8-1",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76707",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76707"
+      },
       {
         "id": "76706",
         "date": "2026-10-31",
