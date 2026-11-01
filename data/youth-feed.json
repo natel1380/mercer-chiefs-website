@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-01T16:49:00.548Z",
+  "lastSynced": "2026-11-01T21:11:45.476Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -10623,10 +10623,10 @@
       "season": "2026/27",
       "headCoach": "Jason Bracco",
       "level": "14U Bantam Major AA",
-      "record": "1-17-0",
+      "record": "1-18-0",
       "pts": 3,
       "rank": "#33",
-      "standingSummary": "1-17-0 | 3 PTS | #33 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "1-18-0 | 3 PTS | #33 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9875&season=190&stat_class=1",
       "featuredSchedule": [
         {
@@ -11004,16 +11004,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=74994"
         },
         {
-          "id": "76648",
-          "date": "2026-11-01",
-          "time": "01:40 PM",
-          "opp": "Wildcats 14AA",
-          "rink": "Pro Skate Olympic",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76648",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76648"
-        },
-        {
           "id": "76179",
           "date": "2026-11-14",
           "time": "02:10 PM",
@@ -11185,6 +11175,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "76648",
+          "date": "2026-11-01",
+          "time": "01:40 PM",
+          "opp": "Jersey Shore Wildcats 14AA",
+          "rink": "Pro Skate Olympic",
+          "loc": "Home",
+          "outcome": "L",
+          "score": "0-7",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76648",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76648"
+        },
         {
           "id": "73860",
           "date": "2026-10-31",
@@ -13017,22 +13020,12 @@
       "season": "2026/27",
       "headCoach": "Don Migliorisi",
       "level": "12U Peewee Major AA",
-      "record": "7-8-1",
-      "pts": 22,
+      "record": "8-8-1",
+      "pts": 24,
       "rank": "#9",
-      "standingSummary": "7-8-1 | 22 PTS | #9 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "8-8-1 | 24 PTS | #9 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=14977&season=190&stat_class=1",
       "featuredSchedule": [
-        {
-          "id": "76582",
-          "date": "2026-11-01",
-          "time": "12:15 PM",
-          "opp": "Blackhawks 12AA",
-          "rink": "East Brunswick  Rink 1",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76582",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76582"
-        },
         {
           "id": "75653",
           "date": "2026-11-07",
@@ -13408,16 +13401,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "76582",
-          "date": "2026-11-01",
-          "time": "12:15 PM",
-          "opp": "Blackhawks 12AA",
-          "rink": "East Brunswick  Rink 1",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76582",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76582"
-        },
-        {
           "id": "75653",
           "date": "2026-11-07",
           "time": "11:00 AM",
@@ -13569,6 +13552,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "76582",
+          "date": "2026-11-01",
+          "time": "12:15 PM",
+          "opp": "Tom's River Blackhawks 12AA",
+          "rink": "East Brunswick  Rink 1",
+          "loc": "Home",
+          "outcome": "W",
+          "score": "8-3",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76582",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76582"
+        },
         {
           "id": "73790",
           "date": "2026-10-31",
@@ -14529,10 +14525,10 @@
       "season": "2026/27",
       "headCoach": "Chris Corrigan",
       "level": "12U Peewee B",
-      "record": "2-13-2",
+      "record": "2-14-2",
       "pts": 7,
       "rank": "#26",
-      "standingSummary": "2-13-2 | 7 PTS | #26 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "2-14-2 | 7 PTS | #26 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9874&season=190&stat_class=1",
       "featuredSchedule": [
         {
@@ -14874,16 +14870,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76602"
         },
         {
-          "id": "76607",
-          "date": "2026-11-01",
-          "time": "01:50 PM",
-          "opp": "Blues 12M",
-          "rink": "East Brunswick  Rink 1",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76607",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76607"
-        },
-        {
           "id": "78998",
           "date": "2026-11-22",
           "time": "03:40 PM",
@@ -15025,6 +15011,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "76607",
+          "date": "2026-11-01",
+          "time": "01:50 PM",
+          "opp": "Montclair Blues 12M",
+          "rink": "East Brunswick  Rink 1",
+          "loc": "Home",
+          "outcome": "L",
+          "score": "3-5",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76607",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76607"
+        },
         {
           "id": "77477",
           "date": "2026-10-31",
@@ -15246,22 +15245,12 @@
       "season": "2026/27",
       "headCoach": "Xan Doetsch",
       "level": "11U Peewee Minor AA",
-      "record": "9-5-1",
-      "pts": 25,
+      "record": "10-5-1",
+      "pts": 27,
       "rank": "#10",
-      "standingSummary": "9-5-1 | 25 PTS | #10 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "10-5-1 | 27 PTS | #10 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9872&season=190&stat_class=1",
       "featuredSchedule": [
-        {
-          "id": "76565",
-          "date": "2026-11-01",
-          "time": "03:10 PM",
-          "opp": "Wolfpack HC 11AA ",
-          "rink": "Pro Skate NHL",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76565",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76565"
-        },
         {
           "id": "76566",
           "date": "2026-11-08",
@@ -15579,16 +15568,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "76565",
-          "date": "2026-11-01",
-          "time": "03:10 PM",
-          "opp": "Wolfpack HC 11AA ",
-          "rink": "Pro Skate NHL",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76565",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76565"
-        },
-        {
           "id": "76566",
           "date": "2026-11-08",
           "time": "02:55 PM",
@@ -15740,6 +15719,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "76565",
+          "date": "2026-11-01",
+          "time": "03:10 PM",
+          "opp": "Wolfpack HC 11AA",
+          "rink": "Pro Skate NHL",
+          "loc": "Home",
+          "outcome": "W",
+          "score": "4-2",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76565",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76565"
+        },
         {
           "id": "76563",
           "date": "2026-10-18",
@@ -16677,22 +16669,12 @@
       "season": "2026/27",
       "headCoach": "Samuel Libetti",
       "level": "10U Squirt A",
-      "record": "4-12-0",
+      "record": "4-13-0",
       "pts": 11,
       "rank": "#16",
-      "standingSummary": "4-12-0 | 11 PTS | #16 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "4-13-0 | 11 PTS | #16 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=14939&season=190&stat_class=1",
       "featuredSchedule": [
-        {
-          "id": "75192",
-          "date": "2026-11-01",
-          "time": "11:15 AM",
-          "opp": "Hockey Club 10L",
-          "rink": "RSG Arena at Dunellen",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75192",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75192"
-        },
         {
           "id": "75529",
           "date": "2026-11-21",
@@ -16988,16 +16970,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "75192",
-          "date": "2026-11-01",
-          "time": "11:15 AM",
-          "opp": "Hockey Club 10L",
-          "rink": "RSG Arena at Dunellen",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75192",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75192"
-        },
-        {
           "id": "75529",
           "date": "2026-11-21",
           "time": "12:15 PM",
@@ -17159,6 +17131,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "75192",
+          "date": "2026-11-01",
+          "time": "11:15 AM",
+          "opp": "Montclair Blues 10L White",
+          "rink": "RSG Arena at Dunellen",
+          "loc": "Away",
+          "outcome": "L",
+          "score": "7-9",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75192",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75192"
+        },
         {
           "id": "79576",
           "date": "2026-10-31",
