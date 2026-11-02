@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-01T21:11:45.476Z",
+  "lastSynced": "2026-11-02T00:48:33.933Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -5872,22 +5872,12 @@
       "season": "2026/27",
       "headCoach": "Oktay Armagan",
       "level": "11U Peewee Minor AAA",
-      "record": "5-4-1",
-      "pts": 16,
+      "record": "6-4-1",
+      "pts": 18,
       "rank": "#3",
-      "standingSummary": "5-4-1 | 16 PTS | #3 Tier 1 Hockey Federation (THF)",
+      "standingSummary": "6-4-1 | 18 PTS | #3 Tier 1 Hockey Federation (THF)",
       "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10302&season=190&stat_class=1",
       "featuredSchedule": [
-        {
-          "id": "81859",
-          "date": "2026-11-01",
-          "time": "03:00 PM",
-          "opp": "Hockey Club 11U",
-          "rink": "Ice Land Phantoms Rink",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81859",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81859"
-        },
         {
           "id": "82721",
           "date": "2026-11-14",
@@ -6329,16 +6319,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "81859",
-          "date": "2026-11-01",
-          "time": "03:00 PM",
-          "opp": "Hockey Club 11U",
-          "rink": "Ice Land Phantoms Rink",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81859",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81859"
-        },
-        {
           "id": "82721",
           "date": "2026-11-14",
           "time": "11:10 AM",
@@ -6510,6 +6490,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "81859",
+          "date": "2026-11-01",
+          "time": "03:00 PM",
+          "opp": "Rockets Hockey Club 11U",
+          "rink": "Ice Land Phantoms Rink",
+          "loc": "Home",
+          "outcome": "W",
+          "score": "5-2",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=81859",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=81859"
+        },
         {
           "id": "82908",
           "date": "2026-10-18",
@@ -14525,23 +14518,12 @@
       "season": "2026/27",
       "headCoach": "Chris Corrigan",
       "level": "12U Peewee B",
-      "record": "2-14-2",
+      "record": "2-15-2",
       "pts": 7,
       "rank": "#26",
-      "standingSummary": "2-14-2 | 7 PTS | #26 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "2-15-2 | 7 PTS | #26 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9874&season=190&stat_class=1",
-      "featuredSchedule": [
-        {
-          "id": "76602",
-          "date": "2026-09-27",
-          "time": "01:30 PM",
-          "opp": "Blues 12M",
-          "rink": "Pro Skate NHL",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76602",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76602"
-        }
-      ],
+      "featuredSchedule": [],
       "roster": [
         {
           "no": 31,
@@ -14860,16 +14842,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "76602",
-          "date": "2026-09-27",
-          "time": "01:30 PM",
-          "opp": "Blues 12M",
-          "rink": "Pro Skate NHL",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76602",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76602"
-        },
-        {
           "id": "78998",
           "date": "2026-11-22",
           "time": "03:40 PM",
@@ -15011,6 +14983,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "76602",
+          "date": "2026-09-27",
+          "time": "01:30 PM",
+          "opp": "Montclair Blues 12M",
+          "rink": "Pro Skate NHL",
+          "loc": "Home",
+          "outcome": "L",
+          "score": "1-7",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76602",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76602"
+        },
         {
           "id": "76607",
           "date": "2026-11-01",

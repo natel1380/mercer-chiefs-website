@@ -26,15 +26,15 @@ export const CLUB_INFO = {
 
 export const LIVE_TICKER_GAMES = [
   {
-    "id": "ticker-prem-25691",
+    "id": "ticker-prem-26387",
     "league": "USPHL Premier",
     "status": "FINAL",
-    "home": "Connecticut Junior Rangers",
-    "away": "Mercer Chiefs Premier",
-    "homeScore": 1,
-    "awayScore": 7,
-    "date": "Oct 31, 2026",
-    "highlight": "Premier: Chiefs 7, Connecticut Junior Rangers 1 (Final)"
+    "home": "Mercer Chiefs Premier",
+    "away": "P.A.L. Junior Islanders",
+    "homeScore": 7,
+    "awayScore": 1,
+    "date": "Nov 01, 2026",
+    "highlight": "Premier: Chiefs 7, P.A.L. Junior Islanders 1 (Final)"
   },
   {
     "id": "ticker-ncdc-24386",
@@ -60,27 +60,27 @@ export const LIVE_TICKER_GAMES = [
     "streamUrl": "https://blackbearsports.tv/"
   },
   {
-    "id": "ticker-prem-up-26387",
+    "id": "ticker-prem-up-26284",
     "league": "USPHL Premier",
     "status": "UPCOMING",
     "home": "Mercer Chiefs Premier",
-    "away": "P.A.L. Junior Islanders",
+    "away": "Wilkes-Barre Scranton Knights",
     "homeScore": null,
     "awayScore": null,
-    "date": "Nov 01, 2026, 4:15 PM EST",
+    "date": "Nov 06, 2026, 3:00 PM EST",
     "rink": "Ice Land Black Bear",
     "streamUrl": "https://blackbearsports.tv/"
   },
   {
-    "id": "ticker-prem-prev-26156",
+    "id": "ticker-prem-prev-25691",
     "league": "USPHL Premier",
     "status": "FINAL",
-    "home": "Mercer Chiefs Premier",
-    "away": "Rockets Hockey Club",
+    "home": "Connecticut Junior Rangers",
+    "away": "Mercer Chiefs Premier",
     "homeScore": 1,
-    "awayScore": 5,
-    "date": "Oct 29, 2026",
-    "highlight": "Premier: Chiefs 1, Rockets Hockey Club 5 (Final)"
+    "awayScore": 7,
+    "date": "Oct 31, 2026",
+    "highlight": "Premier: Chiefs 7, Connecticut Junior Rangers 1 (Final)"
   }
 ];
 
@@ -1880,9 +1880,9 @@ export const JUNIOR_TEAMS = {
         "headshot": "assets/images/players/premier_7_kapitan_andrii.png",
         "fullPhoto": "assets/images/players/full/premier_7_kapitan_andrii.jpg",
         "gp": 13,
-        "g": 10,
+        "g": 12,
         "a": 7,
-        "pts": 17,
+        "pts": 19,
         "pim": 14,
         "plusMinus": "0",
         "ppg": 3,
@@ -1952,8 +1952,8 @@ export const JUNIOR_TEAMS = {
         "fullPhoto": "assets/images/players/full/premier_40_laurin_luka.jpg",
         "gp": 14,
         "g": 6,
-        "a": 3,
-        "pts": 9,
+        "a": 4,
+        "pts": 10,
         "pim": 6,
         "plusMinus": "0",
         "ppg": 2,
@@ -1976,8 +1976,8 @@ export const JUNIOR_TEAMS = {
         "fullPhoto": "assets/images/players/full/premier_42_rider_ryan.jpg",
         "gp": 5,
         "g": 0,
-        "a": 1,
-        "pts": 1,
+        "a": 2,
+        "pts": 2,
         "pim": 0,
         "plusMinus": "0",
         "ppg": 0,
@@ -2048,9 +2048,9 @@ export const JUNIOR_TEAMS = {
         "fullPhoto": "assets/images/players/full/premier_47_hunter_jacob.jpg",
         "gp": 14,
         "g": 5,
-        "a": 8,
-        "pts": 13,
-        "pim": 10,
+        "a": 9,
+        "pts": 14,
+        "pim": 12,
         "plusMinus": "0",
         "ppg": 0,
         "shg": 0,
@@ -2071,9 +2071,9 @@ export const JUNIOR_TEAMS = {
         "headshot": "assets/images/players/premier_49_blouin_raphael.png",
         "fullPhoto": "assets/images/players/full/premier_49_blouin_raphael.jpg",
         "gp": 14,
-        "g": 0,
-        "a": 7,
-        "pts": 7,
+        "g": 1,
+        "a": 8,
+        "pts": 9,
         "pim": 15,
         "plusMinus": "0",
         "ppg": 0,
@@ -2142,14 +2142,14 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/premier_0_mozuraitis_alexander.png",
         "gp": 2,
-        "g": 0,
-        "a": 0,
-        "pts": 0,
+        "g": 2,
+        "a": 2,
+        "pts": 4,
         "pim": 0,
         "plusMinus": "0",
         "ppg": 0,
         "shg": 0,
-        "gwg": 0
+        "gwg": 1
       },
       {
         "number": 53,
@@ -2166,10 +2166,10 @@ export const JUNIOR_TEAMS = {
         "headshot": "assets/images/players/premier_53_czarnecki_octavian.png",
         "fullPhoto": "assets/images/players/full/premier_53_czarnecki_octavian.jpg",
         "gp": 14,
-        "g": 2,
-        "a": 4,
-        "pts": 6,
-        "pim": 10,
+        "g": 3,
+        "a": 5,
+        "pts": 8,
+        "pim": 12,
         "plusMinus": "0",
         "ppg": 1,
         "shg": 0,
@@ -2214,8 +2214,8 @@ export const JUNIOR_TEAMS = {
         "fullPhoto": "assets/images/players/full/premier_56_mansell_cameron.jpg",
         "gp": 14,
         "g": 1,
-        "a": 0,
-        "pts": 1,
+        "a": 1,
+        "pts": 2,
         "pim": 4,
         "plusMinus": "0",
         "ppg": 0,
@@ -2237,13 +2237,13 @@ export const JUNIOR_TEAMS = {
         "headshot": "assets/images/players/premier_58_vernier_maxime.png",
         "fullPhoto": "assets/images/players/full/premier_58_vernier_maxime.jpg",
         "gp": 14,
-        "g": 10,
-        "a": 15,
-        "pts": 25,
+        "g": 11,
+        "a": 17,
+        "pts": 28,
         "pim": 22,
         "plusMinus": "0",
         "ppg": 2,
-        "shg": 0,
+        "shg": 1,
         "gwg": 1
       },
       {
@@ -2310,7 +2310,7 @@ export const JUNIOR_TEAMS = {
         "g": 0,
         "a": 2,
         "pts": 2,
-        "pim": 4,
+        "pim": 6,
         "plusMinus": "0",
         "ppg": 0,
         "shg": 0,
@@ -2506,17 +2506,17 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/premier_34_martin_christophe.png",
         "fullPhoto": "assets/images/players/full/premier_34_martin_christophe.jpg",
-        "gp": 6,
-        "w": 4,
+        "gp": 7,
+        "w": 5,
         "l": 2,
         "otl": 0,
-        "gaa": "1.00",
-        "svPct": ".925",
+        "gaa": "1.08",
+        "svPct": ".935",
         "so": 1,
         "sol": 0,
-        "ga": 13,
-        "sv": 161,
-        "sa": 174,
+        "ga": 14,
+        "sv": 203,
+        "sa": 217,
         "pim": 0
       }
     ],
@@ -2745,10 +2745,10 @@ export const JUNIOR_TEAMS = {
         "rink": "Ice Land Black Bear",
         "city": "Hamilton",
         "state": "NJ",
-        "result": null,
-        "chiefsScore": null,
-        "oppScore": null,
-        "status": "UPCOMING",
+        "result": "W",
+        "chiefsScore": 7,
+        "oppScore": 1,
+        "status": "FINAL",
         "time": "4:15 PM EST"
       },
       {
@@ -3268,19 +3268,35 @@ export const JUNIOR_TEAMS = {
         "team": "P.A.L. Junior Islanders",
         "logo": "assets/images/logos/pal-jr-islanders.png",
         "isChiefs": false,
-        "gp": 12,
+        "gp": 13,
         "w": 12,
-        "l": 0,
+        "l": 1,
         "otl": 0,
         "pts": 24,
-        "gf": 77,
-        "ga": 30,
-        "diff": "+47",
-        "streak": "12W",
-        "pct": "1.000"
+        "gf": 78,
+        "ga": 37,
+        "diff": "+41",
+        "streak": "1L",
+        "pct": ".923"
       },
       {
         "rank": 2,
+        "team": "Mercer Chiefs (Premier)",
+        "logo": "assets/images/logos/mercer-chiefs-junior.png",
+        "isChiefs": true,
+        "gp": 14,
+        "w": 10,
+        "l": 4,
+        "otl": 0,
+        "pts": 20,
+        "gf": 66,
+        "ga": 34,
+        "diff": "+32",
+        "streak": "2W",
+        "pct": ".714"
+      },
+      {
+        "rank": 3,
         "team": "Rockets Hockey Club",
         "logo": "assets/images/logos/rockets-hc.png",
         "isChiefs": false,
@@ -3296,7 +3312,7 @@ export const JUNIOR_TEAMS = {
         "pct": ".792"
       },
       {
-        "rank": 3,
+        "rank": 4,
         "team": "West Chester Wolves",
         "logo": "assets/images/logos/west-chester-wolves.png",
         "isChiefs": false,
@@ -3310,22 +3326,6 @@ export const JUNIOR_TEAMS = {
         "diff": "+25",
         "streak": "3W",
         "pct": ".731"
-      },
-      {
-        "rank": 4,
-        "team": "Mercer Chiefs (Premier)",
-        "logo": "assets/images/logos/mercer-chiefs-junior.png",
-        "isChiefs": true,
-        "gp": 13,
-        "w": 9,
-        "l": 4,
-        "otl": 0,
-        "pts": 18,
-        "gf": 59,
-        "ga": 33,
-        "diff": "+26",
-        "streak": "1W",
-        "pct": ".692"
       },
       {
         "rank": 5,
@@ -3348,16 +3348,16 @@ export const JUNIOR_TEAMS = {
         "team": "Wilkes-Barre Scranton Knights",
         "logo": "assets/images/logos/wbs-knights.png",
         "isChiefs": false,
-        "gp": 11,
-        "w": 6,
+        "gp": 12,
+        "w": 7,
         "l": 3,
         "otl": 2,
-        "pts": 14,
-        "gf": 35,
-        "ga": 32,
-        "diff": "+3",
-        "streak": "1L",
-        "pct": ".636"
+        "pts": 16,
+        "gf": 42,
+        "ga": 35,
+        "diff": "+7",
+        "streak": "1W",
+        "pct": ".667"
       },
       {
         "rank": 7,
@@ -3396,16 +3396,16 @@ export const JUNIOR_TEAMS = {
         "team": "New Jersey Renegades",
         "logo": "assets/images/logos/nj-renegades.png",
         "isChiefs": false,
-        "gp": 12,
+        "gp": 13,
         "w": 1,
-        "l": 9,
+        "l": 10,
         "otl": 1,
         "pts": 4,
-        "gf": 27,
-        "ga": 93,
-        "diff": "-66",
-        "streak": "6L",
-        "pct": ".167"
+        "gf": 30,
+        "ga": 100,
+        "diff": "-70",
+        "streak": "7L",
+        "pct": ".154"
       }
     ]
   }
@@ -9921,22 +9921,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Oktay Armagan",
     "level": "11U Peewee Minor AAA",
-    "record": "5-4-1",
-    "pts": 16,
+    "record": "6-4-1",
+    "pts": 18,
     "rank": "#3",
-    "standingSummary": "5-4-1 | 16 PTS | #3 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "6-4-1 | 18 PTS | #3 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10302&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "81859",
-        "date": "2026-11-01",
-        "time": "03:00 PM",
-        "opp": "Hockey Club 11U",
-        "rink": "Ice Land Phantoms Rink",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81859",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81859"
-      },
       {
         "id": "82721",
         "date": "2026-11-14",
@@ -10378,16 +10368,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "81859",
-        "date": "2026-11-01",
-        "time": "03:00 PM",
-        "opp": "Hockey Club 11U",
-        "rink": "Ice Land Phantoms Rink",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81859",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81859"
-      },
-      {
         "id": "82721",
         "date": "2026-11-14",
         "time": "11:10 AM",
@@ -10559,6 +10539,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "81859",
+        "date": "2026-11-01",
+        "time": "03:00 PM",
+        "opp": "Rockets Hockey Club 11U",
+        "rink": "Ice Land Phantoms Rink",
+        "loc": "Home",
+        "outcome": "W",
+        "score": "5-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=81859",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=81859"
+      },
       {
         "id": "82908",
         "date": "2026-10-18",
@@ -18574,23 +18567,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Chris Corrigan",
     "level": "12U Peewee B",
-    "record": "2-14-2",
+    "record": "2-15-2",
     "pts": 7,
     "rank": "#26",
-    "standingSummary": "2-14-2 | 7 PTS | #26 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "2-15-2 | 7 PTS | #26 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9874&season=190&stat_class=1",
-    "featuredSchedule": [
-      {
-        "id": "76602",
-        "date": "2026-09-27",
-        "time": "01:30 PM",
-        "opp": "Blues 12M",
-        "rink": "Pro Skate NHL",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76602",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76602"
-      }
-    ],
+    "featuredSchedule": [],
     "roster": [
       {
         "no": 31,
@@ -18909,16 +18891,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "76602",
-        "date": "2026-09-27",
-        "time": "01:30 PM",
-        "opp": "Blues 12M",
-        "rink": "Pro Skate NHL",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76602",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76602"
-      },
-      {
         "id": "78998",
         "date": "2026-11-22",
         "time": "03:40 PM",
@@ -19060,6 +19032,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76602",
+        "date": "2026-09-27",
+        "time": "01:30 PM",
+        "opp": "Montclair Blues 12M",
+        "rink": "Pro Skate NHL",
+        "loc": "Home",
+        "outcome": "L",
+        "score": "1-7",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76602",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76602"
+      },
       {
         "id": "76607",
         "date": "2026-11-01",
