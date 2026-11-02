@@ -3332,16 +3332,16 @@ export const JUNIOR_TEAMS = {
         "team": "Red Bank Generals",
         "logo": "assets/images/logos/red-bank-generals.png",
         "isChiefs": false,
-        "gp": 11,
-        "w": 8,
+        "gp": 12,
+        "w": 9,
         "l": 3,
         "otl": 0,
-        "pts": 16,
-        "gf": 59,
-        "ga": 21,
-        "diff": "+38",
-        "streak": "2W",
-        "pct": ".727"
+        "pts": 18,
+        "gf": 66,
+        "ga": 24,
+        "diff": "+42",
+        "streak": "3W",
+        "pct": ".750"
       },
       {
         "rank": 6,
@@ -3364,16 +3364,16 @@ export const JUNIOR_TEAMS = {
         "team": "Jersey Hitmen",
         "logo": "assets/images/logos/jersey-hitmen.png",
         "isChiefs": false,
-        "gp": 12,
+        "gp": 13,
         "w": 6,
-        "l": 6,
+        "l": 7,
         "otl": 0,
         "pts": 12,
-        "gf": 47,
-        "ga": 65,
-        "diff": "-18",
-        "streak": "2L",
-        "pct": ".500"
+        "gf": 50,
+        "ga": 72,
+        "diff": "-22",
+        "streak": "3L",
+        "pct": ".462"
       },
       {
         "rank": 8,
@@ -11990,10 +11990,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Vincent Caruso",
     "level": "18U Midget Major AA",
-    "record": "14-9-4",
-    "pts": 40,
+    "record": "15-9-4",
+    "pts": 42,
     "rank": "#2",
-    "standingSummary": "14-9-4 | 40 PTS | #2 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "15-9-4 | 42 PTS | #2 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15401&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -12437,16 +12437,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75615"
       },
       {
-        "id": "76694",
-        "date": "2026-11-01",
-        "time": "06:40 PM",
-        "opp": "Phantoms 18AA",
-        "rink": "Pro Skate Olympic",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76694",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76694"
-      },
-      {
         "id": "76695",
         "date": "2026-11-07",
         "time": "06:45 PM",
@@ -12518,6 +12508,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76694",
+        "date": "2026-11-01",
+        "time": "06:40 PM",
+        "opp": "Lehigh Valley Phantoms 18AA",
+        "rink": "Pro Skate Olympic",
+        "loc": "Home",
+        "outcome": "W",
+        "score": "3-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76694",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76694"
+      },
       {
         "id": "75395",
         "date": "2026-11-01",
