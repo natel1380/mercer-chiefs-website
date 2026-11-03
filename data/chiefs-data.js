@@ -13863,10 +13863,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Joseph Maslott",
     "level": "16U Midget Minor A",
-    "record": "17-3-0",
-    "pts": 45,
+    "record": "18-3-0",
+    "pts": 47,
     "rank": "#4",
-    "standingSummary": "17-3-0 | 45 PTS | #4 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "18-3-0 | 47 PTS | #4 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9881&season=190&stat_class=1",
     "featuredSchedule": [],
     "roster": [
@@ -14297,16 +14297,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77037"
       },
       {
-        "id": "78328",
-        "date": "2026-11-01",
-        "time": "07:00 PM",
-        "opp": "Wolfpack 16L",
-        "rink": "The Club At Woodbridge Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=78328",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=78328"
-      },
-      {
         "id": "76665",
         "date": "2026-11-07",
         "time": "07:05 PM",
@@ -14408,6 +14398,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "78328",
+        "date": "2026-11-01",
+        "time": "07:00 PM",
+        "opp": "Woodbridge Wolfpack 16L",
+        "rink": "The Club At Woodbridge Rink 1",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "5-3",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=78328",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=78328"
+      },
       {
         "id": "76104",
         "date": "2026-10-30",
