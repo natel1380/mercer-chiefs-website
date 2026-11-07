@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-06T21:05:41.584Z",
+  "lastSynced": "2026-11-07T00:56:53.938Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -8836,10 +8836,10 @@
       "season": "2026/27",
       "headCoach": "Michael Cook",
       "level": "18U Midget Major A",
-      "record": "7-13-1",
-      "pts": 20,
+      "record": "7-13-2",
+      "pts": 21,
       "rank": "#12",
-      "standingSummary": "7-13-1 | 20 PTS | #12 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "7-13-2 | 21 PTS | #12 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9878&season=190&stat_class=1",
       "featuredSchedule": [
         {
@@ -9427,16 +9427,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77048"
         },
         {
-          "id": "76679",
-          "date": "2026-11-06",
-          "time": "08:00 PM",
-          "opp": "Wildcats 18GRY Karaban",
-          "rink": "East Brunswick  Rink 1",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76679",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76679"
-        },
-        {
           "id": "76063",
           "date": "2026-11-07",
           "time": "12:50 PM",
@@ -9528,6 +9518,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "76679",
+          "date": "2026-11-06",
+          "time": "08:00 PM",
+          "opp": "Jersey Shore Wildcats 18GRY Karaban",
+          "rink": "East Brunswick  Rink 1",
+          "loc": "Home",
+          "outcome": "T",
+          "score": "0-0",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76679",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76679"
+        },
         {
           "id": "76678",
           "date": "2026-10-31",
