@@ -17095,22 +17095,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Don Migliorisi",
     "level": "12U Peewee Major AA",
-    "record": "8-8-1",
-    "pts": 24,
+    "record": "9-8-1",
+    "pts": 26,
     "rank": "#9",
-    "standingSummary": "8-8-1 | 24 PTS | #9 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "9-8-1 | 26 PTS | #9 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=14977&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "75653",
-        "date": "2026-11-07",
-        "time": "11:00 AM",
-        "opp": "Knights 12AA",
-        "rink": "Revolution Ice Centre Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75653",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75653"
-      },
       {
         "id": "75654",
         "date": "2026-11-07",
@@ -17476,16 +17466,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "75653",
-        "date": "2026-11-07",
-        "time": "11:00 AM",
-        "opp": "Knights 12AA",
-        "rink": "Revolution Ice Centre Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75653",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75653"
-      },
-      {
         "id": "75654",
         "date": "2026-11-07",
         "time": "03:15 PM",
@@ -17627,6 +17607,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "75653",
+        "date": "2026-11-07",
+        "time": "11:00 AM",
+        "opp": "WBS Knights 12AA",
+        "rink": "Revolution Ice Centre Rink 1",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "6-4",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75653",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75653"
+      },
       {
         "id": "76582",
         "date": "2026-11-01",
@@ -20007,10 +20000,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Xan Doetsch",
     "level": "10U Squirt Major AA",
-    "record": "7-11-1",
-    "pts": 15,
+    "record": "8-11-1",
+    "pts": 17,
     "rank": "#4",
-    "standingSummary": "7-11-1 | 15 PTS | #4 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "8-11-1 | 17 PTS | #4 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9870&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -20374,16 +20367,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76531"
       },
       {
-        "id": "75176",
-        "date": "2026-11-07",
-        "time": "08:25 AM",
-        "opp": "Hockey Club 10AA",
-        "rink": "RSG Arena at Dunellen",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75176",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75176"
-      },
-      {
         "id": "73749",
         "date": "2026-11-14",
         "time": "09:20 AM",
@@ -20515,6 +20498,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "75176",
+        "date": "2026-11-07",
+        "time": "08:25 AM",
+        "opp": "Rockets Hockey Club 10AA",
+        "rink": "RSG Arena at Dunellen",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "5-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75176",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75176"
+      },
       {
         "id": "76539",
         "date": "2026-11-01",
