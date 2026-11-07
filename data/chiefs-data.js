@@ -7250,22 +7250,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Brett Aimone",
     "level": "15U Bantam Pure AAA",
-    "record": "6-5-1",
-    "pts": 17,
+    "record": "7-5-1",
+    "pts": 19,
     "rank": "#5",
-    "standingSummary": "6-5-1 | 17 PTS | #5 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "7-5-1 | 19 PTS | #5 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10306&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "81909",
-        "date": "2026-11-07",
-        "time": "01:15 PM",
-        "opp": "Hitmen 15U",
-        "rink": "Ice Land Black Bear Rink",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81909",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81909"
-      },
       {
         "id": "82485",
         "date": "2026-11-08",
@@ -7719,16 +7709,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "81909",
-        "date": "2026-11-07",
-        "time": "01:15 PM",
-        "opp": "Hitmen 15U",
-        "rink": "Ice Land Black Bear Rink",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81909",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81909"
-      },
-      {
         "id": "82485",
         "date": "2026-11-08",
         "time": "06:30 PM",
@@ -7810,6 +7790,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "81909",
+        "date": "2026-11-07",
+        "time": "01:15 PM",
+        "opp": "Jersey Hitmen 15U",
+        "rink": "Ice Land Black Bear Rink",
+        "loc": "Home",
+        "outcome": "W",
+        "score": "6-5",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=81909",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=81909"
+      },
       {
         "id": "81910",
         "date": "2026-10-31",
@@ -8609,10 +8602,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Chris Barcless",
     "level": "13U Bantam Minor AAA",
-    "record": "5-2-1",
-    "pts": 15,
+    "record": "6-2-1",
+    "pts": 17,
     "rank": "#7",
-    "standingSummary": "5-2-1 | 15 PTS | #7 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "6-2-1 | 17 PTS | #7 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=11519&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -9024,16 +9017,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82128"
       },
       {
-        "id": "83062",
-        "date": "2026-11-07",
-        "time": "03:45 PM",
-        "opp": "Hockey Club 13U",
-        "rink": "Mackay Ice Rink Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=83062",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=83062"
-      },
-      {
         "id": "81893",
         "date": "2026-11-08",
         "time": "10:45 AM",
@@ -9175,6 +9158,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "83062",
+        "date": "2026-11-07",
+        "time": "03:45 PM",
+        "opp": "NYC Hockey Club 13U",
+        "rink": "Mackay Ice Rink Rink 1",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "9-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=83062",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=83062"
+      },
       {
         "id": "81888",
         "date": "2026-10-31",
@@ -12014,10 +12010,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Vincent Caruso",
     "level": "18U Midget Major AA",
-    "record": "15-9-4",
-    "pts": 42,
+    "record": "16-9-4",
+    "pts": 44,
     "rank": "#2",
-    "standingSummary": "15-9-4 | 42 PTS | #2 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "16-9-4 | 44 PTS | #2 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15401&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -12461,16 +12457,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75615"
       },
       {
-        "id": "76695",
-        "date": "2026-11-07",
-        "time": "06:45 PM",
-        "opp": "Renegades 18AA",
-        "rink": "East Brunswick  Rink 1",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76695",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76695"
-      },
-      {
         "id": "76692",
         "date": "2026-11-08",
         "time": "11:50 AM",
@@ -12532,6 +12518,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76695",
+        "date": "2026-11-07",
+        "time": "06:45 PM",
+        "opp": "NJ Renegades 18AA",
+        "rink": "East Brunswick  Rink 1",
+        "loc": "Home",
+        "outcome": "W",
+        "score": "10-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76695",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76695"
+      },
       {
         "id": "76694",
         "date": "2026-11-01",
@@ -12909,10 +12908,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Michael Cook",
     "level": "18U Midget Major A",
-    "record": "7-13-2",
+    "record": "7-14-2",
     "pts": 21,
     "rank": "#12",
-    "standingSummary": "7-13-2 | 21 PTS | #12 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "7-14-2 | 21 PTS | #12 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9878&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -13500,16 +13499,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77048"
       },
       {
-        "id": "76063",
-        "date": "2026-11-07",
-        "time": "12:50 PM",
-        "opp": "Wildcats 18GRY Lepore",
-        "rink": "Jersey Shore Arena Red Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76063",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76063"
-      },
-      {
         "id": "76065",
         "date": "2026-11-08",
         "time": "02:10 PM",
@@ -13591,6 +13580,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76063",
+        "date": "2026-11-07",
+        "time": "12:50 PM",
+        "opp": "Jersey Shore Wildcats 18GRY Lepore",
+        "rink": "Jersey Shore Arena Red Rink",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "1-4",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76063",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76063"
+      },
       {
         "id": "76679",
         "date": "2026-11-06",
@@ -15484,10 +15486,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Don Migliorisi",
     "level": "14U Bantam Minor B",
-    "record": "4-8-3",
-    "pts": 14,
+    "record": "5-8-3",
+    "pts": 16,
     "rank": "#7",
-    "standingSummary": "4-8-3 | 14 PTS | #7 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "5-8-3 | 16 PTS | #7 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15078&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -15509,16 +15511,6 @@ export const YOUTH_TEAMS = [
         "loc": "Away",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75922",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75922"
-      },
-      {
-        "id": "76635",
-        "date": "2026-11-07",
-        "time": "01:40 PM",
-        "opp": "Hockey Club 14M",
-        "rink": "Pro Skate Olympic",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76635",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76635"
       }
     ],
     "roster": [
@@ -15889,16 +15881,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75922"
       },
       {
-        "id": "76635",
-        "date": "2026-11-07",
-        "time": "01:40 PM",
-        "opp": "Hockey Club 14M",
-        "rink": "Pro Skate Olympic",
-        "loc": "Home",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76635",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76635"
-      },
-      {
         "id": "74109",
         "date": "2026-11-21",
         "time": "05:00 PM",
@@ -16040,6 +16022,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76635",
+        "date": "2026-11-07",
+        "time": "01:40 PM",
+        "opp": "Royals Hockey Club 14M",
+        "rink": "Pro Skate Olympic",
+        "loc": "Home",
+        "outcome": "W",
+        "score": "6-0",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76635",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76635"
+      },
       {
         "id": "76634",
         "date": "2026-10-31",
@@ -16248,10 +16243,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Don Migliorisi",
     "level": "13U Bantam Minor AA",
-    "record": "13-7-0",
-    "pts": 34,
+    "record": "14-7-0",
+    "pts": 36,
     "rank": "#8",
-    "standingSummary": "13-7-0 | 34 PTS | #8 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "14-7-0 | 36 PTS | #8 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15033&season=190&stat_class=1",
     "featuredSchedule": [],
     "roster": [
@@ -16664,16 +16659,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "78266",
-        "date": "2026-11-07",
-        "time": "01:45 PM",
-        "opp": "Wolfpack 13AA",
-        "rink": "The Club At Woodbridge Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=78266",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=78266"
-      },
-      {
         "id": "76621",
         "date": "2026-11-08",
         "time": "01:40 PM",
@@ -16835,6 +16820,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "78266",
+        "date": "2026-11-07",
+        "time": "01:45 PM",
+        "opp": "Woodbridge Wolfpack 13AA",
+        "rink": "The Club At Woodbridge Rink 1",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "7-0",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=78266",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=78266"
+      },
       {
         "id": "76390",
         "date": "2026-10-31",
@@ -17095,22 +17093,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Don Migliorisi",
     "level": "12U Peewee Major AA",
-    "record": "9-8-1",
+    "record": "9-9-1",
     "pts": 26,
     "rank": "#9",
-    "standingSummary": "9-8-1 | 26 PTS | #9 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "9-9-1 | 26 PTS | #9 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=14977&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "75654",
-        "date": "2026-11-07",
-        "time": "03:15 PM",
-        "opp": "Knights 12AA",
-        "rink": "Revolution Ice Centre Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75654",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75654"
-      },
       {
         "id": "78428",
         "date": "2026-11-14",
@@ -17466,16 +17454,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "75654",
-        "date": "2026-11-07",
-        "time": "03:15 PM",
-        "opp": "Knights 12AA",
-        "rink": "Revolution Ice Centre Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75654",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75654"
-      },
-      {
         "id": "78428",
         "date": "2026-11-14",
         "time": "06:45 PM",
@@ -17607,6 +17585,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "75654",
+        "date": "2026-11-07",
+        "time": "03:15 PM",
+        "opp": "WBS Knights 12AA",
+        "rink": "Revolution Ice Centre Rink 1",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "4-8",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75654",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75654"
+      },
       {
         "id": "75653",
         "date": "2026-11-07",
