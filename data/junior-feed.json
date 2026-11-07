@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-07T00:56:51.654Z",
+  "lastSynced": "2026-11-07T07:11:56.619Z",
   "seasonLabel": "2026-27",
   "ncdc": {
     "id": "ncdc",
@@ -123,12 +123,12 @@
         "headshot": "assets/images/players/ncdc_9_jorgensen_douglas.png",
         "fullPhoto": "assets/images/players/full/ncdc_9_jorgensen_douglas.jpg",
         "gp": 17,
-        "g": 2,
+        "g": 3,
         "a": 8,
-        "pts": 10,
+        "pts": 11,
         "pim": 12,
         "plusMinus": "0",
-        "ppg": 0,
+        "ppg": 1,
         "shg": 0,
         "gwg": 0
       },
@@ -274,7 +274,7 @@
         "plusMinus": "0",
         "ppg": 2,
         "shg": 0,
-        "gwg": 0
+        "gwg": 1
       },
       {
         "number": 17,
@@ -364,8 +364,8 @@
         "fullPhoto": "assets/images/players/full/ncdc_20_beaudin_beaudy.jpg",
         "gp": 17,
         "g": 6,
-        "a": 5,
-        "pts": 11,
+        "a": 6,
+        "pts": 12,
         "pim": 2,
         "plusMinus": "0",
         "ppg": 3,
@@ -753,17 +753,17 @@
         "featured": true,
         "headshot": "assets/images/players/ncdc_34_scali_jack.png",
         "fullPhoto": "assets/images/players/full/ncdc_34_scali_jack.jpg",
-        "gp": 10,
-        "w": 5,
+        "gp": 11,
+        "w": 6,
         "l": 5,
         "otl": 0,
         "gaa": "3.00",
-        "svPct": ".907",
+        "svPct": ".908",
         "so": 0,
         "sol": 0,
         "ga": 36,
-        "sv": 352,
-        "sa": 388,
+        "sv": 357,
+        "sa": 393,
         "pim": 6
       }
     ],
@@ -1042,10 +1042,10 @@
         "rink": "Ice Land Black Bear",
         "city": "Hamilton",
         "state": "NJ",
-        "result": null,
-        "chiefsScore": null,
-        "oppScore": null,
-        "status": "UPCOMING",
+        "result": "W",
+        "chiefsScore": 4,
+        "oppScore": 1,
+        "status": "FINAL",
         "time": "6:30 PM EST"
       },
       {
@@ -1684,16 +1684,16 @@
         "team": "Wilkes-Barre Scranton Knights",
         "logo": "assets/images/logos/wbs-knights.png",
         "isChiefs": false,
-        "gp": 15,
+        "gp": 16,
         "w": 12,
-        "l": 2,
+        "l": 3,
         "otl": 0,
         "pts": 25,
-        "gf": 58,
-        "ga": 42,
-        "diff": "+16",
-        "streak": "3W",
-        "pct": ".833"
+        "gf": 59,
+        "ga": 46,
+        "diff": "+13",
+        "streak": "1L",
+        "pct": ".781"
       },
       {
         "rank": 2,
@@ -1745,6 +1745,22 @@
       },
       {
         "rank": 5,
+        "team": "Mercer Chiefs",
+        "logo": "assets/images/logos/mercer-chiefs-junior.png",
+        "isChiefs": true,
+        "gp": 17,
+        "w": 7,
+        "l": 9,
+        "otl": 0,
+        "pts": 15,
+        "gf": 47,
+        "ga": 57,
+        "diff": "-10",
+        "streak": "1W",
+        "pct": ".441"
+      },
+      {
+        "rank": 6,
         "team": "Connecticut Junior Rangers",
         "logo": "assets/images/logos/ct-jr-rangers.png",
         "isChiefs": false,
@@ -1758,22 +1774,6 @@
         "diff": "-6",
         "streak": "2W",
         "pct": ".467"
-      },
-      {
-        "rank": 6,
-        "team": "Mercer Chiefs",
-        "logo": "assets/images/logos/mercer-chiefs-junior.png",
-        "isChiefs": true,
-        "gp": 16,
-        "w": 6,
-        "l": 9,
-        "otl": 0,
-        "pts": 13,
-        "gf": 43,
-        "ga": 56,
-        "diff": "-13",
-        "streak": "2L",
-        "pct": ".406"
       },
       {
         "rank": 7,
@@ -3361,26 +3361,26 @@
       "highlight": "Premier: Chiefs 4, Wilkes-Barre Scranton Knights 3 (Final)"
     },
     {
-      "id": "ticker-ncdc-24386",
+      "id": "ticker-ncdc-24391",
       "league": "NCDC",
       "status": "FINAL",
       "home": "Mercer Chiefs NCDC",
-      "away": "South Shore Kings",
-      "homeScore": 1,
-      "awayScore": 3,
-      "date": "Nov 01, 2026",
-      "highlight": "NCDC: Chiefs 1, South Shore Kings 3 (Final)"
+      "away": "Wilkes-Barre Scranton Knights",
+      "homeScore": 4,
+      "awayScore": 1,
+      "date": "Nov 06, 2026",
+      "highlight": "NCDC: Chiefs 4, Wilkes-Barre Scranton Knights 1 (Final)"
     },
     {
-      "id": "ticker-ncdc-up-24391",
+      "id": "ticker-ncdc-up-24783",
       "league": "NCDC",
       "status": "UPCOMING",
-      "home": "Mercer Chiefs NCDC",
-      "away": "Wilkes-Barre Scranton Knights",
+      "home": "West Chester Wolves",
+      "away": "Mercer Chiefs NCDC",
       "homeScore": null,
       "awayScore": null,
-      "date": "Nov 06, 2026, 6:30 PM EST",
-      "rink": "Ice Land Black Bear",
+      "date": "Nov 07, 2026, 8:00 PM EST",
+      "rink": "PNY Sports Arena",
       "streamUrl": "https://blackbearsports.tv/"
     },
     {
