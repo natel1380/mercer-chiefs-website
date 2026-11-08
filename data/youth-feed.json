@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-08T09:31:23.776Z",
+  "lastSynced": "2026-11-08T16:21:42.668Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -18125,22 +18125,12 @@
       "season": "2026/27",
       "headCoach": "Nick Dimino",
       "level": "9U Squirt Minor AA",
-      "record": "10-4-1",
+      "record": "10-5-1",
       "pts": 28,
       "rank": "#6",
-      "standingSummary": "10-4-1 | 28 PTS | #6 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "10-5-1 | 28 PTS | #6 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9879&season=190&stat_class=1",
       "featuredSchedule": [
-        {
-          "id": "76493",
-          "date": "2026-11-08",
-          "time": "07:00 AM",
-          "opp": "Jets 9AA",
-          "rink": "Sportscare Arena Rink 1",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76493",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76493"
-        },
         {
           "id": "75163",
           "date": "2026-11-14",
@@ -18474,16 +18464,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "76493",
-          "date": "2026-11-08",
-          "time": "07:00 AM",
-          "opp": "Jets 9AA",
-          "rink": "Sportscare Arena Rink 1",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76493",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76493"
-        },
-        {
           "id": "75163",
           "date": "2026-11-14",
           "time": "04:30 PM",
@@ -18645,6 +18625,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "76493",
+          "date": "2026-11-08",
+          "time": "07:00 AM",
+          "opp": "NJ Jets 9AA",
+          "rink": "Sportscare Arena Rink 1",
+          "loc": "Away",
+          "outcome": "L",
+          "score": "6-9",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76493",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76493"
+        },
         {
           "id": "76707",
           "date": "2026-11-01",
@@ -20114,10 +20107,10 @@
       "season": "2026/27",
       "headCoach": "Mark Fennimore",
       "level": "8U Mite Beginner",
-      "record": "0-0-1",
-      "pts": 1,
+      "record": "0-0-2",
+      "pts": 2,
       "rank": "#7",
-      "standingSummary": "0-0-1 | 1 Active Players | 2026/27 Season",
+      "standingSummary": "0-0-2 | 2 PTS | #7 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=10581&season=190&stat_class=1",
       "featuredSchedule": [
         {
@@ -20259,16 +20252,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=84785"
         },
         {
-          "id": "84786",
-          "date": "2026-11-08",
-          "time": "07:10 AM",
-          "opp": "Jaguars 8U BEG",
-          "rink": "Igloo Ice Rink Blue Rink",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=84786",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=84786"
-        },
-        {
           "id": "85865",
           "date": "2026-11-21",
           "time": "07:00 AM",
@@ -20380,6 +20363,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "84786",
+          "date": "2026-11-08",
+          "time": "07:10 AM",
+          "opp": "Igloo Jaguars 8U BEG",
+          "rink": "Igloo Ice Rink Blue Rink",
+          "loc": "Away",
+          "outcome": "T",
+          "score": "0-0",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=84786",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=84786"
+        },
         {
           "id": "83257",
           "date": "2026-10-10",
