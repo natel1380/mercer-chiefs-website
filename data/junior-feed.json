@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-08T16:21:37.079Z",
+  "lastSynced": "2026-11-08T20:47:09.011Z",
   "seasonLabel": "2026-27",
   "ncdc": {
     "id": "ncdc",
@@ -1965,7 +1965,7 @@
         "g": 1,
         "a": 7,
         "pts": 8,
-        "pim": 25,
+        "pim": 22,
         "plusMinus": "0",
         "ppg": 0,
         "shg": 0,
@@ -2179,7 +2179,7 @@
         "g": 13,
         "a": 17,
         "pts": 30,
-        "pim": 37,
+        "pim": 34,
         "plusMinus": "0",
         "ppg": 2,
         "shg": 1,
