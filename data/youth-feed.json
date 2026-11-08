@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-07T22:46:44.988Z",
+  "lastSynced": "2026-11-08T02:30:19.498Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -726,22 +726,12 @@
       "season": "2026/27",
       "headCoach": "Bump Lisk",
       "level": "18U Midget Major Premier",
-      "record": "4-3-1",
-      "pts": 13,
+      "record": "5-3-1",
+      "pts": 15,
       "rank": "#5",
-      "standingSummary": "4-3-1 | 13 PTS | #5 Atlantic Division",
+      "standingSummary": "5-3-1 | 15 PTS | #5 Tier 1 Hockey Federation (THF)",
       "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10309&season=190&stat_class=1",
       "featuredSchedule": [
-        {
-          "id": "81930",
-          "date": "2026-11-07",
-          "time": "05:15 PM",
-          "opp": "Jr. Rangers 18U",
-          "rink": "Ice Land Black Bear Rink",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81930",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81930"
-        },
         {
           "id": "81932",
           "date": "2026-11-08",
@@ -1253,16 +1243,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "81930",
-          "date": "2026-11-07",
-          "time": "05:15 PM",
-          "opp": "Jr. Rangers 18U",
-          "rink": "Ice Land Black Bear Rink",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81930",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81930"
-        },
-        {
           "id": "81932",
           "date": "2026-11-08",
           "time": "11:15 AM",
@@ -1364,6 +1344,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "81930",
+          "date": "2026-11-07",
+          "time": "05:15 PM",
+          "opp": "CT Jr. Rangers 18U",
+          "rink": "Ice Land Black Bear Rink",
+          "loc": "Home",
+          "outcome": "W",
+          "score": "1-0",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=81930",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=81930"
+        },
         {
           "id": "82962",
           "date": "2026-10-16",
@@ -9819,10 +9812,10 @@
       "season": "2026/27",
       "headCoach": "Joseph Maslott",
       "level": "16U Midget Minor A",
-      "record": "18-3-0",
-      "pts": 47,
+      "record": "18-3-1",
+      "pts": 48,
       "rank": "#4",
-      "standingSummary": "18-3-0 | 47 PTS | #4 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "18-3-1 | 48 PTS | #4 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9881&season=190&stat_class=1",
       "featuredSchedule": [],
       "roster": [
@@ -10253,16 +10246,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77037"
         },
         {
-          "id": "76665",
-          "date": "2026-11-07",
-          "time": "07:05 PM",
-          "opp": "Saints 16L",
-          "rink": "Pro Skate NHL",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76665",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76665"
-        },
-        {
           "id": "76113",
           "date": "2026-11-22",
           "time": "02:10 PM",
@@ -10354,6 +10337,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "76665",
+          "date": "2026-11-07",
+          "time": "07:05 PM",
+          "opp": "Ramapo Saints 16L",
+          "rink": "Pro Skate NHL",
+          "loc": "Home",
+          "outcome": "T",
+          "score": "3-3",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76665",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76665"
+        },
         {
           "id": "78328",
           "date": "2026-11-01",
