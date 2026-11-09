@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-08T20:47:21.453Z",
+  "lastSynced": "2026-11-09T00:55:57.766Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -4508,10 +4508,10 @@
       "season": "2026/27",
       "headCoach": "Chris Barcless",
       "level": "13U Bantam Minor AAA",
-      "record": "6-3-1",
-      "pts": 17,
+      "record": "7-3-1",
+      "pts": 19,
       "rank": "#7",
-      "standingSummary": "6-3-1 | 17 PTS | #7 Tier 1 Hockey Federation (THF)",
+      "standingSummary": "7-3-1 | 19 PTS | #7 Tier 1 Hockey Federation (THF)",
       "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=11519&season=190&stat_class=1",
       "featuredSchedule": [
         {
@@ -4923,16 +4923,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82128"
         },
         {
-          "id": "81894",
-          "date": "2026-11-08",
-          "time": "02:30 PM",
-          "opp": "Jr. Islanders 13U",
-          "rink": "Ice Land Black Bear Rink",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81894",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81894"
-        },
-        {
           "id": "82743",
           "date": "2026-11-14",
           "time": "02:10 PM",
@@ -5054,6 +5044,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "81894",
+          "date": "2026-11-08",
+          "time": "02:30 PM",
+          "opp": "PAL Jr. Islanders 13U",
+          "rink": "Ice Land Black Bear Rink",
+          "loc": "Home",
+          "outcome": "W",
+          "score": "5-2",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=81894",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=81894"
+        },
         {
           "id": "81893",
           "date": "2026-11-08",
@@ -7919,10 +7922,10 @@
       "season": "2026/27",
       "headCoach": "Vincent Caruso",
       "level": "18U Midget Major AA",
-      "record": "17-9-4",
-      "pts": 46,
+      "record": "18-9-4",
+      "pts": 48,
       "rank": "#2",
-      "standingSummary": "17-9-4 | 46 PTS | #2 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "18-9-4 | 48 PTS | #2 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15401&season=190&stat_class=1",
       "featuredSchedule": [
         {
@@ -8366,16 +8369,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75615"
         },
         {
-          "id": "76696",
-          "date": "2026-11-08",
-          "time": "05:00 PM",
-          "opp": "Hockey Club 18AA",
-          "rink": "Pro Skate Olympic",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76696",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76696"
-        },
-        {
           "id": "76697",
           "date": "2026-12-06",
           "time": "12:15 PM",
@@ -8417,6 +8410,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "76696",
+          "date": "2026-11-08",
+          "time": "05:00 PM",
+          "opp": "Rockets Hockey Club 18AA",
+          "rink": "Pro Skate Olympic",
+          "loc": "Home",
+          "outcome": "W",
+          "score": "7-3",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76696",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76696"
+        },
         {
           "id": "76692",
           "date": "2026-11-08",
@@ -15217,22 +15223,12 @@
       "season": "2026/27",
       "headCoach": "Xan Doetsch",
       "level": "11U Peewee Minor AA",
-      "record": "10-5-1",
+      "record": "10-6-1",
       "pts": 27,
       "rank": "#10",
-      "standingSummary": "10-5-1 | 27 PTS | #10 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "10-6-1 | 27 PTS | #10 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9872&season=190&stat_class=1",
       "featuredSchedule": [
-        {
-          "id": "76566",
-          "date": "2026-11-08",
-          "time": "02:55 PM",
-          "opp": "Blues 11AA",
-          "rink": "Pro Skate NHL",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76566",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76566"
-        },
         {
           "id": "77452",
           "date": "2026-11-14",
@@ -15540,16 +15536,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "76566",
-          "date": "2026-11-08",
-          "time": "02:55 PM",
-          "opp": "Blues 11AA",
-          "rink": "Pro Skate NHL",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76566",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76566"
-        },
-        {
           "id": "77452",
           "date": "2026-11-14",
           "time": "03:45 PM",
@@ -15691,6 +15677,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "76566",
+          "date": "2026-11-08",
+          "time": "02:55 PM",
+          "opp": "Montclair Blues 11AA",
+          "rink": "Pro Skate NHL",
+          "loc": "Home",
+          "outcome": "L",
+          "score": "4-5",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76566",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76566"
+        },
         {
           "id": "76565",
           "date": "2026-11-01",
