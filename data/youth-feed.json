@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-09T00:55:57.766Z",
+  "lastSynced": "2026-11-09T08:00:14.455Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -3156,22 +3156,12 @@
       "season": "2026/27",
       "headCoach": "Brett Aimone",
       "level": "15U Bantam Pure AAA",
-      "record": "7-5-1",
+      "record": "7-6-1",
       "pts": 19,
       "rank": "#5",
-      "standingSummary": "7-5-1 | 19 PTS | #5 Tier 1 Hockey Federation (THF)",
+      "standingSummary": "7-6-1 | 19 PTS | #5 Tier 1 Hockey Federation (THF)",
       "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10306&season=190&stat_class=1",
       "featuredSchedule": [
-        {
-          "id": "82485",
-          "date": "2026-11-08",
-          "time": "06:30 PM",
-          "opp": "Generals 15U",
-          "rink": "Red Bank Armory",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82485",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82485"
-        },
         {
           "id": "84042",
           "date": "2026-12-19",
@@ -3615,16 +3605,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "82485",
-          "date": "2026-11-08",
-          "time": "06:30 PM",
-          "opp": "Generals 15U",
-          "rink": "Red Bank Armory",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82485",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82485"
-        },
-        {
           "id": "84042",
           "date": "2026-12-19",
           "time": "01:15 PM",
@@ -3696,6 +3676,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "82485",
+          "date": "2026-11-08",
+          "time": "06:30 PM",
+          "opp": "Red Bank Generals 15U",
+          "rink": "Red Bank Armory",
+          "loc": "Away",
+          "outcome": "L",
+          "score": "2-3",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82485",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82485"
+        },
         {
           "id": "81909",
           "date": "2026-11-07",
