@@ -1801,16 +1801,16 @@ export const JUNIOR_TEAMS = {
         "team": "Jersey Hitmen",
         "logo": "assets/images/logos/jersey-hitmen.png",
         "isChiefs": false,
-        "gp": 17,
+        "gp": 18,
         "w": 10,
-        "l": 5,
+        "l": 6,
         "otl": 1,
         "pts": 22,
-        "gf": 62,
-        "ga": 48,
-        "diff": "+14",
-        "streak": "1W",
-        "pct": ".647"
+        "gf": 63,
+        "ga": 50,
+        "diff": "+13",
+        "streak": "1L",
+        "pct": ".611"
       },
       {
         "rank": 4,
@@ -1833,16 +1833,16 @@ export const JUNIOR_TEAMS = {
         "team": "Connecticut Junior Rangers",
         "logo": "assets/images/logos/ct-jr-rangers.png",
         "isChiefs": false,
-        "gp": 20,
-        "w": 7,
+        "gp": 21,
+        "w": 8,
         "l": 10,
         "otl": 2,
-        "pts": 17,
-        "gf": 61,
-        "ga": 82,
-        "diff": "-21",
-        "streak": "4L",
-        "pct": ".425"
+        "pts": 19,
+        "gf": 63,
+        "ga": 83,
+        "diff": "-20",
+        "streak": "1W",
+        "pct": ".452"
       },
       {
         "rank": 6,
@@ -9259,23 +9259,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Chris Barcless",
     "level": "12U Peewee Major AAA",
-    "record": "9-5-1",
+    "record": "9-6-1",
     "pts": 26,
     "rank": "#2",
-    "standingSummary": "9-5-1 | 26 PTS | #2 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "9-6-1 | 26 PTS | #2 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10303&season=190&stat_class=1",
-    "featuredSchedule": [
-      {
-        "id": "82731",
-        "date": "2026-11-14",
-        "time": "12:40 PM",
-        "opp": "Maryland 12U",
-        "rink": "Rockville Ice Arena Rink 3",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82731",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82731"
-      }
-    ],
+    "featuredSchedule": [],
     "roster": [
       {
         "no": 29,
@@ -9616,16 +9605,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "82731",
-        "date": "2026-11-14",
-        "time": "12:40 PM",
-        "opp": "Maryland 12U",
-        "rink": "Rockville Ice Arena Rink 3",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82731",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82731"
-      },
-      {
         "id": "82732",
         "date": "2026-11-14",
         "time": "05:20 PM",
@@ -9717,6 +9696,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "82731",
+        "date": "2026-11-14",
+        "time": "12:40 PM",
+        "opp": "Team Maryland 12U",
+        "rink": "Rockville Ice Arena Rink 3",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "0-6",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82731",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82731"
+      },
       {
         "id": "81875",
         "date": "2026-11-01",
@@ -9912,22 +9904,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Oktay Armagan",
     "level": "11U Peewee Minor AAA",
-    "record": "7-4-1",
-    "pts": 20,
+    "record": "8-4-1",
+    "pts": 22,
     "rank": "#3",
-    "standingSummary": "7-4-1 | 20 PTS | #3 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "8-4-1 | 22 PTS | #3 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10302&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "82722",
-        "date": "2026-11-14",
-        "time": "03:50 PM",
-        "opp": "Maryland 11U",
-        "rink": "Rockville Ice Arena Rink 3",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82722",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82722"
-      },
       {
         "id": "82353",
         "date": "2026-11-15",
@@ -10349,16 +10331,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "82722",
-        "date": "2026-11-14",
-        "time": "03:50 PM",
-        "opp": "Maryland 11U",
-        "rink": "Rockville Ice Arena Rink 3",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82722",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82722"
-      },
-      {
         "id": "82353",
         "date": "2026-11-15",
         "time": "09:45 AM",
@@ -10510,6 +10482,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "82722",
+        "date": "2026-11-14",
+        "time": "03:50 PM",
+        "opp": "Team Maryland 11U",
+        "rink": "Rockville Ice Arena Rink 3",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "5-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82722",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82722"
+      },
       {
         "id": "82721",
         "date": "2026-11-14",
@@ -17816,10 +17801,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Fritz Brown",
     "level": "12U Peewee A",
-    "record": "14-3-1",
-    "pts": 41,
+    "record": "15-3-1",
+    "pts": 43,
     "rank": "#3",
-    "standingSummary": "14-3-1 | 41 PTS | #3 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "15-3-1 | 43 PTS | #3 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15027&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -18187,16 +18172,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=78983"
       },
       {
-        "id": "76218",
-        "date": "2026-11-14",
-        "time": "02:40 PM",
-        "opp": "Wildcats 12L",
-        "rink": "Jersey Shore Arena Red Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76218",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76218"
-      },
-      {
         "id": "77463",
         "date": "2026-11-22",
         "time": "06:00 PM",
@@ -18308,6 +18283,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76218",
+        "date": "2026-11-14",
+        "time": "02:40 PM",
+        "opp": "Jersey Shore Wildcats 12L",
+        "rink": "Jersey Shore Arena Red Rink",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "8-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76218",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76218"
+      },
       {
         "id": "76419",
         "date": "2026-10-31",
@@ -19267,23 +19255,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Xan Doetsch",
     "level": "11U Peewee Minor AA",
-    "record": "10-6-1",
-    "pts": 27,
+    "record": "11-6-1",
+    "pts": 29,
     "rank": "#10",
-    "standingSummary": "10-6-1 | 27 PTS | #10 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "11-6-1 | 29 PTS | #10 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9872&season=190&stat_class=1",
-    "featuredSchedule": [
-      {
-        "id": "77452",
-        "date": "2026-11-14",
-        "time": "03:45 PM",
-        "opp": "Colts 11AA",
-        "rink": "Twin Oaks",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77452",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77452"
-      }
-    ],
+    "featuredSchedule": [],
     "roster": [
       {
         "no": "0",
@@ -19580,16 +19557,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "77452",
-        "date": "2026-11-14",
-        "time": "03:45 PM",
-        "opp": "Colts 11AA",
-        "rink": "Twin Oaks",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77452",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77452"
-      },
-      {
         "id": "73779",
         "date": "2026-11-15",
         "time": "11:00 AM",
@@ -19721,6 +19688,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "77452",
+        "date": "2026-11-14",
+        "time": "03:45 PM",
+        "opp": "Jersey Colts 11AA",
+        "rink": "Twin Oaks",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "6-1",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=77452",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=77452"
+      },
       {
         "id": "76566",
         "date": "2026-11-08",

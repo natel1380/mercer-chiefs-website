@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-14T19:11:19.096Z",
+  "lastSynced": "2026-11-14T23:00:21.209Z",
   "seasonLabel": "2026-27",
   "ncdc": {
     "id": "ncdc",
@@ -1716,16 +1716,16 @@
         "team": "Jersey Hitmen",
         "logo": "assets/images/logos/jersey-hitmen.png",
         "isChiefs": false,
-        "gp": 17,
+        "gp": 18,
         "w": 10,
-        "l": 5,
+        "l": 6,
         "otl": 1,
         "pts": 22,
-        "gf": 62,
-        "ga": 48,
-        "diff": "+14",
-        "streak": "1W",
-        "pct": ".647"
+        "gf": 63,
+        "ga": 50,
+        "diff": "+13",
+        "streak": "1L",
+        "pct": ".611"
       },
       {
         "rank": 4,
@@ -1748,16 +1748,16 @@
         "team": "Connecticut Junior Rangers",
         "logo": "assets/images/logos/ct-jr-rangers.png",
         "isChiefs": false,
-        "gp": 20,
-        "w": 7,
+        "gp": 21,
+        "w": 8,
         "l": 10,
         "otl": 2,
-        "pts": 17,
-        "gf": 61,
-        "ga": 82,
-        "diff": "-21",
-        "streak": "4L",
-        "pct": ".425"
+        "pts": 19,
+        "gf": 63,
+        "ga": 83,
+        "diff": "-20",
+        "streak": "1W",
+        "pct": ".452"
       },
       {
         "rank": 6,
