@@ -21398,10 +21398,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Ivan Chavez",
     "level": "10U Squirt B",
-    "record": "11-4-2",
-    "pts": 32,
+    "record": "12-4-2",
+    "pts": 34,
     "rank": "#3",
-    "standingSummary": "11-4-2 | 32 PTS | #3 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "12-4-2 | 34 PTS | #3 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=14950&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -21829,16 +21829,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77511"
       },
       {
-        "id": "74944",
-        "date": "2026-11-14",
-        "time": "07:00 AM",
-        "opp": "Generals 10M",
-        "rink": "Red Bank Armory",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=74944",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=74944"
-      },
-      {
         "id": "75639",
         "date": "2026-11-15",
         "time": "09:45 AM",
@@ -21960,6 +21950,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "74944",
+        "date": "2026-11-14",
+        "time": "07:00 AM",
+        "opp": "Red Bank Generals 10M",
+        "rink": "Red Bank Armory",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "5-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=74944",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=74944"
+      },
       {
         "id": "76553",
         "date": "2026-11-01",
