@@ -9912,22 +9912,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Oktay Armagan",
     "level": "11U Peewee Minor AAA",
-    "record": "6-4-1",
-    "pts": 18,
+    "record": "7-4-1",
+    "pts": 20,
     "rank": "#3",
-    "standingSummary": "6-4-1 | 18 PTS | #3 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "7-4-1 | 20 PTS | #3 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10302&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "82721",
-        "date": "2026-11-14",
-        "time": "11:10 AM",
-        "opp": "Maryland 11U",
-        "rink": "Rockville Ice Arena Rink 3",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82721",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82721"
-      },
       {
         "id": "82722",
         "date": "2026-11-14",
@@ -10359,16 +10349,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "82721",
-        "date": "2026-11-14",
-        "time": "11:10 AM",
-        "opp": "Maryland 11U",
-        "rink": "Rockville Ice Arena Rink 3",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82721",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82721"
-      },
-      {
         "id": "82722",
         "date": "2026-11-14",
         "time": "03:50 PM",
@@ -10531,6 +10511,19 @@ export const YOUTH_TEAMS = [
     ],
     "recentResults": [
       {
+        "id": "82721",
+        "date": "2026-11-14",
+        "time": "11:10 AM",
+        "opp": "Team Maryland 11U",
+        "rink": "Rockville Ice Arena Rink 3",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "3-1",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82721",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82721"
+      },
+      {
         "id": "81859",
         "date": "2026-11-01",
         "time": "03:00 PM",
@@ -10686,23 +10679,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Brian Batjer",
     "level": "10U Squirt Major AAA",
-    "record": "1-12-0",
+    "record": "1-13-0",
     "pts": 3,
     "rank": "#16",
-    "standingSummary": "1-12-0 | 3 PTS | #16 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "1-13-0 | 3 PTS | #16 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10301&season=190&stat_class=1",
-    "featuredSchedule": [
-      {
-        "id": "82513",
-        "date": "2026-11-14",
-        "time": "08:55 AM",
-        "opp": "Revolution Elite 10U",
-        "rink": "Bucks County Ice Main Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82513",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82513"
-      }
-    ],
+    "featuredSchedule": [],
     "roster": [
       {
         "no": 82,
@@ -11051,16 +11033,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "82513",
-        "date": "2026-11-14",
-        "time": "08:55 AM",
-        "opp": "Revolution Elite 10U",
-        "rink": "Bucks County Ice Main Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82513",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82513"
-      },
-      {
         "id": "82713",
         "date": "2026-11-15",
         "time": "10:50 AM",
@@ -11222,6 +11194,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "82513",
+        "date": "2026-11-14",
+        "time": "08:55 AM",
+        "opp": "Philadelphia Revolution Elite 10U",
+        "rink": "Bucks County Ice Main Rink",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "4-6",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82513",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82513"
+      },
       {
         "id": "81853",
         "date": "2026-10-31",
@@ -19970,10 +19955,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Xan Doetsch",
     "level": "10U Squirt Major AA",
-    "record": "8-11-1",
-    "pts": 17,
+    "record": "9-11-1",
+    "pts": 19,
     "rank": "#4",
-    "standingSummary": "8-11-1 | 17 PTS | #4 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "9-11-1 | 19 PTS | #4 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9870&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -20337,16 +20322,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76531"
       },
       {
-        "id": "73749",
-        "date": "2026-11-14",
-        "time": "09:20 AM",
-        "opp": "Hurricanes 10AA",
-        "rink": "Hollydell Ice Arena CDM",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=73749",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=73749"
-      },
-      {
         "id": "75629",
         "date": "2026-11-22",
         "time": "10:00 AM",
@@ -20468,6 +20443,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "73749",
+        "date": "2026-11-14",
+        "time": "09:20 AM",
+        "opp": "Hollydell Hurricanes 10AA",
+        "rink": "Hollydell Ice Arena CDM",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "4-3",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=73749",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=73749"
+      },
       {
         "id": "75176",
         "date": "2026-11-07",
