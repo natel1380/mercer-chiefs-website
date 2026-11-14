@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-14T00:20:49.891Z",
+  "lastSynced": "2026-11-14T07:03:41.439Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -726,22 +726,12 @@
       "season": "2026/27",
       "headCoach": "Bump Lisk",
       "level": "18U Midget Major Premier",
-      "record": "5-4-1",
-      "pts": 15,
+      "record": "6-4-1",
+      "pts": 17,
       "rank": "#5",
-      "standingSummary": "5-4-1 | 15 PTS | #5 Tier 1 Hockey Federation (THF)",
+      "standingSummary": "6-4-1 | 17 PTS | #5 Tier 1 Hockey Federation (THF)",
       "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10309&season=190&stat_class=1",
       "featuredSchedule": [
-        {
-          "id": "82633",
-          "date": "2026-11-13",
-          "time": "08:00 PM",
-          "opp": "Seacoast 18U SPA ",
-          "rink": "The Rinks at Exeter Rink 1",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82633",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82633"
-        },
         {
           "id": "82634",
           "date": "2026-11-14",
@@ -1233,16 +1223,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "82633",
-          "date": "2026-11-13",
-          "time": "08:00 PM",
-          "opp": "Seacoast 18U SPA ",
-          "rink": "The Rinks at Exeter Rink 1",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82633",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82633"
-        },
-        {
           "id": "82634",
           "date": "2026-11-14",
           "time": "05:00 PM",
@@ -1324,6 +1304,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "82633",
+          "date": "2026-11-13",
+          "time": "08:00 PM",
+          "opp": "Seacoast 18U SPA",
+          "rink": "The Rinks at Exeter Rink 1",
+          "loc": "Away",
+          "outcome": "W",
+          "score": "3-2",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82633",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82633"
+        },
         {
           "id": "81932",
           "date": "2026-11-08",

@@ -2381,7 +2381,7 @@ export const JUNIOR_TEAMS = {
         "a": 11,
         "pts": 22,
         "pim": 2,
-        "plusMinus": "+8",
+        "plusMinus": "0",
         "ppg": 2,
         "shg": 1,
         "gwg": 2
@@ -4799,22 +4799,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Bump Lisk",
     "level": "18U Midget Major Premier",
-    "record": "5-4-1",
-    "pts": 15,
+    "record": "6-4-1",
+    "pts": 17,
     "rank": "#5",
-    "standingSummary": "5-4-1 | 15 PTS | #5 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "6-4-1 | 17 PTS | #5 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10309&season=190&stat_class=1",
     "featuredSchedule": [
-      {
-        "id": "82633",
-        "date": "2026-11-13",
-        "time": "08:00 PM",
-        "opp": "Seacoast 18U SPA ",
-        "rink": "The Rinks at Exeter Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82633",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82633"
-      },
       {
         "id": "82634",
         "date": "2026-11-14",
@@ -5306,16 +5296,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "82633",
-        "date": "2026-11-13",
-        "time": "08:00 PM",
-        "opp": "Seacoast 18U SPA ",
-        "rink": "The Rinks at Exeter Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82633",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82633"
-      },
-      {
         "id": "82634",
         "date": "2026-11-14",
         "time": "05:00 PM",
@@ -5397,6 +5377,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "82633",
+        "date": "2026-11-13",
+        "time": "08:00 PM",
+        "opp": "Seacoast 18U SPA",
+        "rink": "The Rinks at Exeter Rink 1",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "3-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82633",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82633"
+      },
       {
         "id": "81932",
         "date": "2026-11-08",
