@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-14T23:00:28.885Z",
+  "lastSynced": "2026-11-15T02:40:55.332Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -726,23 +726,12 @@
       "season": "2026/27",
       "headCoach": "Bump Lisk",
       "level": "18U Midget Major Premier",
-      "record": "6-4-1",
+      "record": "6-5-1",
       "pts": 17,
       "rank": "#5",
-      "standingSummary": "6-4-1 | 17 PTS | #5 Tier 1 Hockey Federation (THF)",
+      "standingSummary": "6-5-1 | 17 PTS | #5 Tier 1 Hockey Federation (THF)",
       "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10309&season=190&stat_class=1",
-      "featuredSchedule": [
-        {
-          "id": "82634",
-          "date": "2026-11-14",
-          "time": "05:00 PM",
-          "opp": "Seacoast 18U SPA ",
-          "rink": "The Rinks at Exeter Rink 1",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82634",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82634"
-        }
-      ],
+      "featuredSchedule": [],
       "roster": [
         {
           "no": 31,
@@ -1223,16 +1212,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "82634",
-          "date": "2026-11-14",
-          "time": "05:00 PM",
-          "opp": "Seacoast 18U SPA ",
-          "rink": "The Rinks at Exeter Rink 1",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82634",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82634"
-        },
-        {
           "id": "82587",
           "date": "2026-11-15",
           "time": "11:30 AM",
@@ -1304,6 +1283,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "82634",
+          "date": "2026-11-14",
+          "time": "05:00 PM",
+          "opp": "Seacoast 18U SPA",
+          "rink": "The Rinks at Exeter Rink 1",
+          "loc": "Away",
+          "outcome": "L",
+          "score": "1-4",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82634",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82634"
+        },
         {
           "id": "82633",
           "date": "2026-11-13",
@@ -1460,10 +1452,10 @@
       "season": "2026/27",
       "headCoach": "Robert Criscuolo",
       "level": "16U Midget Minor Prep",
-      "record": "6-4-1",
+      "record": "6-5-1",
       "pts": 19,
       "rank": "#2",
-      "standingSummary": "6-4-1 | 19 PTS | #2 Tier 1 Hockey Federation (THF)",
+      "standingSummary": "6-5-1 | 19 PTS | #2 Tier 1 Hockey Federation (THF)",
       "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10310&season=190&stat_class=1",
       "featuredSchedule": [
         {
@@ -1475,16 +1467,6 @@
           "loc": "Home",
           "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81919",
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81919"
-        },
-        {
-          "id": "82771",
-          "date": "2026-11-14",
-          "time": "04:40 PM",
-          "opp": "Maryland 16U",
-          "rink": "Ice World Rink B",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82771",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82771"
         },
         {
           "id": "84397",
@@ -1993,16 +1975,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81919"
         },
         {
-          "id": "82771",
-          "date": "2026-11-14",
-          "time": "04:40 PM",
-          "opp": "Maryland 16U",
-          "rink": "Ice World Rink B",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82771",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82771"
-        },
-        {
           "id": "84397",
           "date": "2026-11-15",
           "time": "12:30 PM",
@@ -2114,6 +2086,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "82771",
+          "date": "2026-11-14",
+          "time": "04:40 PM",
+          "opp": "Team Maryland 16U",
+          "rink": "Ice World Rink B",
+          "loc": "Away",
+          "outcome": "L",
+          "score": "0-3",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82771",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82771"
+        },
         {
           "id": "81920",
           "date": "2026-11-08",
@@ -7878,10 +7863,10 @@
       "season": "2026/27",
       "headCoach": "Vincent Caruso",
       "level": "18U Midget Major AA",
-      "record": "18-9-4",
-      "pts": 48,
+      "record": "19-9-4",
+      "pts": 50,
       "rank": "#2",
-      "standingSummary": "18-9-4 | 48 PTS | #2 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "19-9-4 | 50 PTS | #2 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15401&season=190&stat_class=1",
       "featuredSchedule": [
         {
@@ -8315,16 +8300,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=90567"
         },
         {
-          "id": "75615",
-          "date": "2026-10-31",
-          "time": "06:00 PM",
-          "opp": "Blackhawks 18AA",
-          "rink": "Winding River Ice Rink Indoor Rink",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75615",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75615"
-        },
-        {
           "id": "76697",
           "date": "2026-12-06",
           "time": "12:15 PM",
@@ -8366,6 +8341,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "75615",
+          "date": "2026-10-31",
+          "time": "06:00 PM",
+          "opp": "Tom's River Blackhawks 18AA",
+          "rink": "Winding River Ice Rink Indoor Rink",
+          "loc": "Away",
+          "outcome": "W",
+          "score": "5-4",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75615",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75615"
+        },
         {
           "id": "76696",
           "date": "2026-11-08",
@@ -12976,23 +12964,12 @@
       "season": "2026/27",
       "headCoach": "Don Migliorisi",
       "level": "12U Peewee Major AA",
-      "record": "9-9-1",
-      "pts": 26,
+      "record": "10-9-1",
+      "pts": 28,
       "rank": "#9",
-      "standingSummary": "9-9-1 | 26 PTS | #9 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "10-9-1 | 28 PTS | #9 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=14977&season=190&stat_class=1",
-      "featuredSchedule": [
-        {
-          "id": "78428",
-          "date": "2026-11-14",
-          "time": "06:45 PM",
-          "opp": "Phantoms 12AA",
-          "rink": "Steel Ice Center West",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=78428",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=78428"
-        }
-      ],
+      "featuredSchedule": [],
       "roster": [
         {
           "no": 7,
@@ -13337,16 +13314,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "78428",
-          "date": "2026-11-14",
-          "time": "06:45 PM",
-          "opp": "Phantoms 12AA",
-          "rink": "Steel Ice Center West",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=78428",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=78428"
-        },
-        {
           "id": "76583",
           "date": "2026-11-15",
           "time": "07:00 PM",
@@ -13468,6 +13435,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "78428",
+          "date": "2026-11-14",
+          "time": "06:45 PM",
+          "opp": "Lehigh Valley Phantoms 12AA",
+          "rink": "Steel Ice Center West",
+          "loc": "Away",
+          "outcome": "W",
+          "score": "8-4",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=78428",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=78428"
+        },
         {
           "id": "75654",
           "date": "2026-11-07",
