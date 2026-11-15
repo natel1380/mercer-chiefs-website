@@ -3388,16 +3388,16 @@ export const JUNIOR_TEAMS = {
         "team": "Jersey Hitmen",
         "logo": "assets/images/logos/jersey-hitmen.png",
         "isChiefs": false,
-        "gp": 18,
-        "w": 9,
+        "gp": 19,
+        "w": 10,
         "l": 9,
         "otl": 0,
-        "pts": 18,
-        "gf": 75,
-        "ga": 97,
-        "diff": "-22",
-        "streak": "3W",
-        "pct": ".500"
+        "pts": 20,
+        "gf": 80,
+        "ga": 99,
+        "diff": "-19",
+        "streak": "4W",
+        "pct": ".526"
       },
       {
         "rank": 8,
@@ -3420,16 +3420,16 @@ export const JUNIOR_TEAMS = {
         "team": "New Jersey Renegades",
         "logo": "assets/images/logos/nj-renegades.png",
         "isChiefs": false,
-        "gp": 16,
+        "gp": 17,
         "w": 1,
-        "l": 13,
+        "l": 14,
         "otl": 1,
         "pts": 4,
-        "gf": 32,
-        "ga": 125,
-        "diff": "-93",
-        "streak": "10L",
-        "pct": ".125"
+        "gf": 34,
+        "ga": 130,
+        "diff": "-96",
+        "streak": "11L",
+        "pct": ".118"
       }
     ]
   }
@@ -22132,23 +22132,12 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Nick Dimino",
     "level": "9U Squirt Minor AA",
-    "record": "10-5-1",
+    "record": "10-6-1",
     "pts": 28,
     "rank": "#6",
-    "standingSummary": "10-5-1 | 28 PTS | #6 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "10-6-1 | 28 PTS | #6 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9879&season=190&stat_class=1",
-    "featuredSchedule": [
-      {
-        "id": "75163",
-        "date": "2026-11-14",
-        "time": "04:30 PM",
-        "opp": "Hockey Club 9AA",
-        "rink": "RSG Arena at Dunellen",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75163",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75163"
-      }
-    ],
+    "featuredSchedule": [],
     "roster": [
       {
         "no": 9,
@@ -22471,16 +22460,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "75163",
-        "date": "2026-11-14",
-        "time": "04:30 PM",
-        "opp": "Hockey Club 9AA",
-        "rink": "RSG Arena at Dunellen",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75163",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75163"
-      },
-      {
         "id": "84762",
         "date": "2026-11-21",
         "time": "07:00 AM",
@@ -22632,6 +22611,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "75163",
+        "date": "2026-11-14",
+        "time": "04:30 PM",
+        "opp": "Rockets Hockey Club 9AA",
+        "rink": "RSG Arena at Dunellen",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "3-5",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75163",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75163"
+      },
       {
         "id": "76493",
         "date": "2026-11-08",

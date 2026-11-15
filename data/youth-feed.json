@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-15T02:40:55.332Z",
+  "lastSynced": "2026-11-15T09:57:08.445Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -18059,23 +18059,12 @@
       "season": "2026/27",
       "headCoach": "Nick Dimino",
       "level": "9U Squirt Minor AA",
-      "record": "10-5-1",
+      "record": "10-6-1",
       "pts": 28,
       "rank": "#6",
-      "standingSummary": "10-5-1 | 28 PTS | #6 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "10-6-1 | 28 PTS | #6 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9879&season=190&stat_class=1",
-      "featuredSchedule": [
-        {
-          "id": "75163",
-          "date": "2026-11-14",
-          "time": "04:30 PM",
-          "opp": "Hockey Club 9AA",
-          "rink": "RSG Arena at Dunellen",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75163",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75163"
-        }
-      ],
+      "featuredSchedule": [],
       "roster": [
         {
           "no": 9,
@@ -18398,16 +18387,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "75163",
-          "date": "2026-11-14",
-          "time": "04:30 PM",
-          "opp": "Hockey Club 9AA",
-          "rink": "RSG Arena at Dunellen",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75163",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75163"
-        },
-        {
           "id": "84762",
           "date": "2026-11-21",
           "time": "07:00 AM",
@@ -18559,6 +18538,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "75163",
+          "date": "2026-11-14",
+          "time": "04:30 PM",
+          "opp": "Rockets Hockey Club 9AA",
+          "rink": "RSG Arena at Dunellen",
+          "loc": "Away",
+          "outcome": "L",
+          "score": "3-5",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75163",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75163"
+        },
         {
           "id": "76493",
           "date": "2026-11-08",

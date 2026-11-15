@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-15T02:40:41.826Z",
+  "lastSynced": "2026-11-15T09:57:03.966Z",
   "seasonLabel": "2026-27",
   "ncdc": {
     "id": "ncdc",
@@ -3303,16 +3303,16 @@
         "team": "Jersey Hitmen",
         "logo": "assets/images/logos/jersey-hitmen.png",
         "isChiefs": false,
-        "gp": 18,
-        "w": 9,
+        "gp": 19,
+        "w": 10,
         "l": 9,
         "otl": 0,
-        "pts": 18,
-        "gf": 75,
-        "ga": 97,
-        "diff": "-22",
-        "streak": "3W",
-        "pct": ".500"
+        "pts": 20,
+        "gf": 80,
+        "ga": 99,
+        "diff": "-19",
+        "streak": "4W",
+        "pct": ".526"
       },
       {
         "rank": 8,
@@ -3335,16 +3335,16 @@
         "team": "New Jersey Renegades",
         "logo": "assets/images/logos/nj-renegades.png",
         "isChiefs": false,
-        "gp": 16,
+        "gp": 17,
         "w": 1,
-        "l": 13,
+        "l": 14,
         "otl": 1,
         "pts": 4,
-        "gf": 32,
-        "ga": 125,
-        "diff": "-93",
-        "streak": "10L",
-        "pct": ".125"
+        "gf": 34,
+        "ga": 130,
+        "diff": "-96",
+        "streak": "11L",
+        "pct": ".118"
       }
     ]
   },
