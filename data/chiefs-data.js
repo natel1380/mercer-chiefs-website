@@ -111,7 +111,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/ncdc_2_bonino_michael.png",
         "fullPhoto": "assets/images/players/full/ncdc_2_bonino_michael.jpg",
-        "gp": 8,
+        "gp": 9,
         "g": 0,
         "a": 0,
         "pts": 0,
@@ -135,7 +135,7 @@ export const JUNIOR_TEAMS = {
         "featured": true,
         "headshot": "assets/images/players/ncdc_5_pastor_cole.png",
         "fullPhoto": "assets/images/players/full/ncdc_5_pastor_cole.jpg",
-        "gp": 18,
+        "gp": 19,
         "g": 0,
         "a": 2,
         "pts": 2,
@@ -159,7 +159,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/ncdc_6_spiess_jack.png",
         "fullPhoto": "assets/images/players/full/ncdc_6_spiess_jack.jpg",
-        "gp": 20,
+        "gp": 21,
         "g": 3,
         "a": 8,
         "pts": 11,
@@ -183,7 +183,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/ncdc_8_maccormick_tristan.png",
         "fullPhoto": "assets/images/players/full/ncdc_8_maccormick_tristan.jpg",
-        "gp": 20,
+        "gp": 21,
         "g": 6,
         "a": 15,
         "pts": 21,
@@ -207,7 +207,7 @@ export const JUNIOR_TEAMS = {
         "featured": true,
         "headshot": "assets/images/players/ncdc_9_jorgensen_douglas.png",
         "fullPhoto": "assets/images/players/full/ncdc_9_jorgensen_douglas.jpg",
-        "gp": 19,
+        "gp": 20,
         "g": 3,
         "a": 10,
         "pts": 13,
@@ -231,7 +231,7 @@ export const JUNIOR_TEAMS = {
         "featured": true,
         "headshot": "assets/images/players/ncdc_10_weiner_jake.png",
         "fullPhoto": "assets/images/players/full/ncdc_10_weiner_jake.jpg",
-        "gp": 3,
+        "gp": 4,
         "g": 0,
         "a": 0,
         "pts": 0,
@@ -279,7 +279,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/ncdc_12_sarver_chris.png",
         "fullPhoto": "assets/images/players/full/ncdc_12_sarver_chris.jpg",
-        "gp": 20,
+        "gp": 21,
         "g": 4,
         "a": 10,
         "pts": 14,
@@ -303,7 +303,7 @@ export const JUNIOR_TEAMS = {
         "featured": true,
         "headshot": "assets/images/players/ncdc_13_marks_antonijs.png",
         "fullPhoto": "assets/images/players/full/ncdc_13_marks_antonijs.jpg",
-        "gp": 13,
+        "gp": 14,
         "g": 2,
         "a": 2,
         "pts": 4,
@@ -327,7 +327,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/ncdc_15_castiglia_brayden.png",
         "fullPhoto": "assets/images/players/full/ncdc_15_castiglia_brayden.jpg",
-        "gp": 10,
+        "gp": 11,
         "g": 0,
         "a": 1,
         "pts": 1,
@@ -351,7 +351,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/ncdc_16_lauterstein_jake.png",
         "fullPhoto": "assets/images/players/full/ncdc_16_lauterstein_jake.jpg",
-        "gp": 20,
+        "gp": 21,
         "g": 8,
         "a": 4,
         "pts": 12,
@@ -375,7 +375,7 @@ export const JUNIOR_TEAMS = {
         "featured": true,
         "headshot": "assets/images/players/ncdc_17_fabry_drew.png",
         "fullPhoto": "assets/images/players/full/ncdc_17_fabry_drew.jpg",
-        "gp": 20,
+        "gp": 21,
         "g": 0,
         "a": 2,
         "pts": 2,
@@ -423,7 +423,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "https://d3bll69iq5agq8.cloudfront.net/usphl/player-media/6c20cd6f51156de07fd9c22c962567b8277192f18374b9e2e2bf60cc8bb2b896.jpeg",
         "fullPhoto": "https://d3bll69iq5agq8.cloudfront.net/usphl/player-media/6c20cd6f51156de07fd9c22c962567b8277192f18374b9e2e2bf60cc8bb2b896.jpeg",
-        "gp": 9,
+        "gp": 10,
         "g": 3,
         "a": 4,
         "pts": 7,
@@ -447,7 +447,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/ncdc_20_beaudin_beaudy.png",
         "fullPhoto": "assets/images/players/full/ncdc_20_beaudin_beaudy.jpg",
-        "gp": 20,
+        "gp": 21,
         "g": 6,
         "a": 8,
         "pts": 14,
@@ -519,7 +519,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/ncdc_25_lucosky_james.png",
         "fullPhoto": "assets/images/players/full/ncdc_25_lucosky_james.jpg",
-        "gp": 12,
+        "gp": 13,
         "g": 0,
         "a": 2,
         "pts": 2,
@@ -543,7 +543,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/ncdc_28_reisen_lukas.png",
         "fullPhoto": "assets/images/players/full/ncdc_28_reisen_lukas.jpg",
-        "gp": 20,
+        "gp": 21,
         "g": 4,
         "a": 4,
         "pts": 8,
@@ -615,7 +615,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "https://lscluster.hockeytech.com/img/nophoto.png",
         "fullPhoto": "https://lscluster.hockeytech.com/img/nophoto.png",
-        "gp": 4,
+        "gp": 5,
         "g": 4,
         "a": 0,
         "pts": 4,
@@ -639,7 +639,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "https://d3bll69iq5agq8.cloudfront.net/usphl/player-media/35462a8e3a30989b35129135eff444b214dd139bfd3eb4261aea5879dc2d6067.jpeg",
         "fullPhoto": "https://d3bll69iq5agq8.cloudfront.net/usphl/player-media/35462a8e3a30989b35129135eff444b214dd139bfd3eb4261aea5879dc2d6067.jpeg",
-        "gp": 10,
+        "gp": 11,
         "g": 0,
         "a": 0,
         "pts": 0,
@@ -687,7 +687,7 @@ export const JUNIOR_TEAMS = {
         "featured": true,
         "headshot": "assets/images/players/ncdc_83_zajac_michael.png",
         "fullPhoto": "assets/images/players/full/ncdc_83_zajac_michael.jpg",
-        "gp": 18,
+        "gp": 19,
         "g": 2,
         "a": 7,
         "pts": 9,
@@ -735,7 +735,7 @@ export const JUNIOR_TEAMS = {
         "featured": true,
         "headshot": "assets/images/players/ncdc_91_auch_emmett.png",
         "fullPhoto": "assets/images/players/full/ncdc_91_auch_emmett.jpg",
-        "gp": 13,
+        "gp": 14,
         "g": 0,
         "a": 1,
         "pts": 1,
@@ -768,7 +768,7 @@ export const JUNIOR_TEAMS = {
         "sv": 135,
         "sa": 148,
         "so": 0,
-        "gaa": "2.60",
+        "gaa": "2.17",
         "svPct": ".912",
         "pim": 0
       },
@@ -789,7 +789,7 @@ export const JUNIOR_TEAMS = {
         "w": 1,
         "l": 0,
         "otl": 0,
-        "gaa": "0.22",
+        "gaa": "0.20",
         "svPct": ".929",
         "so": 0,
         "sol": 0,
@@ -5525,10 +5525,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Robert Criscuolo",
     "level": "16U Midget Minor Prep",
-    "record": "6-5-1",
-    "pts": 19,
+    "record": "7-5-1",
+    "pts": 21,
     "rank": "#2",
-    "standingSummary": "6-5-1 | 19 PTS | #2 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "7-5-1 | 21 PTS | #2 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10310&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -5540,16 +5540,6 @@ export const YOUTH_TEAMS = [
         "loc": "Home",
         "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=81919",
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81919"
-      },
-      {
-        "id": "84397",
-        "date": "2026-11-15",
-        "time": "12:30 PM",
-        "opp": "Jr. Rangers 16U National",
-        "rink": "Chelsea Piers CT South Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=84397",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=84397"
       },
       {
         "id": "81926",
@@ -6048,16 +6038,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=81919"
       },
       {
-        "id": "84397",
-        "date": "2026-11-15",
-        "time": "12:30 PM",
-        "opp": "Jr. Rangers 16U National",
-        "rink": "Chelsea Piers CT South Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=84397",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=84397"
-      },
-      {
         "id": "81926",
         "date": "2026-12-19",
         "time": "05:15 PM",
@@ -6159,6 +6139,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "84397",
+        "date": "2026-11-15",
+        "time": "12:30 PM",
+        "opp": "CT Jr. Rangers 16U National",
+        "rink": "Chelsea Piers CT South Rink",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "4-3",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=84397",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=84397"
+      },
       {
         "id": "82771",
         "date": "2026-11-14",
@@ -8552,10 +8545,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Chris Barcless",
     "level": "13U Bantam Minor AAA",
-    "record": "7-3-1",
+    "record": "7-5-1",
     "pts": 19,
     "rank": "#7",
-    "standingSummary": "7-3-1 | 19 PTS | #7 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "7-5-1 | 19 PTS | #7 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=11519&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -8967,26 +8960,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82128"
       },
       {
-        "id": "82743",
-        "date": "2026-11-14",
-        "time": "02:10 PM",
-        "opp": "Maryland 13U",
-        "rink": "Rockville Ice Arena Rink 3",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82743",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82743"
-      },
-      {
-        "id": "82744",
-        "date": "2026-11-14",
-        "time": "06:50 PM",
-        "opp": "Maryland 13U",
-        "rink": "Rockville Ice Arena Rink 3",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82744",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82744"
-      },
-      {
         "id": "82935",
         "date": "2026-12-05",
         "time": "11:00 AM",
@@ -9088,6 +9061,32 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "82744",
+        "date": "2026-11-14",
+        "time": "06:50 PM",
+        "opp": "Team Maryland 13U",
+        "rink": "Rockville Ice Arena Rink 3",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "3-6",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82744",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82744"
+      },
+      {
+        "id": "82743",
+        "date": "2026-11-14",
+        "time": "02:10 PM",
+        "opp": "Team Maryland 13U",
+        "rink": "Rockville Ice Arena Rink 3",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "1-5",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82743",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82743"
+      },
       {
         "id": "81894",
         "date": "2026-11-08",
@@ -14647,10 +14646,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Jason Bracco",
     "level": "14U Bantam Major AA",
-    "record": "1-18-0",
+    "record": "1-19-0",
     "pts": 3,
     "rank": "#33",
-    "standingSummary": "1-18-0 | 3 PTS | #33 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "1-19-0 | 3 PTS | #33 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9875&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -15038,16 +15037,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76179"
       },
       {
-        "id": "74998",
-        "date": "2026-11-15",
-        "time": "11:30 AM",
-        "opp": "Generals 14AA",
-        "rink": "Red Bank Armory",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=74998",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=74998"
-      },
-      {
         "id": "77379",
         "date": "2026-12-05",
         "time": "07:15 PM",
@@ -15199,6 +15188,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "74998",
+        "date": "2026-11-15",
+        "time": "11:30 AM",
+        "opp": "Red Bank Generals 14AA",
+        "rink": "Red Bank Armory",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "0-1",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=74998",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=74998"
+      },
       {
         "id": "76648",
         "date": "2026-11-01",
@@ -16190,10 +16192,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Don Migliorisi",
     "level": "13U Bantam Minor AA",
-    "record": "14-8-0",
-    "pts": 36,
+    "record": "15-8-0",
+    "pts": 38,
     "rank": "#8",
-    "standingSummary": "14-8-0 | 36 PTS | #8 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "15-8-0 | 38 PTS | #8 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15033&season=190&stat_class=1",
     "featuredSchedule": [],
     "roster": [
@@ -16606,16 +16608,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "76190",
-        "date": "2026-11-15",
-        "time": "01:40 PM",
-        "opp": "Wildcats 13AA",
-        "rink": "Howell Ice Arena Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76190",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76190"
-      },
-      {
         "id": "75290",
         "date": "2026-11-15",
         "time": "07:00 PM",
@@ -16757,6 +16749,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76190",
+        "date": "2026-11-15",
+        "time": "01:40 PM",
+        "opp": "Jersey Shore Wildcats 13AA",
+        "rink": "Howell Ice Arena Rink 1",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "7-1",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76190",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76190"
+      },
       {
         "id": "76621",
         "date": "2026-11-08",
@@ -19241,10 +19246,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Xan Doetsch",
     "level": "11U Peewee Minor AA",
-    "record": "11-6-1",
+    "record": "11-7-1",
     "pts": 29,
     "rank": "#10",
-    "standingSummary": "11-6-1 | 29 PTS | #10 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "11-7-1 | 29 PTS | #10 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9872&season=190&stat_class=1",
     "featuredSchedule": [],
     "roster": [
@@ -19543,16 +19548,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "73779",
-        "date": "2026-11-15",
-        "time": "11:00 AM",
-        "opp": "Hurricanes 11AA",
-        "rink": "Hollydell Ice Arena CDM",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=73779",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=73779"
-      },
-      {
         "id": "76869",
         "date": "2026-12-12",
         "time": "04:40 PM",
@@ -19674,6 +19669,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "73779",
+        "date": "2026-11-15",
+        "time": "11:00 AM",
+        "opp": "Hollydell Hurricanes 11AA",
+        "rink": "Hollydell Ice Arena CDM",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "0-1",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=73779",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=73779"
+      },
       {
         "id": "77452",
         "date": "2026-11-14",
@@ -21352,10 +21360,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Ivan Chavez",
     "level": "10U Squirt B",
-    "record": "13-4-2",
-    "pts": 36,
+    "record": "14-4-2",
+    "pts": 38,
     "rank": "#3",
-    "standingSummary": "13-4-2 | 36 PTS | #3 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "14-4-2 | 38 PTS | #3 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=14950&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -21783,16 +21791,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77511"
       },
       {
-        "id": "75640",
-        "date": "2026-11-15",
-        "time": "01:30 PM",
-        "opp": "Knights 10M",
-        "rink": "Revolution Ice Centre Rink 2",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75640",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75640"
-      },
-      {
         "id": "77530",
         "date": "2026-11-21",
         "time": "12:45 PM",
@@ -21894,6 +21892,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "75640",
+        "date": "2026-11-15",
+        "time": "01:30 PM",
+        "opp": "WBS Knights 10M",
+        "rink": "Revolution Ice Centre Rink 2",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "12-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75640",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75640"
+      },
       {
         "id": "75639",
         "date": "2026-11-15",
