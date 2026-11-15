@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-15T09:57:03.966Z",
+  "lastSynced": "2026-11-15T17:12:29.191Z",
   "seasonLabel": "2026-27",
   "ncdc": {
     "id": "ncdc",
@@ -674,17 +674,17 @@
         "featured": false,
         "headshot": "assets/images/players/default-goalie.png",
         "fullPhoto": "assets/images/players/default-goalie.png",
-        "gp": 3,
+        "gp": 4,
         "w": 0,
-        "l": 2,
+        "l": 3,
         "otl": 0,
         "sol": 1,
-        "ga": 9,
-        "sv": 106,
-        "sa": 115,
+        "ga": 13,
+        "sv": 135,
+        "sa": 148,
         "so": 0,
-        "gaa": "1.80",
-        "svPct": ".922",
+        "gaa": "2.60",
+        "svPct": ".912",
         "pim": 0
       },
       {

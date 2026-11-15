@@ -759,17 +759,17 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/default-goalie.png",
         "fullPhoto": "assets/images/players/default-goalie.png",
-        "gp": 3,
+        "gp": 4,
         "w": 0,
-        "l": 2,
+        "l": 3,
         "otl": 0,
         "sol": 1,
-        "ga": 9,
-        "sv": 106,
-        "sa": 115,
+        "ga": 13,
+        "sv": 135,
+        "sa": 148,
         "so": 0,
-        "gaa": "1.80",
-        "svPct": ".922",
+        "gaa": "2.60",
+        "svPct": ".912",
         "pim": 0
       },
       {
@@ -9244,10 +9244,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Chris Barcless",
     "level": "12U Peewee Major AAA",
-    "record": "9-6-1",
+    "record": "9-7-1",
     "pts": 26,
     "rank": "#2",
-    "standingSummary": "9-6-1 | 26 PTS | #2 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "9-7-1 | 26 PTS | #2 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10303&season=190&stat_class=1",
     "featuredSchedule": [],
     "roster": [
@@ -9590,16 +9590,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "82732",
-        "date": "2026-11-14",
-        "time": "05:20 PM",
-        "opp": "Maryland 12U",
-        "rink": "Rockville Ice Arena Rink 3",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82732",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82732"
-      },
-      {
         "id": "82924",
         "date": "2026-12-05",
         "time": "09:30 AM",
@@ -9681,6 +9671,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "82732",
+        "date": "2026-11-14",
+        "time": "05:20 PM",
+        "opp": "Team Maryland 12U",
+        "rink": "Rockville Ice Arena Rink 3",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "1-6",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82732",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82732"
+      },
       {
         "id": "82731",
         "date": "2026-11-14",
@@ -10649,10 +10652,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Brian Batjer",
     "level": "10U Squirt Major AAA",
-    "record": "1-13-0",
+    "record": "1-14-0",
     "pts": 3,
     "rank": "#16",
-    "standingSummary": "1-13-0 | 3 PTS | #16 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "1-14-0 | 3 PTS | #16 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10301&season=190&stat_class=1",
     "featuredSchedule": [],
     "roster": [
@@ -11003,16 +11006,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "82713",
-        "date": "2026-11-15",
-        "time": "10:50 AM",
-        "opp": "Maryland 10U",
-        "rink": "Rockville Ice Arena Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82713",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82713"
-      },
-      {
         "id": "82714",
         "date": "2026-11-15",
         "time": "02:30 PM",
@@ -11164,6 +11157,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "82713",
+        "date": "2026-11-15",
+        "time": "10:50 AM",
+        "opp": "Team Maryland 10U",
+        "rink": "Rockville Ice Arena Rink 1",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "3-5",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82713",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82713"
+      },
       {
         "id": "82513",
         "date": "2026-11-14",
@@ -21346,10 +21352,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Ivan Chavez",
     "level": "10U Squirt B",
-    "record": "12-4-2",
-    "pts": 34,
+    "record": "13-4-2",
+    "pts": 36,
     "rank": "#3",
-    "standingSummary": "12-4-2 | 34 PTS | #3 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "13-4-2 | 36 PTS | #3 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=14950&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -21777,16 +21783,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77511"
       },
       {
-        "id": "75639",
-        "date": "2026-11-15",
-        "time": "09:45 AM",
-        "opp": "Knights 10M",
-        "rink": "Revolution Ice Centre Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75639",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75639"
-      },
-      {
         "id": "75640",
         "date": "2026-11-15",
         "time": "01:30 PM",
@@ -21898,6 +21894,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "75639",
+        "date": "2026-11-15",
+        "time": "09:45 AM",
+        "opp": "WBS Knights 10M",
+        "rink": "Revolution Ice Centre Rink 1",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "10-6",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75639",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75639"
+      },
       {
         "id": "74944",
         "date": "2026-11-14",
