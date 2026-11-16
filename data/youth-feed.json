@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-15T21:53:25.583Z",
+  "lastSynced": "2026-11-16T02:10:27.113Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -6578,10 +6578,10 @@
       "season": "2026/27",
       "headCoach": "Brian Batjer",
       "level": "10U Squirt Major AAA",
-      "record": "1-14-0",
-      "pts": 3,
+      "record": "1-14-1",
+      "pts": 4,
       "rank": "#16",
-      "standingSummary": "1-14-0 | 3 PTS | #16 Tier 1 Hockey Federation (THF)",
+      "standingSummary": "1-14-1 | 4 PTS | #16 Tier 1 Hockey Federation (THF)",
       "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10301&season=190&stat_class=1",
       "featuredSchedule": [],
       "roster": [
@@ -6932,16 +6932,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "82714",
-          "date": "2026-11-15",
-          "time": "02:30 PM",
-          "opp": "Maryland 10U",
-          "rink": "Cabin John NHL Rink",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82714",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82714"
-        },
-        {
           "id": "82335",
           "date": "2026-11-21",
           "time": "08:15 AM",
@@ -7083,6 +7073,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "82714",
+          "date": "2026-11-15",
+          "time": "02:30 PM",
+          "opp": "Team Maryland 10U",
+          "rink": "Cabin John NHL Rink",
+          "loc": "Away",
+          "outcome": "T",
+          "score": "2-2",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82714",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82714"
+        },
         {
           "id": "82713",
           "date": "2026-11-15",
@@ -12119,10 +12122,10 @@
       "season": "2026/27",
       "headCoach": "Don Migliorisi",
       "level": "13U Bantam Minor AA",
-      "record": "15-8-0",
-      "pts": 38,
+      "record": "16-8-0",
+      "pts": 40,
       "rank": "#8",
-      "standingSummary": "15-8-0 | 38 PTS | #8 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "16-8-0 | 40 PTS | #8 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15033&season=190&stat_class=1",
       "featuredSchedule": [],
       "roster": [
@@ -12535,16 +12538,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "75290",
-          "date": "2026-11-15",
-          "time": "07:00 PM",
-          "opp": "Rockets HC 13AA Red ",
-          "rink": "RSG Arenas at Bridgewater Blue Rink",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75290",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75290"
-        },
-        {
           "id": "76622",
           "date": "2026-12-05",
           "time": "10:15 AM",
@@ -12676,6 +12669,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "75290",
+          "date": "2026-11-15",
+          "time": "07:00 PM",
+          "opp": "Rockets HC 13AA Red",
+          "rink": "RSG Arenas at Bridgewater Blue Rink",
+          "loc": "Away",
+          "outcome": "W",
+          "score": "7-1",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75290",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75290"
+        },
         {
           "id": "76190",
           "date": "2026-11-15",
@@ -12975,10 +12981,10 @@
       "season": "2026/27",
       "headCoach": "Don Migliorisi",
       "level": "12U Peewee Major AA",
-      "record": "10-9-1",
+      "record": "10-10-1",
       "pts": 28,
       "rank": "#9",
-      "standingSummary": "10-9-1 | 28 PTS | #9 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "10-10-1 | 28 PTS | #9 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=14977&season=190&stat_class=1",
       "featuredSchedule": [],
       "roster": [
@@ -13325,16 +13331,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "76583",
-          "date": "2026-11-15",
-          "time": "07:00 PM",
-          "opp": "Wildcats 12AA",
-          "rink": "East Brunswick  Rink 1",
-          "loc": "Home",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76583",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76583"
-        },
-        {
           "id": "73796",
           "date": "2026-12-19",
           "time": "10:30 AM",
@@ -13446,6 +13442,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "76583",
+          "date": "2026-11-15",
+          "time": "07:00 PM",
+          "opp": "Jersey Shore Wildcats 12AA",
+          "rink": "East Brunswick  Rink 1",
+          "loc": "Home",
+          "outcome": "L",
+          "score": "5-6",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76583",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76583"
+        },
         {
           "id": "78428",
           "date": "2026-11-14",
