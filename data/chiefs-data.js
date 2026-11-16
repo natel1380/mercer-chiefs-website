@@ -26,15 +26,15 @@ export const CLUB_INFO = {
 
 export const LIVE_TICKER_GAMES = [
   {
-    "id": "ticker-prem-25912",
+    "id": "ticker-prem-26599",
     "league": "USPHL Premier",
     "status": "FINAL",
-    "home": "Rockets Hockey Club",
+    "home": "Red Bank Generals",
     "away": "Mercer Chiefs Premier",
-    "homeScore": 5,
-    "awayScore": 2,
-    "date": "Nov 12, 2026",
-    "highlight": "Premier: Chiefs 2, Rockets Hockey Club 5 (Final)"
+    "homeScore": 2,
+    "awayScore": 1,
+    "date": "Nov 15, 2026",
+    "highlight": "Premier: Chiefs 1, Red Bank Generals 2 (Final)"
   },
   {
     "id": "ticker-ncdc-24045",
@@ -60,27 +60,27 @@ export const LIVE_TICKER_GAMES = [
     "streamUrl": "https://blackbearsports.tv/"
   },
   {
-    "id": "ticker-prem-up-26599",
+    "id": "ticker-prem-up-26731",
     "league": "USPHL Premier",
     "status": "UPCOMING",
-    "home": "Red Bank Generals",
+    "home": "New Jersey Renegades",
     "away": "Mercer Chiefs Premier",
     "homeScore": null,
     "awayScore": null,
-    "date": "Nov 15, 2026, 7:00 PM EST",
-    "rink": "Red Bank Armory",
+    "date": "Nov 21, 2026, 7:30 PM EST",
+    "rink": "SportsCare Arena",
     "streamUrl": "https://blackbearsports.tv/"
   },
   {
-    "id": "ticker-prem-prev-26587",
+    "id": "ticker-prem-prev-25912",
     "league": "USPHL Premier",
     "status": "FINAL",
-    "home": "Jersey Hitmen",
+    "home": "Rockets Hockey Club",
     "away": "Mercer Chiefs Premier",
-    "homeScore": 6,
-    "awayScore": 5,
-    "date": "Nov 08, 2026",
-    "highlight": "Premier: Chiefs 5, Jersey Hitmen 6 (Final)"
+    "homeScore": 5,
+    "awayScore": 2,
+    "date": "Nov 12, 2026",
+    "highlight": "Premier: Chiefs 2, Rockets Hockey Club 5 (Final)"
   }
 ];
 
@@ -2216,7 +2216,7 @@ export const JUNIOR_TEAMS = {
         "g": 5,
         "a": 7,
         "pts": 12,
-        "pim": 7,
+        "pim": 17,
         "plusMinus": "0",
         "ppg": 0,
         "shg": 0,
@@ -2530,17 +2530,17 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/premier_34_martin_christophe.png",
         "fullPhoto": "assets/images/players/full/premier_34_martin_christophe.jpg",
-        "gp": 8,
+        "gp": 9,
         "w": 5,
-        "l": 3,
+        "l": 4,
         "otl": 0,
         "gaa": "1.24",
-        "svPct": ".927",
+        "svPct": ".929",
         "so": 1,
         "sol": 0,
         "ga": 21,
-        "sv": 268,
-        "sa": 289,
+        "sv": 274,
+        "sa": 295,
         "pim": 0
       }
     ],
@@ -2837,10 +2837,10 @@ export const JUNIOR_TEAMS = {
         "rink": "Red Bank Armory",
         "city": "Red Bank",
         "state": "NJ",
-        "result": null,
-        "chiefsScore": null,
-        "oppScore": null,
-        "status": "UPCOMING",
+        "result": "L",
+        "chiefsScore": 1,
+        "oppScore": 2,
+        "status": "FINAL",
         "time": "7:00 PM EST"
       },
       {
@@ -3337,22 +3337,38 @@ export const JUNIOR_TEAMS = {
       },
       {
         "rank": 4,
-        "team": "Mercer Chiefs (Premier)",
-        "logo": "assets/images/logos/mercer-chiefs-junior.png",
-        "isChiefs": true,
-        "gp": 17,
+        "team": "Red Bank Generals",
+        "logo": "assets/images/logos/red-bank-generals.png",
+        "isChiefs": false,
+        "gp": 15,
         "w": 11,
-        "l": 5,
-        "otl": 1,
+        "l": 3,
+        "otl": 0,
         "pts": 23,
-        "gf": 77,
-        "ga": 48,
-        "diff": "+29",
-        "streak": "2L",
-        "pct": ".676"
+        "gf": 74,
+        "ga": 31,
+        "diff": "+43",
+        "streak": "2W",
+        "pct": ".767"
       },
       {
         "rank": 5,
+        "team": "Mercer Chiefs (Premier)",
+        "logo": "assets/images/logos/mercer-chiefs-junior.png",
+        "isChiefs": true,
+        "gp": 18,
+        "w": 11,
+        "l": 6,
+        "otl": 1,
+        "pts": 23,
+        "gf": 78,
+        "ga": 50,
+        "diff": "+28",
+        "streak": "3L",
+        "pct": ".639"
+      },
+      {
+        "rank": 6,
         "team": "Jersey Hitmen",
         "logo": "assets/images/logos/jersey-hitmen.png",
         "isChiefs": false,
@@ -3366,22 +3382,6 @@ export const JUNIOR_TEAMS = {
         "diff": "-6",
         "streak": "5W",
         "pct": ".550"
-      },
-      {
-        "rank": 6,
-        "team": "Red Bank Generals",
-        "logo": "assets/images/logos/red-bank-generals.png",
-        "isChiefs": false,
-        "gp": 14,
-        "w": 10,
-        "l": 3,
-        "otl": 0,
-        "pts": 21,
-        "gf": 72,
-        "ga": 30,
-        "diff": "+42",
-        "streak": "1W",
-        "pct": ".750"
       },
       {
         "rank": 7,
