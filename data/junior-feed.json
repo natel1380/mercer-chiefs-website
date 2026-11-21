@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-21T13:03:10.609Z",
+  "lastSynced": "2026-11-21T20:06:47.947Z",
   "seasonLabel": "2026-27",
   "ncdc": {
     "id": "ncdc",
@@ -3346,16 +3346,16 @@
         "team": "Connecticut Junior Rangers",
         "logo": "assets/images/logos/ct-jr-rangers.png",
         "isChiefs": false,
-        "gp": 17,
+        "gp": 18,
         "w": 4,
-        "l": 12,
+        "l": 13,
         "otl": 1,
         "pts": 9,
-        "gf": 63,
-        "ga": 118,
-        "diff": "-55",
-        "streak": "3L",
-        "pct": ".265"
+        "gf": 66,
+        "ga": 127,
+        "diff": "-61",
+        "streak": "4L",
+        "pct": ".250"
       },
       {
         "rank": 9,

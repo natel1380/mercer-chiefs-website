@@ -3431,16 +3431,16 @@ export const JUNIOR_TEAMS = {
         "team": "Connecticut Junior Rangers",
         "logo": "assets/images/logos/ct-jr-rangers.png",
         "isChiefs": false,
-        "gp": 17,
+        "gp": 18,
         "w": 4,
-        "l": 12,
+        "l": 13,
         "otl": 1,
         "pts": 9,
-        "gf": 63,
-        "ga": 118,
-        "diff": "-55",
-        "streak": "3L",
-        "pct": ".265"
+        "gf": 66,
+        "ga": 127,
+        "diff": "-61",
+        "streak": "4L",
+        "pct": ".250"
       },
       {
         "rank": 9,
@@ -10678,10 +10678,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Brian Batjer",
     "level": "10U Squirt Major AAA",
-    "record": "1-14-1",
+    "record": "1-15-1",
     "pts": 4,
     "rank": "#16",
-    "standingSummary": "1-14-1 | 4 PTS | #16 Tier 1 Hockey Federation (THF)",
+    "standingSummary": "1-15-1 | 4 PTS | #16 Tier 1 Hockey Federation (THF)",
     "officialUrl": "https://www.tier1hockeyfederation.com/team-pages/?team=10301&season=190&stat_class=1",
     "featuredSchedule": [],
     "roster": [
@@ -11032,16 +11032,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "82335",
-        "date": "2026-11-21",
-        "time": "08:15 AM",
-        "opp": "Wolfpack 10U",
-        "rink": "The Club At Woodbridge Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=82335",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=82335"
-      },
-      {
         "id": "82899",
         "date": "2026-12-05",
         "time": "12:45 PM",
@@ -11173,6 +11163,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "82335",
+        "date": "2026-11-21",
+        "time": "08:15 AM",
+        "opp": "Woodbridge Wolfpack 10U",
+        "rink": "The Club At Woodbridge Rink 1",
+        "loc": "Away",
+        "outcome": "L",
+        "score": "1-15",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=82335",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=82335"
+      },
       {
         "id": "82714",
         "date": "2026-11-15",
@@ -21396,10 +21399,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Ivan Chavez",
     "level": "10U Squirt B",
-    "record": "14-4-2",
-    "pts": 38,
+    "record": "15-4-2",
+    "pts": 40,
     "rank": "#3",
-    "standingSummary": "14-4-2 | 38 PTS | #3 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "15-4-2 | 40 PTS | #3 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=14950&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -21827,16 +21830,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77511"
       },
       {
-        "id": "77530",
-        "date": "2026-11-21",
-        "time": "12:45 PM",
-        "opp": "Colts 10M Green",
-        "rink": "Twin Oaks",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77530",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77530"
-      },
-      {
         "id": "76554",
         "date": "2026-12-05",
         "time": "03:15 PM",
@@ -21928,6 +21921,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "77530",
+        "date": "2026-11-21",
+        "time": "12:45 PM",
+        "opp": "Jersey Colts 10M Green",
+        "rink": "Twin Oaks",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "14-0",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=77530",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=77530"
+      },
       {
         "id": "75640",
         "date": "2026-11-15",
@@ -22188,10 +22194,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Nick Dimino",
     "level": "9U Squirt Minor AA",
-    "record": "10-6-1",
-    "pts": 28,
+    "record": "11-6-1",
+    "pts": 30,
     "rank": "#6",
-    "standingSummary": "10-6-1 | 28 PTS | #6 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "11-6-1 | 30 PTS | #6 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9879&season=190&stat_class=1",
     "featuredSchedule": [],
     "roster": [
@@ -22516,16 +22522,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "84762",
-        "date": "2026-11-21",
-        "time": "07:00 AM",
-        "opp": "General 9AA",
-        "rink": "Red Bank Armory Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=84762",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=84762"
-      },
-      {
         "id": "75697",
         "date": "2026-11-22",
         "time": "02:30 PM",
@@ -22667,6 +22663,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "84762",
+        "date": "2026-11-21",
+        "time": "07:00 AM",
+        "opp": "Red Bank General 9AA",
+        "rink": "Red Bank Armory Rink 1",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "8-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=84762",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=84762"
+      },
       {
         "id": "75163",
         "date": "2026-11-14",
