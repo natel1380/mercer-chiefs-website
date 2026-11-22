@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-22T15:41:54.758Z",
+  "lastSynced": "2026-11-22T21:19:08.621Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -9771,10 +9771,10 @@
       "season": "2026/27",
       "headCoach": "Joseph Maslott",
       "level": "16U Midget Minor A",
-      "record": "18-3-1",
-      "pts": 48,
+      "record": "19-3-2",
+      "pts": 51,
       "rank": "#4",
-      "standingSummary": "18-3-1 | 48 PTS | #4 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "19-3-2 | 51 PTS | #4 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9881&season=190&stat_class=1",
       "featuredSchedule": [],
       "roster": [
@@ -10205,26 +10205,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77037"
         },
         {
-          "id": "76113",
-          "date": "2026-11-22",
-          "time": "02:10 PM",
-          "opp": "Wildcats 16L",
-          "rink": "Jersey Shore Arena Red Rink",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76113",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76113"
-        },
-        {
-          "id": "76758",
-          "date": "2026-11-22",
-          "time": "07:00 PM",
-          "opp": "Blues 16L",
-          "rink": "Montclair State Ice Arena Red Hawk",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76758",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76758"
-        },
-        {
           "id": "76666",
           "date": "2026-12-05",
           "time": "11:10 AM",
@@ -10296,6 +10276,32 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "76758",
+          "date": "2026-11-22",
+          "time": "07:00 PM",
+          "opp": "Montclair Blues 16L",
+          "rink": "Montclair State Ice Arena Red Hawk",
+          "loc": "Away",
+          "outcome": "T",
+          "score": "0-0",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76758",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76758"
+        },
+        {
+          "id": "76113",
+          "date": "2026-11-22",
+          "time": "02:10 PM",
+          "opp": "Jersey Shore Wildcats 16L",
+          "rink": "Jersey Shore Arena Red Rink",
+          "loc": "Away",
+          "outcome": "W",
+          "score": "8-1",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76113",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76113"
+        },
         {
           "id": "76665",
           "date": "2026-11-07",
@@ -11371,10 +11377,10 @@
       "season": "2026/27",
       "headCoach": "Don Migliorisi",
       "level": "14U Bantam Minor B",
-      "record": "6-8-3",
-      "pts": 18,
+      "record": "7-8-3",
+      "pts": 20,
       "rank": "#7",
-      "standingSummary": "6-8-3 | 18 PTS | #7 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "7-8-3 | 20 PTS | #7 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15078&season=190&stat_class=1",
       "featuredSchedule": [
         {
@@ -11766,16 +11772,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75922"
         },
         {
-          "id": "75925",
-          "date": "2026-11-22",
-          "time": "12:30 PM",
-          "opp": "Philadelphia 14M",
-          "rink": "The Campus Chester County",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75925",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75925"
-        },
-        {
           "id": "76637",
           "date": "2026-12-05",
           "time": "02:15 PM",
@@ -11897,6 +11893,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "75925",
+          "date": "2026-11-22",
+          "time": "12:30 PM",
+          "opp": "Team Philadelphia 14M",
+          "rink": "The Campus Chester County",
+          "loc": "Away",
+          "outcome": "W",
+          "score": "6-0",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75925",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75925"
+        },
         {
           "id": "74109",
           "date": "2026-11-21",
@@ -15874,10 +15883,10 @@
       "season": "2026/27",
       "headCoach": "Xan Doetsch",
       "level": "10U Squirt Major AA",
-      "record": "9-11-1",
-      "pts": 19,
+      "record": "11-11-1",
+      "pts": 23,
       "rank": "#4",
-      "standingSummary": "9-11-1 | 19 PTS | #4 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "11-11-1 | 23 PTS | #4 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9870&season=190&stat_class=1",
       "featuredSchedule": [
         {
@@ -16241,26 +16250,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76531"
         },
         {
-          "id": "75629",
-          "date": "2026-11-22",
-          "time": "10:00 AM",
-          "opp": "Knights 10AA",
-          "rink": "Revolution Ice Centre Rink 2",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75629",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75629"
-        },
-        {
-          "id": "75630",
-          "date": "2026-11-22",
-          "time": "02:45 PM",
-          "opp": "Knights 10AA",
-          "rink": "Revolution Ice Centre Rink 1",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75630",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75630"
-        },
-        {
           "id": "75180",
           "date": "2026-12-13",
           "time": "05:30 PM",
@@ -16362,6 +16351,32 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "75630",
+          "date": "2026-11-22",
+          "time": "02:45 PM",
+          "opp": "WBS Knights 10AA",
+          "rink": "Revolution Ice Centre Rink 1",
+          "loc": "Away",
+          "outcome": "W",
+          "score": "7-6",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75630",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75630"
+        },
+        {
+          "id": "75629",
+          "date": "2026-11-22",
+          "time": "10:00 AM",
+          "opp": "WBS Knights 10AA",
+          "rink": "Revolution Ice Centre Rink 2",
+          "loc": "Away",
+          "outcome": "W",
+          "score": "8-2",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75629",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75629"
+        },
         {
           "id": "73749",
           "date": "2026-11-14",
@@ -18100,10 +18115,10 @@
       "season": "2026/27",
       "headCoach": "Nick Dimino",
       "level": "9U Squirt Minor AA",
-      "record": "11-6-1",
-      "pts": 30,
+      "record": "12-6-1",
+      "pts": 32,
       "rank": "#6",
-      "standingSummary": "11-6-1 | 30 PTS | #6 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "12-6-1 | 32 PTS | #6 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9879&season=190&stat_class=1",
       "featuredSchedule": [],
       "roster": [
@@ -18428,16 +18443,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "75697",
-          "date": "2026-11-22",
-          "time": "02:30 PM",
-          "opp": "Philadelphia 9AA",
-          "rink": "Ice Line Rink 3",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75697",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75697"
-        },
-        {
           "id": "76923",
           "date": "2026-12-13",
           "time": "01:10 PM",
@@ -18569,6 +18574,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "75697",
+          "date": "2026-11-22",
+          "time": "02:30 PM",
+          "opp": "Team Philadelphia 9AA",
+          "rink": "Ice Line Rink 3",
+          "loc": "Away",
+          "outcome": "W",
+          "score": "7-3",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75697",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75697"
+        },
         {
           "id": "84762",
           "date": "2026-11-21",

@@ -183,7 +183,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/ncdc_8_maccormick_tristan.png",
         "fullPhoto": "assets/images/players/full/ncdc_8_maccormick_tristan.jpg",
-        "gp": 23,
+        "gp": 24,
         "g": 7,
         "a": 16,
         "pts": 23,
@@ -231,7 +231,7 @@ export const JUNIOR_TEAMS = {
         "featured": true,
         "headshot": "assets/images/players/ncdc_10_weiner_jake.png",
         "fullPhoto": "assets/images/players/full/ncdc_10_weiner_jake.jpg",
-        "gp": 6,
+        "gp": 7,
         "g": 0,
         "a": 0,
         "pts": 0,
@@ -255,7 +255,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/ncdc_11_shin_richard.png",
         "fullPhoto": "assets/images/players/full/ncdc_11_shin_richard.jpg",
-        "gp": 20,
+        "gp": 21,
         "g": 1,
         "a": 4,
         "pts": 5,
@@ -423,7 +423,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "https://d3bll69iq5agq8.cloudfront.net/usphl/player-media/6c20cd6f51156de07fd9c22c962567b8277192f18374b9e2e2bf60cc8bb2b896.jpeg",
         "fullPhoto": "https://d3bll69iq5agq8.cloudfront.net/usphl/player-media/6c20cd6f51156de07fd9c22c962567b8277192f18374b9e2e2bf60cc8bb2b896.jpeg",
-        "gp": 12,
+        "gp": 13,
         "g": 4,
         "a": 4,
         "pts": 8,
@@ -447,7 +447,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/ncdc_20_beaudin_beaudy.png",
         "fullPhoto": "assets/images/players/full/ncdc_20_beaudin_beaudy.jpg",
-        "gp": 23,
+        "gp": 24,
         "g": 7,
         "a": 10,
         "pts": 17,
@@ -530,6 +530,30 @@ export const JUNIOR_TEAMS = {
         "gwg": 0
       },
       {
+        "number": 27,
+        "name": "Zachary Meseroll",
+        "position": "F",
+        "shoots": "L",
+        "height": "5'10\"",
+        "weight": "176 lbs",
+        "birthYear": 2007,
+        "dob": "2007-05-14",
+        "hometown": "Hamilton Square, NJ",
+        "commitment": null,
+        "featured": false,
+        "headshot": "https://d3bll69iq5agq8.cloudfront.net/usphl/player-media/35462a8e3a30989b35129135eff444b214dd139bfd3eb4261aea5879dc2d6067.jpeg",
+        "fullPhoto": "https://d3bll69iq5agq8.cloudfront.net/usphl/player-media/35462a8e3a30989b35129135eff444b214dd139bfd3eb4261aea5879dc2d6067.jpeg",
+        "gp": 12,
+        "g": 0,
+        "a": 0,
+        "pts": 0,
+        "pim": 0,
+        "plusMinus": "0",
+        "ppg": 0,
+        "shg": 0,
+        "gwg": 0
+      },
+      {
         "number": 28,
         "name": "Lukas Reisen",
         "position": "F",
@@ -543,7 +567,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "assets/images/players/ncdc_28_reisen_lukas.png",
         "fullPhoto": "assets/images/players/full/ncdc_28_reisen_lukas.jpg",
-        "gp": 23,
+        "gp": 24,
         "g": 5,
         "a": 5,
         "pts": 10,
@@ -615,7 +639,7 @@ export const JUNIOR_TEAMS = {
         "featured": false,
         "headshot": "https://lscluster.hockeytech.com/img/nophoto.png",
         "fullPhoto": "https://lscluster.hockeytech.com/img/nophoto.png",
-        "gp": 7,
+        "gp": 8,
         "g": 4,
         "a": 1,
         "pts": 5,
@@ -624,30 +648,6 @@ export const JUNIOR_TEAMS = {
         "ppg": 0,
         "shg": 0,
         "gwg": 1
-      },
-      {
-        "number": 65,
-        "name": "Zachary Meseroll",
-        "position": "F",
-        "shoots": "L",
-        "height": "5'10\"",
-        "weight": "176 lbs",
-        "birthYear": 2007,
-        "dob": "2007-05-14",
-        "hometown": "Hamilton Square, NJ",
-        "commitment": null,
-        "featured": false,
-        "headshot": "https://d3bll69iq5agq8.cloudfront.net/usphl/player-media/35462a8e3a30989b35129135eff444b214dd139bfd3eb4261aea5879dc2d6067.jpeg",
-        "fullPhoto": "https://d3bll69iq5agq8.cloudfront.net/usphl/player-media/35462a8e3a30989b35129135eff444b214dd139bfd3eb4261aea5879dc2d6067.jpeg",
-        "gp": 12,
-        "g": 0,
-        "a": 0,
-        "pts": 0,
-        "pim": 0,
-        "plusMinus": "0",
-        "ppg": 0,
-        "shg": 0,
-        "gwg": 0
       },
       {
         "number": 78,
@@ -687,7 +687,7 @@ export const JUNIOR_TEAMS = {
         "featured": true,
         "headshot": "assets/images/players/ncdc_83_zajac_michael.png",
         "fullPhoto": "assets/images/players/full/ncdc_83_zajac_michael.jpg",
-        "gp": 21,
+        "gp": 22,
         "g": 3,
         "a": 8,
         "pts": 11,
@@ -3348,6 +3348,22 @@ export const JUNIOR_TEAMS = {
       },
       {
         "rank": 3,
+        "team": "Red Bank Generals",
+        "logo": "assets/images/logos/red-bank-generals.png",
+        "isChiefs": false,
+        "gp": 18,
+        "w": 12,
+        "l": 5,
+        "otl": 0,
+        "pts": 25,
+        "gf": 81,
+        "ga": 41,
+        "diff": "+40",
+        "streak": "1W",
+        "pct": ".694"
+      },
+      {
+        "rank": 4,
         "team": "Mercer Chiefs (Premier)",
         "logo": "assets/images/logos/mercer-chiefs-junior.png",
         "isChiefs": true,
@@ -3363,7 +3379,7 @@ export const JUNIOR_TEAMS = {
         "pct": ".658"
       },
       {
-        "rank": 4,
+        "rank": 5,
         "team": "Rockets Hockey Club",
         "logo": "assets/images/logos/rockets-hc.png",
         "isChiefs": false,
@@ -3377,22 +3393,6 @@ export const JUNIOR_TEAMS = {
         "diff": "+58",
         "streak": "1L",
         "pct": ".767"
-      },
-      {
-        "rank": 5,
-        "team": "Red Bank Generals",
-        "logo": "assets/images/logos/red-bank-generals.png",
-        "isChiefs": false,
-        "gp": 17,
-        "w": 11,
-        "l": 5,
-        "otl": 0,
-        "pts": 23,
-        "gf": 78,
-        "ga": 39,
-        "diff": "+39",
-        "streak": "2L",
-        "pct": ".676"
       },
       {
         "rank": 6,
@@ -3431,16 +3431,16 @@ export const JUNIOR_TEAMS = {
         "team": "Connecticut Junior Rangers",
         "logo": "assets/images/logos/ct-jr-rangers.png",
         "isChiefs": false,
-        "gp": 19,
+        "gp": 20,
         "w": 5,
-        "l": 13,
+        "l": 14,
         "otl": 1,
         "pts": 11,
         "gf": 70,
-        "ga": 130,
-        "diff": "-60",
-        "streak": "1W",
-        "pct": ".289"
+        "ga": 134,
+        "diff": "-64",
+        "streak": "1L",
+        "pct": ".275"
       },
       {
         "rank": 9,
@@ -13871,10 +13871,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Joseph Maslott",
     "level": "16U Midget Minor A",
-    "record": "18-3-1",
-    "pts": 48,
+    "record": "19-3-2",
+    "pts": 51,
     "rank": "#4",
-    "standingSummary": "18-3-1 | 48 PTS | #4 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "19-3-2 | 51 PTS | #4 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9881&season=190&stat_class=1",
     "featuredSchedule": [],
     "roster": [
@@ -14305,26 +14305,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77037"
       },
       {
-        "id": "76113",
-        "date": "2026-11-22",
-        "time": "02:10 PM",
-        "opp": "Wildcats 16L",
-        "rink": "Jersey Shore Arena Red Rink",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76113",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76113"
-      },
-      {
-        "id": "76758",
-        "date": "2026-11-22",
-        "time": "07:00 PM",
-        "opp": "Blues 16L",
-        "rink": "Montclair State Ice Arena Red Hawk",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=76758",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76758"
-      },
-      {
         "id": "76666",
         "date": "2026-12-05",
         "time": "11:10 AM",
@@ -14396,6 +14376,32 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "76758",
+        "date": "2026-11-22",
+        "time": "07:00 PM",
+        "opp": "Montclair Blues 16L",
+        "rink": "Montclair State Ice Arena Red Hawk",
+        "loc": "Away",
+        "outcome": "T",
+        "score": "0-0",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76758",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76758"
+      },
+      {
+        "id": "76113",
+        "date": "2026-11-22",
+        "time": "02:10 PM",
+        "opp": "Jersey Shore Wildcats 16L",
+        "rink": "Jersey Shore Arena Red Rink",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "8-1",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=76113",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=76113"
+      },
       {
         "id": "76665",
         "date": "2026-11-07",
@@ -15471,10 +15477,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Don Migliorisi",
     "level": "14U Bantam Minor B",
-    "record": "6-8-3",
-    "pts": 18,
+    "record": "7-8-3",
+    "pts": 20,
     "rank": "#7",
-    "standingSummary": "6-8-3 | 18 PTS | #7 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "7-8-3 | 20 PTS | #7 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15078&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -15866,16 +15872,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75922"
       },
       {
-        "id": "75925",
-        "date": "2026-11-22",
-        "time": "12:30 PM",
-        "opp": "Philadelphia 14M",
-        "rink": "The Campus Chester County",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75925",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75925"
-      },
-      {
         "id": "76637",
         "date": "2026-12-05",
         "time": "02:15 PM",
@@ -15997,6 +15993,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "75925",
+        "date": "2026-11-22",
+        "time": "12:30 PM",
+        "opp": "Team Philadelphia 14M",
+        "rink": "The Campus Chester County",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "6-0",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75925",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75925"
+      },
       {
         "id": "74109",
         "date": "2026-11-21",
@@ -19974,10 +19983,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Xan Doetsch",
     "level": "10U Squirt Major AA",
-    "record": "9-11-1",
-    "pts": 19,
+    "record": "11-11-1",
+    "pts": 23,
     "rank": "#4",
-    "standingSummary": "9-11-1 | 19 PTS | #4 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "11-11-1 | 23 PTS | #4 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9870&season=190&stat_class=1",
     "featuredSchedule": [
       {
@@ -20341,26 +20350,6 @@ export const YOUTH_TEAMS = [
         "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=76531"
       },
       {
-        "id": "75629",
-        "date": "2026-11-22",
-        "time": "10:00 AM",
-        "opp": "Knights 10AA",
-        "rink": "Revolution Ice Centre Rink 2",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75629",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75629"
-      },
-      {
-        "id": "75630",
-        "date": "2026-11-22",
-        "time": "02:45 PM",
-        "opp": "Knights 10AA",
-        "rink": "Revolution Ice Centre Rink 1",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75630",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75630"
-      },
-      {
         "id": "75180",
         "date": "2026-12-13",
         "time": "05:30 PM",
@@ -20462,6 +20451,32 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "75630",
+        "date": "2026-11-22",
+        "time": "02:45 PM",
+        "opp": "WBS Knights 10AA",
+        "rink": "Revolution Ice Centre Rink 1",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "7-6",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75630",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75630"
+      },
+      {
+        "id": "75629",
+        "date": "2026-11-22",
+        "time": "10:00 AM",
+        "opp": "WBS Knights 10AA",
+        "rink": "Revolution Ice Centre Rink 2",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "8-2",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75629",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75629"
+      },
       {
         "id": "73749",
         "date": "2026-11-14",
@@ -22200,10 +22215,10 @@ export const YOUTH_TEAMS = [
     "season": "2026/27",
     "headCoach": "Nick Dimino",
     "level": "9U Squirt Minor AA",
-    "record": "11-6-1",
-    "pts": 30,
+    "record": "12-6-1",
+    "pts": 32,
     "rank": "#6",
-    "standingSummary": "11-6-1 | 30 PTS | #6 Atlantic Hockey Federation (AHF)",
+    "standingSummary": "12-6-1 | 32 PTS | #6 Atlantic Hockey Federation (AHF)",
     "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9879&season=190&stat_class=1",
     "featuredSchedule": [],
     "roster": [
@@ -22528,16 +22543,6 @@ export const YOUTH_TEAMS = [
     ],
     "upcomingSchedule": [
       {
-        "id": "75697",
-        "date": "2026-11-22",
-        "time": "02:30 PM",
-        "opp": "Philadelphia 9AA",
-        "rink": "Ice Line Rink 3",
-        "loc": "Away",
-        "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=75697",
-        "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75697"
-      },
-      {
         "id": "76923",
         "date": "2026-12-13",
         "time": "01:10 PM",
@@ -22669,6 +22674,19 @@ export const YOUTH_TEAMS = [
       }
     ],
     "recentResults": [
+      {
+        "id": "75697",
+        "date": "2026-11-22",
+        "time": "02:30 PM",
+        "opp": "Team Philadelphia 9AA",
+        "rink": "Ice Line Rink 3",
+        "loc": "Away",
+        "outcome": "W",
+        "score": "7-3",
+        "status": "Final",
+        "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=75697",
+        "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=75697"
+      },
       {
         "id": "84762",
         "date": "2026-11-21",
