@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-22T00:21:04.994Z",
+  "lastSynced": "2026-11-22T07:29:24.552Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -8781,10 +8781,10 @@
       "season": "2026/27",
       "headCoach": "Michael Cook",
       "level": "18U Midget Major A",
-      "record": "8-14-2",
+      "record": "8-15-2",
       "pts": 23,
       "rank": "#12",
-      "standingSummary": "8-14-2 | 23 PTS | #12 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "8-15-2 | 23 PTS | #12 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9878&season=190&stat_class=1",
       "featuredSchedule": [
         {
@@ -9372,16 +9372,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77048"
         },
         {
-          "id": "77956",
-          "date": "2026-11-21",
-          "time": "07:30 PM",
-          "opp": "Avalanche 18GRY",
-          "rink": "Ice House Rink 1",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77956",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77956"
-        },
-        {
           "id": "76680",
           "date": "2026-12-05",
           "time": "01:40 PM",
@@ -9443,6 +9433,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "77956",
+          "date": "2026-11-21",
+          "time": "07:30 PM",
+          "opp": "North Jersey Avalanche 18GRY",
+          "rink": "Ice House Rink 1",
+          "loc": "Away",
+          "outcome": "L",
+          "score": "2-3",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=77956",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=77956"
+        },
         {
           "id": "76065",
           "date": "2026-11-08",
