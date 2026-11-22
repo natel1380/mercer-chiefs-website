@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-21T20:06:51.819Z",
+  "lastSynced": "2026-11-22T00:21:04.994Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -11368,10 +11368,10 @@
       "season": "2026/27",
       "headCoach": "Don Migliorisi",
       "level": "14U Bantam Minor B",
-      "record": "5-8-3",
-      "pts": 16,
+      "record": "6-8-3",
+      "pts": 18,
       "rank": "#7",
-      "standingSummary": "5-8-3 | 16 PTS | #7 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "6-8-3 | 18 PTS | #7 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15078&season=190&stat_class=1",
       "featuredSchedule": [
         {
@@ -11763,16 +11763,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=75922"
         },
         {
-          "id": "74109",
-          "date": "2026-11-21",
-          "time": "05:00 PM",
-          "opp": "Colonials 14M",
-          "rink": "Oaks Center Ice Rink 3",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=74109",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=74109"
-        },
-        {
           "id": "75925",
           "date": "2026-11-22",
           "time": "12:30 PM",
@@ -11904,6 +11894,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "74109",
+          "date": "2026-11-21",
+          "time": "05:00 PM",
+          "opp": "Valley Forge Colonials 14M",
+          "rink": "Oaks Center Ice Rink 3",
+          "loc": "Away",
+          "outcome": "W",
+          "score": "6-1",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=74109",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=74109"
+        },
         {
           "id": "76635",
           "date": "2026-11-07",
