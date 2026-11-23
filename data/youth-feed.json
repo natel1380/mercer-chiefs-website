@@ -1,5 +1,5 @@
 {
-  "lastSynced": "2026-11-22T21:19:08.621Z",
+  "lastSynced": "2026-11-23T01:59:01.437Z",
   "seasonLabel": "2026/27",
   "totalTeams": 29,
   "teams": [
@@ -13746,10 +13746,10 @@
       "season": "2026/27",
       "headCoach": "Fritz Brown",
       "level": "12U Peewee A",
-      "record": "15-3-1",
-      "pts": 43,
+      "record": "16-3-1",
+      "pts": 45,
       "rank": "#3",
-      "standingSummary": "15-3-1 | 43 PTS | #3 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "16-3-1 | 45 PTS | #3 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=15027&season=190&stat_class=1",
       "featuredSchedule": [
         {
@@ -14117,16 +14117,6 @@
           "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=78983"
         },
         {
-          "id": "77463",
-          "date": "2026-11-22",
-          "time": "06:00 PM",
-          "opp": "Colts 12L",
-          "rink": "Twin Oaks",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77463",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77463"
-        },
-        {
           "id": "76420",
           "date": "2026-12-05",
           "time": "08:25 AM",
@@ -14228,6 +14218,19 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "77463",
+          "date": "2026-11-22",
+          "time": "06:00 PM",
+          "opp": "Jersey Colts 12L",
+          "rink": "Twin Oaks",
+          "loc": "Away",
+          "outcome": "W",
+          "score": "4-1",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=77463",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=77463"
+        },
         {
           "id": "76218",
           "date": "2026-11-14",
@@ -14488,10 +14491,10 @@
       "season": "2026/27",
       "headCoach": "Chris Corrigan",
       "level": "12U Peewee B",
-      "record": "2-15-2",
-      "pts": 7,
+      "record": "3-16-2",
+      "pts": 9,
       "rank": "#26",
-      "standingSummary": "2-15-2 | 7 PTS | #26 Atlantic Hockey Federation (AHF)",
+      "standingSummary": "3-16-2 | 9 PTS | #26 Atlantic Hockey Federation (AHF)",
       "officialUrl": "https://atlantichockeyfederation.com/team-page/?team=9874&season=190&stat_class=1",
       "featuredSchedule": [],
       "roster": [
@@ -14812,26 +14815,6 @@
       ],
       "upcomingSchedule": [
         {
-          "id": "78998",
-          "date": "2026-11-22",
-          "time": "03:40 PM",
-          "opp": "Saints 12M",
-          "rink": "Sport-O-Rama Rink 2",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=78998",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=78998"
-        },
-        {
-          "id": "77478",
-          "date": "2026-11-22",
-          "time": "07:30 PM",
-          "opp": "Colts 12M",
-          "rink": "Twin Oaks",
-          "loc": "Away",
-          "scoresheetUrl": "https://stats.blackbear.timetoscore.com//generate-scorecard.php?game_id=77478",
-          "liveUrl": "http://live.blackbear.timetoscore.com//index.php?game_id=77478"
-        },
-        {
           "id": "75559",
           "date": "2026-12-06",
           "time": "10:30 AM",
@@ -14953,6 +14936,32 @@
         }
       ],
       "recentResults": [
+        {
+          "id": "77478",
+          "date": "2026-11-22",
+          "time": "07:30 PM",
+          "opp": "Jersey Colts 12M",
+          "rink": "Twin Oaks",
+          "loc": "Away",
+          "outcome": "W",
+          "score": "3-2",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=77478",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=77478"
+        },
+        {
+          "id": "78998",
+          "date": "2026-11-22",
+          "time": "03:40 PM",
+          "opp": "Ramapo Saints 12M",
+          "rink": "Sport-O-Rama Rink 2",
+          "loc": "Away",
+          "outcome": "L",
+          "score": "1-7",
+          "status": "Final",
+          "scoresheetUrl": "https://stats.blackbear.timetoscore.com/generate-scorecard.php?game_id=78998",
+          "liveUrl": "http://live.blackbear.timetoscore.com/index.php?game_id=78998"
+        },
         {
           "id": "76602",
           "date": "2026-09-27",
