@@ -1833,16 +1833,16 @@ export const JUNIOR_TEAMS = {
         "team": "Rockets Hockey Club",
         "logo": "assets/images/logos/rockets-hc.png",
         "isChiefs": false,
-        "gp": 21,
+        "gp": 22,
         "w": 9,
-        "l": 9,
+        "l": 10,
         "otl": 3,
         "pts": 21,
         "gf": 61,
-        "ga": 65,
-        "diff": "-4",
-        "streak": "2L",
-        "pct": ".500"
+        "ga": 73,
+        "diff": "-12",
+        "streak": "3L",
+        "pct": ".477"
       },
       {
         "rank": 6,
@@ -1865,16 +1865,16 @@ export const JUNIOR_TEAMS = {
         "team": "West Chester Wolves",
         "logo": "assets/images/logos/west-chester-wolves.png",
         "isChiefs": false,
-        "gp": 19,
-        "w": 7,
+        "gp": 20,
+        "w": 8,
         "l": 11,
         "otl": 0,
-        "pts": 15,
-        "gf": 66,
+        "pts": 17,
+        "gf": 74,
         "ga": 73,
-        "diff": "-7",
-        "streak": "1W",
-        "pct": ".395"
+        "diff": "+1",
+        "streak": "2W",
+        "pct": ".425"
       }
     ]
   },
@@ -3348,6 +3348,22 @@ export const JUNIOR_TEAMS = {
       },
       {
         "rank": 3,
+        "team": "Rockets Hockey Club",
+        "logo": "assets/images/logos/rockets-hc.png",
+        "isChiefs": false,
+        "gp": 16,
+        "w": 12,
+        "l": 3,
+        "otl": 1,
+        "pts": 25,
+        "gf": 102,
+        "ga": 38,
+        "diff": "+64",
+        "streak": "1W",
+        "pct": ".781"
+      },
+      {
+        "rank": 4,
         "team": "Red Bank Generals",
         "logo": "assets/images/logos/red-bank-generals.png",
         "isChiefs": false,
@@ -3363,7 +3379,7 @@ export const JUNIOR_TEAMS = {
         "pct": ".694"
       },
       {
-        "rank": 4,
+        "rank": 5,
         "team": "Mercer Chiefs (Premier)",
         "logo": "assets/images/logos/mercer-chiefs-junior.png",
         "isChiefs": true,
@@ -3377,22 +3393,6 @@ export const JUNIOR_TEAMS = {
         "diff": "+33",
         "streak": "1W",
         "pct": ".658"
-      },
-      {
-        "rank": 5,
-        "team": "Rockets Hockey Club",
-        "logo": "assets/images/logos/rockets-hc.png",
-        "isChiefs": false,
-        "gp": 15,
-        "w": 11,
-        "l": 3,
-        "otl": 1,
-        "pts": 23,
-        "gf": 96,
-        "ga": 38,
-        "diff": "+58",
-        "streak": "1L",
-        "pct": ".767"
       },
       {
         "rank": 6,
@@ -3447,16 +3447,16 @@ export const JUNIOR_TEAMS = {
         "team": "New Jersey Renegades",
         "logo": "assets/images/logos/nj-renegades.png",
         "isChiefs": false,
-        "gp": 19,
+        "gp": 20,
         "w": 1,
-        "l": 16,
+        "l": 17,
         "otl": 1,
         "pts": 4,
         "gf": 36,
-        "ga": 150,
-        "diff": "-114",
-        "streak": "13L",
-        "pct": ".105"
+        "ga": 156,
+        "diff": "-120",
+        "streak": "14L",
+        "pct": ".100"
       }
     ]
   }
